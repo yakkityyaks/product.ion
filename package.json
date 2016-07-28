@@ -2,7 +2,7 @@
   "name": "product.ion",
   "version": "1.0.0",
   "description": "Film budgeting software",
-  "main": "index.js",
+  "main": "app/server/server.js",
   "dependencies": {
     "babel": "^6.5.2",
     "body-parser": "^1.15.2",
