@@ -1,0 +1,33 @@
+{
+  "name": "product.ion",
+  "version": "1.0.0",
+  "description": "Film budgeting software",
+  "main": "index.js",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "body-parser": "^1.15.2",
+    "bookshelf": "^0.10.0",
+    "express": "^4.14.0",
+    "knex": "^0.11.9",
+    "mysql": "^2.11.1",
+    "nodemon": "^1.10.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholas-zeiss/product.ion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicholas-zeiss/product.ion/issues"
+  },
+  "homepage": "https://github.com/nicholas-zeiss/product.ion#readme"
+}
