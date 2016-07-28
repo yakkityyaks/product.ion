@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicholas-zeiss/product.ion.git"
+    "url": "git+https://github.com/yakkityyaks/product.ion.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nicholas-zeiss/product.ion/issues"
+    "url": "https://github.com/yakkityyaks/product.ion/issues"
   },
-  "homepage": "https://github.com/nicholas-zeiss/product.ion#readme"
+  "homepage": "https://github.com/yakkityyaks/product.ion#readme"
 }
