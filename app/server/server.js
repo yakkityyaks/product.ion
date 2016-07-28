@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
 
+//instantiate server
+var app = express();
+
 //requires bodyParser through middleware
 app.use(bodyParser.json());
 
@@ -16,8 +19,6 @@ app.use(function setHeaders(req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
-
-var app = express();
 
 var port = process.env.PORT || 3000;
 
