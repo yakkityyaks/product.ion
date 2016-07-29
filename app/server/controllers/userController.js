@@ -11,6 +11,7 @@
 //     user ? res.status(201).json(user) : res.sendStatus(404);
 //   });
 // });
+var User = require('../models/user.js');
 
 exports.makeUser = function(data, cb) {
 	new User(data).save().then(cb);

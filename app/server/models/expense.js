@@ -8,3 +8,5 @@ var Expense = Bookshelf.Model.extend({
 		return this.belongsTo(Project);
 	}
 })
+
+module.exports = Expense;
