@@ -20,7 +20,7 @@ app.use(function setHeaders(req, res, next) {
     next();
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 7000;
 
 require('./routes.js')(app);
 

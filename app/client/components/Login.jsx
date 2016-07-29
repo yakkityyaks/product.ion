@@ -1,46 +1,36 @@
+import React { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 const Login = React.createClass({
-
-  getInitialState() {
-    let { first_name, last_name, email } = user;
-    return {
-      firstName: first_name || '',
-      lastName: last_name || '',
-      email: email || ''
-    };
-  },
-
   render() {
-    return (
-      <div className='login'>
-        <h2>Basic Information</h2>
+    const navButtons = this.props.loggedIn ? (
+      <div>
+        <Link to="/" className="btn btn--dash btn--nav">Dashboard</Link>
+        {this.props.currentlySending ? (
+          <LoadingButton className="btn--nav" />
+      ) : (
+        <a href="#" className="btn btn--login btn--nav">Logout</a>
+      )}
+      </div>
 
-        <div>
-          <input type='text'
-                 valueLink={this.linkState('firstName')}
-                 placeholder='First Name'/>
-        </div>
-        <div>
-          <input type='text'
-                 valueLink={this.linkState('lastName')}
-                 placeholder='Last Name'/>
-        </div>
-        <div>
-          <input type='text'
-                 valueLink={this.linkState('email')}
-                 placeholder='Email'/>
-        </div>
-        <div>
-          <input type='text'
-                 valueLink={this.linkState('github')}
-                 placeholder='Github'/>
-        </div>
+    ) : (
 
-        <div className='button-container'>
-          <button>Cancel</button>
-          <button>Save</button>
+      <div>
+        <Link to="/create" className="btn btn--login btn--nav">Create Organization</Link>
+        <Link to="/login" className="btn btn--login btn--nav">Login</Link>
+      </div>
+    );
+
+    return(
+      <div className="nav">
+        <div className="nav__wrapper">
+          <Link to="/" className="nav__logo-wrapper"><h1 className="nav__logo">Product.ion</h1></Link>
+          { navButtons }
         </div>
       </div>
     );
   }
 });
+
+export default Login;
