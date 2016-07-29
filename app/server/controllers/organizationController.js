@@ -11,20 +11,16 @@
 //     user ? res.status(201).json(user) : res.sendStatus(404);
 //   });
 // });
+var Organization = require('../models/organization.js');
 
-
-exports.getProjs(orgName, cb) {
-
-}
+exports.getOrgs(orgName, cb) {
+	new Organization().fetchAll().then(cb);
+};
 
 exports.getOrg(orgName, cb) {
-
-}
+	new Organization({name: orgName}).fetch({withRelated: ['users', 'projects']}).then(cb);
+};
 
 exports.makeOrg(data, cb) {
-
-}
-
-exports.updateOrg(data, cb) {
-
-}
+	new Organization(data).save().then(cb);
+};

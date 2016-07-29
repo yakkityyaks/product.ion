@@ -12,19 +12,10 @@
 //   });
 // });
 
-
-exports.getExpenses(projName, cb) {
-
-}
-
 exports.getProj(projName, cb) {
-
+	new Project({name: projName}).fetch({withRelated: ['org', 'expenses']}).then(cb);
 }
 
 exports.makeProj(data, cb) {
-
-}
-
-exports.updateProj(data, cb) {
-
+	new Proj(data).save().then(cb);
 }

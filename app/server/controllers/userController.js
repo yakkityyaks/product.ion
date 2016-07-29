@@ -13,9 +13,9 @@
 // });
 
 exports.makeUser(data, cb) {
-
+	new User(data).save().then(cb);
 }
 
 exports.getUser(name, cb) {
-
+	new User({username: name}).fetch({withRelated: ['org']}).then(cb);
 }
