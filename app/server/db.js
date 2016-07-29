@@ -10,19 +10,19 @@ var knex = require('knex')({
 });
 
 Promise.all([
-  knex.schema.createTable('organizations', function(table) {
+  knex.schema.createTableIfNotExists('organizations', function(table) {
     table.increments('id').primary();
     table.string('name');
   }),
 
-  knex.schema.createTable('users', function(table) {
+  knex.schema.createTableIfNotExists('users', function(table) {
     table.increments('id').primary();
     table.string('username');
     table.string('password');
     table.integer('org_id').references('id').inTable('organizations');
   }),
 
-  knex.schema.createTable('projects', function(table) {
+  knex.schema.createTableIfNotExists('projects', function(table) {
     table.increments('id').primary();
     table.string('name');
     table.string('projId');
@@ -36,7 +36,7 @@ Promise.all([
     table.integer('org_id').references('id').inTable('organizations');
   }),  
 
-  knex.schema.createTable('expenses', function(table) {
+  knex.schema.createTableIfNotExists('expenses', function(table) {
     table.increments('id').primary();
     table.string('type');
     table.string('vertical');
@@ -50,8 +50,7 @@ Promise.all([
     table.float('cost');
     table.integer('proj_id').references('id').inTable('projects');
   })  
-])
-
+]);
 
 var Bookshelf = require('bookshelf')(knex);
 
