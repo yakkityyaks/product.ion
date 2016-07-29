@@ -10,7 +10,7 @@ var app = express();
 app.use(bodyParser.json());
 
 //Serves index page through static middleware
-app.use(express.static(path.join(__dirname, '../../app'), {'index': ['client/index.html']}));
+app.use(express.static(path.join(__dirname, '../../app'), {'index': ['index.html']}));
 
 //sets permissive CORS headers to limit server routing to API level per React guidlines
 app.use(function setHeaders(req, res, next) {
