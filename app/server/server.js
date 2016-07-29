@@ -24,16 +24,15 @@ var port = process.env.PORT || 3000;
 
 require('./routes.js')(app);
 
-var Users = require('./controllers/userController.js');
-
-Users.makeUser({username: 'test', password: 'test', orgId: 0}, function(user) {
-	Users.getUser(user.username, function(user) {
-		console.log(user);
-	});
-});
+// var Users = require('./controllers/userController.js');
+//
+// Users.makeUser({username: 'test', password: 'test', orgId: 0}, function(user) {
+// 	Users.getUser(user.username, function(user) {
+// 		console.log(user);
+// 	});
+// });
 
 
 app.listen(port, function listeningOnPort() {
   console.log('Listening on port ', port)
 });
-
