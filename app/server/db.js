@@ -25,6 +25,10 @@ knex.schema.hasTable('organizations').then(function(exists) {
       table.increments('id').primary();
       table.string('name');
       table.string('projId');
+      table.string('type');
+      table.string('reqBudget');
+      table.string('needs');
+      table.string('shootDates');
       table.string('status');
       table.string('costToDate');
       table.string('estimateToComplete');
@@ -49,3 +53,4 @@ knex.schema.hasTable('organizations').then(function(exists) {
 var Bookshelf = require('bookshelf')(knex);
 
 module.exports = Bookshelf;
+  
