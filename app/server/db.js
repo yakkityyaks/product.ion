@@ -1,4 +1,4 @@
-
+// var mysql = require('mysql');
 
 var knex = require('knex')({     
   client: 'mysql',
@@ -6,7 +6,8 @@ var knex = require('knex')({
     host: 'https://mysqlcluster11.registeredsite.com',
     user: 'yakadmin',
     password: '!Qaz2wsx3edc',
-    database: 'yakkityyaks'
+    database: 'yakkityyaks',
+    charset: 'utf8'
   }
 });
 
@@ -24,6 +25,10 @@ knex.schema.hasTable('organizations').then(function(exists) {
       table.increments('id').primary();
       table.string('name');
       table.string('projId');
+      table.string('type');
+      table.string('reqBudget');
+      table.string('needs');
+      table.string('shootDates');
       table.string('status');
       table.string('costToDate');
       table.string('estimateToComplete');
@@ -48,3 +53,4 @@ knex.schema.hasTable('organizations').then(function(exists) {
 var Bookshelf = require('bookshelf')(knex);
 
 module.exports = Bookshelf;
+  
