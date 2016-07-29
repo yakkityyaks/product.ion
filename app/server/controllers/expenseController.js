@@ -11,16 +11,12 @@
 //     user ? res.status(201).json(user) : res.sendStatus(404);
 //   });
 // });
+var Expense = require('../models/expense.js');
 
-
-exports.getExpense(name, cb) {
-
+exports.getExpense(description, cb) {
+	new Expense({description: description}).fetch({withRelated: ['proj']}).then(cb); 
 }
 
 exports.makeExpense(data, cb) {
-
-}
-
-exports.updateExpense(data, cb) {
-
+	new Expense(data).save().then(cb);
 }
