@@ -11,6 +11,7 @@
 //     user ? res.status(201).json(user) : res.sendStatus(404);
 //   });
 // });
+var Project = require('../models/project.js');
 
 exports.getProj = function(projName, cb) {
 	new Project({name: projName}).fetch({withRelated: ['org', 'expenses']}).then(cb);
