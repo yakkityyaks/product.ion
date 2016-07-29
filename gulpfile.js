@@ -12,18 +12,18 @@ gulp.task('default', function() {
 
 // gulp babel to compile components.
 gulp.task('babel', function() {
-	return gulp.src('./public/components/*')
+	return gulp.src('./app/client/*/*.jsx')
     // .pipe(jsx())
 		.pipe(babel({
 			presets: ['react']
 		}))
-		.pipe(gulp.dest('./compiled/components'));
+		.pipe(gulp.dest('./app/compiled/'));
 });
 
 // gulp watch to monitor changes in any jsx file.
 // If there is a file change, use babel task.
 gulp.task('watch', function() {
-  gulp.watch('./public/components/*.jsx', ['babel']);
+  gulp.watch('./client/*/*.jsx', ['babel']);
 });
 
 // gulp heroku for Heroku shell commands.
