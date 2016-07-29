@@ -13,10 +13,10 @@
 // });
 var Expense = require('../models/expense.js');
 
-exports.getExpense(description, cb) {
+exports.getExpense = function(description, cb) {
 	new Expense({description: description}).fetch({withRelated: ['proj']}).then(cb); 
 }
 
-exports.makeExpense(data, cb) {
+exports.makeExpense = function(data, cb) {
 	new Expense(data).save().then(cb);
 }

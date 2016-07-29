@@ -1,4 +1,4 @@
-
+// var mysql = require('mysql');
 
 var knex = require('knex')({     
   client: 'mysql',
@@ -6,7 +6,8 @@ var knex = require('knex')({
     host: 'https://mysqlcluster11.registeredsite.com',
     user: 'yakadmin',
     password: '!Qaz2wsx3edc',
-    database: 'yakkityyaks'
+    database: 'yakkityyaks',
+    charset: 'utf8'
   }
 });
 

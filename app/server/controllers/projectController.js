@@ -12,10 +12,10 @@
 //   });
 // });
 
-exports.getProj(projName, cb) {
+exports.getProj = function(projName, cb) {
 	new Project({name: projName}).fetch({withRelated: ['org', 'expenses']}).then(cb);
 }
 
-exports.makeProj(data, cb) {
+exports.makeProj = function(data, cb) {
 	new Proj(data).save().then(cb);
 }
