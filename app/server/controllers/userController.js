@@ -12,10 +12,10 @@
 //   });
 // });
 
-exports.makeUser(data, cb) {
+exports.makeUser = function(data, cb) {
 	new User(data).save().then(cb);
 }
 
-exports.getUser(name, cb) {
+exports.getUser = function(name, cb) {
 	new User({username: name}).fetch({withRelated: ['org']}).then(cb);
 }

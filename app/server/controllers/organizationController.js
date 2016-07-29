@@ -13,14 +13,14 @@
 // });
 var Organization = require('../models/organization.js');
 
-exports.getOrgs(orgName, cb) {
+exports.getOrgs = function(orgName, cb) {
 	new Organization().fetchAll().then(cb);
 };
 
-exports.getOrg(orgName, cb) {
+exports.getOrg = function(orgName, cb) {
 	new Organization({name: orgName}).fetch({withRelated: ['users', 'projects']}).then(cb);
 };
 
-exports.makeOrg(data, cb) {
+exports.makeOrg = function(data, cb) {
 	new Organization(data).save().then(cb);
 };
