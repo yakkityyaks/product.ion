@@ -3,28 +3,40 @@
 
 // increment a like
 // actions are just objects
-export function increment(index) {
+export const SELECT_DATA = 'SELECT_DATA'
+
+export function selectData(data) {
   return {
-    type: 'INCREMENT_LIKES',
-    index
+    type: SELECT_DATA,
+    data
   }
 }
 
-// add comments
-export function addComment(postId, author, comment) {
+export const INVALIDATE_DATA = 'INVALIDATE_DATA'
+
+export function invalidateSubreddit(data) {
   return {
-    type: 'ADD_COMMENT',
-    postId,
-    author,
-    comment
+    type: INVALIDATE_DATA,
+    data
   }
 }
 
-// remove comment
-export function removeComment(postId, index) {
+export const REQUEST_POSTS = 'REQUEST_POSTS'
+
+export function requestPosts(posts) {
   return {
-    type: 'REMOVE_COMMENT',
-    index,
-    postId
+    type: REQUEST_POSTS,
+    posts
+  }
+}
+
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+
+export function receivePosts(data, json) {
+  return {
+    type: RECEIVE_POSTS,
+    data,
+    posts: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
   }
 }

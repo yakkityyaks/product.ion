@@ -8,6 +8,7 @@ const Organization = React.createClass({
   render() {
     return (
       <div>
+      <h2 className="form-page__form-heading">Create Organization</h2>
       <form className="form">
          <div className="form__error-wrapper">
            <p className="form__error form__error--username-taken">Sorry, but this username is already taken.</p>
