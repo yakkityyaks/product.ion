@@ -12,12 +12,12 @@ gulp.task('default', function() {
 
 // gulp babel to compile components.
 gulp.task('babel', function() {
-	return gulp.src('./app/client/*/*.jsx')
+	return gulp.src(['./app/client/*.jsx/', './app/client/*/*.jsx'])
     // .pipe(jsx())
 		.pipe(babel({
 			presets: ['react']
 		}))
-		.pipe(gulp.dest('./app/compiled/'));
+		.pipe(gulp.dest('./compiled/'));
 });
 
 // gulp watch to monitor changes in any jsx file.

@@ -1,7 +1,7 @@
-var Expense = require('./controllers/expenseController.js');
-var Organization = require('./controllers/organizationController.js');
-var Project = require('./controllers/projectController.js');
-var User = require('./controllers/userController.js');
+// var Expense = require('./controllers/expenseController.js');
+// var Organization = require('./controllers/organizationController.js');
+// var Project = require('./controllers/projectController.js');
+// var User = require('./controllers/userController.js');
 
 var path = require('path');
 
@@ -14,10 +14,10 @@ module.exports = function routes(app){
     organization: 'yourOrganziationName'
   };
 
-  app.post('/register', function registerUser(req, res) {
-    User.makeUser(req.body, function newUser(user){
-      user ? res.status(201).send({data: data}) : res.sendStatus(404);
-    })
-  });
+  // app.post('/register', function registerUser(req, res) {
+  //   User.makeUser(req.body, function newUser(user){
+  //     user ? res.status(201).send({data: data}) : res.sendStatus(404);
+  //   })
+  // });
 
 };
