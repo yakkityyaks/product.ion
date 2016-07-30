@@ -4,11 +4,17 @@ import { History } from 'react-router';
 // const assign = Object.assign || require('object.assign');
 
 const Login = React.createClass({
+  onSubmit(evt) {
+    evt.preventDefault();
+    this.props.onSubmit(this.props.data.username, this.props.data.password);
+  },
+
 
   render() {
     return (
       <div>
-      <form className="form">
+      <h2 className="form-page__form-heading">Login</h2>
+      <form className="form" onSubmit={ this.onSubmit.bind(this) }>
          <div className="form__error-wrapper">
            <p className="form__error form__error--username-taken">Sorry, but this username is already taken.</p>
            <p className="form__error form__error--username-not-registered">This username does not exist.</p>
