@@ -21,7 +21,7 @@ const Main = React.createClass({
 
         { React.cloneElement(this.props.children, this.props) }
       </div>
-    )
+    );
   }
 });
 // allows us to go into main application and import Main.js.

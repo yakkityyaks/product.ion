@@ -7,7 +7,7 @@ const Login = React.createClass({
       <div>
       LOGIN BABY!
       </div>
-    )
+    );
   }
 });
 

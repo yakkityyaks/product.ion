@@ -8,7 +8,7 @@ const Projects = React.createClass({
       <figure className="grid-figure">
         Divs!
       </figure>
-    )
+    );
   }
 });
 

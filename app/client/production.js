@@ -28,7 +28,7 @@ const router = (
       </Route>
     </Router>
   </Provider>
-)
+);
 
 // we can render Main because we imported it.
 render(router, document.getElementById('root'));
