@@ -19,7 +19,7 @@ Promise.all([
     table.increments('id').primary();
     table.string('username');
     table.string('password');
-    table.integer('orgs_id').references('id').inTable('orgs');
+    table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
 
   knex.schema.createTableIfNotExists('projs', function(table) {
@@ -33,7 +33,7 @@ Promise.all([
     table.string('status');
     table.string('costToDate');
     table.string('estimateToComplete');
-    table.integer('orgs_id').references('id').inTable('orgs');
+    table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),  
 
   knex.schema.createTableIfNotExists('expenses', function(table) {
@@ -48,11 +48,13 @@ Promise.all([
     table.string('method');
     table.string('description');
     table.float('cost');
-    table.integer('projs_id').references('id').inTable('projs');
+    table.integer('projs_id').unsigned().references('id').inTable('projs');
   })  
 ]);
 
 var Bookshelf = require('bookshelf')(knex);
+
+Bookshelf.plugin('registry');
 
 module.exports = Bookshelf;
   
