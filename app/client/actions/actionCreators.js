@@ -29,3 +29,14 @@ export function requestPosts(posts) {
     posts
   }
 }
+
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+
+export function receivePosts(data, json) {
+  return {
+    type: RECEIVE_POSTS,
+    data,
+    posts: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
+  }
+}
