@@ -4,9 +4,9 @@ require('./expense.js');
 require('./organization.js');
 
 var Project = Bookshelf.Model.extend({
-	tableName: 'projects',
+	tableName: 'projs',
 	expenses: function() {
-		return this.hasMany('Expense')
+		return this.hasMany('Expense', 'projs_id');
 	},
 	org: function() {
 		return this.belongsTo('Organization', 'orgs_id');
