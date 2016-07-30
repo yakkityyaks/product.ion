@@ -17,6 +17,10 @@ exports.getProj = function(projName, cb) {
 	new Project({name: projName}).fetch({withRelated: ['org', 'expenses']}).then(cb);
 }
 
+exports.getProjs = function(cb) {
+	new Project().fetchAll().then(cb);
+}
+
 exports.makeProj = function(data, cb) {
-	new Proj(data).save().then(cb);
+	new Project(data).save().then(cb);
 }

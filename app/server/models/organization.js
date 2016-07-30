@@ -4,10 +4,10 @@ var Bookshelf = require('../db.js');
 var Organization = Bookshelf.Model.extend({
 	tableName: 'orgs',
 	users: function() {
-		return this.hasMany('User');
+		return this.hasMany('User', 'orgs_id');
 	},
 	projects: function() {
-		return this.hasMany('Project');
+		return this.hasMany('Project', 'orgs_id');
 	}
 })
 
