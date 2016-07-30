@@ -10,7 +10,7 @@ var knex = require('knex')({
 });
 
 Promise.all([
-  knex.schema.createTableIfNotExists('organizations', function(table) {
+  knex.schema.createTableIfNotExists('orgs', function(table) {
     table.increments('id').primary();
     table.string('name');
   }),
@@ -19,10 +19,10 @@ Promise.all([
     table.increments('id').primary();
     table.string('username');
     table.string('password');
-    table.integer('org_id').references('id').inTable('organizations');
+    table.integer('orgs_id').references('id').inTable('orgs');
   }),
 
-  knex.schema.createTableIfNotExists('projects', function(table) {
+  knex.schema.createTableIfNotExists('projs', function(table) {
     table.increments('id').primary();
     table.string('name');
     table.string('projId');
@@ -33,7 +33,7 @@ Promise.all([
     table.string('status');
     table.string('costToDate');
     table.string('estimateToComplete');
-    table.integer('org_id').references('id').inTable('organizations');
+    table.integer('orgs_id').references('id').inTable('orgs');
   }),  
 
   knex.schema.createTableIfNotExists('expenses', function(table) {
@@ -48,7 +48,7 @@ Promise.all([
     table.string('method');
     table.string('description');
     table.float('cost');
-    table.integer('proj_id').references('id').inTable('projects');
+    table.integer('projs_id').references('id').inTable('projs');
   })  
 ]);
 
