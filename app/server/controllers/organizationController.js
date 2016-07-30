@@ -20,7 +20,6 @@ exports.getOrgs = function(orgName, cb) {
 exports.getOrg = function(orgName, cb) {
 	new Organization({name: orgName}).fetch({withRelated: ['users', 'projects']}).then(cb);
 };
-// {withRelated: ['users', 'projects']}
 
 exports.makeOrg = function(data, cb) {
 	new Organization(data).save().then(cb);

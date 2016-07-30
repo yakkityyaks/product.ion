@@ -1,12 +1,12 @@
 
 var Bookshelf = require('../db.js');
-require('./organization.js');
+var Organization = require('./organization.js');
 
 var User = Bookshelf.Model.extend({
   tableName: 'users',
-	orgs: function() {
-		return this.belongsTo('Organization', 'orgs_id');
+	org: function() {
+		return this.belongsTo(Organization);
 	}
 });
 
-module.exports = Bookshelf.model('User', User);
+module.exports = User;
