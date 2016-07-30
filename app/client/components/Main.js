@@ -10,7 +10,7 @@ const Main = React.createClass({
     return (
       <div>
         <div>
-          <Link to="/register" className="btn btn--login btn--nav">Register</Link>
+          <Link to="/register" className="btn btn--login btn--nav">Create Organization</Link>
           <Link to="/login" className="btn btn--login btn--nav">Login</Link>
         </div>
         <div className="nav">

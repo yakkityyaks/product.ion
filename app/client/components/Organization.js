@@ -3,7 +3,7 @@ import { History } from 'react-router';
 // was comment.
 // const assign = Object.assign || require('object.assign');
 
-const Login = React.createClass({
+const Organization = React.createClass({
 
   render() {
     return (
@@ -17,15 +17,19 @@ const Login = React.createClass({
            <p className="form__error form__error--failed">Something went wrong, please try again!</p>
          </div>
          <div className="form__field-wrapper">
-           <input className="form__field-input" type="text" id="username" placeholder="Username" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-           <label className="form__field-label" htmlFor="username">Username</label>
+           <input className="form__field-input" type="text" id="username" placeholder="Org Name" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+           <label className="form__field-label" htmlFor="username">Organization</label>
+         </div>
+         <div className="form__field-wrapper">
+           <input className="form__field-input" type="text" id="username" placeholder="Admin Name" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+           <label className="form__field-label" htmlFor="username">Admin</label>
          </div>
          <div className="form__field-wrapper">
            <input className="form__field-input" id="password" type="password" placeholder="••••••••••" />
            <label className="form__field-label" htmlFor="password">Password</label>
          </div>
          <div className="form__submit-btn-wrapper">
-             <button className="form__submit-btn" type="submit">LOGIN</button>
+             <button className="form__submit-btn" type="submit">SUBMIT</button>
          </div>
        </form>
        </div>
@@ -33,4 +37,4 @@ const Login = React.createClass({
   }
 });
 
-export default Login;
+export default Organization;
