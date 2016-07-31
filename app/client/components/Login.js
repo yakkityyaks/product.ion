@@ -1,7 +1,9 @@
 import React from 'react';
 import { History } from 'react-router';
+// import
 // was comment.
 // const assign = Object.assign || require('object.assign');
+// create a login on submit...
 
 const Login = React.createClass({
   onSubmit(evt) {
@@ -23,11 +25,11 @@ const Login = React.createClass({
            <p className="form__error form__error--failed">Something went wrong, please try again!</p>
          </div>
          <div className="form__field-wrapper">
-           <input className="form__field-input" type="text" id="username" placeholder="Username" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+           <input className="form__field-input" type="text" id="username" value={this.props.data.username} placeholder="Username" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            <label className="form__field-label" htmlFor="username">Username</label>
          </div>
          <div className="form__field-wrapper">
-           <input className="form__field-input" id="password" type="password" placeholder="••••••••••" />
+           <input className="form__field-input" id="password" type="password" value={this.props.data.password} placeholder="••••••••••" />
            <label className="form__field-label" htmlFor="password">Password</label>
          </div>
          <div className="form__submit-btn-wrapper">
