@@ -39,5 +39,5 @@ const router = (
 const elem = document.getElementById('root');
 
 // passed in from store
-console.log('production js store ', store);
+console.log('PRODUCTION.JS STORE: ', store);
 ReactDOM.render(router, elem);

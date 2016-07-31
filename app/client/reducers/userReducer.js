@@ -1,4 +1,4 @@
-import { LOGIN_ATTEMPT, LOGIN_FAILED, LOGIN_SUCCESSFUL } from '../constants/AppConstants';
+import { LOGIN_ATTEMPT, LOGIN_FAILED, LOGIN_SUCCESSFUL, CHANGE_FORM } from '../constants/AppConstants';
 import axios from 'axios';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -6,16 +6,20 @@ import promise from 'redux-promise-middleware';
 import store from './../store';
 import middleware from './../store';
 
-const initialState = ({
+const initialState = {
   email: '',
   password: '',
   isLoggingIn: false,
   isLoggedIn: false,
   error: null
-});
+};
 
 export default function user(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_FORM:
+      return state.merge({}, state, {
+        formState: action.newState
+      })
     case LOGIN_ATTEMPT:
       return state.merge({
         isLoggingIn: true,
@@ -35,7 +39,7 @@ export default function user(state = initialState, action) {
         isLoggingIn: false,
         isLoggedIn: true
       });
-      break;
+    break;
     default:
       return state;
   }
