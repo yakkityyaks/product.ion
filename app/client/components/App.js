@@ -6,29 +6,31 @@ import Main from './Main';
 
 // runs two functions: get store values in as props.
 function mapStateToProps(state) {
+  console.log('app state ', state);
   return {
-    store: store.user.user,
-    userFetched: store.user.fetched,
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
+  console.log('dispatch ', dispatch)
   return {
     actions: bindActionCreators(actionCreators, dispatch)
   };
 }
 
 export default class App extends React.Component {
-  componentWillMount() {
-    // dispatch the action function.
-    this.props.dispatch(actionCreators.fetchUser());
-  }
+  // componentWillMount() {
+  //   // dispatch the action function.
+  //   this.props.dispatch(fetchUser());
+  // }
   render() {
+
     console.log('this.props ', this.props);
-    return null;
+    return ( <h1>product.ion</h1> );
   }
 }
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 
@@ -61,4 +63,4 @@ export default class App extends React.Component {
 //
 // const App = connect(mapStateToProps, mapDispachToProps)(Main);
 //
-export default App;
+// export default App;

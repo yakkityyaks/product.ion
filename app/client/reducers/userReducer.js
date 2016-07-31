@@ -32,4 +32,6 @@ export default function reducer(state={
       });
     }
   }
+  console.log('STATE ', state);
+  return state;
 }

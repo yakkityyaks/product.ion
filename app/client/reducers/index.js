@@ -4,6 +4,10 @@ import { routerReducer } from 'react-router-redux';
 
 import user from './userReducer';
 
-const rootReducer = combineReducers({ user, routing: routerReducer });
+export default combineReducers({
+  user,
+})
 
-export default rootReducer;
+// const rootReducer = combineReducers({ user, routing: routerReducer });
+//
+// export default rootReducer;
