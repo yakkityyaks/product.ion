@@ -3,6 +3,7 @@ import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import promise from 'redux-promise-middleware';
 import reducer from './reducers/userReducer'
