@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import store from './../store';
 import middleware from './../store';
+const assign = Object.assign || require('object.assign');
 
 const initialState = {
   email: '',
@@ -17,24 +18,24 @@ const initialState = {
 export default function user(state = initialState, action) {
   switch (action.type) {
     case CHANGE_FORM:
-      return state.merge({}, state, {
+      return assign({}, state, {
         formState: action.newState
       })
     case LOGIN_ATTEMPT:
-      return state.merge({
+      return assign({
         isLoggingIn: true,
         isLoggedIn: false,
         email: action.email,
         password: action.password // Note you shouldn't store user's password in real apps
       });
     case LOGIN_FAILED:
-      return state.merge({
+      return assign({
         error: action.error,
         isLoggingIn: false,
         isLoggedIn: false
       });
     case LOGIN_SUCCESSFUL:
-      return state.merge({
+      return assign({
         error: null,
         isLoggingIn: false,
         isLoggedIn: true

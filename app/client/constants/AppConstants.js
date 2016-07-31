@@ -1,6 +1,6 @@
 /*
  * AppConstants
- * These are the variables that determine what our central data store (reducer.js)
+ * These are the variables that determine what our central data store (userReducer.js)
  * changes in our state. When you add a new action, you have to add a new constant here
  *
  * Follow this format:

@@ -10,7 +10,7 @@ const assign = Object.assign || require('object.assign');
 function mapStateToProps(state) {
   console.log('LOGIN state ', state);
   return {
-    user: state.email,
+    email: state.email,
     password: state.password,
     isLogginIn: false,
     isLoggedIn: false,
@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
 
 const Login = React.createClass({
   render() {
-    console.log("LOGIN PROPS ", this.props);
+    console.log("LOGIN PROPS ", this);
     return (
       <div>
       <h2 className="form-page__form-heading">Login</h2>
@@ -39,12 +39,12 @@ const Login = React.createClass({
            <p className="form__error form__error--failed">Something went wrong, please try again!</p>
          </div>
          <div className="form__field-wrapper">
-           <input className="form__field-input" type="text" id="username" value={this.props.data.email} placeholder="E-Mail" onChange={this.changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-           <label className="form__field-label" htmlFor="username">Username</label>
+           <input className="form__field-input" type="text" id="email" value={this.props.email} placeholder="E-Mail" onChange={this.changeUsername.bind(this.props.email)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+           <label className="form__field-label" htmlFor="username">E-Mail</label>
          </div>
          <div className="form__field-wrapper">
-           <input className="form__field-input" id="password" type="password" value={this.props.data.password}
-           placeholder="••••••••••" onChange={this.changePassword.bind(this)} />
+           <input className="form__field-input" id="password" type="password" value={this.props.password}
+           placeholder="••••••••••" onChange={this.changePassword.bind(this.props.password)} />
            <label className="form__field-label" htmlFor="password">Password</label>
          </div>
          <div className="form__submit-btn-wrapper">
@@ -57,8 +57,9 @@ const Login = React.createClass({
 
   // Change the username in the app state
   changeUsername(evt) {
+    console.log("EVT ", evt);
     var newState = this.mergeWithCurrentState({
-      username: evt.target.value
+      email: evt.target.value
     });
 
     this.emitChange(newState);
@@ -86,7 +87,7 @@ const Login = React.createClass({
   // onSubmit call the passed onSubmit function
   onSubmit(evt) {
     evt.preventDefault();
-    this.props.action.onSubmit(this.props.data.email, this.props.data.password);
+    this.props.action.onSubmit(this.props.email, this.props.   password);
   },
 
 });

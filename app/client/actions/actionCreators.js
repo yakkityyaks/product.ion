@@ -30,8 +30,8 @@ export function login(userData) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // email: userData.email,
-        // password: userData.password,
+        email: userData.email,
+        password: userData.password,
       }),
     })
     .then(response => {
