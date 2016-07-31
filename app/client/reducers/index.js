@@ -1,10 +1,9 @@
+// a larger reducer that will contain the others.
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import expenses from './expenses';
-// import projects from './projects';
+import user from './userReducer';
 
-const rootReducer = combineReducers({expenses, routing: routerReducer});
-// const rootReducer = combineReducers({expenses, projects, routing: routerReducer});
+const rootReducer = combineReducers({ user, routing: routerReducer });
 
 export default rootReducer;

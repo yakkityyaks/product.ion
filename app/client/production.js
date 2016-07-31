@@ -16,7 +16,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // binding that helps us use redux with react.
 import { Provider } from 'react-redux';
 // the store and history ( a named export ) we created.
-import store, { history } from './store';
+import store from './store';
+// import store, { history } from './store';
 
 // Provider tag exposes store to the entire application.
 // that is why we wrap the entire router in the Provider.
@@ -25,7 +26,7 @@ const router = (
   <Provider store={ store }>
     <Router history={ history }>
       <Route path="/" component={ App }>
-        <IndexRoute component={ Login }></IndexRoute>
+        // <IndexRoute component={ Login }></IndexRoute>
         <Route path="/register" component={ Organization }></Route>
         <Route path="/create" component={ Dashboard }></Route>
         <Route path="/login" component={ Login }></Route>
