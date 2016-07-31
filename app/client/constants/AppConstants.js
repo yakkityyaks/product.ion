@@ -9,3 +9,7 @@
 export const CHANGE_FORM = 'CHANGE_FORM';
 export const SET_AUTH = 'SET_AUTH';
 export const SENDING_REQUEST = 'SENDING_REQUEST';
+
+export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL';
