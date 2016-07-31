@@ -30,6 +30,7 @@ export default class App extends React.Component {
     return ( <h1>product.ion</h1> );
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
