@@ -25,7 +25,6 @@ export default class App extends React.Component {
   //   this.props.dispatch(fetchUser());
   // }
   render() {
-
     console.log('this.props ', this.props);
     return ( <h1>product.ion</h1> );
   }
