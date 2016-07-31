@@ -1,11 +1,11 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import promise from 'redux-promise-middleware';
-import reducers from './reducers'
+import reducer from './reducers/userReducer'
 
 // import the root reducer
 // import rootReducer from './reducers/reducers';
@@ -20,10 +20,10 @@ import reducers from './reducers'
 
 const middleware = applyMiddleware(promise(), thunk, logger());
 
-const store = createStore(reducers);
-
 // export an instantiated store, which fires a reducer and gives it all the middleware.
 export default createStore(reducer, middleware);
+
+console.log('STORE: reducer ', createStore(reducer, middleware));
 
 
 
