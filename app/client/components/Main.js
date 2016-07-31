@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 // React.cloneElement passes down props from Main to first child.
 const Main = React.createClass({
   render() {
-
+console.log("MAIN props ", this.props);
     return (
       <div>
         <div>
