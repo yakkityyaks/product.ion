@@ -12,7 +12,7 @@ import { Link } from 'react-router';
 function mapStateToProps(state) {
   console.log('MAIN state ', state);
   return {
-    user: state.email,
+    email: state.email,
     password: state.password,
   };
 }
