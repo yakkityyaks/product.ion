@@ -2,10 +2,12 @@ import React from 'react';
 
 const Login = React.createClass({
   handleSubmit(event) {
-    var user = this.refs.usernameInput.value;
-    var pass = this.refs.passwordInput.value;
     event.preventDefault();
+    var user = this.refs.usernameInput.value,
+        pass = this.refs.passwordInput.value;
+
     this.props.login(user, pass);
+
   },
   render() {
     return (
