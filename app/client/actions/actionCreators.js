@@ -21,6 +21,13 @@ export function addComment(postId, author, comment) {
   };
 }
 
+export function login(username, password) {
+  return {
+    type: 'LOGIN',
+    username,
+    password
+  };
+}
 //check to see if an organization exists
 //remove upon functional action flow
 export function validateNewOrg(data) {
@@ -31,9 +38,9 @@ export function validateNewOrg(data) {
 }
 
 //create a new organization
-export function registerOrg(data) {
+export function addNewOrg(data) {
   return {
-    type: 'REGISTER_ORG',
+    type: 'ADD_NEW_ORG',
     data
   };
 }
