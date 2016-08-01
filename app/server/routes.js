@@ -32,6 +32,12 @@ module.exports = function routes(app){
     });
   });
 
+  //get proj by name
+
+  //make proj w/ org name
+
+  //make expense w/ proj name
+
   // app.post('/project', function createProject(req, res) {
   //   Organization.getOrg(req.body.orgName, function getOrg(org){
   //     console.log(org);
