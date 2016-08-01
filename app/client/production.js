@@ -7,8 +7,8 @@ import css from './styles/style.styl';
 // import components
 import App from './components/App';
 import Dashboard from './components/Dashboard';
-import Main from './components/Main';
 import Login from './components/Login';
+import Register from './components/Register';
 //
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // binding that helps us use redux with react.
@@ -24,7 +24,9 @@ const router = (
     <Router history={ history }>
       <Route path="/" component={ App }>
         <IndexRoute component={ Login }></IndexRoute>
-        <Route path="/create" component={ Dashboard }></Route>
+        <Route path='/register' component={ Register }></Route>
+        <Route path='/login' component = { Login }></Route>
+        <Route path="/dashboard" component={ Dashboard }></Route>
       </Route>
     </Router>
   </Provider>

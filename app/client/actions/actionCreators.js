@@ -7,7 +7,7 @@ export function increment(index) {
   return {
     type: 'INCREMENT_LIKES',
     index
-  }
+  };
 }
 
 // add comments
@@ -17,14 +17,21 @@ export function addComment(postId, author, comment) {
     postId,
     author,
     comment
-  }
+  };
 }
 
-// remove comment
-export function removeComment(postId, index) {
+//check to see if an organization exists
+export function validateNewOrg(data) {
   return {
-    type: 'REMOVE_COMMENT',
-    index,
-    postId
-  }
+    type: 'VALIDATE_NEW_ORG',
+    data
+  };
+}
+
+//create a new organization
+export function registerOrg(data) {
+  return {
+    type: 'REGISTER_ORG',
+    data
+  };
 }
