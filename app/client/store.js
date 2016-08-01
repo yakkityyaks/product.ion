@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import { Provider } from 'react-redux';
 import promise from 'redux-promise-middleware';
-import reducer from './reducers/userReducer'
+import reducer from './reducers/userReducer';
 
 const middleware = applyMiddleware(promise(), thunk, logger());
 const store = createStore(reducer, middleware);
