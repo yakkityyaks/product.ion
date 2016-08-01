@@ -2,6 +2,11 @@ import React from 'react';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 // was comment.
+<<<<<<< afd8f6067a92a59fd0f3a1d32d5c18f8277528d3
+=======
+
+const Dashboard = React.createClass({
+>>>>>>> foo
 
 const Dashboard = React.createClass({
   // getInitialState() {
