@@ -37,6 +37,13 @@ export function validateNewOrg(data) {
   };
 }
 
+//get a list of an organizations Projects
+export function getOrgProjects(orgId) {
+  return {
+    type: 'GET_ORG_PROJECTS',
+    orgId
+  };
+}
 //create a new organization
 export function addNewOrg(orgName, username, password) {
   return {

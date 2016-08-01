@@ -6,12 +6,12 @@ const Register = React.createClass({
     if (pass.length < 6) {
       console.log("Password must greater than 6 characters");
     } else {
-
+      //trigger successful password view
     }
   },
   handleSubmit: function(event) {
     event.preventDefault();
-    
+    console.log(this.refs);
     var orgName = this.refs.orgNameInput.value,
         username = this.refs.usernameInput.value,
         password = this.refs.passwordInput.value;
