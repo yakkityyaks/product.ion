@@ -1,4 +1,4 @@
-
+	
 var Bookshelf = require('../db.js');
 require('./expense.js');
 require('./organization.js');
