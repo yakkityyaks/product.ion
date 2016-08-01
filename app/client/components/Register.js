@@ -1,7 +1,14 @@
 import React from 'react';
 // was comment.
 const Register = React.createClass({
+  validatePassword: function() {
+    var pass = this.refs.passwordInput.value;
+    if (pass.length < 6) {
+      console.log("Password must greater than 6 characters");
+    } else {
 
+    }
+  },
   render() {
     return (
       <div>
@@ -22,8 +29,9 @@ const Register = React.createClass({
              <label className="form__field-label" htmlFor="username">Admin</label>
            </div>
            <div className="form__field-wrapper">
-             <input className="form__field-input" id="password" type="password" placeholder="••••••••••" />
              <label className="form__field-label" htmlFor="password">Password</label>
+             <input className="form__field-input" id="password" type="password"
+                    placeholder="••••••••••" ref="passwordInput" onBlur="validatePassword"/>
            </div>
            <div className="form__submit-btn-wrapper">
                <button className="form__submit-btn" type="submit">SUBMIT</button>
