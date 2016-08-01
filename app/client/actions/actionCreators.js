@@ -38,10 +38,12 @@ export function validateNewOrg(data) {
 }
 
 //create a new organization
-export function addNewOrg(data) {
+export function addNewOrg(orgName, username, password) {
   return {
     type: 'ADD_NEW_ORG',
-    data
+    orgName,
+    username,
+    password
   };
 }
 //
