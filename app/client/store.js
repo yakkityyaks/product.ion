@@ -1,26 +1,34 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import axios from 'axios';
-import { Provider } from 'react-redux';
-import promise from 'redux-promise-middleware';
-import reducer from './reducers/userReducer'
 
-const middleware = applyMiddleware(promise(), thunk, logger());
-const store = createStore(reducer, middleware);
-// export an instantiated store, which fires a reducer and gives it all the middleware.
+// import the root reducer
+import rootReducer from './reducers/index';
 
-console.log('STORE: reducer ', createStore(reducer, middleware));
+import projects from './data/projects';//TAKE THESE OUT. REPLACE WITH EMPTY OBJECTS
+import expenses from './data/expenses';// FILL THESE OBJECTS UPON SUCCESSFUL LOGIN
+import organization from './data/organization';// TAKE THESE OUT
 
-// export const history = syncHistoryWithStore(browserHistory, store);
+// create an object for the default data
+// const projects = [];
+// const expenses = [];
+// const user = {};
 
-if(module.hot) {
-  module.hot.accept('./reducers/',() => {
-    const nextRootReducer = require('./reducers/index').default;
-    store.replaceReducer(nextRootReducer);
-  });
-}
+const defaultState = {
+  projects,
+  expenses,
+  organization
+};
 
+const store = createStore(rootReducer, defaultState);
+
+//Not sure what this did, hopefully we can leave this out without any problems
+// if(module.hot) {
+//   module.hot.accept('./reducers/',() => {
+//     const nextRootReducer = require('./reducers/index').default;
+//     store.replaceReducer(nextRootReducer);
+//   });
+// }
+
+export const history = syncHistoryWithStore(browserHistory, store);
 export default store;

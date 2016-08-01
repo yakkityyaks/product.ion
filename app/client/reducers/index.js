@@ -2,12 +2,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import user from './userReducer';
+import expenses from './expenses';
+import projects from './projects';
+import organization from './organization';
 
-export default combineReducers({
-  user,
-})
+const rootReducer = combineReducers({expenses, projects, organization, routing: routerReducer});
 
-// const rootReducer = combineReducers({ user, routing: routerReducer });
-//
-// export default rootReducer;
+export default rootReducer;

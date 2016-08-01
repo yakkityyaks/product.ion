@@ -36,9 +36,5 @@ var port = process.env.PORT || 7000;
 require('./routes.js')(app);
 
 app.listen(port, function listeningOnPort() {
-  console.log('Listening on port ', port)
+  console.log('Listening on port ', port);
 });
-
-
-
-

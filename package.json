@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "start": "node server.js",
+    "start": "node app/server/server.js",
     "tunnel": "browser-sync start --proxy localhost:7070 --tunnel wesbos"
   },
   "repository": {
@@ -63,7 +63,6 @@
     "redux-logger": "^2.6.1",
     "redux-promise-middleware": "^3.3.2",
     "redux-requests": "^1.0.2",
-    "redux-thunk": "^2.1.0",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
