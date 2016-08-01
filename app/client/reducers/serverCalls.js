@@ -4,9 +4,7 @@ var register = function(organization, username, password) {
 
   var data = {orgName: organization, username: username, password: password};
   console.log("serverCalls: register: data is ", data);
-  return dispatch => {
-    return axios.post('/register', data);
-  };
+  return axios.post('/register', data);
 };
 
 var login = function(username, password) {
