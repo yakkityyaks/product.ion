@@ -1,9 +1,9 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
-// import the root reducer
-import rootReducer from './reducers/index';
+
+// export an instantiated store, which fires a reducer and gives it all the middleware.
 
 import projects from './data/projects';//TAKE THESE OUT. REPLACE WITH EMPTY OBJECTS
 import expenses from './data/expenses';// FILL THESE OBJECTS UPON SUCCESSFUL LOGIN

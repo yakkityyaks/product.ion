@@ -1,3 +1,4 @@
+// a larger reducer that will contain the others.
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 

@@ -4,7 +4,6 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-
     './app/client/production'
   ],
   output: {
@@ -31,12 +30,12 @@ module.exports = {
     {
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'client')
+      include: path.join(__dirname, 'app/client')
     },
     // CSS
     {
       test: /\.styl$/,
-      include: path.join(__dirname, 'client'),
+      include: path.join(__dirname, 'app/client'),
       loader: 'style-loader!css-loader!stylus-loader'
     }
     ]
