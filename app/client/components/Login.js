@@ -7,9 +7,7 @@ const Login = React.createClass({
   handleSubmit(event) {
 
   },
-
   render() {
-    console.log("LOGIN PROPS ", this);
     return (
       <div>
         <h2 className="form-page__form-heading">Login</h2>
@@ -40,9 +38,4 @@ const Login = React.createClass({
   }
 });
 
-// Login.propTypes = {
-//     onSubmit: React.PropTypes.func.isRequired,
-//     btnText: React.PropTypes.string.isRequired,
-//     data: React.PropTypes.object.isRequired
-// }
 export default Login;
