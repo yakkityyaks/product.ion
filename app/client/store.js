@@ -1,24 +1,20 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import axios from 'axios';
+import { Provider } from 'react-redux';
+import promise from 'redux-promise-middleware';
+import reducer from './reducers/userReducer'
 
-// import the root reducer
-import rootReducer from './reducers/index';
+const middleware = applyMiddleware(promise(), thunk, logger());
+const store = createStore(reducer, middleware);
+// export an instantiated store, which fires a reducer and gives it all the middleware.
 
-// we need to define a new defaultState so that we can see how data is being passed through Redux.
+console.log('STORE: reducer ', createStore(reducer, middleware));
 
-import comments from './data/comments';
-import posts from './data/posts';
-
-// create an object for the default data
-const defaultState = {
-  posts,
-  comments
-};
-
-const store = createStore(rootReducer, defaultState);
-
-export const history = syncHistoryWithStore(browserHistory, store);
+// export const history = syncHistoryWithStore(browserHistory, store);
 
 if(module.hot) {
   module.hot.accept('./reducers/',() => {

@@ -1,42 +1,49 @@
-// we must find a way to actually change state with these functions.
-// create a reducer on the other end...
+import { LOGIN_ATTEMPT, LOGIN_FAILED, LOGIN_SUCCESSFUL, CHANGE_FORM } from '../constants/AppConstants';
 
-// increment a like
-// actions are just objects
-export const SELECT_DATA = 'SELECT_DATA'
-
-export function selectData(data) {
-  return {
-    type: SELECT_DATA,
-    data
-  }
+export function loginError(error) {
+  return { error, type: LOGIN_FAILED };
 }
 
-export const INVALIDATE_DATA = 'INVALIDATE_DATA'
-
-export function invalidateSubreddit(data) {
-  return {
-    type: INVALIDATE_DATA,
-    data
-  }
+// You'll have a side effect here so (dispatch) => {} form is a good idea
+export function loginSuccess(response) {
+  return dispatch => {
+    dispatch({ response, type: LOGIN_SUCCESSFUL });
+    // router.transitionTo('/dashboard');
+  };
 }
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-
-export function requestPosts(posts) {
-  return {
-    type: REQUEST_POSTS,
-    posts
-  }
+export function loginRequest(email, password) {
+  const user = {email: email, password: password};
+  return { user, type: LOGIN_ATTEMPT };
 }
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export function changeForm(newState) {
+  return { type: CHANGE_FORM, newState };
+}
 
-export function receivePosts(data, json) {
-  return {
-    type: RECEIVE_POSTS,
-    data,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
+export function login(userData) {
+  return dispatch =>
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: userData.email,
+        password: userData.password,
+      }),
+    })
+    .then(response => {
+      if (response.status >= 200 && response.status < 300) {
+        console.log("RESPONSE ", response);
+        dispatch(loginSuccess(response));
+      } else {
+        const error = new Error(response.statusText);
+        error.response = response;
+        dispatch(loginError(error));
+        throw error;
+      }
+    })
+    .catch(error => { console.log('request failed', error); });
 }
