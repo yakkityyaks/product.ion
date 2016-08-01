@@ -1,3 +1,5 @@
+//REMOVE THIS FILE AFTER MVP. EXCESS LOGIC NEEDS TO BE TRANSFERRED/REFACTORED
+
 import { LOGIN_ATTEMPT, LOGIN_FAILED, LOGIN_SUCCESSFUL, CHANGE_FORM } from '../constants/AppConstants';
 import axios from 'axios';
 import logger from 'redux-logger';
