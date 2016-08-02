@@ -14,9 +14,11 @@ const Login = React.createClass({
     return (
       <div>
         <h2 className="form-page__form-heading">Login</h2>
-        <Link to={`/dashboard`}>
-          REGISTER TEST
-        </Link>
+        <button>
+          <Link to={`/dashboard`}>
+            REGISTER TEST
+          </Link>
+        </button>
         <form className="form" onSubmit={this.handleSubmit}>
            {/* <div className="form__error-wrapper">
              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
