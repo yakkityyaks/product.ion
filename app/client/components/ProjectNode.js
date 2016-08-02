@@ -9,11 +9,13 @@ const ProjectNode = React.createClass({
     // this.props
     // const { post, idx, comments } = this.props;
     return (
-      <div className="projectNode">
-        <span>    
-          <b>Name: </b>{this.props.project.name}<b>  Project ID: </b>{this.props.project.projId}<b>  Project Status: </b>{this.props.project.status}<b>  Status: </b>{this.props.project.costToDate}<b>  Estimate to Complete: </b>{this.props.project.estimateToComplete}
-        </span>
-      </div>
+      <tr>
+        <td>{this.props.project.name}</td>
+        <td>{this.props.project.projId}</td>
+        <td>{this.props.project.status}</td>
+        <td>{this.props.project.costToDate}</td>
+        <td>{this.props.project.estimateToComplete}</td>
+      </tr>
     );
 
   }
@@ -21,10 +23,3 @@ const ProjectNode = React.createClass({
 });
 
 export default ProjectNode;
-
-
-// return (
-//       <div className="projectNode">
-//         {this.props.project.name + " , " + this.props.project.projId + " , " + this.props.project.status + " , " + this.props.project.costToDate + " , " + this.props.project.estimateToComplete}
-//       </div>
-//     );
