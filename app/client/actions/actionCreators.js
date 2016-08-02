@@ -2,28 +2,20 @@
 //do we need these?
 
 //remove upon functional action flow
-export function increment(index) {
+
+//ORGANIZATION:
+export function addNewOrg(orgName, username, password) {
   return {
-    type: 'INCREMENT_LIKES',
-    index
+    type: 'ADD_NEW_ORG',
+    orgName,
+    username,
+    password
   };
 }
 
-// add comments
-//remove upon functional action flow
-
-export function addComment(postId, author, comment) {
+export function postLogin(username, password) {
   return {
-    type: 'ADD_COMMENT',
-    postId,
-    author,
-    comment
-  };
-}
-
-export function submitLogin(username, password) {
-  return {
-    type: "SUBMIT_LOGIN",
+    type: "POST_LOGIN",
     username,
     password
   };
@@ -36,30 +28,40 @@ export function login(username, orgName) {
     orgName
   };
 }
-
-export function populateProjects(projectsArray) {
-  return {
-    type: "HYDRATE_PROJECTS",
-    projectsArray
-  };
-}
-
 //get a list of an organizations Projects
+//create a new organization
+
 export function getOrgProjects(orgId) {
   return {
     type: 'GET_ORG_PROJECTS',
     orgId
   };
 }
-//create a new organization
-export function addNewOrg(orgName, username, password) {
+
+export function hydrateProjects(projectsArray) {
   return {
-    type: 'ADD_NEW_ORG',
-    orgName,
-    username,
-    password
+    type: "HYDRATE_PROJECTS",
+    projectsArray
   };
 }
+//PROJECTS:
+
+//MESSAGES:
+
+export function resetLoginMessage() {
+  return {
+    type: "RESET_LOGIN_MESSAGE"
+  };
+}
+
+export function setLoginMessage(message, className) {
+    return {
+      type: "SET_LOGIN_MESSAGE",
+      message,
+      className
+    };
+}
+
 //
 // export function loginError(error) {
 //   return { error, type: LOGIN_FAILED };

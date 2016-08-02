@@ -1,5 +1,6 @@
-import ApiCall from "./serverCalls";
+import ApiCall from "../utils/serverCalls";
 import store from "../store";
+import { push } from "react-router-redux";
 
 function posts(state=[], action) {
   switch (action.type) {
@@ -11,12 +12,22 @@ function posts(state=[], action) {
           console.log("Registered an organization. ", res);
         });
       break;
-    case "SUBMIT_LOGIN":
+    case "POST_LOGIN":
       ApiCall.login(action.username, action.password)
-        .then(function(res, err) {
-          console.log("ding ding", res);
-          store.dispatch({type:"LOGIN", username: res.data.username, org: res.data.orgs});
-          console.log("Store is ", store);
+        .catch(function(err) {
+          store.dispatch({
+            type:"SET_LOGIN_MESSAGE",
+            message: "Username does not exist",
+            className: "errorMessage"
+          });
+          console.error(err);
+        })
+        .then(function(res) {
+          if (res) {
+            console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
+            store.dispatch({type:"LOGIN", username: res.data.username, org: res.data.orgs});
+            store.dispatch(push('/dashboard'));
+          }
         });
       return state;
     case "LOGIN":

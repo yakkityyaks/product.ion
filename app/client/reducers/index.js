@@ -5,7 +5,8 @@ import { routerReducer } from 'react-router-redux';
 import expenses from './expenses';
 import projects from './projects';
 import organization from './organization';
+import messages from './messages';
 
-const rootReducer = combineReducers({expenses, projects, organization, routing: routerReducer});
+const rootReducer = combineReducers({messages, expenses, projects, organization, routing: routerReducer});
 
 export default rootReducer;

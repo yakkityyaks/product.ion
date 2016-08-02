@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { syncHistoryWithStore} from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 // import logger for middleware
@@ -16,16 +16,24 @@ import organization from './data/organization';// TAKE THESE OUT
 // const projects = [];
 // const expenses = [];
 // const user = {};
+const messages = {
+  login: "testing",
+  register: "",
+  pitch: ""
+};
 
 const defaultState = {
   projects,
   expenses,
-  organization
+  organization,
+  messages
 };
 
-const middleware = applyMiddleware(logger());
+//middleware for logging changes in state.
+// const middleware = applyMiddleware(logger());
+const middleware = applyMiddleware(routerMiddleware(browserHistory));
 
-const store = createStore(rootReducer, defaultState);
+const store = createStore(rootReducer, defaultState, middleware);
 
 //Not sure what this did, hopefully we can leave this out without any problems
 // if(module.hot) {
