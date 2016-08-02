@@ -3,12 +3,13 @@ import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 // was comment.
 const Dashboard = React.createClass({
-
+  componentDidMount() {
+    console.log(this);
+  },
   render() {
     return (
       <div className="dashboard">
         I'm the dashboard!
-        <pre>{this.props.projects}</pre>
         {/* {this.props.projects.map((project, idx) =>
           <Project key={idx} idx={idx} {...this.props} project={project}/>)} */}
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Login = React.createClass({
   handleSubmit(event) {
@@ -13,6 +14,9 @@ const Login = React.createClass({
     return (
       <div>
         <h2 className="form-page__form-heading">Login</h2>
+        <Link to={`/dashboard`}>
+          REGISTER TEST
+        </Link>
         <form className="form" onSubmit={this.handleSubmit}>
            <div className="form__error-wrapper">
              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
