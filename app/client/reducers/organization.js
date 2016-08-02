@@ -1,4 +1,5 @@
 import ApiCall from "./serverCalls";
+import store from "../store";
 
 function posts(state=[], action) {
   switch (action.type) {
@@ -10,16 +11,20 @@ function posts(state=[], action) {
           console.log("Registered an organization. ", res);
         });
       break;
-    case "LOGIN":
+    case "SUBMIT_LOGIN":
       ApiCall.login(action.username, action.password)
         .then(function(res, err) {
           console.log("ding ding", res);
-          console.log("State is ", state);
-          // return Object.assign({}, state, {users: res.data.username});
-
-        }.bind(this));
-
-      break;
+          store.dispatch({type:"LOGIN", username: res.data.username, org: res.data.orgs});
+          console.log("Store is ", store);
+        });
+      return state;
+    case "LOGIN":
+      return Object.assign({}, state, {
+        users: action.username,
+        org: action.org.id,
+        orgName: action.org.name
+      });
   }
   return state;
 }
