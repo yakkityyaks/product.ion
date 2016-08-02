@@ -7,6 +7,11 @@ var User = require('./controllers/userController.js');
 
 module.exports = function routes(app){
 
+  /*USER OBJECT Line 33 returns:
+    }
+  }
+  */
+
   app.post('/api/register', function registerUser(req, res) {
     Organization.makeOrg({name: req.body.orgName}, function newOrg(org){
       // console.log("++++The request body from axios is ", req.body);
@@ -38,8 +43,8 @@ module.exports = function routes(app){
       {
         "id": PRIMARY KEY, //assigned by db
         "username": "USER'S NAME", //as string
-        "password": "USER'S PASSWORD", //as string
-        "orgs_id": ORG ID USER BELONGS TO //as integer
+        "password": "USER'S PASSWORD", //as string       REMOVE MVP+1
+        "orgs_id": ORG ID USER BELONGS TO //as integer   REMOVE MVP+1
       },
       //additional users in identical form
     ],
@@ -70,19 +75,12 @@ module.exports = function routes(app){
     });
   });
 
-  app.get('/api/org', function(req, res){
-    Organization.getOrg(req.body.orgName, function(org) {
-      // console.log("++++The request org object sent is ", org);
-      org ? res.status(200).json(org) : res.sendStatus(404);
-    });
-  });
-
-  app.get('/api/project', function(req, res){
-    //hardcode req.body.name
-    Project.getProj('req.body.name', function existingProject(project){
-      project ? res.status(200).json(project) : res.sendStatus(404);
-    });
-  });
+  // app.get('/api/project', function(req, res){
+  //   //hardcode req.body.name
+  //   Project.getProj('req.body.name', function existingProject(project){
+  //     project ? res.status(200).json(project) : res.sendStatus(404);
+  //   });
+  // });
 
   // app.post('/project', function createProject(req, res) {
   //   Organization.getOrg(req.body.orgName, function getOrg(org){
