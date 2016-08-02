@@ -26,7 +26,7 @@ const router = (
         <IndexRoute component={ Login }></IndexRoute>
         <Route path='/register' component={ Register }></Route>
         <Route path='/login' component = { Login }></Route>
-        <Route path="/dashboard" component={ Dashboard }></Route>
+        <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
       </Route>
     </Router>
   </Provider>
