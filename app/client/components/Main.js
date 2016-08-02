@@ -14,7 +14,7 @@ const Main = React.createClass({
             <Link to="/" className="nav__logo-wrapper"><h1 className="nav__logo">product.ion</h1></Link>
           </div>
         </div>
-
+        
         { React.cloneElement(this.props.children, this.props) }
       </div>
     );

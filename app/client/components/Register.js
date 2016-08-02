@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 // was comment.
 const Register = React.createClass({
   validatePassword: function() {
@@ -29,6 +30,12 @@ const Register = React.createClass({
              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div>
+           <button>
+             <Link to={`/login`}>
+               Login
+             </Link>
+           </button>
+           <br></br>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="username">Organization</label>
              <input className="form__field-input" type="text" id="username"
@@ -48,7 +55,7 @@ const Register = React.createClass({
                     onBlur={this.validatePassword} />
            </div>
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">SUBMIT</button>
+               <button className="form__submit-btn" type="submit">CREATE</button>
            </div>
          </form>
        </div>
