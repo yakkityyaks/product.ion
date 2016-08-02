@@ -4,8 +4,13 @@ import ProjectNode from './ProjectNode';
 // was comment.
 
 const Dashboard = React.createClass({
+  // getInitialState() {
+  //   var orgName = this.props.organization.orgName;
+  //   console.log(this.props);
+  // },
   componentDidMount() {
-    console.log(this);
+    var orgName = this.props.organization.orgName;
+    console.log(this.props.getProjectsByOrgName(orgName));
   },
   render() {
     return (
