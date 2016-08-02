@@ -13,7 +13,7 @@ const Dashboard = React.createClass({
     return (
       <div className="dashboard">
       <div>
-        <button className="plus-button">  -|-  </button>
+        <button className="plus-button"><Link to="/expenses">  -|-  </Link></button>
       </div>
         <br></br>
         <Projects {...this.props}/>
