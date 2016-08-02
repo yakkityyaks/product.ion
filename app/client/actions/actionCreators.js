@@ -4,6 +4,8 @@
 //remove upon functional action flow
 
 //ORGANIZATION:
+
+//create a new organization
 export function addNewOrg(orgName, username, password) {
   return {
     type: 'ADD_NEW_ORG',
@@ -28,8 +30,17 @@ export function login(username, orgName) {
     orgName
   };
 }
+
+//PROJECTS:
+
 //get a list of an organizations Projects
-//create a new organization
+
+export function postNewProject(pitch) {
+  return {
+    type: "POST_NEW_PROJECT",
+    pitch
+  };
+}
 
 export function getOrgProjects(orgId) {
   return {
@@ -44,7 +55,6 @@ export function hydrateProjects(projectsArray) {
     projectsArray
   };
 }
-//PROJECTS:
 
 //MESSAGES:
 
