@@ -12,6 +12,10 @@ const Dashboard = React.createClass({
   render() {
     return (
       <div className="dashboard">
+      <div>
+        <button className="plus-button">  -|-  </button>
+      </div>
+        <br></br>
         <Projects {...this.props}/>
       </div>
     );
