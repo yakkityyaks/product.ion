@@ -9,7 +9,16 @@ function posts(state=[], action) {
       ApiCall.register(action.orgName, action.username, action.password)
         .then(function (res, err) {
           if (err){console.log(err);}
-          console.log("Registered an organization. ", res);
+          else {
+            console.log("Registered an organization. ", res.data);
+            var joinedName = res.data.orgName.split(" ").join("");
+            store.dispatch(
+              {type:"LOGIN",
+               username: res.data.user.username,
+               org: {id: res.data.user.org_id, name: res.data.orgName},
+             });
+            store.dispatch(push(`/dashboard/${joinedName}`));
+          }
         });
       break;
     case "POST_LOGIN":
@@ -32,6 +41,7 @@ function posts(state=[], action) {
         });
       return state;
     case "LOGIN":
+      console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
         users: action.username,
         org: action.org.id,
