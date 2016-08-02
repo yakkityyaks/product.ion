@@ -7,7 +7,7 @@ const Login = React.createClass({
     var user = this.refs.usernameInput.value,
         pass = this.refs.passwordInput.value;
     console.log("Login: store is ", this.store);
-    this.props.submitLogin(user, pass);
+    this.props.postLogin(user, pass);
 
   },
   render() {
@@ -26,17 +26,18 @@ const Login = React.createClass({
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="username">Username</label>
              <input className="form__field-input" type="text" id="username"
-                    value={this.props.email} placeholder="Username" ref="usernameInput"
+                    placeholder="Username" ref="usernameInput"
                     autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="password">Password</label>
              <input className="form__field-input" id="password" type="password"
-                    value={this.props.password} ref="passwordInput" placeholder="••••••••••"/>
+                    ref="passwordInput" placeholder="••••••••••"/>
               <p className="form__error form__error--wrong-password">Wrong password.</p>
            </div>
            <div className="form__submit-btn-wrapper">
                <button className="form__submit-btn" type="submit">LOGIN</button>
+               <p id="loginMessage" className="">{this.props.messages.login}</p>
            </div>
          </form>
        </div>
