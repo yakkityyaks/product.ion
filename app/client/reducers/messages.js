@@ -1,14 +1,9 @@
 function messages(state = [], action) {
   switch (action.type) {
     case "RESET_LOGIN_MESSAGE":
-      console.log("You want to reset the login message. state is ", state);
-      break;
+      return Object.assign({}, state, {login: ""});
     case "SET_LOGIN_MESSAGE":
-      console.log("You want to set the login message to ", action.message,
-        "State is ", state);
-      return Object.assign({}, state, {
-          login: action.message
-        });
+      return Object.assign({}, state, {login: action.message});
     default:
       return state;
   }
