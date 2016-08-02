@@ -10,13 +10,14 @@ function posts(state=[], action) {
         .then(function (res, err) {
           if (err){console.log(err);}
           else {
-            console.log("Registered an organization. ", res);
+            console.log("Registered an organization. ", res.data);
+            var joinedName = res.data.orgName.split(" ").join("");
             store.dispatch(
               {type:"LOGIN",
-               users: res.data.username,
-               orgName: res.data.orgName,
-               org: res.data.orgs_id
+               username: res.data.user.username,
+               org: {id: res.data.user.org_id, name: res.data.orgName},
              });
+            store.dispatch(push(`/dashboard/${joinedName}`));
           }
         });
       break;
@@ -40,6 +41,7 @@ function posts(state=[], action) {
         });
       return state;
     case "LOGIN":
+      console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
         users: action.username,
         org: action.org.id,
