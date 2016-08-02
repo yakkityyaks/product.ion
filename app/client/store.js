@@ -17,7 +17,7 @@ import organization from './data/organization';// TAKE THESE OUT
 // const expenses = [];
 // const user = {};
 const messages = {
-  login: "testing",
+  login: "",
   register: "",
   pitch: ""
 };
