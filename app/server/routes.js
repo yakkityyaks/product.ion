@@ -21,19 +21,33 @@ module.exports = function routes(app){
   */
 
   app.post('/api/register', function registerUser(req, res) {
-    Organization.makeOrg({name: req.body.orgName}, function newOrg(org){
-      // console.log("++++The request body from axios is ", req.body);
-      var user = {
-        username: req.body.username,
-        password: req.body.password,
-        orgs_id: org.attributes.id
-      };
-      var data = {user: user, orgName: org.attributes.name}
-      User.makeUser(user, function newUser(user){
-        // console.log("++++The request user object sent is ", user);
-        user ? res.status(201).json(data) : res.sendStatus(404);
-      });
-    });
+    Organization.getOrg(req.body.orgName, function(org) {
+      if (!org) {
+        Organization.makeOrg({name: req.body.orgName}, function newOrg(org){
+          // console.log("++++The request body from axios is ", req.body);
+          var user = {
+            username: req.body.username,
+            password: req.body.password,
+            orgs_id: org.attributes.id
+          };
+          var data = {user: user, orgName: org.attributes.name}
+          User.getUser(req.body.username, function(user) {
+            if (!user) {
+              User.makeUser(user, function newUser(user){
+                // console.log("++++The request user object sent is ", user);
+                user ? res.status(201).json(data) : res.sendStatus(404);
+              });
+            } else {
+              org.destroy().then(function() {
+                res.sendStatus(403);
+              });
+            }
+          })
+        }); 
+      } else {
+        res.sendStatus(403);
+      }
+    })
   });
 
   app.post('/api/login', function retrieveUser(req, res){

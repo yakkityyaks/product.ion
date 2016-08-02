@@ -12,12 +12,12 @@ var knex = require('knex')({
 Promise.all([
   knex.schema.createTableIfNotExists('orgs', function(table) {
     table.increments('id').primary();
-    table.string('name');
+    table.string('name').unique();
   }),
 
   knex.schema.createTableIfNotExists('users', function(table) {
     table.increments('id').primary();
-    table.string('username');
+    table.string('username').unique();
     table.string('password');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
