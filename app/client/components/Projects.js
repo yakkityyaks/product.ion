@@ -6,9 +6,23 @@ import ProjectNode from './ProjectNode.js';
 const Projects = React.createClass({
   render() {
     return (
-      <div>
-      	{this.props.projects.map((project, idx) =>
-          <ProjectNode key={idx} idx={idx} {...this.props} project={project}/>)}
+      <div style={{fontSize : "14px"}}>
+      	<table style={{width: "100%"}}>
+      		<thead>
+      			<tr>
+      				<th>Name</th>
+      				<th>Project ID</th>
+      				<th>Project Status</th>
+      				<th>Cost to Date</th>
+      				<th>Estimate to Complete</th>
+      			</tr>
+      		</thead>
+      		<tbody>
+      			{this.props.projects.map(
+      				(project, idx) =>
+          			<ProjectNode key={idx} idx={idx} {...this.props} project={project} />)}
+      		</tbody>
+      	</table>
       </div>
     );
   }
