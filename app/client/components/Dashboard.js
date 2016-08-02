@@ -10,7 +10,7 @@ const Dashboard = React.createClass({
   // },
   componentDidMount() {
     var orgName = this.props.organization.orgName;
-    console.log(this.props.getProjectsByOrgName(orgName));
+    this.props.getOrgProjects(orgName);
   },
   render() {
     return (

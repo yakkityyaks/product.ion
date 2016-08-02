@@ -42,17 +42,17 @@ export function postNewProject(pitch) {
   };
 }
 
-export function getOrgProjects(orgId) {
+export function getOrgProjects(orgName) {
   return {
     type: 'GET_ORG_PROJECTS',
-    orgId
+    orgName
   };
 }
 
-export function hydrateProjects(projectsArray) {
+export function hydrateProjects(projects) {
   return {
     type: "HYDRATE_PROJECTS",
-    projectsArray
+    projects
   };
 }
 
