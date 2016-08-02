@@ -13,7 +13,7 @@ var login = (username, password) => {
 };
 
 var getProjectsByOrgName = (orgName) =>
-  axios.get('/api/dashboard', {orgName});
+  axios.post('/api/dashboard', {orgName: orgName});
 
 const ApiCall = {
   register,

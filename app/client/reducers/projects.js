@@ -7,14 +7,22 @@ function projects(state = [], action) {
       console.log("You want to make a new project");
       break;
     case "GET_ORG_PROJECTS":
-      console.log("You want to get org projects");
-      ApiCall.getProjects(action.org)
-        .catch()
-        .then();
+      console.log("You want to get org projects from ", action);
+      ApiCall.getProjectsByOrgName(action.orgName)
+        .catch((err) => {
+          console.error(err);
+        })
+        .then((res) => {
+          if (res) {
+            console.log("Response received. Res is ", res);
+            store.dispatch({type:"HYDRATE_PROJECTS", projects: res.data.projects});
+          }
+        });
       break;
     case "HYDRATE_PROJECTS":
-      console.log("You want to get some projects");
-      break;
+      console.log("You want to hydrate the projects state with ", action.projects);
+      console.log("Current state is ", state);
+      return action.projects;
     default:
       return state;
   }

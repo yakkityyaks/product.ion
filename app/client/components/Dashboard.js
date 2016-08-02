@@ -6,7 +6,8 @@ import { Link } from 'react-router';
 
 const Dashboard = React.createClass({
   componentDidMount() {
-    console.log(this);
+    var orgName = this.props.organization.orgName;
+    this.props.getOrgProjects(orgName);
   },
   render() {
     return (

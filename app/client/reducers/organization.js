@@ -26,7 +26,7 @@ function posts(state=[], action) {
           if (res) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
             store.dispatch({type:"LOGIN", username: res.data.username, org: res.data.orgs});
-            store.dispatch(push('/dashboard'));
+            store.dispatch(push(`/dashboard/${res.data.orgs.name.join(" ")}`));
           }
         });
       return state;
