@@ -9,7 +9,15 @@ function posts(state=[], action) {
       ApiCall.register(action.orgName, action.username, action.password)
         .then(function (res, err) {
           if (err){console.log(err);}
-          console.log("Registered an organization. ", res);
+          else {
+            console.log("Registered an organization. ", res);
+            store.dispatch(
+              {type:"LOGIN",
+               users: res.data.username,
+               orgName: res.data.orgName,
+               org: res.data.orgs_id
+             });
+          }
         });
       break;
     case "POST_LOGIN":

@@ -12,7 +12,6 @@ const Register = React.createClass({
   },
   handleSubmit: function(event) {
     event.preventDefault();
-    console.log(this.refs);
     var orgName = this.refs.orgNameInput.value,
         username = this.refs.usernameInput.value,
         password = this.refs.passwordInput.value;
