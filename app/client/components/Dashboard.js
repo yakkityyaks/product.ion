@@ -1,6 +1,7 @@
 import React from 'react';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
+import { Link } from 'react-router';
 // was comment.
 
 const Dashboard = React.createClass({
