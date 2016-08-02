@@ -17,9 +17,7 @@ const ProjectNode = React.createClass({
         <td>{this.props.project.estimateToComplete}</td>
       </tr>
     );
-
   }
-
 });
 
 export default ProjectNode;
