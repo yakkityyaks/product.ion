@@ -1,16 +1,12 @@
 import React from 'react';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
+import { Link } from 'react-router';
 // was comment.
 
 const Dashboard = React.createClass({
-  // getInitialState() {
-  //   var orgName = this.props.organization.orgName;
-  //   console.log(this.props);
-  // },
   componentDidMount() {
-    var orgName = this.props.organization.orgName;
-    console.log(this.props.getProjectsByOrgName(orgName));
+    console.log(this);
   },
   render() {
     return (

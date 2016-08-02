@@ -9,13 +9,9 @@ const Main = React.createClass({
 
     return (
       <div>
-        <div>
-          <Link to="/register" className="btn btn--login btn--nav">Register</Link>
-          <Link to="/login" className="btn btn--login btn--nav">Login</Link>
-        </div>
         <div className="nav">
           <div className="nav__wrapper">
-            <Link to="/" className="nav__logo-wrapper"><h1 className="nav__logo">Product.ion</h1></Link>
+            <Link to="/" className="nav__logo-wrapper"><h1 className="nav__logo">product.ion</h1></Link>
           </div>
         </div>
 
