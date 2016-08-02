@@ -21,19 +21,26 @@ export function addComment(postId, author, comment) {
   };
 }
 
-export function login(username, password) {
+export function submitLogin(username, password) {
   return {
-    type: 'LOGIN',
+    type: "SUBMIT_LOGIN",
     username,
     password
   };
 }
-//check to see if an organization exists
-//remove upon functional action flow
-export function validateNewOrg(data) {
+
+export function login(username, orgName) {
   return {
-    type: 'VALIDATE_NEW_ORG',
-    data
+    type: 'LOGIN',
+    username,
+    orgName
+  };
+}
+
+export function populateProjects(projectsArray) {
+  return {
+    type: "HYDRATE_PROJECTS",
+    projectsArray
   };
 }
 

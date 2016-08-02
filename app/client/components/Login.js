@@ -5,8 +5,8 @@ const Login = React.createClass({
     event.preventDefault();
     var user = this.refs.usernameInput.value,
         pass = this.refs.passwordInput.value;
-
-    this.props.login(user, pass);
+    console.log("Login: store is ", this.store);
+    this.props.submitLogin(user, pass);
 
   },
   render() {

@@ -3,7 +3,7 @@ function projects(state = [], action) {
     case "NEW_PROJECT":
       console.log("You want to make a new project");
       break;
-    case "GET_ORG_PROJECTS":
+    case "HYDRATE_PROJECTS":
       console.log("You want to get some projects");
       break;
     default:
