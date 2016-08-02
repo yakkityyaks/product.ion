@@ -22,8 +22,8 @@ const Login = React.createClass({
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div> */}
            <button>
-             <Link to={`/dashboard`}>
-               REGISTER TEST
+             <Link to={`/register`}>
+               Create Organization
              </Link>
            </button>
            <br></br>

@@ -48,7 +48,7 @@ const Register = React.createClass({
                     onBlur={this.validatePassword} />
            </div>
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">SUBMIT</button>
+               <button className="form__submit-btn" type="submit">CREATE</button>
            </div>
          </form>
        </div>
