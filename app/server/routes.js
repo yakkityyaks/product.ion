@@ -28,9 +28,10 @@ module.exports = function routes(app){
         password: req.body.password,
         orgs_id: org.attributes.id
       };
+      var data = {user: user, orgName: org.attributes.name}
       User.makeUser(user, function newUser(user){
         // console.log("++++The request user object sent is ", user);
-        user ? res.status(201).json(user) : res.sendStatus(404);
+        user ? res.status(201).json(data) : res.sendStatus(404);
       });
     });
   });
