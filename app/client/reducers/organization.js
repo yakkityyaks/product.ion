@@ -17,7 +17,7 @@ function posts(state=[], action) {
         .catch(function(err) {
           store.dispatch({
             type:"SET_LOGIN_MESSAGE",
-            message: "Username does not exist",
+            message: "Invalid username/password combination. Please try again",
             className: "errorMessage"
           });
           console.error(err);
