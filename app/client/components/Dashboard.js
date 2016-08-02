@@ -2,6 +2,7 @@ import React from 'react';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 // was comment.
+
 const Dashboard = React.createClass({
   componentDidMount() {
     console.log(this);
@@ -9,12 +10,12 @@ const Dashboard = React.createClass({
   render() {
     return (
       <div className="dashboard">
-        I'm the dashboard!
-        {this.props.projects.map((project, idx) =>
-          <ProjectNode key={idx} idx={idx} {...this.props} project={project}/>)}
+        <Projects {...this.props}/>
       </div>
     );
   }
 });
 
 export default Dashboard;
+        // {this.props.projects.map((project, idx) =>
+        //   <ProjectNode key={idx} idx={idx} {...this.props} project={project}/>)}
