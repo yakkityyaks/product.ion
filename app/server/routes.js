@@ -8,6 +8,14 @@ var User = require('./controllers/userController.js');
 module.exports = function routes(app){
 
   /*USER OBJECT Line 33 returns:
+  {
+    "username": "timtim",
+    "id": 1,
+    "password": "timtim",
+    "orgs_id": 1,
+    "orgs": {
+      "id": 1,
+      "name": "foobar"
     }
   }
   */
