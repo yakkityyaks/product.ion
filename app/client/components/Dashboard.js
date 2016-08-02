@@ -3,7 +3,9 @@ import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 // was comment.
 const Dashboard = React.createClass({
-
+  componentDidMount() {
+    console.log(this);
+  },
   render() {
     return (
       <div className="dashboard">
