@@ -12,7 +12,6 @@ var login = (username, password) => {
   return axios.post('/login', data);
 };
 
-
 const ApiCall = {
   register,
   login
