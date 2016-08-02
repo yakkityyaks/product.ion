@@ -14,7 +14,7 @@ const Pitch = React.createClass({
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="projectName">Project Name</label>
-             <input className="form__field-input" type="text" id="projectName" placeholder="Project Name" ref="projectNameInput autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+             <input className="form__field-input" type="text" id="numberOfAssets" placeholder="Project Name" ref="projectName" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="numberOfAssets">Number of Assets</label>
