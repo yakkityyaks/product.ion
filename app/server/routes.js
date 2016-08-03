@@ -9,9 +9,9 @@ module.exports = function routes(app){
   app.post('/api/register/org', function(req, res){
     //makes organization w/ name req.body.orgName and returns the organization model
     //if an org with that name already exists return a 403
-      Organization.makeOrg({name: req.body.orgName}, function(org){ 
-        org ? res.status(201).json(org) : res.sendStatus(404);
-      });
+    Organization.makeOrg({name: req.body.orgName}, function(org){ 
+      org ? res.status(201).json(org) : res.sendStatus(404);
+    });
   });
 
   app.post('/api/register/check', function(req, res) {
@@ -26,9 +26,9 @@ module.exports = function routes(app){
         } else {
           res.sendStatus(200);
         }
-      })
-    })
-  })
+      });
+    });
+  });
 
   app.post('/api/register/user', function(req, res){
     //makes username w/ name req.body.username, req.body.password, req.body.perm, and req.body.orgs_id and returns the user model
@@ -108,8 +108,7 @@ module.exports = function routes(app){
     // outpout: org w/ attached users and projects || 404
     Organization.getOrg(req.body.orgName, function(org) {
       org ? res.status(201).json(org) : res.sendStatus(404);
-
-    })
+    });
   });
 
   app.post('/api/get/user', function(req, res) {
@@ -117,15 +116,15 @@ module.exports = function routes(app){
     // output: user w/ attached org and projects || 404
     User.getUser(req.body.username, function(user) {
       user ? res.status(201).json(user) : res.sendStatus(404);
-    })
+    });
   });
 
   app.post('/api/get/proj', function(req, res) {
     // input: req.body.projId
-    //  output: proj w/ attached expenses, users, and org || 404
+    // output: proj w/ attached expenses, users, and org || 404
     Project.getProj(req.body.projId, function(proj) {
       proj ? res.status(201).json(proj) : res.sendStatus(404);
-    })
+    });
   });
 
   app.post('/api/proj/users', function(req, res) {
@@ -140,9 +139,7 @@ module.exports = function routes(app){
             res.sendStatus(201);
           }
         });
-      })
+      });
     }
-
-
-  })
+  });
 };
