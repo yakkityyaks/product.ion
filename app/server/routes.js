@@ -1,6 +1,7 @@
 var Expense = require('./controllers/expenseController.js');
 var Organization = require('./controllers/organizationController.js');
 var Project = require('./controllers/projectController.js');
+var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 
 
@@ -11,7 +12,7 @@ module.exports = function routes(app){
     Organization.getOrg(req.body.orgName, function(org) {
       if (!org) {
         Organization.makeOrg({name: req.body.orgName}, function(org){ 
-          org ? res.status(201).json(org) : res.sendStatus(404);
+          org ? res.status(200).json(org) : res.sendStatus(404);
         });
       } else {
         res.sendStatus(403);
@@ -25,16 +26,16 @@ module.exports = function routes(app){
     //req.body should be
     // {
     //   data :{
-    //       username: req.body.username,
-    //       password: req.body.password,
-    //       perm: req.body.perm,
-    //       orgs_id: req.body.orgs_id
+    //       username: string,
+    //       password: string,
+    //       perm: int,
+    //       orgs_id: int
     //   }
     // }
-    User.getUser(req.body.username, function(user) {
+    User.getUser(req.body.data.username, function(user) {
       if (!user) {
         User.makeUser(req.body.data, function(user){ 
-          user ? res.status(201).json(user) : res.sendStatus(404);
+          user ? res.status(200).json(user) : res.sendStatus(404);
         });
       } else {
         res.sendStatus(403);
@@ -62,8 +63,8 @@ module.exports = function routes(app){
     // 
     // makes a project w/ the provided data which is linked to the organization
     // and users described by the id values, then returns it
-    Project.makeProj(data, function(proj) {
-      proj ? res.status(201).json(proj) : res.sendStatus(404);
+    Project.makeProj(req.body.data, function(proj) {
+      proj ? res.status(200).json(proj) : res.sendStatus(404);
     });
   });
 
@@ -88,7 +89,7 @@ module.exports = function routes(app){
     // makes an expense w/ the provided data linked to the provided project
     // returns it on completion
     Expense.makeExpense(req.body.data, function(exp) {
-      exp ? res.status(201).json(exp) : res.sendStatus(404);
+      exp ? res.status(200).json(exp) : res.sendStatus(404);
     });
   });
 
@@ -96,7 +97,7 @@ module.exports = function routes(app){
     // input: req.body.orgName
     // outpout: org w/ attached users and projects || 404
     Organization.getOrg(req.body.orgName, function(org) {
-      org ? res.status(201).json(org) : res.sendStatus(404);
+      org ? res.status(200).json(org) : res.sendStatus(404);
 
     })
   });
@@ -105,7 +106,7 @@ module.exports = function routes(app){
     // input: req.body.username
     // output: user w/ attached org and projects || 404
     User.getUser(req.body.username, function(user) {
-      user ? res.status(201).json(user) : res.sendStatus(404);
+      user ? res.status(200).json(user) : res.sendStatus(404);
     })
   });
 
@@ -113,9 +114,23 @@ module.exports = function routes(app){
     // input: req.body.projId
     //  output: proj w/ attached expenses, users, and org || 404
     Project.getProj(req.body.projId, function(proj) {
-      proj ? res.status(201).json(proj) : res.sendStatus(404);
+      proj ? res.status(200).json(proj) : res.sendStatus(404);
     })
   });
 
+  app.post('api/proj/users', function(req, res) {
+    //expects an object of {projs_id:users_id} key/value pairs in an object under req.body.data
+    var len = Object.keys(req.body.data).length;
+    var count = 0;
+    for (var key in req.body.data) {
+      new ProjKey({projs_id: key + 0, users_id: req.body.data[key] + 0}).save().then(function(){
+        count++;
+        if (count === len - 1) {
+          res.sendStatus(200);
+        }
+      });
+    }
 
+
+  })
 };

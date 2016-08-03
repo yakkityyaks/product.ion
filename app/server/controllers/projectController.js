@@ -14,7 +14,7 @@
 var Project = require('../models/project.js');
 
 exports.getProj = function(projId, cb) {
-	new Project({projId: projId}).fetch({withRelated: ['org', 'expenses']}).then(cb);
+	new Project({projId: projId}).fetch({withRelated: ['org', 'expenses', 'users']}).then(cb);
 }
 
 exports.getProjs = function(cb) {

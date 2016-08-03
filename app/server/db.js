@@ -50,6 +50,11 @@ Promise.all([
     table.string('description');
     table.float('cost');
     table.integer('projs_id').unsigned().references('id').inTable('projs');
+  }),
+
+  knex.schema.createTableIfNotExists('projs_users', function(table) {
+    table.integer('projs_id').references('id').inTable('projs');
+    table.integer('users_id').references('id').inTable('users');
   })  
 ]);
 
