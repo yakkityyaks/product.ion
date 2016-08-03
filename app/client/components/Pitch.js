@@ -1,7 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Dropdown from 'react-dropdown'
+import Calendar from "./Calendar.js";
+
+const options = ['feature', 'short', 'television', 'web', 'episode'];
+
+const options1 = [1,2,3,4,5,6,7,8,9,10];
 
 const Pitch = React.createClass({
+  getInitialState: function(){
+    return {
+      checked: false
+    }
+  },
+
+  onChange: function(event) {
+    event.preventDefault();
+    var input = event.target;
+
+    this.setState({
+      checked: input.checked
+    });
+  },
+
   render() {
     return (
       <div className="Pitch">
@@ -21,8 +42,9 @@ const Pitch = React.createClass({
              <input className="form__field-input" type="text" id="numberOfAssets" placeholder="Please fill me out!" ref="numberOfAssetsInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="typeOfVideo">Type of Video</label>
-             <input className="form__field-input" type="text" id="typeOfVideo" placeholder="Please fill me out" ref="typeOfVideoInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+             <span>
+               <Dropdown className="form__field-input" options={options} onChange={this._onSelect} value='Video type' placeholder="Select an option" />
+             </span>
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="requestedBudget">Requested Budget</label>
@@ -33,12 +55,21 @@ const Pitch = React.createClass({
              <input className="form__field-input" type="text" id="studioNeeds" placeholder="Please fill me out" ref="studioNeedsInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="shootStartDate">Shoot Start Date</label>
-             <input className="form__field-input" type="text" id="shootStartDate" placeholder="Please fill me out" ref="shootStartDateInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-           </div>
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="shootEndDate">Shoot End Date</label>
-             <input className="form__field-input" type="text" id="shootEndDate" placeholder="Please fill me out" ref="shootEndDateInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+             <div>
+                <button onChange={this.onChange}>
+                  <Link to={`/calendar`}>
+                    Start Date
+                  </Link>
+                </button>
+             </div>
+
+             <div>
+                <button onChange={this.onChange}>
+                  <Link to={`/calendar`}>
+                     End Date
+                  </Link>
+                </button>
+             </div>
            </div>
            <div className="form__submit-btn-wrapper">
              <button className="form__submit-btn" type="submit">
