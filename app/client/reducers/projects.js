@@ -14,7 +14,8 @@ function projects(state = [], action) {
         })
         .then((res) => {
           if (res) {
-            console.log("Response received. Res is ", res);
+            console.log("Get_Org_Projects: Response received. Res is ", res);
+            store.dispatch({type:"SET_USERS", users: res.data.users});
             store.dispatch({type:"HYDRATE_PROJECTS", projects: res.data.projects});
           }
         });

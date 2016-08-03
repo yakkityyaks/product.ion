@@ -6,12 +6,40 @@
 //ORGANIZATION:
 
 //create a new organization
+export function checkRegistration(orgName, username, password) {
+  return {
+    type: 'REGISTRATION_CHECK',
+    orgName,
+    username,
+    password
+  };
+}
 export function addNewOrg(orgName, username, password) {
   return {
     type: 'ADD_NEW_ORG',
     orgName,
     username,
     password
+  };
+}
+
+export function addNewUser(username, password, perm) {
+  return {
+    type: 'ADD_NEW_USER',
+    username,
+    password,
+    perm
+  };
+}
+//gets the organization information
+// export function getOrg(orgName) {
+//
+// }
+
+export function hydrateOrg(data) {
+  return {
+    type: "HYDRATE_ORG",
+    data
   };
 }
 
@@ -23,14 +51,21 @@ export function postLogin(username, password) {
   };
 }
 
-export function login(username, orgName) {
+export function login(username, orgName, perm) {
   return {
     type: 'LOGIN',
     username,
-    orgName
+    orgName,
+    perm
   };
 }
 
+export function setUsers(users) {
+  return {
+    type: "SET_USERS",
+    users
+  };
+}
 //PROJECTS:
 
 //get a list of an organizations Projects
@@ -56,7 +91,23 @@ export function hydrateProjects(projects) {
   };
 }
 
+//Expenses:
+
 //MESSAGES:
+
+export function registrationError(target, message) {
+  return {
+    type: "REGISTRATION_ERROR",
+    target,
+    message
+  };
+}
+
+export function resetRegistrationMessages() {
+  return {
+    type: "RESET_REGISTRATION_MESSAGES"
+  };
+}
 
 export function resetLoginMessage() {
   return {
@@ -71,53 +122,3 @@ export function setLoginMessage(message, className) {
       className
     };
 }
-
-//
-// export function loginError(error) {
-//   return { error, type: LOGIN_FAILED };
-// }
-//
-// // You'll have a side effect here so (dispatch) => {} form is a good idea
-// export function loginSuccess(response) {
-//   return dispatch => {
-//     dispatch({ response, type: LOGIN_SUCCESSFUL });
-//     // router.transitionTo('/dashboard');
-//   };
-// }
-//
-// export function loginRequest(email, password) {
-//   const user = {email: email, password: password};
-//   return { user, type: LOGIN_ATTEMPT };
-// }
-//
-// export function changeForm(newState) {
-//   return { type: CHANGE_FORM, newState };
-// }
-//
-// export function login(userData) {
-//   return dispatch =>
-//     fetch('/login', {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         email: userData.email,
-//         password: userData.password,
-//       }),
-//     })
-//     .then(response => {
-//       if (response.status >= 200 && response.status < 300) {
-//         console.log("RESPONSE ", response);
-//         dispatch(loginSuccess(response));
-//       } else {
-//         const error = new Error(response.statusText);
-//         error.response = response;
-//         dispatch(loginError(error));
-//         throw error;
-//       }
-//     })
-//     .catch(error => { console.log('request failed', error); });
-
-// }
