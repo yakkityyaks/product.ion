@@ -10,19 +10,22 @@ const Register = React.createClass({
       //trigger successful password view
     }
   },
+  resetErrorMessages: function() {
+    this.props.resetRegistrationMessages();
+  },
   handleSubmit: function(event) {
     event.preventDefault();
     var orgName = this.refs.orgNameInput.value,
         username = this.refs.usernameInput.value,
         password = this.refs.passwordInput.value;
 
-    this.props.addNewOrg(orgName, username, password);
+    this.props.checkRegistration(orgName, username, password);
   },
   render() {
     return (
       <div>
         <h2 className="form-page__form-heading">We're happy you want to do this</h2>
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit} onBlur={this.resetErrorMessages}>
            <div className="form__error-wrapper">
              <p className="form__error form__error--username-taken">Sorry, but this username is already taken.</p>
              <p className="form__error form__error--invalid-password">Password has to be better than that.</p>

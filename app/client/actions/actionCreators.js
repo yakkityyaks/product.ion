@@ -6,6 +6,14 @@
 //ORGANIZATION:
 
 //create a new organization
+export function checkRegistration(orgName, username, password) {
+  return {
+    type: 'REGISTRATION_CHECK',
+    orgName,
+    username,
+    password
+  };
+}
 export function addNewOrg(orgName, username, password) {
   return {
     type: 'ADD_NEW_ORG',

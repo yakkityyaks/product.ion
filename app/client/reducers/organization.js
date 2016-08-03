@@ -5,73 +5,75 @@ import { push } from "react-router-redux";
 function posts(state=[], action) {
   switch (action.type) {
     case "REGISTRATION_CHECK":
-      ApiCall.registerCheck(action.orgName, action.username)
+      ApiCall.registrationCheck(action.orgName, action.username)
       .catch(function (err) {
-        var message, target;
+        console.log("Should be here");
+        var message="", target=0;
         switch (err.response.status) {
-          
+          case 400:
+            target=3;
+            message = ["Sorry, that organization name is taken", "Sorry, that username is taken"];
+            break;
+          case 401:
+            message = "Sorry, that organization name is taken";
+            target = 0;
+            break;
+          case 403:
+            message = "Sorry, that username is taken";
+            target = 1;
+            break;
+          default:
+            console.error(err);
         }
+        store.dispatch({type: "REGISTRATION_ERROR", target:target, message: message});
       })
       .then(function(res){
-        console.log("ding ding ding");
+        if (res && res.status===200) {//put this back when ready
+          console.log("Both fields clear. Registering org and user");
+          store.dispatch({
+            type: "ADD_NEW_ORG",
+            orgName: action.orgName,
+            username: action.userName,
+            password: action.password
+          });//register new org.
+        } else {
+          console.log("Something is wrong. Res is ", res);
+        }
       });
       break;
     case "ADD_NEW_ORG":
       console.log("Lets get started. action is ", action);
       ApiCall.registerOrg(action.orgName)
         .catch(function (err) {
-          if (err.response.status === 403) {
-            //Login error message
-            store.dispatch({type:"REGISTRATION_ERROR", target: 0,
-              message: "That organization already exists. Please try again."});
-            console.log("Error: organization already exists");
-          } else {
-            console.error(err);
-          }
+          console.error(err);
         })
-        .then(function (res, err) {
-          if (err) {
-            console.log("ding ding ding");
-            console.log(err);
-          }
-          else {
-             if (res.status === 201) {
-              console.log("Step 2 complete. Organization is registered. res is ", res);
-              var orgData = res.data;
-              action.orgs_id = res.data.id;
-              action.perm = 0;//extra info needed for registering a user
+        .then(function (res) {
+           if (res.status === 201) {
+            console.log("Step 2 complete. Organization is registered. res is ", res);
+            var orgData = res.data;
 
-              ApiCall.registerUser(action.data)
-                .catch(function (err) {
-                  if (err.response.status === 403) {
-                    //User error message
-                    store.dispatch({type:"REGISTRATION_ERROR", target: 1,
-                      message: "That username already exists. Please try again."});
-                    console.error(err);
-                  }
-                })
-                .then(function (res, err) {
-                  if (err) console.error(err);
-                  else {
-                    if (res.status === 201) {
-                      var organization = {
-                        id: orgData.id,
-                        orgs_id: orgData.orgs_id,
-                        orgName: orgData.orgName,
-                        user: {name: res.data.userName, perm: res.data.perm},
-                        users: orgData.users
-                      };//build data object with responses from both APIcalls.
-                      console.log("Successful server chain. Hydrating an organization with data. ", organization);
-                      store.dispatch({
-                        type: "HYDRATE_ORG",
-                        organization
-                      });
-                      var joinedName = organization.orgName.split(" ").join("");
-                      store.dispatch(push(`/dashboard/${joinedName}`));
-                    }
-                  }
-                });
-            }
+            ApiCall.registerUser(action.username, action.password, res.data.id, 0)
+              .catch(function (err) {
+                console.error(err);
+              })
+              .then(function (res) {
+                if (res.status === 201) {
+                  var organization = {
+                    id: orgData.id,
+                    orgs_id: orgData.orgs_id,
+                    orgName: orgData.orgName,
+                    user: {name: res.data.userName, perm: res.data.perm},
+                    users: orgData.users
+                  };//build data object with responses from both APIcalls.
+                  console.log("Successful server chain. Hydrating an organization with data. ", organization);
+                  store.dispatch({
+                    type: "HYDRATE_ORG",
+                    organization
+                  });
+                  var joinedName = organization.orgName.split(" ").join("");
+                  store.dispatch(push(`/dashboard/${joinedName}`));
+                }
+              });
           }
         });
       break;

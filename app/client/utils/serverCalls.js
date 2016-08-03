@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+let registrationCheck = (orgName, username) =>
+  axios.post('/api/register/check', {orgName, username});
+
 let registerOrg = (orgName) => {
   var data = {orgName};
 
@@ -25,6 +28,7 @@ let getProjectsByOrgName = (orgName) =>
   axios.post('/api/dashboard', {orgName: orgName});
 
 const ApiCall = {
+  registrationCheck,
   registerOrg,
   registerUser,
   registerProject,
