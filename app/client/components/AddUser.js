@@ -21,12 +21,11 @@ const AddUser = React.createClass({
   validateUsername: function() {
     let regex = /^[a-z0-9]+$/i;
     let name = this.refs.usernameInput.value;
-    return regex.test(name);
-    // if (named.length < 6) {
-    //   console.log("Password must be greater than 6 characters");
-    // } else {
-    //   //trigger successful user view
-    // }
+    if (named.length < 6 || !regex) {
+      console.log("Password must be greater than 6 characters");
+    } else {
+      //trigger successful user view
+    }
   },
   randomPassword (length, username) {
     let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
@@ -52,11 +51,11 @@ const AddUser = React.createClass({
   render() {
     return (
       <div className="radio-div">
-        <h2 className="form-page__form-heading">Create a New Account</h2>
+        <h2 className="form-page__form-heading">Select a User Type</h2>
         <ul className="form__radio">
           <li>
           <input type="radio" id="select-admin" name="users"/>
-            <label htmlFor="select-user"> ADMIN</label>
+            <label htmlFor="select-admin"> ADMIN</label>
             <div className="check"></div>
           </li>
           <li>
@@ -103,50 +102,3 @@ const AddUser = React.createClass({
 });
 
 export default AddUser;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// <div class="container">
-//
-// 	<h2>Tomorrow I want some:</h2>
-//
-//   <ul>
-//   <li>
-//     <input type="radio" id="f-option" name="selector">
-//     <label for="f-option">Pizza</label>
-//
-//     <div class="check"></div>
-//   </li>
-//
-//   <li>
-//     <input type="radio" id="s-option" name="selector">
-//     <label for="s-option">Boyfriend</label>
-//
-//     <div class="check"><div class="inside"></div></div>
-//   </li>
-//
-//   <li>
-//     <input type="radio" id="t-option" name="selector">
-//     <label for="t-option">Cats</label>
-//
-//     <div class="check"><div class="inside"></div></div>
-//   </li>
-// </ul>
-// </div>
-//
-// <div class="signature">
-// 	<p>Made with <i class="much-heart"></i> by <a href="http://codepen.io/AngelaVelasquez">Angela Velasquez</a></p>
-// </div>
