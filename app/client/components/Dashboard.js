@@ -13,7 +13,11 @@ const Dashboard = React.createClass({
     return (
       <div className="dashboard">
       <div>
-        <button className="plus-button"><Link to="/expenses">  -|-  </Link></button>
+        <button className="plus-button">
+          <Link to={`/pitch`}>
+            Add a Pitch!
+          </Link>
+        </button>
       </div>
         <br></br>
         <Projects {...this.props}/>
