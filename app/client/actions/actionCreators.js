@@ -51,6 +51,14 @@ export function login(username, orgName) {
   };
 }
 
+//gets the organization information
+export function getOrg(orgName) {
+
+}
+
+export function hydrateOrg(data) {
+
+}
 //PROJECTS:
 
 //get a list of an organizations Projects
