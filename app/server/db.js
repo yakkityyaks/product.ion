@@ -18,7 +18,7 @@ Promise.all([
   knex.schema.createTableIfNotExists('users', function(table) {
     table.increments('id').primary();
     table.string('username').unique();
-    table.integer('class');
+    table.integer('perm');
     table.string('password');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
@@ -28,12 +28,12 @@ Promise.all([
     table.string('name');
     table.string('projId');
     table.string('type');
-    table.string('reqBudget');
+    table.float('reqBudget');
     table.string('needs');
     table.string('shootDates');
     table.string('status');
-    table.string('costToDate');
-    table.string('estimateToComplete');
+    table.float('costToDate');
+    table.float('estimateToComplete');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),  
 
