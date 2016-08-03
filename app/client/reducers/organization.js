@@ -4,11 +4,30 @@ import { push } from "react-router-redux";
 
 function posts(state=[], action) {
   switch (action.type) {
+    case "REGISTRATION_CHECK":
+      ApiCall.registerCheck(action.orgName, action.username)
+      .catch(function (err) {
+        var message, target;
+        switch (err.response.status) {
+          
+        }
+      })
+      .then(function(res){
+        console.log("ding ding ding");
+      });
+      break;
     case "ADD_NEW_ORG":
       console.log("Lets get started. action is ", action);
       ApiCall.registerOrg(action.orgName)
         .catch(function (err) {
-          console.log("ding ding ding");
+          if (err.response.status === 403) {
+            //Login error message
+            store.dispatch({type:"REGISTRATION_ERROR", target: 0,
+              message: "That organization already exists. Please try again."});
+            console.log("Error: organization already exists");
+          } else {
+            console.error(err);
+          }
         })
         .then(function (res, err) {
           if (err) {
@@ -16,27 +35,25 @@ function posts(state=[], action) {
             console.log(err);
           }
           else {
-            if (res.status === 403) {
-              //Login error message
-              store.dispatch({type:"REGISTRATION_ERROR", target: 0,
-                message: "That organization already exists. Please try again."});
-              console.log("Error: organization already exists");
-            } else {
+             if (res.status === 201) {
               console.log("Step 2 complete. Organization is registered. res is ", res);
               var orgData = res.data;
               action.orgs_id = res.data.id;
               action.perm = 0;//extra info needed for registering a user
 
               ApiCall.registerUser(action.data)
+                .catch(function (err) {
+                  if (err.response.status === 403) {
+                    //User error message
+                    store.dispatch({type:"REGISTRATION_ERROR", target: 1,
+                      message: "That username already exists. Please try again."});
+                    console.error(err);
+                  }
+                })
                 .then(function (res, err) {
                   if (err) console.error(err);
                   else {
-                    if (res.status === 403) {
-                      //User error message
-                      store.dispatch({type:"REGISTRATION_ERROR", target: 1,
-                        message: "That username already exists. Please try again."});
-                      console.log("Error: username already exists");
-                    } else {
+                    if (res.status === 201) {
                       var organization = {
                         id: orgData.id,
                         orgs_id: orgData.orgs_id,
