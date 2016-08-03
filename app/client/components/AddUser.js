@@ -2,20 +2,20 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const AddUser = React.createClass({
-  handleSubmit(event) {
-    event.preventDefault();
-    var user = this.refs.usernameInput.value,
-        pass = this.refs.passwordInput.value,
-        orgId = this.refs.orgInput.value,
-        userClass = this.refs.userClassInput.value;
-
-    console.log("ADD USER: store is ", this.store);
-    this.props.addNewUser(user, pass, orgId, userClass);
-  },
-
-  handleChange (event) {
-    this.setState({selectValue: e.target.value});
-  },
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   var user = this.refs.usernameInput.value,
+  //       pass = this.refs.passwordInput.value,
+  //       orgId = this.refs.orgInput.value,
+  //       userClass = this.refs.userClassInput.value;
+  //
+  //   console.log("ADD USER: store is ", this.store);
+  //   this.props.addNewUser(user, pass, orgId, userClass);
+  // },
+  //
+  // handleChange (event) {
+  //   this.setState({selectValue: e.target.value});
+  // },
 
   // add on-change functions, dropdown for user class, logic that requires both forms filled out
   render() {
@@ -29,8 +29,7 @@ const AddUser = React.createClass({
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div> */}
            <br></br>
-           <select value={this.state.selectValue}
-             onChange={this.handleChange}>
+           <select>
              <option value="Admin">ADMIN</option>
              <option value="Producer">PRODUCER</option>
              <option value="User">USER</option>

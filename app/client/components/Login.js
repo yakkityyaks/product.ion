@@ -22,7 +22,7 @@ const Login = React.createClass({
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div> */}
            <button>
-             <Link to={`/register`}>
+             <Link to={`/adduser`}>
                Create Organization
              </Link>
            </button>

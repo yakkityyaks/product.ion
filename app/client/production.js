@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
 import Pitch from './components/Pitch';
+import AddUser from './components/AddUser';
 //
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // binding that helps us use redux with react.
@@ -29,6 +30,7 @@ const router = (
         <Route path='/login' component = { Login }></Route>
         <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
+        <Route path='/adduser' component = { AddUser }></Route>
       </Route>
     </Router>
   </Provider>
