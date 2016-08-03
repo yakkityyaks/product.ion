@@ -1,22 +1,33 @@
 import axios from 'axios';
 
-var register = (organization, username, password) => {
-  var data = {orgName: organization, username: username, password: password};
+let registerOrg = (organization) => {
+  var data = {organization};
 
-  return axios.post('/api/register', data);
+  return axios.post('/api/register/org', data);
 };
 
-var login = (username, password) => {
+let registerUser = (username, password, orgs_id, perm) => {
+  var data = {username, password, orgs_id, perm};
+
+  return axios.post('/api/register/user', data);
+};
+
+let registerProject = (projectObj) =>
+  axios.post('/api/register/project', projectObj);
+
+let login = (username, password) => {
   var data = {username: username, password: password};
 
   return axios.post('/api/login', data);
 };
 
-var getProjectsByOrgName = (orgName) =>
+let getProjectsByOrgName = (orgName) =>
   axios.post('/api/dashboard', {orgName: orgName});
 
 const ApiCall = {
-  register,
+  registerOrg,
+  registerUser,
+  registerProject,
   login,
   getProjectsByOrgName
 };
