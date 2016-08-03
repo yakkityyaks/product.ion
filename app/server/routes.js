@@ -9,24 +9,22 @@ module.exports = function routes(app){
   app.post('/api/register/org', function(req, res){
     //makes organization w/ name req.body.orgName and returns the organization model
     //if an org with that name already exists return a 403
-    // Organization.getOrg(req.body.orgName, function(org) {
-    //   if (!org) {
-        Organization.makeOrg({name: req.body.orgName}, function(org){ 
-          org ? res.status(201).json(org) : res.sendStatus(404);
-        });
-    //   } else {
-    //     res.sendStatus(403);
-    //   }
-    // });  
+      Organization.makeOrg({name: req.body.orgName}, function(org){ 
+        org ? res.status(201).json(org) : res.sendStatus(404);
+      });
   });
 
   app.post('/api/register/check', function(req, res) {
     Organization.getOrg(req.body.orgName, function(org) {
       User.getUser(req.body.username, function(user) {
-        if (!user && !org) {
-          res.sendStatus(200);
-        } else {
+        if (org && user) {
+          res.sendStatus(400);
+        } else if (org) {
+          res.sendStatus(401);
+        } else if (user) {
           res.sendStatus(403);
+        } else {
+          res.sendStatus(200);
         }
       })
     })
