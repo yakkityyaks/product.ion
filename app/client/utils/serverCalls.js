@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-let registerOrg = (organization) => {
-  var data = {organization};
+let registerOrg = (orgName) => {
+  var data = {orgName};
 
   return axios.post('/api/register/org', data);
 };

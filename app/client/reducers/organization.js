@@ -5,9 +5,16 @@ import { push } from "react-router-redux";
 function posts(state=[], action) {
   switch (action.type) {
     case "ADD_NEW_ORG":
+      console.log("Lets get started. action is ", action);
       ApiCall.registerOrg(action.orgName)
+        .catch(function (err) {
+          console.log("ding ding ding");
+        })
         .then(function (res, err) {
-          if (err) console.log(err);
+          if (err) {
+            console.log("ding ding ding");
+            console.log(err);
+          }
           else {
             if (res.status === 403) {
               //Login error message
@@ -15,7 +22,11 @@ function posts(state=[], action) {
                 message: "That organization already exists. Please try again."});
               console.log("Error: organization already exists");
             } else {
+              console.log("Step 2 complete. Organization is registered. res is ", res);
               var orgData = res.data;
+              action.orgs_id = res.data.id;
+              action.perm = 0;//extra info needed for registering a user
+
               ApiCall.registerUser(action.data)
                 .then(function (res, err) {
                   if (err) console.error(err);
@@ -43,11 +54,6 @@ function posts(state=[], action) {
                     }
                   }
                 });
-              // store.dispatch(
-              //   {type:"LOGIN",
-              //   username: res.data.user.username,
-              //   org: {id: res.data.user.org_id, name: res.data.orgName},
-              // });
             }
           }
         });
