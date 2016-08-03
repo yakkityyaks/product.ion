@@ -17,7 +17,7 @@ module.exports = function routes(app){
         res.sendStatus(403);
       }
     });  
-  };
+  });
 
   app.post('/api/register/user', function(req, res){
     //makes username w/ name req.body.username, req.body.password, req.body.perm, and req.body.orgs_id and returns the user model
