@@ -3,60 +3,42 @@ var Organization = require('./controllers/organizationController.js');
 var Project = require('./controllers/projectController.js');
 var User = require('./controllers/userController.js');
 
-//UNCOMMENT ANY CONSOLE LOG BELOW FOR TESTING PURPOSES
 
 module.exports = function routes(app){
-
-  /*USER OBJECT Line 33 returns:
-  {
-    "username": "timtim",
-    "id": 1,
-    "password": "timtim",
-    "orgs_id": 1,
-    "orgs": {
-      "id": 1,
-      "name": "foobar"
-    }
-  }
-  */
-
-  app.post('/api/register', function registerUser(req, res) {
+  app.post('/api/register/org', function(req, res){
+    //makes organization w/ name req.body.orgName and returns the organization model
+    //if an org with that name already exists return a 403
     Organization.getOrg(req.body.orgName, function(org) {
       if (!org) {
-        Organization.makeOrg({name: req.body.orgName}, function newOrg(org){
-          // console.log("++++The request body from axios is ", req.body);
-          var user = {
-            username: req.body.username,
-            password: req.body.password,
-            orgs_id: org.attributes.id
-          };
-          var data = {user: user, orgName: org.attributes.name}
-          User.getUser(req.body.username, function(user) {
-            if (!user) {
-              User.makeUser(user, function newUser(user){
-                // console.log("++++The request user object sent is ", user);
-                user ? res.status(201).json(data) : res.sendStatus(404);
-              });
-            } else {
-              org.destroy().then(function() {
-                res.sendStatus(403);
-              });
-            }
-          })
-        }); 
+        Organization.makeOrg({name: req.body.orgName}, function(org){ 
+          org ? res.status(201).json(org) : res.sendStatus(404);
+        });
       } else {
         res.sendStatus(403);
       }
-    })
-  });
+    });  
+  };
 
-  app.post('/api/login', function retrieveUser(req, res){
-    // console.log("++++The request body from axios is ", req.body);
-    User.getUser(req.body.username, function existingUser(user){
-      // console.log("++++The request user object sent is ", user);
-      user ? res.status(201).json(user) : res.sendStatus(404);
+  app.post('/api/register/user', function(req, res){
+    //makes username w/ name req.body.username, req.body.password, req.body.perm, and req.body.orgs_id and returns the user model
+    //if a user with that username already exists return a 403
+    User.getUser(req.body.username, function(user) {
+      if (!user) {
+        data = {
+          username: req.body.username,
+          password: req.body.password,
+          perm: req.body.perm,
+          orgs_id: req.body.orgs_id
+        }
+        User.makeUser(data, function(user){ 
+          user ? res.status(201).json(user) : res.sendStatus(404);
+        });
+      } else {
+        res.sendStatus(403);
+      }
     });
   });
+
 
   /* ORG OBJECT Line 68 returns:
   {

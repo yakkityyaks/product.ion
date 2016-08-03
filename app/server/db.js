@@ -18,6 +18,7 @@ Promise.all([
   knex.schema.createTableIfNotExists('users', function(table) {
     table.increments('id').primary();
     table.string('username').unique();
+    table.integer('class');
     table.string('password');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
