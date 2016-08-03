@@ -19,12 +19,14 @@ const AddUser = React.createClass({
 
   // add on-change functions, dropdown for user class, logic that requires both forms filled out
   validateUsername: function() {
-    var name = this.refs.usernameInput.value;
-    if (named.length < 6) {
-      console.log("Password must greater than 6 characters");
-    } else {
-      //trigger successful user view
-    }
+    let regex = /^[a-z0-9]+$/i;
+    let name = this.refs.usernameInput.value;
+    return regex.test(name);
+    // if (named.length < 6) {
+    //   console.log("Password must be greater than 6 characters");
+    // } else {
+    //   //trigger successful user view
+    // }
   },
   randomPassword (length, username) {
     let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
@@ -49,27 +51,40 @@ const AddUser = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="radio-div">
         <h2 className="form-page__form-heading">Create a New Account</h2>
+        <ul className="form__radio">
+          <li>
+          <input type="radio" id="select-admin" name="users"/>
+            <label htmlFor="select-user"> ADMIN</label>
+            <div className="check"></div>
+          </li>
+          <li>
+          <input type="radio" id="select-producer" name="users"/>
+            <label htmlFor="select-producer"> PRODUCER</label>
+            <div className="check"></div>
+          </li>
+          <li>
+          <input type="radio" id="select-user" name="users"/>
+            <label htmlFor="select-user"> USER</label>
+            <div className="check"></div>
+          </li>
+        </ul>
+        <br></br>
         <form className="form" onSubmit={this.handleSubmit}>
            {/* <div className="form__error-wrapper">
              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div> */}
            <br></br>
-           <select>
-             <option value="Admin">ADMIN</option>
-             <option value="Producer">PRODUCER</option>
-             <option value="User">USER</option>
-           </select>
+
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="username">Username</label>
              <br></br>
              <input className="form__field-input" type="text" id="username"
                     placeholder="Enter Username" ref="usernameInput"
                     autoCorrect="off" autoCapitalize="off" spellCheck="false"
-                    minCharacters={6} validate={this.validateUsername} errorMessage="Name is invalid"
-                    emptyMessage="Name is required" onBlur={this.generate} />
+                    onBlur={this.generate} required/>
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="password">Password</label>
@@ -88,3 +103,50 @@ const AddUser = React.createClass({
 });
 
 export default AddUser;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// <div class="container">
+//
+// 	<h2>Tomorrow I want some:</h2>
+//
+//   <ul>
+//   <li>
+//     <input type="radio" id="f-option" name="selector">
+//     <label for="f-option">Pizza</label>
+//
+//     <div class="check"></div>
+//   </li>
+//
+//   <li>
+//     <input type="radio" id="s-option" name="selector">
+//     <label for="s-option">Boyfriend</label>
+//
+//     <div class="check"><div class="inside"></div></div>
+//   </li>
+//
+//   <li>
+//     <input type="radio" id="t-option" name="selector">
+//     <label for="t-option">Cats</label>
+//
+//     <div class="check"><div class="inside"></div></div>
+//   </li>
+// </ul>
+// </div>
+//
+// <div class="signature">
+// 	<p>Made with <i class="much-heart"></i> by <a href="http://codepen.io/AngelaVelasquez">Angela Velasquez</a></p>
+// </div>
