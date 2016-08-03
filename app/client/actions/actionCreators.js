@@ -51,21 +51,20 @@ export function postLogin(username, password) {
   };
 }
 
-export function login(username, orgName) {
+export function login(username, orgName, perm) {
   return {
     type: 'LOGIN',
     username,
-    orgName
+    orgName,
+    perm
   };
 }
 
-//gets the organization information
-export function getOrg(orgName) {
-
-}
-
-export function hydrateOrg(data) {
-
+export function setUsers(users) {
+  return {
+    type: "SET_USERS",
+    users
+  };
 }
 //PROJECTS:
 

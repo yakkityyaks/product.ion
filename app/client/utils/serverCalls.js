@@ -10,9 +10,9 @@ let registerOrg = (orgName) => {
 };
 
 let registerUser = (username, password, orgs_id, perm) => {
-  var data = {username, password, orgs_id, perm};
+  var data = {username: username, password: password, orgs_id: orgs_id, perm: perm};
 
-  return axios.post('/api/register/user', data);
+  return axios.post('/api/register/user', {data: data});
 };
 
 let registerProject = (projectObj) =>
@@ -21,11 +21,11 @@ let registerProject = (projectObj) =>
 let login = (username, password) => {
   var data = {username: username, password: password};
 
-  return axios.post('/api/login', data);
+  return axios.post('/api/get/user', data);
 };
 
 let getProjectsByOrgName = (orgName) =>
-  axios.post('/api/dashboard', {orgName: orgName});
+  axios.post('/api/get/org', {orgName: orgName});
 
 const ApiCall = {
   registrationCheck,

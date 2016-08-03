@@ -33,7 +33,7 @@ function posts(state=[], action) {
           store.dispatch({
             type: "ADD_NEW_ORG",
             orgName: action.orgName,
-            username: action.userName,
+            username: action.username,
             password: action.password
           });//register new org.
         } else {
@@ -58,12 +58,12 @@ function posts(state=[], action) {
               })
               .then(function (res) {
                 if (res.status === 201) {
+                  console.log("Building an object with ", orgData);
                   var organization = {
                     id: orgData.id,
-                    orgs_id: orgData.orgs_id,
-                    orgName: orgData.orgName,
-                    user: {name: res.data.userName, perm: res.data.perm},
-                    users: orgData.users
+                    orgName: orgData.name,
+                    user: {name: res.data.username, perm: res.data.perm},
+                    users: [{name: res.data.username, perm: res.data.perm}]
                   };//build data object with responses from both APIcalls.
                   console.log("Successful server chain. Hydrating an organization with data. ", organization);
                   store.dispatch({
@@ -77,6 +77,9 @@ function posts(state=[], action) {
           }
         });
       break;
+    case "HYDRATE_ORG":
+      console.log("state is, ", state, "\naction is ", action);
+      return action.organization;
     case "ADD_NEW_USER":
       console.log("So you want to make a new user");
       break;
@@ -91,21 +94,31 @@ function posts(state=[], action) {
           console.error(err);
         })
         .then(function(res) {
-          if (res) {
+          if (res.data.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
-            store.dispatch({type:"LOGIN", username: res.data.username, org: res.data.orgs});
-            var joinedName = res.data.orgs .name.split(" ").join("");
+            store.dispatch({
+              type:"LOGIN",
+              username: res.data.username,
+              id: res.data.id,
+              orgs_id: res.data.orgs_id,
+              orgName: res.data.org.name,
+              perm: res.data.perm});
+            var joinedName = res.data.org.name.split(" ").join("");
             store.dispatch(push(`/dashboard/${joinedName}`));
+          } else {
+            console.log("You done fucked up");
           }
         });
       return state;
     case "LOGIN":
       console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
-        users: action.username,
-        org: action.org.id,
-        orgName: action.org.name
+        user: {name: action.username, perm: action.perm, id: action.id},
+        orgName: action.orgName,
+        orgs_id:action.orgs_id
       });
+    case "SET_USERS":
+      return Object.assign({}, state, {users: action.users});
   }
   return state;
 }
