@@ -17,8 +17,19 @@ const AddUser = React.createClass({
   //   this.setState({selectValue: e.target.value});
   // },
 
-  // add on-change functions, dropdown for user class, logic that requires both forms filled out
-  validateUsername: function() {
+  // swap views on radio selection.
+  // send username, password, and user class to server for validation
+  //
+
+  getInitialState () {
+    return { showTitle: false };
+  },
+
+  onClick () {
+      this.setState({ showTitle: true });
+  },
+
+  validateUsername () {
     let regex = /^[a-z0-9]+$/i;
     let name = this.refs.usernameInput.value;
     if (named.length < 6 || !regex) {
@@ -27,13 +38,14 @@ const AddUser = React.createClass({
       //trigger successful user view
     }
   },
+
   randomPassword (length, username) {
     let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
     let pass = "";
     if(username.length >= 6) {
 
-      for (var x = 0; x < length; x++) {
-        var i = Math.floor(Math.random() * chars.length);
+      for (let x = 0; x < length; x++) {
+        let i = Math.floor(Math.random() * chars.length);
         pass += chars.charAt(i);
       }
       return username + pass;
@@ -48,23 +60,33 @@ const AddUser = React.createClass({
     this.refs.passwordInput.value = this.randomPassword(3, this.refs.usernameInput.value);
   },
 
+  testing () {
+    console.log(this.refs.admin.checked);
+    console.log(this.refs.admin.name);
+    console.log(this.refs.producer.checked);
+    console.log(this.refs.producer.name);
+    console.log(this.refs.user.checked);
+    console.log(this.refs.user.name);
+  },
+
   render() {
     return (
       <div className="radio-div">
-        <h2 className="form-page__form-heading">Select a User Type</h2>
+        <h2 className="form-page__form-heading">select a user type</h2>
         <ul className="form__radio">
           <li>
-          <input type="radio" id="select-admin" name="users"/>
+          <input type="radio" id="select-admin" name="Admin" ref="admin" onChange={this.testing} />
             <label htmlFor="select-admin"> ADMIN</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-producer" name="users"/>
+          <input type="radio" id="select-producer" name="Producer"
+            value="producer" ref="producer" onChange={this.testing} />
             <label htmlFor="select-producer"> PRODUCER</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-user" name="users"/>
+          <input type="radio" id="select-user" name="User" value="user" ref="user" onChange={this.testing} />
             <label htmlFor="select-user"> USER</label>
             <div className="check"></div>
           </li>
