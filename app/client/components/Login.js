@@ -6,7 +6,6 @@ const Login = React.createClass({
     event.preventDefault();
     var user = this.refs.usernameInput.value,
         pass = this.refs.passwordInput.value;
-    console.log("Login: store is ", this.store);
     this.props.postLogin(user, pass);
 
   },

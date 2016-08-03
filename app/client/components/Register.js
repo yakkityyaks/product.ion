@@ -10,19 +10,22 @@ const Register = React.createClass({
       //trigger successful password view
     }
   },
+  resetErrorMessages: function() {
+    this.props.resetRegistrationMessages();
+  },
   handleSubmit: function(event) {
     event.preventDefault();
     var orgName = this.refs.orgNameInput.value,
         username = this.refs.usernameInput.value,
         password = this.refs.passwordInput.value;
 
-    this.props.addNewOrg(orgName, username, password);
+    this.props.checkRegistration(orgName, username, password);
   },
   render() {
     return (
       <div>
         <h2 className="form-page__form-heading">We're happy you want to do this</h2>
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit} onBlur={this.resetErrorMessages}>
            <div className="form__error-wrapper">
              <p className="form__error form__error--username-taken">Sorry, but this username is already taken.</p>
              <p className="form__error form__error--invalid-password">Password has to be better than that.</p>
@@ -40,18 +43,21 @@ const Register = React.createClass({
              <input className="form__field-input" type="text" id="username"
                     placeholder="Org Name" autoCorrect="off" autoCapitalize="off"
                     spellCheck="false" ref='orgNameInput' />
+             <p id="registerOrgMessage" className="">{this.props.messages.registerOrg}</p>
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="username">Admin</label>
              <input className="form__field-input" type="text" id="username"
                     placeholder="Admin Name" autoCorrect="off" autoCapitalize="off"
                     spellCheck="false" ref='usernameInput'/>
+             <p id="registerUserMessage" className="">{this.props.messages.registerUser}</p>
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="password">Password</label>
              <input className="form__field-input" id="password" type="password"
                     placeholder="••••••••••" ref="passwordInput"
                     onBlur={this.validatePassword} />
+             <p id="registerPaswordMessage" className="">{this.props.messages.registerPassword}</p>
            </div>
            <div className="form__submit-btn-wrapper">
                <button className="form__submit-btn" type="submit">CREATE</button>

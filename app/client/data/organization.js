@@ -1,6 +1,6 @@
 const organization = {
-  id: 1,
   orgName: "YakkityYaks",
+  user: {name: "timtim", perm: 0},
   users: [
     {
       username: "timtim",

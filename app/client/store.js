@@ -19,7 +19,9 @@ import organization from './data/organization';// TAKE THESE OUT
 const messages = {
   login: "",
   register: "",
-  pitch: ""
+  pitch: "",
+  registerOrg: "",
+  registerUser: "",
 };
 
 const defaultState = {
