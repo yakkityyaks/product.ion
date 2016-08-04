@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Pitch from './components/Pitch';
 import AddUser from './components/AddUser';
-import Calendar from './components/Calendar';
+
 //
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // binding that helps us use redux with react.
@@ -32,7 +32,6 @@ const router = (
         <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
-        <Route path='/calendar' component = { Calendar }></Route>
       </Route>
     </Router>
   </Provider>
