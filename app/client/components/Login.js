@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
+import  store  from '../store';
+import { push } from "react-router-redux";
 
 const Login = React.createClass({
+  componentWillMount() {
+    if (this.props.organization.user) {
+      console.log(store);
+      var joinedName = this.props.organization.orgName.split(" ").join("");
+      store.dispatch(push(`/dashboard/${joinedName}`));
+    }
+  },
   handleSubmit(event) {
     event.preventDefault();
     var user = this.refs.usernameInput.value,
         pass = this.refs.passwordInput.value;
     this.props.postLogin(user, pass);
-
   },
   render() {
     return (

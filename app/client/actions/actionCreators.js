@@ -31,6 +31,11 @@ export function addNewUser(username, password, perm) {
     perm
   };
 }
+export function logout() {
+  return {
+    type: "LOGOUT"
+  };
+}
 //gets the organization information
 // export function getOrg(orgName) {
 //
