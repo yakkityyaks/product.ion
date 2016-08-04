@@ -14,7 +14,7 @@ const Dashboard = React.createClass({
   },
   logout() {
     this.props.logout();
-    browserHistory.push('/login');
+    browserHistory.push('/');
   },
   render() {
     return (
@@ -24,7 +24,7 @@ const Dashboard = React.createClass({
           Logout
           </button>
           <button className="plus-button">
-            <Link to={'/addUser'}>⚙</Link>
+            <Link to={'/settings'}>⚙</Link>
           </button>
         </div>
         <br></br>

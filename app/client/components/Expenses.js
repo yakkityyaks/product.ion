@@ -4,10 +4,6 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 // import ExpenseNode from './ExpensesNode.js';
 
 const Expenses = React.createClass({
-  console.log("THIS ", this);
-  console.log("EXPENSE PROPS ", this.props.expenses);
-  // console.log();
-  // console.log();
   render() {
     return (
       <div style={{fontSize : "14px"}}>
