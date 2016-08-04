@@ -2,24 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const AddUser = React.createClass({
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   var user = this.refs.usernameInput.value,
-  //       pass = this.refs.passwordInput.value,
-  //       orgId = this.refs.orgInput.value,
-  //       userClass = this.refs.userClassInput.value;
-  //
-  //   console.log("ADD USER: store is ", this.store);
-  //   this.props.addNewUser(user, pass, orgId, userClass);
-  // },
-  //
-  // handleChange (event) {
-  //   this.setState({selectValue: e.target.value});
-  // },
-
-  // swap views on radio selection.
-  // send username, password, and user class to server for validation
-  //
 
   // getInitialState () {
   //   return { showTitle: false };
@@ -56,7 +38,6 @@ const AddUser = React.createClass({
 
   generate (event) {
     event.preventDefault();
-    console.log(this.refs.passwordInput.value);
     this.refs.passwordInput.value = this.randomPassword(3, this.refs.usernameInput.value);
   },
 
@@ -67,7 +48,6 @@ const AddUser = React.createClass({
     let orgId = this.props.organization.orgs_id;
 
     this.props.addNewUser(username, password, perm);
-
   },
 
   render() {
@@ -76,17 +56,17 @@ const AddUser = React.createClass({
         <h2 className="form-page__form-heading">select a user type</h2>
         <ul className="form__radio">
           <li>
-          <input type="radio" id="select-admin" name="user-class" ref="admin" value="0" onChange={this.testing} />
+          <input type="radio" id="select-admin" name="user-class" ref="admin" value="0" />
             <label htmlFor="select-admin"> ADMIN</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-producer" name="user-class" ref="producer" value="1" onChange={this.testing} />
+          <input type="radio" id="select-producer" name="user-class" ref="producer" value="1" />
             <label htmlFor="select-producer"> PRODUCER</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-user" name="user-class" ref="user" value="2" onChange={this.testing} />
+          <input type="radio" id="select-user" name="user-class" ref="user" value="2" />
             <label htmlFor="select-user"> USER</label>
             <div className="check"></div>
           </li>
