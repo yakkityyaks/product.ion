@@ -8,7 +8,8 @@ function mapStateToProps(state) {
     organization: state.organization,
     projects: state.projects,
     expenses: state.expenses,
-    messages: state.messages
+    messages: state.messages,
+    modals: state.modals
   };
 }
 

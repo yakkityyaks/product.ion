@@ -22,7 +22,6 @@ const Pitch = React.createClass({
   render() {
     return (
       <div className="Pitch">
-        <h2 className="form-page__form-heading">Pitch</h2>
         <form className="form">
 
            <div className="form__error-wrapper">

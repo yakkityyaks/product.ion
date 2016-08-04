@@ -96,6 +96,12 @@ export function hydrateProjects(projects) {
   };
 }
 
+export function changeModal(name) {
+  return {
+    type: "CHANGE_MODAL",
+    name
+  }
+}
 //Expenses:
 
 //MESSAGES:
