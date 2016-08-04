@@ -1,27 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Dropdown from 'react-dropdown'
-import Calendar from "./Calendar.js";
-
-const options = ['feature', 'short', 'television', 'web', 'episode'];
-
-const options1 = [1,2,3,4,5,6,7,8,9,10];
 
 const Pitch = React.createClass({
-  getInitialState: function(){
-    return {
-      checked: false
-    }
-  },
-
-  onChange: function(event) {
-    event.preventDefault();
-    var input = event.target;
-
-    this.setState({
-      checked: input.checked
-    });
-  },
 
   render() {
     return (
@@ -41,10 +21,16 @@ const Pitch = React.createClass({
              <label className="form__field-label" htmlFor="numberOfAssets">Number of Assets</label>
              <input className="form__field-input" type="text" id="numberOfAssets" placeholder="Please fill me out!" ref="numberOfAssetsInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
+
            <div className="form__field-wrapper">
-             <span>
-               <Dropdown className="form__field-input" options={options} onChange={this._onSelect} value='Video type' placeholder="Select an option" />
-             </span>
+             <label className="form__field-label" htmlFor="videoType">Video Type</label>
+             <select className="form__field-input">
+               <option value="feature">feature</option>
+               <option value="short">short</option>
+               <option value="television">television</option>
+               <option value="web">web</option>
+               <option value="episode">episode</option>
+             </select>
            </div>
            <div className="form__field-wrapper">
              <label className="form__field-label" htmlFor="requestedBudget">Requested Budget</label>
@@ -55,21 +41,12 @@ const Pitch = React.createClass({
              <input className="form__field-input" type="text" id="studioNeeds" placeholder="Please fill me out" ref="studioNeedsInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div className="form__field-wrapper">
-             <div>
-                <button onChange={this.onChange}>
-                  <Link to={`/calendar`}>
-                    Start Date
-                  </Link>
-                </button>
-             </div>
-
-             <div>
-                <button onChange={this.onChange}>
-                  <Link to={`/calendar`}>
-                     End Date
-                  </Link>
-                </button>
-             </div>
+             <label className="form__field-label" htmlFor="startDate">Start Date</label>
+             <input className="form__field-input" type="date" id="startDate" />
+           </div>
+           <div className="form__field-wrapper">
+             <label className="form__field-label" htmlFor="endDate">End Date</label>
+             <input className="form__field-input" type="date" id="endDate" />
            </div>
            <div className="form__submit-btn-wrapper">
              <button className="form__submit-btn" type="submit">
