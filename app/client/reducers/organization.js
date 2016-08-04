@@ -91,9 +91,21 @@ function posts(state=[], action) {
       console.log("ORGS ID ", state.orgs_id);
       var orgs_id = state.orgs_id;
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
-      ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
+      ApiCall.registerUser({
+          "data": {
+          "username": action.username,
+          "password": action.password,
+          "perm": action.perm,
+          "orgs_id": orgs_id
+          }
+        })
         .then(function(res) {
-          console.log("RES DATA WORKS!!! ", res.data);
+          if(res.status === 201) {
+            console.log("Adding New User Success");
+
+            console.log("RES DATA WORKS!!! ", res.data);
+          }
+          //dispatch reducer ADD_USER_TO_STATE
         })
         .catch(function(err) {
           console.log(err);
@@ -102,6 +114,7 @@ function posts(state=[], action) {
       break;
 
 
+// new case: ""
 
 
 
