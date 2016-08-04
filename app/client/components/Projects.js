@@ -7,6 +7,11 @@ const Projects = React.createClass({
   render() {
     return (
       <div style={{fontSize : "14px"}}>
+        <button className="plus-button">
+          <Link to={`/pitch`}>
+            Add a Pitch!
+          </Link>
+        </button>
       	<table style={{width: "100%"}}>
       		<thead>
       			<tr>
