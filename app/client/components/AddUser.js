@@ -41,6 +41,7 @@ const AddUser = React.createClass({
   },
 
   handleSubmit (event) {
+    event.preventDefault();
     let username = this.refs.usernameInput.value;
     let password = this.refs.passwordInput.value;
     let perm = document.querySelector('input[name="user-class"]:checked').value;
