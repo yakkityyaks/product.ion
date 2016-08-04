@@ -81,7 +81,11 @@ function posts(state=[], action) {
       console.log("state is, ", state, "\naction is ", action);
       return action.organization;
     case "ADD_NEW_USER":
-      console.log("So you want to make a new user");
+      var orgs_id = store.organization.orgs_id;
+      ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
+        .then(function(res) {
+          
+        });
       break;
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)

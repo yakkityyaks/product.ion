@@ -8,14 +8,14 @@ import logger from "redux-logger";
 // import the root reducer
 import rootReducer from './reducers/index';
 
-import projects from './data/projects';//TAKE THESE OUT. REPLACE WITH EMPTY OBJECTS
-import expenses from './data/expenses';// FILL THESE OBJECTS UPON SUCCESSFUL LOGIN
-import organization from './data/organization';// TAKE THESE OUT
+// import projects from './data/projects';//TAKE THESE OUT. REPLACE WITH EMPTY OBJECTS
+// import expenses from './data/expenses';// FILL THESE OBJECTS UPON SUCCESSFUL LOGIN
+// import organization from './data/organization';// TAKE THESE OUT
 
 // create an object for the default data
-// const projects = [];
-// const expenses = [];
-// const user = {};
+const projects = [];
+const expenses = [];
+const organization = {};
 const messages = {
   login: "",
   register: "",
