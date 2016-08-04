@@ -2,16 +2,43 @@ import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectNode from './ProjectNode.js';
+import { Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import { OverlayTrigger } from 'react-bootstrap';
+import Pitch from './Pitch.js';
 // was Photo.js
-const Projects = React.createClass({
+const Projects = React.createClass({  
+  switchModal: function() {
+    this.props.changeModal('pitch');
+  },
+
+
+
   render() {
     return (
       <div style={{fontSize : "14px"}}>
-        <button className="plus-button">
-          <Link to={`/pitch`}>
-            Add a Pitch!
-          </Link>
-        </button>
+        
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.switchModal}
+        >
+          Launch demo modal
+        </Button>
+
+        <Modal show={this.props.modals.pitch} onHide={this.switchModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create a Pitch</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Pitch {...this.props}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.switchModal}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+
       	<table style={{width: "100%"}}>
       		<thead>
       			<tr>
@@ -34,3 +61,10 @@ const Projects = React.createClass({
 });
 
 export default Projects;
+
+// <div style={{fontSize : "14px"}}>
+//         <button className="plus-button">
+//           <Link to={`/pitch`}>
+//             Add a Pitch!
+//           </Link>
+//         </button>

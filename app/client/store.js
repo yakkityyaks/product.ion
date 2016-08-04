@@ -23,12 +23,16 @@ const messages = {
   registerOrg: "",
   registerUser: "",
 };
+const modals = {
+	pitch: false
+}
 
 const defaultState = {
   projects,
   expenses,
   organization,
-  messages
+  messages,
+  modals
 };
 
 //middleware for logging changes in state.
