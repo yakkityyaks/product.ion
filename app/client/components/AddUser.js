@@ -21,13 +21,13 @@ const AddUser = React.createClass({
   // send username, password, and user class to server for validation
   //
 
-  getInitialState () {
-    return { showTitle: false };
-  },
-
-  onClick () {
-      this.setState({ showTitle: true });
-  },
+  // getInitialState () {
+  //   return { showTitle: false };
+  // },
+  //
+  // onClick () {
+  //     this.setState({ showTitle: true });
+  // },
 
   validateUsername () {
     let regex = /^[a-z0-9]+$/i;
@@ -60,13 +60,14 @@ const AddUser = React.createClass({
     this.refs.passwordInput.value = this.randomPassword(3, this.refs.usernameInput.value);
   },
 
-  testing () {
-    console.log(this.refs.admin.checked);
-    console.log(this.refs.admin.name);
-    console.log(this.refs.producer.checked);
-    console.log(this.refs.producer.name);
-    console.log(this.refs.user.checked);
-    console.log(this.refs.user.name);
+  handleSubmit (event) {
+    let username = this.refs.usernameInput.value;
+    let password = this.refs.passwordInput.value;
+    let perm = document.querySelector('input[name="user-class"]:checked').value;
+    let orgId = this.props.organization.orgs_id;
+
+    this.props.addNewUser(username, password, perm);
+
   },
 
   render() {
@@ -75,18 +76,17 @@ const AddUser = React.createClass({
         <h2 className="form-page__form-heading">select a user type</h2>
         <ul className="form__radio">
           <li>
-          <input type="radio" id="select-admin" name="Admin" ref="admin" onChange={this.testing} />
+          <input type="radio" id="select-admin" name="user-class" ref="admin" value="0" onChange={this.testing} />
             <label htmlFor="select-admin"> ADMIN</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-producer" name="Producer"
-            value="producer" ref="producer" onChange={this.testing} />
+          <input type="radio" id="select-producer" name="user-class" ref="producer" value="1" onChange={this.testing} />
             <label htmlFor="select-producer"> PRODUCER</label>
             <div className="check"></div>
           </li>
           <li>
-          <input type="radio" id="select-user" name="User" value="user" ref="user" onChange={this.testing} />
+          <input type="radio" id="select-user" name="user-class" ref="user" value="2" onChange={this.testing} />
             <label htmlFor="select-user"> USER</label>
             <div className="check"></div>
           </li>
@@ -108,14 +108,14 @@ const AddUser = React.createClass({
                     onBlur={this.generate} required/>
            </div>
            <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="password">Password</label>
+             <label className="form__field-label" htmlFor="password">Password Generator</label>
              <br></br>
              <input className="form__field-input" id="password" type="text"
                 ref="passwordInput" placeholder="Temporary Password Will Be Generated"/>
            </div>
 
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">CREATE</button>
+               <button className="form__submit-btn" type="submit">CREATE USER</button>
            </div>
          </form>
        </div>
