@@ -1,4 +1,3 @@
-	
 var Bookshelf = require('../db.js');
 require('./expense.js');
 require('./organization.js');
@@ -15,6 +14,6 @@ var Project = Bookshelf.Model.extend({
 	users: function() {
 		return this.belongsToMany('Project', 'projs_users', 'projs_id', 'users_id');
 	}
-})
+});
 
 module.exports = Bookshelf.model('Project', Project);

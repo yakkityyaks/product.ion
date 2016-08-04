@@ -28,14 +28,16 @@ Promise.all([
     table.string('name');
     table.string('projId');
     table.string('type');
+    table.integer('numAssets');
     table.float('reqBudget');
     table.string('needs');
-    table.string('shootDates');
+    table.date('startDate');
+    table.date('endDate');
     table.string('status');
     table.float('costToDate');
     table.float('estimateToComplete');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
-  }),  
+  }),
 
   knex.schema.createTableIfNotExists('expenses', function(table) {
     table.increments('id').primary();
@@ -55,7 +57,7 @@ Promise.all([
   knex.schema.createTableIfNotExists('projs_users', function(table) {
     table.integer('projs_id').references('id').inTable('projs');
     table.integer('users_id').references('id').inTable('users');
-  })  
+  })
 ]);
 
 var Bookshelf = require('bookshelf')(knex);
@@ -63,4 +65,3 @@ var Bookshelf = require('bookshelf')(knex);
 Bookshelf.plugin('registry');
 
 module.exports = Bookshelf;
-  
