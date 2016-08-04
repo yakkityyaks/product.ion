@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Pitch from './components/Pitch';
 import AddUser from './components/AddUser';
+import Settings from './components/Settings';
 
 //
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -30,6 +31,7 @@ const router = (
         <Route path='/register' component={ Register }></Route>
         <Route path='/login' component = { Login }></Route>
         <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
+        <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
       </Route>
