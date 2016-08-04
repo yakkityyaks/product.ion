@@ -91,12 +91,13 @@ function posts(state=[], action) {
       console.log("So you want to make a new user");
       console.log("ORGS ID ", state.orgs_id);
       var orgs_id = state.orgs_id;
+      console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
-        .then(res => {
+        .then(function(res) {
           console.log("RES DATA WORKS!!! ", res.data);
         })
-        .catch(err => {
-          console.error(err);
+        .catch(function(err) {
+          console.log(err);
         });
       break;
 

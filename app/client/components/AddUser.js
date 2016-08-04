@@ -44,10 +44,8 @@ const AddUser = React.createClass({
     let username = this.refs.usernameInput.value;
     let password = this.refs.passwordInput.value;
     let perm = document.querySelector('input[name="user-class"]:checked').value;
-    let orgs_id = this.props;
-    console.log("orgs_id ", orgs_id);
 
-    this.props.addNewUser(username, password, orgs_id, perm);
+    this.props.addNewUser(username, password, perm);
   },
 
   render() {
@@ -95,7 +93,7 @@ const AddUser = React.createClass({
            </div>
 
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">CREATE USER</button>
+               <button className="form__submit-btn" type="submit"> CREATE USER</button>
            </div>
          </form>
        </div>
