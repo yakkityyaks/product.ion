@@ -23,7 +23,7 @@ const Pitch = React.createClass({
            </div>
 
            <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="videoType">Video Type</label>
+             <label className="form__field-label" htmlFor="videoType">Video Type</label><br></br>
              <select className="form__field-input">
                <option value="feature">feature</option>
                <option value="short">short</option>
@@ -62,5 +62,3 @@ const Pitch = React.createClass({
 });
 
 export default Pitch;
-
-
