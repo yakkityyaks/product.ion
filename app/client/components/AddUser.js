@@ -25,7 +25,6 @@ const AddUser = React.createClass({
     let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
     let pass = "";
     if(username.length >= 6) {
-
       for (let x = 0; x < length; x++) {
         let i = Math.floor(Math.random() * chars.length);
         pass += chars.charAt(i);
@@ -102,5 +101,4 @@ const AddUser = React.createClass({
     );
   }
 });
-
 export default AddUser;
