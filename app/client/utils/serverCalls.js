@@ -15,8 +15,9 @@ let registerUser = (username, password, orgs_id, perm) => {
   return axios.post('/api/register/user', {data: data});
 };
 
-let registerProject = (projectObj) =>
-  axios.post('/api/register/project', projectObj);
+let registerProject = (projectObj) => {
+  return axios.post('/api/register/project', {data: projectObj});
+}
 
 let login = (username, password) => {
   var data = {username: username, password: password};
