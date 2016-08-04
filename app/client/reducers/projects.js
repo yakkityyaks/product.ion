@@ -4,7 +4,10 @@ import store from "../store";
 function projects(state = [], action) {
   switch (action.type) {
     case "POST_NEW_PROJECT":
-      console.log("You want to make a new project");
+      ApiCall.registerProject(action.pitch)
+        .catch((err) => {
+          console.error(err);
+        });
       break;
     case "GET_ORG_PROJECTS":
       console.log("You want to get org projects from ", action);

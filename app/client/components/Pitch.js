@@ -6,14 +6,16 @@ const Pitch = React.createClass({
     event.preventDefault();
     var pitch = {
       name: this.refs.projectName.value,
+      projId: this.props.projects.length + 1,
       numAssets: this.refs.numberOfAssets.value,
       type: this.refs.videoType.value,
-      reqBudget: this.refs.requestedBudget.value,
+      status: 'Pitch',
+      estimateToComplete: this.refs.requestedBudget.value,
       needs: this.refs.studioNeeds.value,
       startDate: this.refs.startDate.value,
-      endDate: this.refs.endDate.value
+      endDate: this.refs.endDate.value,
+      orgs_id: this.props.organization.orgs_id
     }
-
     this.props.postNewProject(pitch);
   },
 
@@ -21,7 +23,7 @@ const Pitch = React.createClass({
     return (
       <div className="Pitch">
         <h2 className="form-page__form-heading">Pitch</h2>
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="form">
 
            <div className="form__error-wrapper">
              <p className="form__error form__error--username-not-registered">This username does not exist!</p>
@@ -39,7 +41,7 @@ const Pitch = React.createClass({
                className="form__field-input"
                type="text" id="projectName"
                placeholder="Please fill me out!"
-               ref="projectName" onChange={this.props.projectName}
+               ref="projectName"
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
 
@@ -53,7 +55,7 @@ const Pitch = React.createClass({
                className="form__field-input"
                type="text" id="numberOfAssets"
                placeholder="Please fill me out!"
-               ref="numberOfAssets" onChange={this.props.numberOfAssets}
+               ref="numberOfAssets"
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
 
@@ -63,7 +65,7 @@ const Pitch = React.createClass({
                htmlFor="videoType">
                  Video Type
              </label>
-             <select className="form__field-input" ref="videoType" onChange={this.props.videoType}>
+             <select className="form__field-input" ref="videoType">
                <option value="feature">Feature</option>
                <option value="short">Short</option>
                <option value="television">Television</option>
@@ -81,7 +83,7 @@ const Pitch = React.createClass({
                className="form__field-input"
                type="text" id="requestedBudget"
                placeholder="Please fill me out"
-               ref="requestedBudget" onChange={this.props.requestedBudget}
+               ref="requestedBudget"
                autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
 
@@ -95,7 +97,7 @@ const Pitch = React.createClass({
                className="form__field-input"
                type="text" id="studioNeeds"
                placeholder="Please fill me out"
-               ref="studioNeeds" onChange={this.props.studioNeeds}
+               ref="studioNeeds"
                autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
 
@@ -108,7 +110,7 @@ const Pitch = React.createClass({
              <input
              className="form__field-input"
              type="date" id="startDate"
-             ref="startDate" onChange={this.props.startDate}
+             ref="startDate"
              />
            </div>
 
@@ -121,10 +123,10 @@ const Pitch = React.createClass({
              <input
              className="form__field-input"
              type="date" id="endDate"
-             ref="endDate" onChange={this.props.endDate} />
+             ref="endDate" />
            </div>
            <div className="form__submit-btn-wrapper">
-             <button className="form__submit-btn" type="submit">
+             <button className="form__submit-btn" type="submit" onClick={this.handleSubmit}>
                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
                  Submit your Pitch!
                </Link>
