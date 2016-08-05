@@ -27,9 +27,8 @@ const Settings = React.createClass({
     let newPassword = this.refs.newPasswordInput.value;
 
     // when encryption is complete, a token or session should be sent in addition.
-    changePassword(username, perm, currentPassword, newPassword);
+    this.props.changePassword(username, perm, currentPassword, newPassword);
   },
-
 
   render() {
     return (
@@ -37,7 +36,8 @@ const Settings = React.createClass({
       <Panel>
         <NavBar {...this.props}/>
       </Panel>
-      <h2 className="form-page__form-heading">Change Your Password</h2>
+
+      <h2 className="form-page__form-heading">welcome to your settings, {this.props.organization.user.name}!</h2>
         <div>
           <button className="form__submit-btn">
              <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
@@ -49,16 +49,13 @@ const Settings = React.createClass({
          <div>
            <button className="form__submit-btn">
              <Link to={`/addUser`}>
-               Add a User to Organization
+               Add a new user to your organization
              </Link>
            </button>
          </div>
          <br></br>
          <div>
-           <p className="orgName">{this.props.organization.orgName}</p>
-         </div>
-         <div>
-           <form className="form" onSubmit={this.testing}>
+           <form className="form" onSubmit={this.handleSubmit}>
              <div className="form__error-wrapper">
                <p className="form__error form__error--username-not-registered">This username does not exist.</p>
                <p className="form__error form__error--field-missing">Please fill out the entire form.</p>

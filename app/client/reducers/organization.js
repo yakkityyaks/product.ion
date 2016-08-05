@@ -110,29 +110,22 @@ function posts(state=[], action) {
         });
       break;
 
-
       case "ADD_USER_TO_STATE":
         console.log("TRIGGERED: ADD_USER_TO_STATE");
         return action.user;
 
-
-      // case "CHANGE_PASSWORD":
-      //   console.log("So you want to change your PW?");
-      //   ApiCall.changePassword(action.username, action.perm, action.currentPassword, action.newPassword)
-      //     .then(function(res) {
-      //
-      //     })
-      //     .catch(function(err) {
-      //
-      //     });
-      //     break;
-
-
-
-
-
-
-
+// update server with new endpoint for password change posts.
+// Then complete this ApiCall.
+      case "CHANGE_PASSWORD":
+        console.log("So you want to change your PW?");
+        ApiCall.changePassword(action.username, action.perm, action.currentPassword, action.newPassword)
+          .then(function(res) {
+            console.log("CHANGE_PASSWORD res ", res);
+          })
+          .catch(function(err) {
+            console.error(err);
+          });
+          break;
 
 
 
