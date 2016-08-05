@@ -19,126 +19,128 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3> ProjectName goes here - ProjectID goes here -</h3>
-        <Form onSubmit={this.onSubmit}>
-        <Table condensed style={{width: "100%"}}>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Vertical</th>
-              <th>Vendor</th>
-              <th>Description</th>
-              <th>Cost</th>
-              <th>Method</th>
-              <th>Expense Category</th>
-              <th>GL Code</th>
-              <th>Date Spent</th>
-              <th>Date Tracked</th>
-            </tr>
-          </thead>
-          {/* <Form inline> */}
-            <tbody>
-              {
-                this.props.expenses.current && this.props.expenses.current
-                  .map((expense, idx) =>
-                  <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} />)
-              }
+        <Panel>
+          <h3> ProjectName goes here - ProjectID goes here -</h3>
+          <Form onSubmit={this.onSubmit}>
+          <Table condensed style={{width: "100%"}}>
+            <thead>
               <tr>
-                <td>
-                  <FormControl componentClass="select" placeholder="Type" ref="exType">
-                    <option value="select">Video Originals</option>
-                    <option value="select">Branded</option>
-                    <option value="select">Editorial</option>
-                    <option value="select">Dept Expenses</option>
-                  </FormControl>
-                </td>
-                <td>
-                  <FormControl componentClass="select" placeholder="Vertical">
-                    <option value="select">Food</option>
-                    <option value="select">Beauty</option>
-                    <option value="select">Fashion & Style</option>
-                    <option value="select">News & Politics</option>
-                    <option value="select">News & Celeb</option>
-                    <option value="select">Wellness</option>
-                    <option value="select">Entertainment</option>
-                  </FormControl>
-                </td>
-                <td><FormControl type="text" placeholder ={"vendor"} /></td>
-                <td><FormControl type="text" placeholder ={"description"} /></td>
-                <td><FormControl type="text" placeholder ={"cost"} /></td>
-                <td>
-                  <FormControl componentClass="select" placeholder="Method">
-                    <option value="select">Credit Card</option>
-                    <option value="select">Invoice</option>
-                    <option value="select">Payroll</option>
-                    <option value="select">Petty Cash</option>
-                    <option value="select">Misc</option>
-                  </FormControl>
-                </td>
-                <td>
-                  <FormControl componentClass="select" placeholder="Category">
-                    <option value="select">Consultant</option>
-                    <option value="select">Writer</option>
-                    <option value="select">Director</option>
-                    <option value="select">Producer</option>
-                    <option value="select">Associate Producer</option>
-                    <option value="select">Production Assistant</option>
-                    <option value="select">Research Materials</option>
-                    <option value="select">On-Camera Talent</option>
-                    <option value="select">Make-Up Artist</option>
-                    <option value="select">Hair Stylist</option>
-                    <option value="select">Wardrobe & Stylist</option>
-                    <option value="select">Wardrobe Allowance</option>
-                    <option value="select">Director of Photography</option>
-                    <option value="select">Camera Operator</option>
-                    <option value="select">Assistant Camera</option>
-                    <option value="select">Audio Operator</option>
-                    <option value="select">Gaffer/Grip/Best-Boy</option>
-                    <option value="select">Photographer</option>
-                    <option value="select">Set PA</option>
-                    <option value="select">Intern</option>
-                    <option value="select">Camera Rental</option>
-                    <option value="select">Lighting Rental</option>
-                    <option value="select">Misc Equipment Rental</option>
-                    <option value="select">Location Fees/Permits</option>
-                    <option value="select">Location Manager</option>
-                    <option value="select">Set Design</option>
-                    <option value="select">Meals & Craft Service</option>
-                    <option value="select">Taxis/Local/Transpo</option>
-                    <option value="select">Airfare</option>
-                    <option value="select">Hotel</option>
-                    <option value="select">Car Rental</option>
-                    <option value="select">Gas Tolls Parking</option>
-                    <option value="select">Editor</option>
-                    <option value="select">Assistant Editor</option>
-                    <option value="select">Edit Suite</option>
-                    <option value="select">Design & Motion GFX</option>
-                    <option value="select">Transcription</option>
-                    <option value="select">Color Correction</option>
-                    <option value="select">Audio Mix</option>
-                    <option value="select">Misc Post</option>
-                    <option value="select">Photo Licensing</option>
-                    <option value="select">Footage Licensing</option>
-                    <option value="select">Music Licensing</option>
-                    <option value="select">Insurance</option>
-                    <option value="select">Hosting Service</option>
-                    <option value="select">Third Party Production</option>
-                    <option value="select">Third Party Production/Licensing</option>
-
-                  </FormControl>
-                </td>
-                {/* <td><FormControl type="text" placeholder ={"category"} /></td> */}
-                <td><FormControl type="text" placeholder ={"glCode"} /></td>
-                <td><FormControl type="date" placeholder ={"dateSpent"} /></td>
-                <td><FormControl type="date" placeholder ={"dateTracked"} /></td>
+                <th>Type</th>
+                <th>Vertical</th>
+                <th>Vendor</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Method</th>
+                <th>Expense Category</th>
+                <th>GL Code</th>
+                <th>Date Spent</th>
+                <th>Date Tracked</th>
               </tr>
-            </tbody>
-          {/* </Form> */}
-        </Table>
-        <Button type="submit">
-         Submit
-       </Button>
-      </Form>
+            </thead>
+            {/* <Form inline> */}
+              <tbody>
+                {
+                  this.props.expenses.current && this.props.expenses.current
+                    .map((expense, idx) =>
+                    <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} />)
+                }
+                <tr>
+                  <td>
+                    <FormControl componentClass="select" placeholder="Type" ref="exType">
+                      <option value="select">Video Originals</option>
+                      <option value="select">Branded</option>
+                      <option value="select">Editorial</option>
+                      <option value="select">Dept Expenses</option>
+                    </FormControl>
+                  </td>
+                  <td>
+                    <FormControl componentClass="select" placeholder="Vertical">
+                      <option value="select">Food</option>
+                      <option value="select">Beauty</option>
+                      <option value="select">Fashion & Style</option>
+                      <option value="select">News & Politics</option>
+                      <option value="select">News & Celeb</option>
+                      <option value="select">Wellness</option>
+                      <option value="select">Entertainment</option>
+                    </FormControl>
+                  </td>
+                  <td><FormControl type="text" placeholder ={"vendor"} /></td>
+                  <td><FormControl type="text" placeholder ={"description"} /></td>
+                  <td><FormControl type="text" placeholder ={"cost"} /></td>
+                  <td>
+                    <FormControl componentClass="select" placeholder="Method">
+                      <option value="select">Credit Card</option>
+                      <option value="select">Invoice</option>
+                      <option value="select">Payroll</option>
+                      <option value="select">Petty Cash</option>
+                      <option value="select">Misc</option>
+                    </FormControl>
+                  </td>
+                  <td>
+                    <FormControl componentClass="select" placeholder="Category">
+                      <option value="select">Consultant</option>
+                      <option value="select">Writer</option>
+                      <option value="select">Director</option>
+                      <option value="select">Producer</option>
+                      <option value="select">Associate Producer</option>
+                      <option value="select">Production Assistant</option>
+                      <option value="select">Research Materials</option>
+                      <option value="select">On-Camera Talent</option>
+                      <option value="select">Make-Up Artist</option>
+                      <option value="select">Hair Stylist</option>
+                      <option value="select">Wardrobe & Stylist</option>
+                      <option value="select">Wardrobe Allowance</option>
+                      <option value="select">Director of Photography</option>
+                      <option value="select">Camera Operator</option>
+                      <option value="select">Assistant Camera</option>
+                      <option value="select">Audio Operator</option>
+                      <option value="select">Gaffer/Grip/Best-Boy</option>
+                      <option value="select">Photographer</option>
+                      <option value="select">Set PA</option>
+                      <option value="select">Intern</option>
+                      <option value="select">Camera Rental</option>
+                      <option value="select">Lighting Rental</option>
+                      <option value="select">Misc Equipment Rental</option>
+                      <option value="select">Location Fees/Permits</option>
+                      <option value="select">Location Manager</option>
+                      <option value="select">Set Design</option>
+                      <option value="select">Meals & Craft Service</option>
+                      <option value="select">Taxis/Local/Transpo</option>
+                      <option value="select">Airfare</option>
+                      <option value="select">Hotel</option>
+                      <option value="select">Car Rental</option>
+                      <option value="select">Gas Tolls Parking</option>
+                      <option value="select">Editor</option>
+                      <option value="select">Assistant Editor</option>
+                      <option value="select">Edit Suite</option>
+                      <option value="select">Design & Motion GFX</option>
+                      <option value="select">Transcription</option>
+                      <option value="select">Color Correction</option>
+                      <option value="select">Audio Mix</option>
+                      <option value="select">Misc Post</option>
+                      <option value="select">Photo Licensing</option>
+                      <option value="select">Footage Licensing</option>
+                      <option value="select">Music Licensing</option>
+                      <option value="select">Insurance</option>
+                      <option value="select">Hosting Service</option>
+                      <option value="select">Third Party Production</option>
+                      <option value="select">Third Party Production/Licensing</option>
+
+                    </FormControl>
+                  </td>
+                  {/* <td><FormControl type="text" placeholder ={"category"} /></td> */}
+                  <td><FormControl type="text" placeholder ={"glCode"} /></td>
+                  <td><FormControl type="date" placeholder ={"dateSpent"} /></td>
+                  <td><FormControl type="date" placeholder ={"dateTracked"} /></td>
+                </tr>
+              </tbody>
+            {/* </Form> */}
+          </Table>
+          <Button type="submit">
+           Submit
+         </Button>
+        </Form>
+      </Panel>  
       </div>
     );
   }

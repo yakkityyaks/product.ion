@@ -12,9 +12,9 @@ const Dashboard = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <Panel>
+        <div> 
           <Projects {...this.props}/>
-        </Panel>
+        </div>
       </div>
     );
   }
