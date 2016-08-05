@@ -87,7 +87,6 @@ function posts(state=[], action) {
 
 
     case "ADD_NEW_USER":
-
       console.log("So you want to make a new user");
       console.log("ORGS ID ", state.orgs_id);
       var orgs_id = state.orgs_id;
@@ -101,7 +100,6 @@ function posts(state=[], action) {
             let newUser = {
               id: userData.id,
               user: userData.username,
-              
             };
             console.log("RES ", res.data);
             store.dispatch({
