@@ -33,55 +33,58 @@ const Settings = React.createClass({
   render() {
     return (
       <div className="settings">
-      <Panel>
-        <NavBar {...this.props}/>
-      </Panel>
-
-      <h2 className="form-page__form-heading">welcome to your settings, {this.props.organization.user.name}!</h2>
-        <div>
-          <button className="form__submit-btn">
-             <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
-               Back
-             </Link>
-           </button>
-         </div>
-         <br></br>
-         <div>
-           <button className="form__submit-btn">
-             <Link to={`/addUser`}>
-               Add a new user to your organization
-             </Link>
-           </button>
-         </div>
-         <br></br>
-         <div>
-           <form className="form" onSubmit={this.handleSubmit}>
-             <div className="form__error-wrapper">
-               <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-               <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-               <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-             </div>
-
-             <div className="form__field-wrapper">
-               <label className="form__field-label" htmlFor="currentPassword">Current Password</label>
-               <input className="form__field-input" type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <br></br>
-             <div className="form__field-wrapper">
-               <label className="form__field-label" htmlFor="newPassword">New Password</label>
-               <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <div className="form__field-wrapper">
-               <label className="form__field-label" htmlFor="newPassword">Confirm New Password</label>
-               <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <div>
-               <button className="form__submit-btn">
-                 Submit Change
-               </button>
-              </div>
-           </form>
-         </div>
+        <Panel>
+          <NavBar {...this.props}/>
+        </Panel>
+        <Panel>
+          <h2 className="form-page__form-heading">Change Your Password</h2>
+          <div>
+            <button className="form__submit-btn">
+               <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
+                 Back
+               </Link>
+             </button>
+           </div>
+           <br></br>
+           <div>
+             <button className="form__submit-btn">
+               <Link to={`/addUser`}>
+                 Add a User to Organization
+               </Link>
+             </button>
+           </div>
+           <br></br>
+           <div>
+             <p className="orgName">{this.props.organization.orgName}</p>
+           </div>
+           <div>
+             <form className="form" onSubmit={this.testing}>
+               <div className="form__error-wrapper">
+                 <p className="form__error form__error--username-not-registered">This username does not exist.</p>
+                 <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
+                 <p className="form__error form__error--failed">Something went wrong, please try again!</p>
+               </div>
+               <div className="form__field-wrapper">
+                 <label className="form__field-label" htmlFor="currentPassword">Current Password</label>
+                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+               </div>
+               <br></br>
+               <div className="form__field-wrapper">
+                 <label className="form__field-label" htmlFor="newPassword">New Password</label>
+                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+               </div>
+               <div className="form__field-wrapper">
+                 <label className="form__field-label" htmlFor="newPassword">Confirm New Password</label>
+                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+               </div>
+               <div>
+                 <button className="form__submit-btn">
+                   Submit Change
+                 </button>
+                </div>
+             </form>
+           </div>
+         </Panel>  
       </div>
     );
   }
