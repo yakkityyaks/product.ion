@@ -31,6 +31,14 @@ let getProjectsByOrgName = (orgName) =>
 let getExpensesByProjectId = (projectId) =>
   axios.post('/api/get/proj', {projId: projectId});
 
+// let changePassword = (username, perm, currentPassword, newPassword) =>
+//   axios.post('/api/change/user', {
+//     username: username,
+//     perm: perm,
+//     currentPassword: currentPassword,
+//     newPassword: newPassword
+//   });
+
 const ApiCall = {
   registrationCheck,
   registerOrg,
@@ -38,7 +46,8 @@ const ApiCall = {
   registerProject,
   login,
   getProjectsByOrgName,
-  getExpensesByProjectId
+  getExpensesByProjectId,
+  // changePassword
 };
 
 export default ApiCall;
