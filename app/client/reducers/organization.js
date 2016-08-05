@@ -77,16 +77,41 @@ function posts(state=[], action) {
           }
         });
       break;
+
     case "HYDRATE_ORG":
       console.log("state is, ", state, "\naction is ", action);
       return action.organization;
+
+
+
+
+
     case "ADD_NEW_USER":
-      var orgs_id = store.organization.orgs_id;
+
+      console.log("So you want to make a new user");
+      console.log("ORGS ID ", state.orgs_id);
+      var orgs_id = state.orgs_id;
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
-        .then(function(res) {
-          
+        .then(res => {
+          console.log("RES DATA WORKS!!! ", res.data);
+        })
+        .catch(err => {
+          console.error(err);
         });
       break;
+
+
+
+
+
+
+
+
+
+
+
+
+
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)
         .catch(function(err) {
