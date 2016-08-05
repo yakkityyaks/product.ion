@@ -126,6 +126,10 @@ export function hydrateExpenses(projectId, expenses) {
   };
 }
 
+export function setCurrentExpenseProject(expenses) {
+  return {type: "SET_CURRENT_EXPENSE_PROJECT", expenses};
+}
+
 //MESSAGES:
 
 export function registrationError(target, message) {

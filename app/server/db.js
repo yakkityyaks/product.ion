@@ -45,8 +45,8 @@ Promise.all([
     table.string('vertical');
     table.string('category');
     table.string('glCode');
-    table.string('dateSpent');
-    table.string('dateTracked');
+    table.date('dateSpent');
+    table.date('dateTracked');
     table.string('vendor');
     table.string('method');
     table.string('description');
