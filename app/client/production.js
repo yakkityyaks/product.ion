@@ -32,6 +32,7 @@ const router = (
         <Route path='/register' component={ Register }></Route>
         <Route path='/login' component = { Login }></Route>
         <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
+        <Route path='/expenses' component={ Expenses }></Route>
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>

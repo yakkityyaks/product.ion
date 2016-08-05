@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import ExpenseNode from './ExpenseNode.js';
 
-
-
+import ExpenseNode from './ExpenseNode';
 
 const Expenses = React.createClass({
 
   render() {
-
-    console.log("THIS ", this);
-    console.log("EXPENSE PROPS ", this.props.expenses);
-    // console.log();
-    // console.log();
+    console.log("Props are ", this.props.expenses);
 
     return (
       <div style={{fontSize : "14px"}}>
@@ -35,9 +28,11 @@ const Expenses = React.createClass({
       			</tr>
       		</thead>
       		<tbody>
-      			{this.props.expenses.map(
+      			{
+              this.props.expenses["1"] && this.props.expenses["1"].map(
       				(expense, idx) =>
-          			<ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} />)}
+          			<ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} />)
+              }
       		</tbody>
       	</table>
       </div>
