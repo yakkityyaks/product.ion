@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 
-
 // need to pass in children.. how?
 // React Router
 // React.cloneElement passes down props from Main to first child.

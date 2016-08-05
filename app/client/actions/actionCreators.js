@@ -23,6 +23,13 @@ export function addNewOrg(orgName, username, password) {
   };
 }
 
+export function changeNavKey(key) {
+  return {
+    type: 'CHANGE_NAV_KEY',
+    key
+  };
+}
+
 export function addNewUser(username, password, perm) {
   return {
     type: 'ADD_NEW_USER',
