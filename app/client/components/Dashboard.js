@@ -2,6 +2,9 @@ import React from 'react';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
 
 import { browserHistory } from 'react-router';
 import { push } from "react-router-redux";
@@ -20,12 +23,14 @@ const Dashboard = React.createClass({
     return (
       <div className="dashboard">
         <div>
-          <button className="plus-button" onClick={this.logout}>
-          Logout
-          </button>
-          <button className="plus-button">
-            <Link to={'/settings'}>⚙</Link>
-          </button>
+          <Nav activeKey={1} bstyle="tabs" pullLeft={true}>
+            <Link to={'/settings'}>  
+              <NavItem eventKey={1}>⚙</NavItem>
+            </Link>  
+            <NavItem eventKey={2} onClick={this.logout}>
+              Logout
+            </NavItem>
+          </Nav>  
         </div>
         <br></br>
         <Projects {...this.props}/>

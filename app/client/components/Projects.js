@@ -10,9 +10,8 @@ import Pitch from './Pitch.js';
 const Projects = React.createClass({  
   switchModal: function() {
     this.props.changeModal('pitch');
+    this.props.getOrgProjects(this.props.organization.orgName);
   },
-
-
 
   render() {
     return (
@@ -23,10 +22,10 @@ const Projects = React.createClass({
           bsSize="large"
           onClick={this.switchModal}
         >
-          Launch demo modal
+          Create a Pitch
         </Button>
 
-        <Modal show={this.props.modals.pitch} onHide={this.switchModal}>
+        <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
           <Modal.Header closeButton>
             <Modal.Title>Create a Pitch</Modal.Title>
           </Modal.Header>
@@ -68,3 +67,7 @@ export default Projects;
 //             Add a Pitch!
 //           </Link>
 //         </button>
+
+
+
+               // <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>

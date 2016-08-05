@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
 
 const Pitch = React.createClass({
   handleSubmit(event) {
@@ -16,6 +17,7 @@ const Pitch = React.createClass({
       endDate: this.refs.endDate.value,
       orgs_id: this.props.organization.orgs_id
     }
+    console.log(pitch);
     this.props.postNewProject(pitch);
   },
 
@@ -125,11 +127,9 @@ const Pitch = React.createClass({
              ref="endDate" />
            </div>
            <div className="form__submit-btn-wrapper">
-             <button className="form__submit-btn" type="submit" onClick={this.handleSubmit}>
-               <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
-                 Submit your Pitch!
-               </Link>
-             </button>
+             <Button onClick={this.handleSubmit}>  
+               Submit your Pitch!
+             </Button>
            </div>
          </form>
       </div>
