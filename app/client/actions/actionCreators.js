@@ -142,9 +142,20 @@ export function resetLoginMessage() {
 }
 
 export function setLoginMessage(message, className) {
-    return {
-      type: "SET_LOGIN_MESSAGE",
-      message,
-      className
-    };
+  return {
+    type: "SET_LOGIN_MESSAGE",
+    message,
+    className
+  };
+}
+
+// SETTINGS:
+
+export function changePassword(currentUserData, password, newPassword) {
+  return {
+    type: "CHANGE_PASSWORD",
+    currentUserData,
+    password,
+    newPassword
+  };
 }

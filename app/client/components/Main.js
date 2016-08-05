@@ -9,12 +9,12 @@ const Main = React.createClass({
 
     return (
       <div>
-        <div className="nav">
+        <nav className="nav">
           <div className="nav__wrapper">
-            <Link to="/" className="nav__logo-wrapper"><h1 className="nav__logo">product.ion</h1></Link>
+            <Link to="/" className="nav__logo-wrapper"><h2 className="nav__logo">product.ion</h2></Link>
           </div>
-        </div>
-        
+        </nav>
+
         { React.cloneElement(this.props.children, this.props) }
       </div>
     );
