@@ -14,7 +14,7 @@ import rootReducer from './reducers/index';
 
 // create an object for the default data
 const projects = [];
-const expenses = [];
+const expenses = {};
 const organization = {};
 const messages = {
   login: "",

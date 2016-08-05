@@ -104,6 +104,21 @@ export function changeModal(name) {
 }
 //Expenses:
 
+export function getExpenses(projectId) {
+  return {
+    type: "GET_EXPENSES",
+    projectId
+  };
+}
+
+export function hydrateExpenses(projectId, expenses) {
+  return {
+    type: "HYDRATE_EXPENSES",
+    projectId,
+    expenses
+  };
+}
+
 //MESSAGES:
 
 export function registrationError(target, message) {

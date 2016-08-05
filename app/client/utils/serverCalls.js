@@ -17,7 +17,7 @@ let registerUser = (username, password, orgs_id, perm) => {
 
 let registerProject = (projectObj) => {
   return axios.post('/api/register/project', {data: projectObj});
-}
+};
 
 let login = (username, password) => {
   var data = {username: username, password: password};
@@ -28,13 +28,17 @@ let login = (username, password) => {
 let getProjectsByOrgName = (orgName) =>
   axios.post('/api/get/org', {orgName: orgName});
 
+let getExpensesByProjectId = (projectId) =>
+  axios.post('/api/get/proj', {projId: projectId});
+
 const ApiCall = {
   registrationCheck,
   registerOrg,
   registerUser,
   registerProject,
   login,
-  getProjectsByOrgName
+  getProjectsByOrgName,
+  getExpensesByProjectId
 };
 
 export default ApiCall;

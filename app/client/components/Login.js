@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 import  store  from '../store';
-import { push } from "react-router-redux";
+
+import { browserHistory } from 'react-router';
 
 const Login = React.createClass({
   componentWillMount() {
     if (this.props.organization.user) {
-      console.log(store);
       var joinedName = this.props.organization.orgName.split(" ").join("");
-      store.dispatch(push(`/dashboard/${joinedName}`));
+      browserHistory.push(`/dashboard/${joinedName}`);
     }
   },
   handleSubmit(event) {
