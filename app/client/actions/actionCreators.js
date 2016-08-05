@@ -100,7 +100,7 @@ export function changeModal(name) {
   return {
     type: "CHANGE_MODAL",
     name
-  }
+  };
 }
 //Expenses:
 
@@ -151,11 +151,13 @@ export function setLoginMessage(message, className) {
 
 // SETTINGS:
 
-export function changePassword(currentUserData, password, newPassword) {
+export function changePassword(username, perm, currentPassword, newPassword) {
   return {
     type: "CHANGE_PASSWORD",
-    currentUserData,
-    password,
+    username,
+    perm,
+    id,
+    currentPassword,
     newPassword
   };
 }
