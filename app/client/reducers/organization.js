@@ -107,7 +107,7 @@ function posts(state=[], action) {
             store.dispatch({
               type: "ADD_USER_TO_STATE",
               newUser
-            })
+            });
 
           }
           //dispatch reducer ADD_USER_TO_STATE
@@ -118,8 +118,6 @@ function posts(state=[], action) {
         });
       break;
 
-
-// new case: ""
 
 
 
