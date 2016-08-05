@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ExpenseNode from './ExpenseNode';
 
@@ -8,6 +7,7 @@ const Expenses = React.createClass({
 
   render() {
     console.log("Props are ", this.props.expenses);
+
     return (
       <div style={{fontSize : "14px"}}>
       	<table style={{width: "100%"}}>
