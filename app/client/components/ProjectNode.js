@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+import { Button, Modal, OverlayTrigger } from 'react-bootstrap';
 
-import { browserHistory } from 'react-router';
 
 const ProjectNode = React.createClass({
   toDollar(num) {
@@ -9,7 +9,6 @@ const ProjectNode = React.createClass({
   },
   showExpensePage () {
     this.props.getExpenses(this.props.project.projId);
-    browserHistory.push('/expenses');
   },
   render() {
     // es6 syntax to create 3 variables that pull their data from

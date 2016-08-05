@@ -7,7 +7,7 @@ import { Modal } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 // was Photo.js
-const Projects = React.createClass({  
+const Projects = React.createClass({
   switchModal: function() {
     this.props.changeModal('pitch');
     this.props.getOrgProjects(this.props.organization.orgName);
@@ -16,7 +16,7 @@ const Projects = React.createClass({
   render() {
     return (
       <div style={{fontSize : "14px"}}>
-        
+
         <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
           Create a Pitch
         </Button>
@@ -56,14 +56,3 @@ const Projects = React.createClass({
 });
 
 export default Projects;
-
-// <div style={{fontSize : "14px"}}>
-//         <button className="plus-button">
-//           <Link to={`/pitch`}>
-//             Add a Pitch!
-//           </Link>
-//         </button>
-
-
-
-               // <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
