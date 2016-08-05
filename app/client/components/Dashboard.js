@@ -23,10 +23,12 @@ const Dashboard = React.createClass({
     return (
       <div className="dashboard">
         <div>
-          <Nav activeKey={1} bstyle="tabs" pullLeft={true}>
+          <Nav activeKey={1} bsStyle="tabs" pullLeft={true}>
+              <NavItem eventKey={1}>
             <Link to={'/settings'}>  
-              <NavItem eventKey={1}>⚙</NavItem>
+              Settings
             </Link>  
+              </NavItem>
             <NavItem eventKey={2} onClick={this.logout}>
               Logout
             </NavItem>

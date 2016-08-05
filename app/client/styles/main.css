@@ -10,6 +10,14 @@
 	margin-right: auto;
 }
 
+#pitchButton {
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
 #title {
 	text-align: center;
 }
