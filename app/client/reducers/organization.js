@@ -83,44 +83,49 @@ function posts(state=[], action) {
       return action.organization;
 
 
-
-
-
     case "ADD_NEW_USER":
       console.log("So you want to make a new user");
       console.log("ORGS ID ", state.orgs_id);
       var orgs_id = state.orgs_id;
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
-
         .then(function(res) {
           let userData = res.data;
           if(res.status === 201) {
-            console.log("Adding New User Success");
-            let newUser = {
+            let user = {
               id: userData.id,
               user: userData.username,
+              password: userData.password,
+              orgs_id: userData.orgs_id,
+              perm: userData.perm
             };
-            console.log("RES ", res.data);
             store.dispatch({
               type: "ADD_USER_TO_STATE",
-              newUser
+              user
             });
-
           }
-          //dispatch reducer ADD_USER_TO_STATE
-          console.log("RES DATA WORKS!!! ", res.data);
         })
         .catch(function(err) {
-          console.log(err);
+          console.error(err);
         });
       break;
 
 
+      case "ADD_USER_TO_STATE":
+        console.log("TRIGGERED: ADD_USER_TO_STATE");
+        return action.user;
+
+
       // case "CHANGE_PASSWORD":
       //   console.log("So you want to change your PW?");
-      //   ApiCall.
-
+      //   ApiCall.changePassword(action.username, action.perm, action.currentPassword, action.newPassword)
+      //     .then(function(res) {
+      //
+      //     })
+      //     .catch(function(err) {
+      //
+      //     });
+      //     break;
 
 
 

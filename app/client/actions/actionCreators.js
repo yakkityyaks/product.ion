@@ -167,7 +167,6 @@ export function changePassword(username, perm, currentPassword, newPassword) {
     type: "CHANGE_PASSWORD",
     username,
     perm,
-    id,
     currentPassword,
     newPassword
   };
