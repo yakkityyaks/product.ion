@@ -17,11 +17,7 @@ const Projects = React.createClass({
     return (
       <div style={{fontSize : "14px"}}>
         
-        <Button
-          bsStyle="primary"
-          bsSize="large"
-          onClick={this.switchModal}
-        >
+        <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
           Create a Pitch
         </Button>
 
