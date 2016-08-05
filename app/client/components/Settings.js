@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import NavBar from './NavBar';
+import { Panel } from 'react-bootstrap';
 
 const Settings = React.createClass({
   // submit new password to action, reducer, server, store,
@@ -32,6 +34,9 @@ const Settings = React.createClass({
   render() {
     return (
       <div className="settings">
+      <Panel>
+        <NavBar {...this.props}/>
+      </Panel>
       <h2 className="form-page__form-heading">Change Your Password</h2>
         <div>
           <button className="form__submit-btn">

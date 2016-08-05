@@ -26,13 +26,17 @@ const messages = {
 const modals = {
 	pitch: false
 }
+const navBar = {
+  key: 1
+}
 
 const defaultState = {
   projects,
   expenses,
   organization,
   messages,
-  modals
+  modals,
+  navBar
 };
 
 //middleware for logging changes in state.

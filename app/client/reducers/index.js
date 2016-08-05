@@ -7,7 +7,9 @@ import projects from './projects';
 import organization from './organization';
 import messages from './messages';
 import modals from './modals';
+import navBar from './navBar';
 
-const rootReducer = combineReducers({messages, expenses, projects, organization, modals, routing: routerReducer});
+
+const rootReducer = combineReducers({messages, expenses, projects, organization, modals, navBar, routing: routerReducer});
 
 export default rootReducer;

@@ -9,7 +9,8 @@ function mapStateToProps(state) {
     projects: state.projects,
     expenses: state.expenses,
     messages: state.messages,
-    modals: state.modals
+    modals: state.modals,
+    navBar: state.navBar
   };
 }
 

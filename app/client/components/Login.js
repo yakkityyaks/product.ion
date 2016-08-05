@@ -6,9 +6,14 @@ import { browserHistory } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
+import { ControlLabel } from 'react-bootstrap';
 
 
 const Login = React.createClass({
+  
+
   componentWillMount() {
     if (this.props.organization.user) {
       var joinedName = this.props.organization.orgName.split(" ").join("");
@@ -17,13 +22,12 @@ const Login = React.createClass({
   },
   handleSubmit(event) {
     event.preventDefault();
-    var user = this.refs.usernameInput.value,
-        pass = this.refs.passwordInput.value;
-    this.props.postLogin(user, pass);
+    var username = this.refs.usernameInput.value, password = this.refs.passwordInput.value;
+    this.props.postLogin(username, password);
   },
   render() {
     return (
-      <div className="center-block" id="loginPanel">
+     <div className="center-block" id="loginPanel">
         <PageHeader id="loginHeader"><small>Login</small></PageHeader>
         <Panel>
          <form className="form" id="loginPanel" onSubmit={this.handleSubmit}>
@@ -54,7 +58,7 @@ const Login = React.createClass({
               <p className="form__error form__error--wrong-password">Wrong password.</p>
            </div>
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">LOGIN</button>
+               <Button type="submit">Login</Button>
                <p id="loginMessage" className="">{this.props.messages.login}</p>
            </div>
          </form>
@@ -65,3 +69,21 @@ const Login = React.createClass({
 });
 
 export default Login;
+
+// {/* <div className="form__error-wrapper">
+//              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
+//              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
+//              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
+//            </div> */}
+//            <Link to={`/register`}>
+//              <Button>
+//                Create Organization
+//              </Button>
+//            </Link>
+//            <FormGroup controlId="loginPanel">
+//              <ControlLabel>Username</ControlLabel>
+//              <FormControl type="text" placeholder="Username" ref="user" onChange={this.props.resetLoginMessage}/>
+//              <ControlLabel>Password</ControlLabel>
+//              <FormControl type="text" ref="pass" placeholder="••••••••••"/>
+//              <Button className="form__submit-btn" onClick={this.handleSubmit}>Login</Button>
+//            </FormGroup>
