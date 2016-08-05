@@ -128,8 +128,6 @@ function posts(state=[], action) {
           break;
 
 
-
-
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)
         .catch(function(err) {
