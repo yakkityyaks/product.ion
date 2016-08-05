@@ -117,6 +117,10 @@ function posts(state=[], action) {
       break;
 
 
+      // case "CHANGE_PASSWORD":
+      //   console.log("So you want to change your PW?");
+      //   ApiCall.
+
 
 
 

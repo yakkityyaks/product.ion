@@ -3,14 +3,6 @@ import { Link } from 'react-router';
 
 const AddUser = React.createClass({
 
-  // getInitialState () {
-  //   return { showTitle: false };
-  // },
-  //
-  // onClick () {
-  //     this.setState({ showTitle: true });
-  // },
-
   validateUsername () {
     let regex = /^[a-z0-9]+$/i;
     let name = this.refs.usernameInput.value;
