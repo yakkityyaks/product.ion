@@ -33,7 +33,9 @@ const Dashboard = React.createClass({
           </Nav>  
         </div>
         <br></br>
-        <Projects {...this.props}/>
+        <div>
+          <Projects {...this.props}/>
+        </div>
       </div>
     );
   }

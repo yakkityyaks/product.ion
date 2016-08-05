@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import  store  from '../store';
-
 import { browserHistory } from 'react-router';
+
+import { PageHeader } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
+
 
 const Login = React.createClass({
   componentWillMount() {
@@ -19,20 +23,20 @@ const Login = React.createClass({
   },
   render() {
     return (
-      <div>
-        <h2 className="form-page__form-heading">Login</h2>
-
-        <form className="form" onSubmit={this.handleSubmit}>
+      <div className="center-block" id="loginPanel">
+        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
+        <Panel>
+         <form className="form" id="loginPanel" onSubmit={this.handleSubmit}>
            {/* <div className="form__error-wrapper">
              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
            </div> */}
-           <button>
-             <Link to={`/register`}>
+           <Link to={`/register`}>
+             <Button>
                Create Organization
-             </Link>
-           </button>
+             </Button>
+           </Link>
            <br></br>
            <div className="form__field-wrapper">
 
@@ -54,7 +58,8 @@ const Login = React.createClass({
                <p id="loginMessage" className="">{this.props.messages.login}</p>
            </div>
          </form>
-       </div>
+        </Panel>
+      </div>
     );
   }
 });

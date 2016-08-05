@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { PageHeader } from 'react-bootstrap';
+
 
 // need to pass in children.. how?
 // React Router
@@ -9,12 +11,9 @@ const Main = React.createClass({
 
     return (
       <div>
-        <nav className="nav">
-          <div className="nav__wrapper">
-            <Link to="/" className="nav__logo-wrapper"><h2 className="nav__logo">product.ion</h2></Link>
-          </div>
-        </nav>
-
+        <Link to="/" className="nav__logo-wrapper">
+          <PageHeader id="title">product.ion</PageHeader>
+        </Link>
         { React.cloneElement(this.props.children, this.props) }
       </div>
     );
