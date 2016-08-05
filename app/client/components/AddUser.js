@@ -22,7 +22,7 @@ const AddUser = React.createClass({
   },
 
   randomPassword (length, username) {
-    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>_ABCDEFGHIJKLMNOP1234567890";
     let pass = "";
     if(username.length >= 6) {
       for (let x = 0; x < length; x++) {
@@ -41,10 +41,10 @@ const AddUser = React.createClass({
   },
 
   handleSubmit (event) {
+    event.preventDefault();
     let username = this.refs.usernameInput.value;
     let password = this.refs.passwordInput.value;
     let perm = document.querySelector('input[name="user-class"]:checked').value;
-    let orgId = this.props.organization.orgs_id;
 
     this.props.addNewUser(username, password, perm);
   },
@@ -94,7 +94,7 @@ const AddUser = React.createClass({
            </div>
 
            <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">CREATE USER</button>
+               <button className="form__submit-btn" type="submit"> CREATE USER</button>
            </div>
          </form>
        </div>

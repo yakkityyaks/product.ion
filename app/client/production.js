@@ -12,8 +12,10 @@ import Register from './components/Register';
 import Pitch from './components/Pitch';
 import AddUser from './components/AddUser';
 import Settings from './components/Settings';
+import Expenses from './components/Expenses';
 
-//
+
+// Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // binding that helps us use redux with react.
 import { Provider } from 'react-redux';
@@ -34,6 +36,7 @@ const router = (
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
+        <Route path='/expenses' component = { Expenses }></Route>
       </Route>
     </Router>
   </Provider>
