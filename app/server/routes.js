@@ -9,7 +9,7 @@ module.exports = function routes(app){
   app.post('/api/register/org', function(req, res){
     //makes organization w/ name req.body.orgName and returns the organization model
     //if an org with that name already exists return a 403
-    Organization.makeOrg({name: req.body.orgName}, function(org){ 
+    Organization.makeOrg({name: req.body.orgName}, function(org){
       org ? res.status(201).json(org) : res.sendStatus(404);
     });
   });
@@ -44,7 +44,7 @@ module.exports = function routes(app){
     // }
     User.getUser(req.body.data.username, function(user) {
       if (!user) {
-        User.makeUser(req.body.data, function(user){ 
+        User.makeUser(req.body.data, function(user){
           user ? res.status(201).json(user) : res.sendStatus(404);
         });
       } else {
@@ -54,8 +54,8 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/project', function(req, res) {
-    //req body should hold the following 
-    // { 
+    //req body should hold the following
+    // {
       // data: {
       //  name: string,
       //  projId: string,
@@ -70,7 +70,7 @@ module.exports = function routes(app){
       // }
     //  users_ids: [int1, int2, int3...]  <-- this is optional
     // }
-    // 
+    //
     // makes a project w/ the provided data which is linked to the organization
     // and users described by the id values, then returns it
     Project.makeProj(req.body.data, function(proj) {
@@ -79,7 +79,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/expenses', function(req, res) {
-    // req body should hold the following 
+    // req body should hold the following
     // {
     //  data: {
     //    type: string,
@@ -93,7 +93,7 @@ module.exports = function routes(app){
     //    description: string,
     //    cost: float,
     //    projs_id: int
-    //  }   
+    //  }
     // }
 
     // makes an expense w/ the provided data linked to the provided project
@@ -142,4 +142,12 @@ module.exports = function routes(app){
       });
     }
   });
+
+  app.get('/*', function(req, res){
+    console.log(req.params)
+    var wildcard = req.params['0']
+    res.redirect('/')
+  })
 };
+
+
