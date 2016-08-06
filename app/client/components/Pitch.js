@@ -136,3 +136,4 @@ const Pitch = React.createClass({
     );
   }
 });
+export default Pitch;
