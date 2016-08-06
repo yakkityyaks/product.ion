@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import NavBar from './NavBar';
 import { Panel } from 'react-bootstrap';
 
+import * as dom from 'react-dom';
+import UserList from "./UserList";
+
 const Settings = React.createClass({
   // submit new password to action, reducer, server, store,
   testing (event) {
@@ -31,60 +34,63 @@ const Settings = React.createClass({
   },
 
   render() {
+    const { orgName, user } = this.props.organization;
+    const permName = {0: "an Admin", 1: "a Producer", 2: "a User"};
     return (
       <div className="settings">
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
-        <Panel>
-          <h2 className="form-page__form-heading">Change Your Password</h2>
-          <div>
-            <button className="form__submit-btn">
-               <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
-                 Back
-               </Link>
-             </button>
-           </div>
-           <br></br>
-           <div>
-             <button className="form__submit-btn">
-               <Link to={`/addUser`}>
-                 Add a User to Organization
-               </Link>
-             </button>
-           </div>
-           <br></br>
-           <div>
-             <p className="orgName">{this.props.organization.orgName}</p>
-           </div>
-           <div>
-             <form className="form" onSubmit={this.testing}>
-               <div className="form__error-wrapper">
-                 <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-                 <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-                 <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-               </div>
-               <div className="form__field-wrapper">
-                 <label className="form__field-label" htmlFor="currentPassword">Current Password</label>
-                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <br></br>
-               <div className="form__field-wrapper">
-                 <label className="form__field-label" htmlFor="newPassword">New Password</label>
-                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <div className="form__field-wrapper">
-                 <label className="form__field-label" htmlFor="newPassword">Confirm New Password</label>
-                 <input className="form__field-input" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <div>
-                 <button className="form__submit-btn">
-                   Submit Change
-                 </button>
-                </div>
-             </form>
-           </div>
-         </Panel>  
+      <Panel>
+        <NavBar {...this.props}/>
+      </Panel>
+      <h2 className="">Welcome to your settings page {user.name}</h2>
+      <h2 className="">You are {permName[user.perm]} of {orgName}</h2>
+        <div>
+          <button className="">
+             <Link to={`/dashboard/${orgName.split(" ").join("")}`}>
+               Back
+             </Link>
+           </button>
+         </div>
+         <br></br>
+         <div>
+           <button className="">
+             <Link to={`/addUser`}>
+               Add a User to Organization
+             </Link>
+           </button>
+         </div>
+         <br></br>
+         <div id="testRoot"></div>
+         {
+           user.perm === 0 && <UserList {...this.props}/>
+         }
+         <div>
+           <form className="form" onSubmit={this.testing}>
+             <div className="">
+               <p className="">This username does not exist.</p>
+               <p className="">Please fill out the entire form.</p>
+               <p className="">Something went wrong, please try again!</p>
+             </div>
+
+             <div className="">
+               <label className="" htmlFor="currentPassword">Current Password</label>
+               <input className="" type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </div>
+             <br></br>
+             <div className="">
+               <label className="" htmlFor="newPassword">New Password</label>
+               <input className="" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </div>
+             <div className="">
+               <label className="" htmlFor="newPassword">Confirm New Password</label>
+               <input className="" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </div>
+             <div>
+               <button className="">
+                 Submit Change
+               </button>
+              </div>
+           </form>
+         </div>
       </div>
     );
   }
