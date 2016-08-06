@@ -29,9 +29,13 @@ const Settings = React.createClass({
     this.props.changePassword(username, perm, currentPassword, newPassword);
   },
 
+  switchModal () {
+    this.props.changeSettingsModal('addUser');
+  },
+
   render() {
     return (
-      <div className="settings">
+      <div style={{fontSize : "14px"}}>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
@@ -46,11 +50,11 @@ const Settings = React.createClass({
            </div>
            <br></br>
            <div>
-             <button>
+             <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
                <Link to={`/addUser`}>
                  Add a User to Organization
                </Link>
-             </button>
+             </Button>
            </div>
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
@@ -70,26 +74,25 @@ const Settings = React.createClass({
              <p className="orgName">{ this.props.organization.orgName }</p>
 
              <Form onSubmit={this.testing}>
-               <div>
+               <FormGroup>
                  <ControlLabel >Current Password</ControlLabel>
                  <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
+               </FormGroup>
                <br></br>
-               <div>
+               <FormGroup>
                  <ControlLabel>New Password</ControlLabel>
                  <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <div>
+               </FormGroup>
+               <FormGroup>
                  <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
                  <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
+               </FormGroup>
                <div>
                  <Button>
                    Submit Change
                  </Button>
                 </div>
              </Form>
-
          </Panel>
       </div>
     );

@@ -10,7 +10,7 @@ import Pitch from './Pitch.js';
 // was Photo.js
 const Projects = React.createClass({
   switchModal: function() {
-    this.props.changeModal('pitch');
+    this.props.changePitchModal('pitch');
     this.props.getOrgProjects(this.props.organization.orgName);
   },
 
@@ -51,7 +51,7 @@ const Projects = React.createClass({
             			<ProjectNode key={idx} idx={idx} {...this.props} project={project} />)}
         		</tbody>
         	</table>
-        </Panel>  
+        </Panel>
       </div>
     );
   }

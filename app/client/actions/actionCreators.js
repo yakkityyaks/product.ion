@@ -103,9 +103,16 @@ export function hydrateProjects(projects) {
   };
 }
 
-export function changeModal(name) {
+export function changePitchModal(name) {
   return {
-    type: "CHANGE_MODAL",
+    type: "CHANGE_PITCH_MODAL",
+    name
+  };
+}
+
+export function changeSettingsModal(name) {
+  return {
+    type: "CHANGE_SETTINGS_MODAL",
     name
   };
 }
