@@ -8,10 +8,10 @@ import { Panel } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
 import Pitch from './Pitch.js';
-// was Photo.js
 const Projects = React.createClass({
+
   switchModal: function() {
-    this.props.changeModal('pitch');
+    this.props.changePitchModal('pitch');
     this.props.getOrgProjects(this.props.organization.orgName);
   },
 
@@ -53,7 +53,7 @@ const Projects = React.createClass({
           		</tbody>
           	</Table>
           </Panel>
-        </Panel>  
+        </Panel>
       </div>
     );
   }
