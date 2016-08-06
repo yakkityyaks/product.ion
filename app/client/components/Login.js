@@ -3,10 +3,14 @@ import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import  store  from '../store';
 import { browserHistory } from 'react-router';
-import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader } from 'react-bootstrap';
 
+import { PageHeader, Button, Panel, FormGroup, FormControl,
+         ControlLabel, Form } from 'react-bootstrap';
 
 const Login = React.createClass({
+  getInitialState() {
+    return {username: "", password: ""};
+  },
 
   componentWillMount() {
     if (this.props.organization.user) {
@@ -14,40 +18,48 @@ const Login = React.createClass({
       browserHistory.push(`/dashboard/${joinedName}`);
     }
   },
-
+  handleUserChange(e) {
+    this.setState({username:e.target.value});
+  },
+  handlePassChange(e) {
+    this.setState({password:e.target.value});
+  },
   handleSubmit(event) {
     event.preventDefault();
-    let username = findDOMNode(this.refs.usernameInput).value,
-    password = findDOMNode(this.refs.passwordInput).value
-    this.props.postLogin(username, password);
+    this.props.postLogin(this.state.username, this.state.password);
   },
 
   render() {
     return (
-     <div>
-       <PageHeader id="loginHeader"><small>Login</small></PageHeader>
-       <Button>
-         <Link to={`/register`}>
-          Create Organization
-         </Link>
-       </Button>
-         <Panel id="loginPanel">
-           <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
-             <div>
-               <ControlLabel>Username</ControlLabel>
-                <br></br>
-               <FormControl type="text" placeholder="Username" ref="usernameInput" onChange={this.props.resetLoginMessage} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-             </div>
-             <div>
-               <ControlLabel htmlFor="password">Password</ControlLabel>
-                <br></br>
-               <FormControl type="password" ref="passwordInput" onChange={this.props.resetLoginMessage} placeholder="••••••••••"/>
-             </div>
-             <div>
+     <div className="center-block" id="loginPanel">
+        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
+        <Panel>
+         <Form id="loginPanel" onSubmit={this.handleSubmit}>
+           <Link to={`/register`}>
+             <Button>
+               Create Organization
+             </Button>
+           </Link>
+           <br />
+           <div className="">
+             <label className="" htmlFor="username">Username</label>
+             <br></br>
+             <FormControl type="text" value={this.state.username} placeholder="Enter text"
+                          onChange={this.handleUserChange} required/>
+           </div>
+           <div className="">
+             <label className="" htmlFor="password">Password</label>
+             <br/>
+             <FormControl type="password" value={this.state.password} placeholder="••••••••••"
+                          onChange={this.handlePassChange} required/>
+           </div>
+           <div className="">
+             {
+               this.props.messages.login && <p id="loginMessage" className="">{this.props.messages.login}</p>
+             }
                <Button type="submit">Login</Button>
-               <p id="loginMessage">{this.props.messages.login}</p>
-             </div>
-          </Form>
+           </div>
+         </Form>
         </Panel>
       </div>
     );
