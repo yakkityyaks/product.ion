@@ -16,7 +16,7 @@ const Pitch = React.createClass({
       startDate: this.refs.startDate.value,
       endDate: this.refs.endDate.value,
       orgs_id: this.props.organization.orgs_id
-    }
+    };
     console.log(pitch);
     this.props.postNewProject(pitch);
   },

@@ -1,17 +1,13 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { Link } from 'react-router';
-import  store  from '../store';
-import { browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
-import { PageHeader, Button, Panel, FormGroup, FormControl,
-         ControlLabel, Form } from 'react-bootstrap';
+import { Button, Panel, FormGroup, FormControl, Form } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState() {
     return {username: "", password: ""};
   },
-
   componentWillMount() {
     if (this.props.organization.user) {
       var joinedName = this.props.organization.orgName.split(" ").join("");
@@ -20,9 +16,11 @@ const Login = React.createClass({
   },
   handleUserChange(e) {
     this.setState({username:e.target.value});
+    // this.props.resetLoginMessage();
   },
   handlePassChange(e) {
     this.setState({password:e.target.value});
+    // this.props.resetLoginMessage();
   },
   handleSubmit(event) {
     event.preventDefault();
@@ -31,10 +29,9 @@ const Login = React.createClass({
 
   render() {
     return (
-     <div className="center-block" id="loginPanel">
-        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
-        <Panel>
-         <Form id="loginPanel" onSubmit={this.handleSubmit}>
+     <div id="loginPanel">
+        <Panel bsStyle="primary" header={<h3>Login</h3>}>
+         <Form onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Link to={`/register`}>
              <Button>
                Create Organization
@@ -54,9 +51,7 @@ const Login = React.createClass({
                           onChange={this.handlePassChange} required/>
            </div>
            <div className="">
-             {
-               this.props.messages.login && <p id="loginMessage" className="">{this.props.messages.login}</p>
-             }
+               <p id="loginMessage" className="">{this.props.messages.login}</p>
                <Button type="submit">Login</Button>
            </div>
          </Form>
