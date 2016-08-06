@@ -17,11 +17,39 @@
 	margin-right: auto;
 }
 
-
 #title {
 	text-align: center;
 }
 
-.testFormCenter {
+#settingsWindow {
+	display:inline-block;
+	padding-right: 30px;
+}
+
+#settingsMain {
+	display: inline-block;
+	float: left;
+}
+
+#settingsOptional {
+	padding-left: 10px;
+	display:inline-block;
+}
+
+.settings {
 	text-align: center;
+}
+
+.settingsMemberNode {
+	display: inline-block;
+	width: 200;
+}
+.settingsMemberNode-username {
+	display: inline-block;;
+	float: left;
+}
+
+.settingsMemberNode-perm {
+	display: inline-block;
+	width: auto;
 }

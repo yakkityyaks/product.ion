@@ -149,5 +149,3 @@ module.exports = function routes(app){
     res.redirect('/')
   })
 };
-
-
