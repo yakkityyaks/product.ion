@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import NavBar from './NavBar';
 import { Panel } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import * as dom from 'react-dom';
 import UserList from "./UserList";
@@ -38,29 +39,32 @@ const Settings = React.createClass({
     const permName = {0: "an Admin", 1: "a Producer", 2: "a User"};
     return (
       <div className="settings">
-      <Panel>
-        <NavBar {...this.props}/>
-      </Panel>
-      <h2 className="">Welcome to your settings page {user.name}</h2>
-      <h2 className="">You are {permName[user.perm]} of {orgName}</h2>
-        <div>
-          <button className="">
-             <Link to={`/dashboard/${orgName.split(" ").join("")}`}>
-               Back
-             </Link>
-           </button>
-         </div>
-         <br></br>
-         <div>
-           <button className="">
-             <Link to={`/addUser`}>
-               Add a User to Organization
-             </Link>
-           </button>
-         </div>
-         <br></br>
-         <div id = "settingsWindow">
-           <div id="settingsMain">
+
+        <Panel>
+          <NavBar {...this.props}/>
+        </Panel>
+        <Panel>
+          <h2 className="form-page__form-heading">welcome to your settings, { this.props.organization.user.name }!</h2>
+          <div>
+            <Button >
+               <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
+                 Back
+               </Link>
+             </Button>
+           </div>
+           <br></br>
+           <div>
+             <Button>
+               <Link to={`/addUser`}>
+                 Add a User to Organization
+               </Link>
+             </Button>
+           </div>
+           <br></br>
+           <div>
+             <p className="orgName">{ this.props.organization.orgName }</p>
+           </div>
+           <div>
              <form className="form" onSubmit={this.testing}>
                <div className="">
                  <label className="" htmlFor="currentPassword">Current Password</label>

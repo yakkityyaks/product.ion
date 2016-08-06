@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Button } from 'react-router';
+import { FormGroup } from 'react-router';
+import { FormControl } from 'react-router';
+import { ControlLabel } from 'react-router';
 // was comment.
 const Register = React.createClass({
+  getInitialState: function() {
+    return {
+      org: null,
+      usernameInput: null,            // fill me in tim
+      passwordInput: null
+    }
+  },
   validatePassword: function() {
     var pass = this.refs.passwordInput.value;
     if (pass.length < 6) {
@@ -21,48 +32,39 @@ const Register = React.createClass({
 
     this.props.checkRegistration(orgName, username, password);
   },
+  validationState: function() {
+    //fill me in tim
+  },
+  handleOrgChange: function() {
+    //fill me in tim
+  },
+  handleAdminChange: function() {
+    //fill me in tim
+  },
+  handlePassChange: function() {
+    //fill me in tim
+  },
+  submit: function() {
+
+  },
   render() {
     return (
       <div>
-        <h2 className="form-page__form-heading">We're happy you want to do this</h2>
-        <form className="form" onSubmit={this.handleSubmit} onBlur={this.resetErrorMessages}>
-           <div className="form__error-wrapper">
-             <p className="form__error form__error--username-taken">Sorry, but this username is already taken.</p>
-             <p className="form__error form__error--invalid-password">Password has to be better than that.</p>
-             <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-             <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-           </div>
-           <button>
+        <h2>We're happy you want to do this</h2>
+         <FormGroup validationState={this.validationState}>  
+           <Button>
              <Link to={`/login`}>
                Login
              </Link>
-           </button>
-           <br></br>
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="username">Organization</label>
-             <input className="form__field-input" type="text" id="username"
-                    placeholder="Org Name" autoCorrect="off" autoCapitalize="off"
-                    spellCheck="false" ref='orgNameInput' />
-             <p id="registerOrgMessage" className="">{this.props.messages.registerOrg}</p>
-           </div>
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="username">Admin</label>
-             <input className="form__field-input" type="text" id="username"
-                    placeholder="Admin Name" autoCorrect="off" autoCapitalize="off"
-                    spellCheck="false" ref='usernameInput'/>
-             <p id="registerUserMessage" className="">{this.props.messages.registerUser}</p>
-           </div>
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="password">Password</label>
-             <input className="form__field-input" id="password" type="password"
-                    placeholder="••••••••••" ref="passwordInput"
-                    onBlur={this.validatePassword} />
-             <p id="registerPaswordMessage" className="">{this.props.messages.registerPassword}</p>
-           </div>
-           <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit">CREATE</button>
-           </div>
-         </form>
+           </Button>
+           <ControlLabel>Organization</ControlLabel>
+           <FormControl type="text" value={this.state.org} placeholder="Org Name" onChange={this.handleOrgChange}/>  
+           <ControlLabel>Admin</ControlLabel>
+           <FormControl type="text" value={this.state.usernameInput} placeholder="Admin Name" onChange={this.handleAdminChange}/>  
+           <ControlLabel>Password></ControlLabel>
+           <FormControl type="password" value={this.state.passwordInput} placeholder="••••••••••" onChange={this.handlePassChange}/>
+           <Button onClick={this.submit}>Create</Button>
+         </FormGroup>  
        </div>
     );
   }

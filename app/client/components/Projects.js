@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
+import { Table } from 'react-bootstrap'
 import Pitch from './Pitch.js';
 // was Photo.js
 const Projects = React.createClass({
@@ -34,23 +35,24 @@ const Projects = React.createClass({
             </Modal.Footer>
           </Modal>
 
-
-        	<table style={{width: "100%"}}>
-        		<thead>
-        			<tr>
-        				<th>Name</th>
-        				<th>Project ID</th>
-        				<th>Project Status</th>
-        				<th>Cost to Date</th>
-        				<th>Estimate to Complete</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        			{this.props.projects.map(
-        				(project, idx) =>
-            			<ProjectNode key={idx} idx={idx} {...this.props} project={project} />)}
-        		</tbody>
-        	</table>
+          <Panel>
+          	<Table striped bordered>
+          		<thead>
+          			<tr>
+          				<th>Name</th>
+          				<th>Project ID</th>
+          				<th>Project Status</th>
+          				<th>Cost to Date</th>
+          				<th>Estimate to Complete</th>
+          			</tr>
+          		</thead>
+          		<tbody>
+          			{this.props.projects.map(
+          				(project, idx) =>
+              			<ProjectNode key={idx} idx={idx} {...this.props} project={project} />)}
+          		</tbody>
+          	</Table>
+          </Panel>
         </Panel>  
       </div>
     );
