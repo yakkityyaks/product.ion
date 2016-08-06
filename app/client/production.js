@@ -35,7 +35,6 @@ const router = (
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
-        <Route path='/expenses' component = { Expenses }></Route>
       </Route>
     </Router>
   </Provider>
