@@ -151,7 +151,11 @@ function posts(state=[], action) {
             var joinedName = res.data.org.name.split(" ").join("");
             store.dispatch(push(`/dashboard/${joinedName}`));
           } else {
-            console.log("You done fucked up");
+            store.dispatch({
+              type:"SET_LOGIN_MESSAGE",
+              message: "Invalid username/password combination. Please try again",
+              className: "errorMessage"
+            });
           }
         });
       return state;

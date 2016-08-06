@@ -71,8 +71,8 @@ const Settings = React.createClass({
                <div className="">
                  <label className="" htmlFor="currentPassword">Current Password</label>
                  <input className="" type="password" placeholder="••••••••••"
-                        ref="passwordInput" autoCorrect="off" autoCapitalize="off" s
-                        pellCheck="false" required />
+                        ref="passwordInput" autoCorrect="off" autoCapitalize="off"
+                        spellCheck="false" required />
                </div>
                <br></br>
                <div className="">
@@ -96,7 +96,7 @@ const Settings = React.createClass({
            </div>
            <div id="settingsOptional">
              {
-               user.perm === 0 && <UserList {...this.props}/>
+               !user.perm && <UserList {...this.props}/>
              }
            </div>
          </div>
