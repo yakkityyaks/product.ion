@@ -9,6 +9,7 @@ import { OverlayTrigger } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 // was Photo.js
 const Projects = React.createClass({
+  
   switchModal: function() {
     this.props.changePitchModal('pitch');
     this.props.getOrgProjects(this.props.organization.orgName);

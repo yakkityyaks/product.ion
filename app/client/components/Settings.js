@@ -30,7 +30,8 @@ const Settings = React.createClass({
   },
 
   switchModal () {
-    this.props.changeSettingsModal('addUser');
+    console.log("MODALS!")
+    this.props.changeSettingModal('addUser');
   },
 
   render() {
@@ -50,20 +51,18 @@ const Settings = React.createClass({
            </div>
            <br></br>
            <div>
-             <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
-               <Link to={`/addUser`}>
-                 Add a User to Organization
-               </Link>
+             <Button bsStyle="primary" bsSize="large" id="addUserButton" onClick={this.switchModal}>
+               Add a User to Organization
              </Button>
            </div>
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
              <Modal.Header closeButton>
-               <Modal.Title>add a new user</Modal.Title>
+               <Modal.Title>Add a User to Organization</Modal.Title>
              </Modal.Header>
-             <Modal.Body>
-               <AddUser {...this.props} />
-             </Modal.Body>
+            <Modal.Body>
+                 <AddUser {...this.props} />
+               </Modal.Body>
              <Modal.Footer>
                <Button onClick={this.switchModal}>Close</Button>
              </Modal.Footer>
@@ -73,26 +72,26 @@ const Settings = React.createClass({
 
              <p className="orgName">{ this.props.organization.orgName }</p>
 
-             <Form onSubmit={this.testing}>
-               <FormGroup>
-                 <ControlLabel >Current Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </FormGroup>
-               <br></br>
-               <FormGroup>
-                 <ControlLabel>New Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </FormGroup>
-               <FormGroup>
-                 <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </FormGroup>
-               <div>
-                 <Button>
-                   Submit Change
-                 </Button>
-                </div>
-             </Form>
+           <Form onSubmit={this.testing}>
+             <FormGroup>
+               <ControlLabel >Current Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <br></br>
+             <FormGroup>
+               <ControlLabel>New Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <FormGroup>
+               <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <div>
+               <Button>
+                 Submit Change
+               </Button>
+              </div>
+           </Form>
          </Panel>
       </div>
     );

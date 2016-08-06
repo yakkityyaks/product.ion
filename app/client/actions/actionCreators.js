@@ -110,9 +110,9 @@ export function changePitchModal(name) {
   };
 }
 
-export function changeSettingsModal(name) {
+export function changeSettingModal(name) {
   return {
-    type: "CHANGE_SETTINGS_MODAL",
+    type: "CHANGE_SETTING_MODAL",
     name
   };
 }

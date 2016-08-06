@@ -2,23 +2,19 @@ import ApiCall from "../utils/serverCalls";
 import store from "../store";
 
 function modals(state = [], action) {
-
   switch (action.type) {
     case "CHANGE_PITCH_MODAL":
       console.log(state, action.name);
-      let name = action.name;
+      var name = action.name;
       console.log(name);
-      return Object.assign({}, state, {pitch: !state.pitch});
-    default:
-      return state;
-  }
+      return Object.assign({}, state, { pitch: !state.pitch });
 
-  switch (action.type) {
-    case "CHANGE_SETTINGS_MODAL":
+    case "CHANGE_SETTING_MODAL":
       console.log(state, action.name);
       name = action.name;
       console.log(name);
-      return Object.assign({}, state, {pitch: !state.addUser});
+      return Object.assign({}, state, { addUser: !state.addUser });
+
     default:
       return state;
   }
