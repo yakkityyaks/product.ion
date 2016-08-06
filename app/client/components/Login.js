@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import  store  from '../store';
 import { browserHistory } from 'react-router';
@@ -19,10 +19,11 @@ const Login = React.createClass({
       browserHistory.push(`/dashboard/${joinedName}`);
     }
   },
+
   handleSubmit(event) {
     event.preventDefault();
-    let username = ReactDOM.findDOMNode(this.refs.usernameInput).value,
-    password = ReactDOM.findDOMNode(this.refs.passwordInput).value
+    let username = findDOMNode(this.refs.usernameInput).value,
+    password = findDOMNode(this.refs.passwordInput).value
     this.props.postLogin(username, password);
   },
 
