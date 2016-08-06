@@ -6,8 +6,8 @@ import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader, 
 const AddUser = React.createClass({
 
   validateUsername () {
-    let regex = /^[a-z0-9]+$/i;
-    let name = this.refs.usernameInput.value;
+    let regex = /^[a-z0-9]+$/i,
+    name = findDOMNode(this.refs.usernameInput).value;
     if (named.length < 6 || !regex) {
       console.log("Password must be greater than 6 characters");
     } else {
@@ -16,8 +16,8 @@ const AddUser = React.createClass({
   },
 
   randomPassword (length, username) {
-    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>_ABCDEFGHIJKLMNOP1234567890";
-    let pass = "";
+    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>_ABCDEFGHIJKLMNOP1234567890",
+    pass = "";
     if(username.length >= 6) {
       for (let x = 0; x < length; x++) {
         let i = Math.floor(Math.random() * chars.length);
@@ -31,15 +31,15 @@ const AddUser = React.createClass({
 
   generate (event) {
     event.preventDefault();
-    this.refs.passwordInput.value = this.randomPassword(3, this.refs.usernameInput.value);
+    let username = findDOMNode(this.refs.usernameInput).value;
+    findDOMNode(this.refs.passwordInput).value = this.randomPassword(3, username);
   },
 
   handleSubmit (event) {
     event.preventDefault();
     let username = findDOMNode(this.refs.usernameInput).value,
-    password = findDOMNode(this.refs.passwordInput).value
-    let perm = document.querySelector('input[name="user-class"]:checked').value;
-
+    password = findDOMNode(this.refs.passwordInput).value,
+    perm = document.querySelector('input[name="user-class"]:checked').value;
     this.props.addNewUser(username, password, perm);
   },
 
