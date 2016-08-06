@@ -4,7 +4,8 @@ import { Link } from 'react-router';
 import NavBar from './NavBar';
 import * as dom from 'react-dom';
 import UserList from "./UserList";
-import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader } from 'react-bootstrap';
+import AddUser from './AddUser';
+import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, Modal } from 'react-bootstrap';
 
 const Settings = React.createClass({
   testing (event) {
@@ -30,9 +31,14 @@ const Settings = React.createClass({
     this.props.changePassword(username, perm, currentPassword, newPassword);
   },
 
+  switchModal () {
+    console.log("MODALS!")
+    this.props.changeSettingModal('addUser');
+  },
+
   render() {
     return (
-      <div className="settings">
+      <div style={{fontSize : "14px"}}>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
@@ -47,34 +53,49 @@ const Settings = React.createClass({
            </div>
            <br></br>
            <div>
-             <Button>
-               <Link to={`/addUser`}>
-                 Add a User to Organization
-               </Link>
+             <Button bsStyle="primary" bsSize="large" id="addUserButton" onClick={this.switchModal}>
+               Add a User to Organization
              </Button>
-             <Form onSubmit={this.testing}>
-               <div>
-                 <ControlLabel >Current Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <br></br>
-               <div>
-                 <ControlLabel>New Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <div>
-                 <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
-                 <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-               </div>
-               <div>
-                 <Button>
-                   Submit Change
-                 </Button>
-                </div>
-             </Form>
            </div>
-       </Panel>
-    </div>     
+
+           <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
+             <Modal.Header closeButton>
+               <Modal.Title>Add a User to Organization</Modal.Title>
+             </Modal.Header>
+            <Modal.Body>
+                 <AddUser {...this.props} />
+               </Modal.Body>
+             <Modal.Footer>
+               <Button onClick={this.switchModal}>Close</Button>
+             </Modal.Footer>
+           </Modal>
+
+           <br></br>
+
+             <p className="orgName">{ this.props.organization.orgName }</p>
+
+           <Form onSubmit={this.testing}>
+             <FormGroup>
+               <ControlLabel >Current Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <br></br>
+             <FormGroup>
+               <ControlLabel>New Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <FormGroup>
+               <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
+               <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+             </FormGroup>
+             <div>
+               <Button>
+                 Submit Change
+               </Button>
+              </div>
+           </Form>
+         </Panel>
+      </div>
     );
   }
 });

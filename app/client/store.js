@@ -24,11 +24,12 @@ const messages = {
   registerUser: "",
 };
 const modals = {
-	pitch: false
-}
+	pitch: false,
+  addUser: false
+};
 const navBar = {
   key: 1
-}
+};
 
 const defaultState = {
   projects,
