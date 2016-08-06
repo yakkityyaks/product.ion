@@ -13,7 +13,6 @@ import { ControlLabel } from 'react-bootstrap';
 
 const Login = React.createClass({
 
-
   componentWillMount() {
     if (this.props.organization.user) {
       var joinedName = this.props.organization.orgName.split(" ").join("");
@@ -27,10 +26,10 @@ const Login = React.createClass({
   },
   render() {
     return (
-     <div id="loginPanel">
+     <div>
         <PageHeader id="loginHeader"><small>Login</small></PageHeader>
-        <Panel>
-         <Form inline onSubmit={this.handleSubmit}>
+        <Panel id="loginPanel">
+         <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
            {/* <div className="form__error-wrapper">
              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
@@ -43,21 +42,20 @@ const Login = React.createClass({
            </Link>
            <br></br>
            <div>
-
-             <ControlLabel htmlFor="username">Username</ControlLabel>
+             <ControlLabel id="inputLabel">Username</ControlLabel>
              <br></br>
-             <FormControl type="text" id="username"
+             <FormControl type="text" id="userInput"
                     placeholder="Username" ref="usernameInput"
                     onChange={this.props.resetLoginMessage} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
            <div>
-             <ControlLabel htmlFor="password">Password</ControlLabel>
+             <ControlLabel id="inputLabel" htmlFor="password">Password</ControlLabel>
              <br></br>
-             <FormControl id="password" type="password"
+             <FormControl id="userInput" type="password"
                     ref="passwordInput" onChange={this.props.resetLoginMessage} placeholder="••••••••••"/>
            </div>
            <div>
-               <Button type="submit">Login</Button>
+               <Button id="submitButton" type="submit">Login</Button>
                <p id="loginMessage">{this.props.messages.login}</p>
            </div>
          </Form>
