@@ -1,8 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import  store  from '../store';
 import { browserHistory } from 'react-router';
-
 import { PageHeader } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
@@ -21,44 +21,37 @@ const Login = React.createClass({
   },
   handleSubmit(event) {
     event.preventDefault();
-    var username = this.refs.usernameInput.value, password = this.refs.passwordInput.value;
+    let username = ReactDOM.findDOMNode(this.refs.usernameInput).value,
+    password = ReactDOM.findDOMNode(this.refs.passwordInput).value
     this.props.postLogin(username, password);
   },
+
   render() {
     return (
      <div>
-        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
-        <Panel id="loginPanel">
-         <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
-           {/* <div className="form__error-wrapper">
-             <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-             <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-             <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-           </div> */}
-           <Link to={`/register`}>
-             <Button>
-               Create Organization
-             </Button>
-           </Link>
-           <br></br>
-           <div>
-             <ControlLabel id="inputLabel">Username</ControlLabel>
-             <br></br>
-             <FormControl type="text" id="userInput"
-                    placeholder="Username" ref="usernameInput"
-                    onChange={this.props.resetLoginMessage} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-           </div>
-           <div>
-             <ControlLabel id="inputLabel" htmlFor="password">Password</ControlLabel>
-             <br></br>
-             <FormControl id="userInput" type="password"
-                    ref="passwordInput" onChange={this.props.resetLoginMessage} placeholder="••••••••••"/>
-           </div>
-           <div>
-               <Button id="submitButton" type="submit">Login</Button>
+       <PageHeader id="loginHeader"><small>Login</small></PageHeader>
+       <Button>
+       <Link to={`/register`}>
+        Create Organization
+       </Link>
+       </Button>
+         <Panel id="loginPanel">
+           <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
+             <div>
+               <ControlLabel>Username</ControlLabel>
+                <br></br>
+               <FormControl type="text" placeholder="Username" ref="usernameInput" onChange={this.props.resetLoginMessage} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+             </div>
+             <div>
+               <ControlLabel htmlFor="password">Password</ControlLabel>
+                <br></br>
+               <FormControl type="password" ref="passwordInput" onChange={this.props.resetLoginMessage} placeholder="••••••••••"/>
+             </div>
+             <div>
+               <Button type="submit">Login</Button>
                <p id="loginMessage">{this.props.messages.login}</p>
-           </div>
-         </Form>
+             </div>
+          </Form>
         </Panel>
       </div>
     );
@@ -66,89 +59,3 @@ const Login = React.createClass({
 });
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-// const Login = React.createClass({
-
-
-//   componentWillMount() {
-//     if (this.props.organization.user) {
-//       var joinedName = this.props.organization.orgName.split(" ").join("");
-//       browserHistory.push(`/dashboard/${joinedName}`);
-//     }
-//   },
-//   handleSubmit(event) {
-//     event.preventDefault();
-//     var username = this.refs.usernameInput.value, password = this.refs.passwordInput.value;
-//     this.props.postLogin(username, password);
-//   },
-//   render() {
-//     return (
-//      <div className="center-block" id="loginPanel">
-//         <PageHeader id="loginHeader"><small>Login</small></PageHeader>
-//         <Panel>
-//          <form className="form" id="loginPanel" onSubmit={this.handleSubmit}>
-//            {/* <div className="form__error-wrapper">
-//              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-//              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-//              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-//            </div> */}
-//            <Link to={`/register`}>
-//              <Button>
-//                Create Organization
-//              </Button>
-//            </Link>
-//            <br></br>
-//            <div className="form__field-wrapper">
-//
-//              <label className="form__field-label" htmlFor="username">Username</label>
-//              <br></br>
-//              <input className="form__field-input" type="text" id="username"
-//                     placeholder="Username" ref="usernameInput"
-//                     onChange={this.props.resetLoginMessage} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-//            </div>
-//            <div className="form__field-wrapper">
-//              <label className="form__field-label" htmlFor="password">Password</label>
-//              <br></br>
-//              <input className="form__field-input" id="password" type="password"
-//                     ref="passwordInput" onChange={this.props.resetLoginMessage} placeholder="••••••••••"/>
-//               <p className="form__error form__error--wrong-password">Wrong password.</p>
-//            </div>
-//            <div className="form__submit-btn-wrapper">
-//                <Button type="submit">Login</Button>
-//                <p id="loginMessage" className="">{this.props.messages.login}</p>
-//            </div>
-//          </form>
-//         </Panel>
-//       </div>
-//     );
-//   }
-// });
-
-// {/* <div className="form__error-wrapper">
-//              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-//              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-//              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-//            </div> */}
-//            <Link to={`/register`}>
-//              <Button>
-//                Create Organization
-//              </Button>
-//            </Link>
-//            <FormGroup controlId="loginPanel">
-//              <ControlLabel>Username</ControlLabel>
-//              <FormControl type="text" placeholder="Username" ref="user" onChange={this.props.resetLoginMessage}/>
-//              <ControlLabel>Password</ControlLabel>
-//              <FormControl type="text" ref="pass" placeholder="••••••••••"/>
-//              <Button className="form__submit-btn" onClick={this.handleSubmit}>Login</Button>
-//            </FormGroup>
