@@ -3,12 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import  store  from '../store';
 import { browserHistory } from 'react-router';
-import { PageHeader } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Panel } from 'react-bootstrap';
-import { Form, FormGroup } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
-import { ControlLabel } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader } from 'react-bootstrap';
 
 
 const Login = React.createClass({
@@ -32,9 +27,9 @@ const Login = React.createClass({
      <div>
        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
        <Button>
-       <Link to={`/register`}>
-        Create Organization
-       </Link>
+         <Link to={`/register`}>
+          Create Organization
+         </Link>
        </Button>
          <Panel id="loginPanel">
            <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>

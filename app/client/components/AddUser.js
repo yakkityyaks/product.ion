@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { findDOMNode } from 'react-dom';
+import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader, Radio } from 'react-bootstrap';
 
 const AddUser = React.createClass({
 
@@ -34,8 +36,8 @@ const AddUser = React.createClass({
 
   handleSubmit (event) {
     event.preventDefault();
-    let username = this.refs.usernameInput.value;
-    let password = this.refs.passwordInput.value;
+    let username = findDOMNode(this.refs.usernameInput).value,
+    password = findDOMNode(this.refs.passwordInput).value
     let perm = document.querySelector('input[name="user-class"]:checked').value;
 
     this.props.addNewUser(username, password, perm);
@@ -43,52 +45,37 @@ const AddUser = React.createClass({
 
   render() {
     return (
-      <div className="radio-div">
-        <h2 className="form-page__form-heading">select a user type</h2>
-        <ul className="form__radio">
-          <li>
-          <input type="radio" id="select-admin" name="user-class" ref="admin" value="0" />
-            <label htmlFor="select-admin"> ADMIN</label>
-            <div className="check"></div>
-          </li>
-          <li>
-          <input type="radio" id="select-producer" name="user-class" ref="producer" value="1" />
-            <label htmlFor="select-producer"> PRODUCER</label>
-            <div className="check"></div>
-          </li>
-          <li>
-          <input type="radio" id="select-user" name="user-class" ref="user" value="2" />
-            <label htmlFor="select-user"> USER</label>
-            <div className="check"></div>
-          </li>
-        </ul>
-        <br></br>
-        <form className="form" onSubmit={this.handleSubmit}>
-           {/* <div className="form__error-wrapper">
-             <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-             <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-           </div> */}
-           <br></br>
+      <div>
+        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
+        <div>
+          <Radio id="userRadio" name="user-class" ref="admin" value="0" />
+          <ControlLabel> ADMIN</ControlLabel>
 
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="username">Username</label>
+          <Radio id="userRadio" name="user-class" ref="producer" value="1" />
+          <ControlLabel> PRODUCER</ControlLabel>
+
+          <Radio id="userRadio" name="user-class" ref="user" value="2" />
+          <ControlLabel> USER</ControlLabel>
+        </div>
+        <br></br>
+        <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
+           <br></br>
+           <div>
+             <ControlLabel>Username</ControlLabel>
              <br></br>
-             <input className="form__field-input" type="text" id="username"
-                    placeholder="Enter Username" ref="usernameInput"
-                    autoCorrect="off" autoCapitalize="off" spellCheck="false"
-                    onBlur={this.generate} required/>
+             <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
+             autoCorrect="off" autoCapitalize="off" spellCheck="false" onBlur={this.generate} required/>
            </div>
-           <div className="form__field-wrapper">
-             <label className="form__field-label" htmlFor="password">Password Generator</label>
+           <div>
+             <ControlLabel>Password Generator</ControlLabel>
              <br></br>
-             <input className="form__field-input" id="password" type="text"
+             <FormControl id="password" type="text"
                 ref="passwordInput" placeholder="Temporary Password Will Be Generated"/>
            </div>
-
-           <div className="form__submit-btn-wrapper">
-               <button className="form__submit-btn" type="submit"> CREATE USER</button>
+           <div>
+             <Button type="submit"> CREATE USER</Button>
            </div>
-         </form>
+         </Form>
        </div>
     );
   }
