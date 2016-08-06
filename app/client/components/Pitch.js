@@ -127,7 +127,7 @@ const Pitch = React.createClass({
              ref="endDate" />
            </div>
            <div className="form__submit-btn-wrapper">
-             <Button onClick={this.handleSubmit}>  
+             <Button onClick={this.handleSubmit}>
                Submit your Pitch!
              </Button>
            </div>
@@ -136,5 +136,3 @@ const Pitch = React.createClass({
     );
   }
 });
-
-export default Pitch;
