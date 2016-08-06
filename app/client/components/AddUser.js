@@ -46,7 +46,7 @@ const AddUser = React.createClass({
   render() {
     return (
       <div>
-        <PageHeader id="loginHeader"><small>Login</small></PageHeader>
+        <PageHeader id="loginHeader"><small>add a new user</small></PageHeader>
         <div>
           <Radio id="userRadio" name="user-class" ref="admin" value="0" />
           <ControlLabel> ADMIN</ControlLabel>
