@@ -62,12 +62,6 @@ const Settings = React.createClass({
          <div id = "settingsWindow">
            <div id="settingsMain">
              <form className="form" onSubmit={this.testing}>
-               {/* <div className="">
-                 <p className="">This username does not exist.</p>
-                 <p className="">Please fill out the entire form.</p>
-                 <p className="">Something went wrong, please try again!</p>
-               </div> */}
-
                <div className="">
                  <label className="" htmlFor="currentPassword">Current Password</label>
                  <input className="" type="password" placeholder="••••••••••"
