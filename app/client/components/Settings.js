@@ -97,10 +97,8 @@ const Settings = React.createClass({
                !user.perm && <UserList {...this.props}/>
              }
            </div>
-         </div>
-
-
-      </div>
+       </Panel>
+    </div>     
     );
   }
 });

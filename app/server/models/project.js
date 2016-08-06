@@ -11,7 +11,7 @@ var Project = Bookshelf.Model.extend({
 	},
 	budgets: function() {
 		return this.hasMany('Budget', 'projs_id');
-	}
+	},
 	org: function() {
 		return this.belongsTo('Organization', 'orgs_id');
 	},
