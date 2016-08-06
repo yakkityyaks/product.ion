@@ -152,6 +152,11 @@ function posts(state=[], action) {
             store.dispatch(push(`/dashboard/${joinedName}`));
           } else {
             console.log("You done fucked up");
+            store.dispatch({
+              type:"SET_LOGIN_MESSAGE",
+              message: "That user does not exist. Check your spelling?",
+              className: "errorMessage"
+            });
           }
         });
       return state;
