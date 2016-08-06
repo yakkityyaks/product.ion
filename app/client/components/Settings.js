@@ -2,7 +2,8 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import NavBar from './NavBar';
-import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader } from 'react-bootstrap';
+import AddUser from './AddUser';
+import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, Modal } from 'react-bootstrap';
 
 const Settings = React.createClass({
   testing (event) {
@@ -51,11 +52,23 @@ const Settings = React.createClass({
                </Link>
              </button>
            </div>
+
+           <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
+             <Modal.Header closeButton>
+               <Modal.Title>add a new user</Modal.Title>
+             </Modal.Header>
+             <Modal.Body>
+               <AddUser {...this.props} />
+             </Modal.Body>
+             <Modal.Footer>
+               <Button onClick={this.switchModal}>Close</Button>
+             </Modal.Footer>
+           </Modal>
+
            <br></br>
-           <div>
+
              <p className="orgName">{ this.props.organization.orgName }</p>
-           </div>
-           <div>
+
              <Form onSubmit={this.testing}>
                <div>
                  <ControlLabel >Current Password</ControlLabel>
@@ -76,7 +89,7 @@ const Settings = React.createClass({
                  </Button>
                 </div>
              </Form>
-           </div>
+
          </Panel>
       </div>
     );
