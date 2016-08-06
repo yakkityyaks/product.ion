@@ -2,7 +2,6 @@
 import React from 'react';
 // user curly braces for named
 import { render } from 'react-dom';
-// import css
 // import components
 import App from './components/App';
 import Dashboard from './components/Dashboard';
