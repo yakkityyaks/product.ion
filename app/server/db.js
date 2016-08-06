@@ -57,6 +57,15 @@ Promise.all([
   knex.schema.createTableIfNotExists('projs_users', function(table) {
     table.integer('projs_id').references('id').inTable('projs');
     table.integer('users_id').references('id').inTable('users');
+  }),
+
+  knex.schema.createTableIfNotExists('budgets', function(table) {
+    table.increments('id').primary();
+    table.integer('glCode');
+    table.string('subCategory');
+    table.string('Description');
+    table.float('Cost');
+    table.integer('projs_id').unsigned().references('id').inTable('projs');
   })
 ]);
 
