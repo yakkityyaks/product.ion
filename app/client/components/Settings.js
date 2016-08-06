@@ -35,7 +35,7 @@ const Settings = React.createClass({
           <NavBar {...this.props}/>
         </Panel>
         <Panel>
-          <h2 className=>welcome to your settings, { this.props.organization.user.name }!</h2>
+          <h2>welcome to your settings, { this.props.organization.user.name }!</h2>
           <div>
             <Button>
                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
