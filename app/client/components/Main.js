@@ -10,7 +10,7 @@ const Main = React.createClass({
 
     return (
       <div>
-        <Link to="/" className="nav__logo-wrapper">
+        <Link to="/">
           <PageHeader id="title">product.ion</PageHeader>
         </Link>
         { React.cloneElement(this.props.children, this.props) }
