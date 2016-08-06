@@ -59,38 +59,49 @@ const Settings = React.createClass({
            </button>
          </div>
          <br></br>
-         <div id="testRoot"></div>
-         {
-           user.perm === 0 && <UserList {...this.props}/>
-         }
-         <div>
-           <form className="form" onSubmit={this.testing}>
-             <div className="">
-               <p className="">This username does not exist.</p>
-               <p className="">Please fill out the entire form.</p>
-               <p className="">Something went wrong, please try again!</p>
-             </div>
+         <div id = "settingsWindow">
+           <div id="settingsMain">
+             <form className="form" onSubmit={this.testing}>
+               {/* <div className="">
+                 <p className="">This username does not exist.</p>
+                 <p className="">Please fill out the entire form.</p>
+                 <p className="">Something went wrong, please try again!</p>
+               </div> */}
 
-             <div className="">
-               <label className="" htmlFor="currentPassword">Current Password</label>
-               <input className="" type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <br></br>
-             <div className="">
-               <label className="" htmlFor="newPassword">New Password</label>
-               <input className="" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <div className="">
-               <label className="" htmlFor="newPassword">Confirm New Password</label>
-               <input className="" type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </div>
-             <div>
-               <button className="">
-                 Submit Change
-               </button>
-              </div>
-           </form>
+               <div className="">
+                 <label className="" htmlFor="currentPassword">Current Password</label>
+                 <input className="" type="password" placeholder="••••••••••"
+                        ref="passwordInput" autoCorrect="off" autoCapitalize="off" s
+                        pellCheck="false" required />
+               </div>
+               <br></br>
+               <div className="">
+                 <label className="" htmlFor="newPassword">New Password</label>
+                 <input className="" type="password" placeholder="••••••••••"
+                        ref="newPasswordInput" autoCorrect="off" autoCapitalize="off"
+                        spellCheck="false" required />
+               </div>
+               <div className="">
+                 <label className="" htmlFor="newPassword">Confirm New Password</label>
+                 <input className="" type="password" placeholder="••••••••••"
+                        ref="newPasswordInput" autoCorrect="off" autoCapitalize="off"
+                        spellCheck="false" required />
+               </div>
+               <div>
+                 <button className="">
+                   Submit Change
+                 </button>
+                </div>
+             </form>
+           </div>
+           <div id="settingsOptional">
+             {
+               user.perm === 0 && <UserList {...this.props}/>
+             }
+           </div>
          </div>
+
+
       </div>
     );
   }
