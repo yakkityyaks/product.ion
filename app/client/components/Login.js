@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import  store  from '../store';
 import { browserHistory } from 'react-router';
@@ -10,6 +11,7 @@ const Login = React.createClass({
   getInitialState() {
     return {username: "", password: ""};
   },
+
   componentWillMount() {
     if (this.props.organization.user) {
       var joinedName = this.props.organization.orgName.split(" ").join("");
@@ -26,6 +28,7 @@ const Login = React.createClass({
     event.preventDefault();
     this.props.postLogin(this.state.username, this.state.password);
   },
+
   render() {
     return (
      <div className="center-block" id="loginPanel">
@@ -64,21 +67,3 @@ const Login = React.createClass({
 });
 
 export default Login;
-
-// {/* <div className="form__error-wrapper">
-//              <p className="form__error form__error--username-not-registered">This username does not exist.</p>
-//              <p className="form__error form__error--field-missing">Please fill out the entire form.</p>
-//              <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-//            </div> */}
-//            <Link to={`/register`}>
-//              <Button>
-//                Create Organization
-//              </Button>
-//            </Link>
-//            <FormGroup controlId="loginPanel">
-//              <ControlLabel>Username</ControlLabel>
-//              <FormControl type="text" placeholder="Username" ref="user" onChange={this.props.resetLoginMessage}/>
-//              <ControlLabel>Password</ControlLabel>
-//              <FormControl type="text" ref="pass" placeholder="••••••••••"/>
-//              <Button className="form__submit-btn" onClick={this.handleSubmit}>Login</Button>
-//            </FormGroup>
