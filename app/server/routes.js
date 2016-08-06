@@ -147,5 +147,23 @@ module.exports = function routes(app){
     console.log(req.params)
     var wildcard = req.params['0']
     res.redirect('/')
-  })
+  });
+
+  app.post('/api/update/expense', function(req, res) {
+    Expense.changeExpense(req.body.description, req.body.data, function(expense) {
+      res.status(201).json(expense);
+    })
+  });
+
+  app.post('/api/update/proj' function(req, res) {
+
+  });
+
+  app.post('/api/update/user', function(req, res) {
+
+  });
+
+  app.post('/api/update/org', function(req, res) {
+
+  });
 };
