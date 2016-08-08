@@ -133,6 +133,13 @@ export function hydrateExpenses(projectId, expenses) {
   };
 }
 
+export function postNewExpense(data) {
+  return {
+    type: "NEW_EXPENSE",
+    data
+  };
+}
+
 export function setCurrentExpenseProject(expenses) {
   return {type: "SET_CURRENT_EXPENSE_PROJECT", expenses};
 }

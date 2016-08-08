@@ -9,13 +9,74 @@ import { Panel } from 'react-bootstrap';
 
 const Expenses = React.createClass({
   getInitialState() {
-    return {testing: ""};
+    return {
+      type: null,
+      vertical: null,
+      vendor: null,
+      description: null,
+      cost: null,
+      method: null,
+      category: null,
+      glCode: null,
+      dateSpent: null,
+      dateTracked: null,
+      cost: null,
+      projs_id: this.props.expenses.id
+    };
   },
   onSubmit(e) {
     e.preventDefault();
-    console.log("ding ding ding, event is ", e);
-    console.log("Ref is ", this.refs);
-    console.log("State is ", this.state);
+    this.props.postNewExpense(this.state);
+  },
+  handleChangeType(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({type: e.target.value});
+  },
+  handleChangeVertical(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({vertical: e.target.value});
+  },
+  handleChangeVendor(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({vendor: e.target.value});
+  },
+  handleChangeDescription(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({description: e.target.value});
+  },
+  handleChangeCost(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({cost: e.target.value});
+  },
+  handleChangeMethod(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({method: e.target.value});
+  },
+  handleChangeCategory(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({category: e.target.value});
+  },
+  handleChangeGl(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({glCode: e.target.value});
+  },
+  handleChangeDateSpent(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({dateSpent: e.target.value});
+  },
+  handleChangeDateTracked(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({dateTracked: e.target.value});
   },
   render() {
     return (
@@ -23,7 +84,7 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3> ProjectName goes here - ProjectID goes here -</h3>
+        <h3>{" ProjectName goes here - ProjectID goes here -" + this.props.expenses.id}</h3>
         <Form onSubmit={this.onSubmit}>
         <FormGroup controlId="whatToDo">
         <Table condensed style={{width: "100%"}}>
@@ -50,93 +111,91 @@ const Expenses = React.createClass({
               }
               <tr>
                 <td>
-                  <FormControl componentClass="select" placeholder="Type" ref="exType">
-                    <option value="select">Video Originals</option>
-                    <option value="select">Branded</option>
-                    <option value="select">Editorial</option>
-                    <option value="select">Dept Expenses</option>
+                  <FormControl componentClass="select" placeholder="Type" ref="exType" onChange={this.handleChangeType}>
+                    <option value="Video Originals">Video Originals</option>
+                    <option value="Branded">Branded</option>
+                    <option value="Editorial">Editorial</option>
+                    <option value="Debt Expenses">Dept Expenses</option>
                   </FormControl>
                 </td>
                 <td>
-                  <FormControl componentClass="select" placeholder="Vertical">
-                    <option value="select">Food</option>
-                    <option value="select">Beauty</option>
-                    <option value="select">Fashion & Style</option>
-                    <option value="select">News & Politics</option>
-                    <option value="select">News & Celeb</option>
-                    <option value="select">Wellness</option>
-                    <option value="select">Entertainment</option>
+                  <FormControl componentClass="select" placeholder="Vertical" onChange={this.handleChangeVertical}>
+                    <option value="Food">Food</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Fashion & Style">Fashion & Style</option>
+                    <option value="News & Politics">News & Politics</option>
+                    <option value="News & Celeb">News & Celeb</option>
+                    <option value="Wellness">Wellness</option>
+                    <option value="Entertainment">Entertainment</option>
                   </FormControl>
                 </td>
-                <td><FormControl type="text" placeholder = "vendor"
-                    value = {this.state.testing} /></td>
-                <td><FormControl type="text" placeholder ="description" /></td>
-                <td><FormControl type="text" placeholder ="cost" /></td>
+                <td><FormControl type="text" placeholder="Vendor" onChange={this.handleChangeVendor}/></td>
+                <td><FormControl type="text" placeholder ="description" onChange={this.handleChangeDescription}/></td>
+                <td><FormControl type="text" placeholder ="cost" onChange={this.handleChangeCost}/></td>
                 <td>
-                  <FormControl componentClass="select" placeholder="Method">
-                    <option value="select">Credit Card</option>
-                    <option value="select">Invoice</option>
-                    <option value="select">Payroll</option>
-                    <option value="select">Petty Cash</option>
-                    <option value="select">Misc</option>
+                  <FormControl componentClass="select" placeholder="Method" onChange={this.handleChangeMethod}>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Invoice">Invoice</option>
+                    <option value="Payroll">Payroll</option>
+                    <option value="Petty Cash">Petty Cash</option>
+                    <option value="Misc">Misc</option>
                   </FormControl>
                 </td>
                 <td>
-                  <FormControl componentClass="select" placeholder="Category">
-                    <option value="select">Consultant</option>
-                    <option value="select">Writer</option>
-                    <option value="select">Director</option>
-                    <option value="select">Producer</option>
-                    <option value="select">Associate Producer</option>
-                    <option value="select">Production Assistant</option>
-                    <option value="select">Research Materials</option>
-                    <option value="select">On-Camera Talent</option>
-                    <option value="select">Make-Up Artist</option>
-                    <option value="select">Hair Stylist</option>
-                    <option value="select">Wardrobe & Stylist</option>
-                    <option value="select">Wardrobe Allowance</option>
-                    <option value="select">Director of Photography</option>
-                    <option value="select">Camera Operator</option>
-                    <option value="select">Assistant Camera</option>
-                    <option value="select">Audio Operator</option>
-                    <option value="select">Gaffer/Grip/Best-Boy</option>
-                    <option value="select">Photographer</option>
-                    <option value="select">Set PA</option>
-                    <option value="select">Intern</option>
-                    <option value="select">Camera Rental</option>
-                    <option value="select">Lighting Rental</option>
-                    <option value="select">Misc Equipment Rental</option>
-                    <option value="select">Location Fees/Permits</option>
-                    <option value="select">Location Manager</option>
-                    <option value="select">Set Design</option>
-                    <option value="select">Meals & Craft Service</option>
-                    <option value="select">Taxis/Local/Transpo</option>
-                    <option value="select">Airfare</option>
-                    <option value="select">Hotel</option>
-                    <option value="select">Car Rental</option>
-                    <option value="select">Gas Tolls Parking</option>
-                    <option value="select">Editor</option>
-                    <option value="select">Assistant Editor</option>
-                    <option value="select">Edit Suite</option>
-                    <option value="select">Design & Motion GFX</option>
-                    <option value="select">Transcription</option>
-                    <option value="select">Color Correction</option>
-                    <option value="select">Audio Mix</option>
-                    <option value="select">Misc Post</option>
-                    <option value="select">Photo Licensing</option>
-                    <option value="select">Footage Licensing</option>
-                    <option value="select">Music Licensing</option>
-                    <option value="select">Insurance</option>
-                    <option value="select">Hosting Service</option>
-                    <option value="select">Third Party Production</option>
-                    <option value="select">Third Party Production/Licensing</option>
+                  <FormControl componentClass="select" placeholder="Category" onChange={this.handleChangeCategory}>
+                    <option value="Consultant">Consultant</option>
+                    <option value="Writer">Writer</option>
+                    <option value="Director">Director</option>
+                    <option value="Producer">Producer</option>
+                    <option value="Associate Producer">Associate Producer</option>
+                    <option value="Production Assistant">Production Assistant</option>
+                    <option value="Research Materials">Research Materials</option>
+                    <option value="On-Camera Talent">On-Camera Talent</option>
+                    <option value="Make-Up Artist">Make-Up Artist</option>
+                    <option value="Hair Stylist">Hair Stylist</option>
+                    <option value="Wardrobe & Stylist">Wardrobe & Stylist</option>
+                    <option value="Wardrobe Allowance">Wardrobe Allowance</option>
+                    <option value="Director of Photography">Director of Photography</option>
+                    <option value="Camera Operator">Camera Operator</option>
+                    <option value="Assistant Camera">Assistant Camera</option>
+                    <option value="Audio Operator">Audio Operator</option>
+                    <option value="Gaffer/Grip/Best-Boy">Gaffer/Grip/Best-Boy</option>
+                    <option value="Photographer">Photographer</option>
+                    <option value="Set PA">Set PA</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Camera Rental">Camera Rental</option>
+                    <option value="Lighting Rental">Lighting Rental</option>
+                    <option value="Misc Equipment Rental">Misc Equipment Rental</option>
+                    <option value="Location Fees/Permits">Location Fees/Permits</option>
+                    <option value="Location Manager">Location Manager</option>
+                    <option value="Set Design">Set Design</option>
+                    <option value="Meals & Craft Service">Meals & Craft Service</option>
+                    <option value="Taxis/Local/Transpo">Taxis/Local/Transpo</option>
+                    <option value="Airfare">Airfare</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Car Rental">Car Rental</option>
+                    <option value="Gas Tolls Parking">Gas Tolls Parking</option>
+                    <option value="Editor">Editor</option>
+                    <option value="Assistant Editor">Assistant Editor</option>
+                    <option value="Edit Suite">Edit Suite</option>
+                    <option value="Design & Motion GFX">Design & Motion GFX</option>
+                    <option value="Transcription">Transcription</option>
+                    <option value="Color Correction">Color Correction</option>
+                    <option value="Audio Mix">Audio Mix</option>
+                    <option value="Misc Post">Misc Post</option>
+                    <option value="Photo Licensing">Photo Licensing</option>
+                    <option value="Footage Licensing">Footage Licensing</option>
+                    <option value="Music Licensing">Music Licensing</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="Hosting Service">Hosting Service</option>
+                    <option value="Third Party Production">Third Party Production</option>
+                    <option value="Third Party Production/Licensing">Third Party Production/Licensing</option>
 
                   </FormControl>
                 </td>
-                {/* <td><FormControl type="text" placeholder ={"category"} /></td> */}
-                <td><FormControl type="text" placeholder ={"glCode"} /></td>
-                <td><FormControl type="date" placeholder ={"dateSpent"} /></td>
-                <td><FormControl type="date" placeholder ={"dateTracked"} /></td>
+                <td><FormControl type="text" placeholder ="glCode" onChange={this.handleChangeGl}/></td>
+                <td><FormControl type="date" placeholder ="dateSpent" onChange={this.handleChangeDateSpent}/></td>
+                <td><FormControl type="date" placeholder ="dateTracked" onChange={this.handleChangeDateTracked}/></td>
               </tr>
             </tbody>
           {/* </Form> */}

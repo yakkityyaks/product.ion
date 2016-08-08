@@ -26,7 +26,7 @@ Promise.all([
   knex.schema.createTableIfNotExists('projs', function(table) {
     table.increments('id').primary();
     table.string('name');
-    table.increments('projId');
+    table.integer('projId');
     table.string('type');
     table.integer('numAssets');
     table.float('reqBudget');
@@ -63,8 +63,8 @@ Promise.all([
     table.increments('id').primary();
     table.integer('glCode');
     table.string('subCategory');
-    table.string('Description');
-    table.float('Cost');
+    table.string('description');
+    table.float('cost');
     table.integer('projs_id').unsigned().references('id').inTable('projs');
   })
 ]);

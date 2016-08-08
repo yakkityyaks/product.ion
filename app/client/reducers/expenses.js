@@ -22,14 +22,20 @@ function expenses(state = [], action) {
     case "HYDRATE_EXPENSES":
       var id = "" + action.projectId;
       state.current = action.expenses;
-      state[id] = action.expenses;
+      state.id = action.projectId;
 
       return state;
     case "SET_CURRENT_EXPENSE_PROJECT":
       state.current = action.expenses;
       return state;
     case "NEW_EXPENSE":
-      console.log("You want to make a new expense!");
+      ApiCall.registerExpense(action.data).then(function(res) {
+        console.log(res.data);
+        store.dispatch({type:'GET_EXPENSES', projectId: res.data.projs_id});
+      })
+      .catch(function(err) {
+        console.error(err);
+      })
       break;
     default:
       return state;
