@@ -11,6 +11,7 @@ import Pitch from './components/Pitch';
 import AddUser from './components/AddUser';
 import Settings from './components/Settings';
 import Expenses from './components/Expenses';
+import Budget from './components/Budget';
 
 // Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -34,6 +35,7 @@ const router = (
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
+        <Route path='/budget' component= { Budget }></Route>
       </Route>
     </Router>
   </Provider>
