@@ -41,25 +41,30 @@ const NavBar = React.createClass({
                   <a>product.ion</a>
                 </Link>
               </Navbar.Brand>
-            </Navbar.Header>    
+            </Navbar.Header>
             <Nav>
               <NavItem eventKey={1} onClick={this.selectDashboard}>
-                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>  
+                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
                   Projects
-                </Link>  
+                </Link>
               </NavItem>
               <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/settings'}>  
-                  Settings
-                </Link>  
+                <Link to={'/csvdrop'}>
+                  CSV TEST
+                </Link>
               </NavItem>
-            </Nav>  
-            <Nav pullRight>  
+              <NavItem eventKey={2} onClick={this.selectSettings}>
+                <Link to={'/imagedrop'}>
+                  IMG TEST
+                </Link>
+              </NavItem>
+            </Nav>
+            <Nav pullRight>
               <NavItem eventKey={1} onClick={this.logout}>
                 Logout
               </NavItem>
             </Nav>
-          </Navbar>    
+          </Navbar>
         </div>
     );
   }
