@@ -1,7 +1,9 @@
-
+import React from 'react';
+import Dropzone from 'react-dropzone';
+import Papa from 'papaparse';
 
 const CSVDrop = React.createClass({
-  
+
   handleDrop (event) {
     let options = { input: false },
     dropZone = new FileDrop("dropCSV", options),
@@ -31,12 +33,14 @@ const CSVDrop = React.createClass({
     jsonZone.value = jsonString;
   },
 
+  Papa.parse(file, config)
+
 
   render () {
     return (
       <div>
         <h3>Drop your CSV here</h3>
-        <label for="headers" >This CSV has headers: </label>
+        <label for="headers" >This CSV has headers: <input type="checkbox" id="headers"/></label>
         <textarea type="text" id="headers" onDrop={ this.handleDrop } readOnly>
           Drag & Drop CSV File Here
         </textarea>
