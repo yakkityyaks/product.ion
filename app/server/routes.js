@@ -155,7 +155,7 @@ module.exports = function routes(app){
     })
   });
 
-  app.post('/api/update/proj' function(req, res) {
+  app.post('/api/update/proj', function(req, res) {
 
   });
 
