@@ -186,7 +186,7 @@ module.exports = function routes(app){
     });
   });
 
-  app.post('/api/update/budget' function(req, res) {
+  app.post('/api/update/budget', function(req, res) {
     Budget.getBudget(req.body.description, function(budg) {
       budg ? res.status(201).json(budg.set(req.body.data)) : res.sendStatus(404);
     });
