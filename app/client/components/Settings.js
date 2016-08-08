@@ -37,13 +37,16 @@ const Settings = React.createClass({
   },
 
   render() {
+    const { orgName, user } = this.props.organization;
+    const permName = { 0: "an Admin", 1: "a Producer", 2: "a User"};
     return (
-      <div style={{fontSize : "14px"}}>
+      <div className="settings">
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
         <Panel>
-          <h2>welcome to your settings, { this.props.organization.user.name }!</h2>
+          <h2>Welcome to your settings page, {user.name }!</h2>
+          <h2>You are {permName[user.perm]} of { orgName }</h2>
           <div>
             <Button>
                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
@@ -71,29 +74,41 @@ const Settings = React.createClass({
            </Modal>
 
            <br></br>
-
-             <p className="orgName">{ this.props.organization.orgName }</p>
-
-           <Form onSubmit={this.testing}>
-             <FormGroup>
-               <ControlLabel >Current Password</ControlLabel>
-               <FormControl type="password" placeholder="••••••••••" ref="passwordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </FormGroup>
-             <br></br>
-             <FormGroup>
-               <ControlLabel>New Password</ControlLabel>
-               <FormControl type="password" placeholder="••••••••••" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </FormGroup>
-             <FormGroup>
-               <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
-               <FormControl type="password" placeholder="••••••••••" ref="newPasswordInput" autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-             </FormGroup>
-             <div>
-               <Button>
-                 Submit Change
-               </Button>
+           <div id="settingsWindow">
+             <div id="settingsMain">
+               <Form onSubmit={this.testing}>
+                 <FormGroup>
+                   <ControlLabel >Current Password</ControlLabel>
+                   <FormControl type="password" placeholder="••••••••••"
+                                ref="passwordInput" autoCorrect="off" autoCapitalize="off"
+                                spellCheck="false" required />
+                 </FormGroup>
+                 <br></br>
+                 <FormGroup>
+                   <ControlLabel>New Password</ControlLabel>
+                   <FormControl type="password" placeholder="••••••••••"
+                                autoCorrect="off" autoCapitalize="off"
+                                spellCheck="false" required />
+                 </FormGroup>
+                 <FormGroup>
+                   <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
+                   <FormControl type="password" placeholder="••••••••••"
+                                ref="newPasswordInput" autoCorrect="off"
+                                autoCapitalize="off" spellCheck="false" required />
+                 </FormGroup>
+                 <div>
+                   <Button>
+                     Submit Change
+                   </Button>
+                  </div>
+                </Form>
               </div>
-           </Form>
+             <div id="settingsOptional">
+              {
+                !user.perm && <UserList {...this.props }/>
+              }
+            </div>
+          </div>
          </Panel>
       </div>
     );
