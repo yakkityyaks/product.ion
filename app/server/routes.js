@@ -164,31 +164,42 @@ module.exports = function routes(app){
 
   app.post('/api/update/expense', function(req, res) {
     Expense.getExpense(req.body.description, function(exp) {
-      exp ? res.status(201).json(exp.set(req.body.data)) : res.sendStatus(404);
+      exp ? exp.save(req.body.data).then(function(exp) {
+        res.status(201).json(exp);
+      }) : res.sendStatus(404);
     });
   });
 
   app.post('/api/update/proj', function(req, res) {
     Project.getProj(req.body.projId, function(proj) {
-      proj ? res.status(201).json(proj.set(req.body.data)) : res.sendStatus(404);
+      proj ? proj.save(req.body.data).then(function(proj) {
+        res.status(201).json(proj);
+      }) : res.sendStatus(404);
     });
   });
 
   app.post('/api/update/user', function(req, res) {
     User.getUser(req.body.username, function(user) {
-      user ? res.status(201).json(user.set(req.body.data)) : res.sendStatus(404);
+      user ? user.save(req.body.data).then(function (user) {
+        res.status(201).json(user);
+      }) : res.sendStatus(404);
+      // user.set(req.body.data);
     });
   });
 
   app.post('/api/update/org', function(req, res) {
     Org.getOrg(req.body.orgName, function(org) {
-      org ? res.status(201).json(org.set(req.body.data)) : res.sendStatus(404);
+      org ? org.save(req.body.data).then(function(org) {
+        res.status(201).json(org);
+      }) : res.sendStatus(404);
     });
   });
 
   app.post('/api/update/budget', function(req, res) {
     Budget.getBudget(req.body.description, function(budg) {
-      budg ? res.status(201).json(budg.set(req.body.data)) : res.sendStatus(404);
+      budg ? budg.save(req.body.data).then(function(budg) {
+        res.status(201).json(budg);
+      }) : res.sendStatus(404);
     });
   });
 };
