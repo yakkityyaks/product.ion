@@ -29,7 +29,9 @@ const NavBar = React.createClass({
   selectSettings() {
     this.props.changeNavKey(2);
   },
-
+  selectBudget() {
+    this.props.changeNavKey(3);
+  },
   render() {
 
     return (
@@ -41,25 +43,30 @@ const NavBar = React.createClass({
                   <a>product.ion</a>
                 </Link>
               </Navbar.Brand>
-            </Navbar.Header>    
+            </Navbar.Header>
             <Nav>
               <NavItem eventKey={1} onClick={this.selectDashboard}>
-                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>  
+                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
                   Projects
-                </Link>  
+                </Link>
               </NavItem>
               <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/settings'}>  
+                <Link to={'/settings'}>
                   Settings
-                </Link>  
+                </Link>
               </NavItem>
-            </Nav>  
-            <Nav pullRight>  
+              <NavItem eventKey={3} onClick={this.selectBudget}>
+              <Link to={'/budget'}>
+              Budget
+              </Link>
+              </NavItem>
+            </Nav>
+            <Nav pullRight>
               <NavItem eventKey={1} onClick={this.logout}>
                 Logout
               </NavItem>
             </Nav>
-          </Navbar>    
+          </Navbar>
         </div>
     );
   }

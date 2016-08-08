@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
-import { Table } from 'react-bootstrap'
+import { Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 const Projects = React.createClass({
 
