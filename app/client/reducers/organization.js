@@ -133,7 +133,7 @@ function posts(state=[], action) {
         .catch(function(err) {
           store.dispatch({
             type:"SET_LOGIN_MESSAGE",
-            message: "Invalid username/password combination. Please try again",
+            message: "That username doesn't exist. Check your spelling?",
             className: "errorMessage"
           });
           console.error(err);
@@ -154,7 +154,7 @@ function posts(state=[], action) {
             console.log("You done fucked up");
             store.dispatch({
               type:"SET_LOGIN_MESSAGE",
-              message: "That user does not exist. Check your spelling?",
+              message: "What happened? Wrong password. That's what happened.",
               className: "errorMessage"
             });
           }

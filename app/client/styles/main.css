@@ -1,9 +1,7 @@
 
-#loginHeader {
-	text-align: center;
-}
 
 #loginPanel {
+	width: 500px;
 	display: block;
 	float: none;
 	margin-left: auto;
