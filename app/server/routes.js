@@ -1,3 +1,4 @@
+var Budget = require('./controllers/budgetController.js');
 var Expense = require('./controllers/expenseController.js');
 var Organization = require('./controllers/organizationController.js');
 var Project = require('./controllers/projectController.js');
@@ -103,6 +104,18 @@ module.exports = function routes(app){
     });
   });
 
+  app.post('/api/register/budget', function(req, res) {
+    Budget.makeBudget(req.body.data, function(budg) {
+      budg ? res.status(201).json(budg) : res.sendStatus(404);
+    });
+  });
+
+  app.post('/api/get/budget', function(req, res) {
+    Budget.getBudget(req.body.description, function(budg) {
+      budg ? res.status(201).json(budg) : res.sendStatus(404);
+    })
+  })
+
   app.post('/api/get/org', function(req, res) {
     // input: req.body.orgName
     // outpout: org w/ attached users and projects || 404
@@ -150,20 +163,32 @@ module.exports = function routes(app){
   });
 
   app.post('/api/update/expense', function(req, res) {
-    Expense.changeExpense(req.body.description, req.body.data, function(expense) {
-      res.status(201).json(expense);
-    })
+    Expense.getExpense(req.body.description, function(exp) {
+      exp ? res.status(201).json(exp.set(req.body.data)) : res.sendStatus(404);
+    });
   });
 
   app.post('/api/update/proj', function(req, res) {
-
+    Project.getProj(req.body.projId, function(proj) {
+      proj ? res.status(201).json(proj.set(req.body.data)) : res.sendStatus(404);
+    });
   });
 
   app.post('/api/update/user', function(req, res) {
-
+    User.getUser(req.body.username, function(user) {
+      user ? res.status(201).json(user.set(req.body.data)) : res.sendStatus(404);
+    });
   });
 
   app.post('/api/update/org', function(req, res) {
+    Org.getOrg(req.body.orgName, function(org) {
+      org ? res.status(201).json(org.set(req.body.data)) : res.sendStatus(404);
+    });
+  });
 
+  app.post('/api/update/budget' function(req, res) {
+    Budget.getBudget(req.body.description, function(budg) {
+      budg ? res.status(201).json(budg.set(req.body.data)) : res.sendStatus(404);
+    });
   });
 };
