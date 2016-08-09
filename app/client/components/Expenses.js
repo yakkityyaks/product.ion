@@ -190,19 +190,16 @@ const Expenses = React.createClass({
                     <option value="Hosting Service">Hosting Service</option>
                     <option value="Third Party Production">Third Party Production</option>
                     <option value="Third Party Production/Licensing">Third Party Production/Licensing</option>
-
                   </FormControl>
                 </td>
                 <td><FormControl type="text" placeholder ="glCode" onChange={this.handleChangeGl}/></td>
                 <td><FormControl type="date" placeholder ="dateSpent" onChange={this.handleChangeDateSpent}/></td>
                 <td><FormControl type="date" placeholder ="dateTracked" onChange={this.handleChangeDateTracked}/></td>
+                <td><Button>Submit</Button></td>
               </tr>
             </tbody>
           {/* </Form> */}
         </Table>
-        <Button type="submit">
-         Submit
-       </Button>
       </FormGroup>
       </Form>
       </div>
