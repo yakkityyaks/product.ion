@@ -1,7 +1,7 @@
 import ApiCall from "../utils/serverCalls";
 import store from "../store";
 
-function parse(state=[], action) {
+function parseCSV(state=[], action) {
   switch(action.type) {
     case "PARSE_CSV":
     ApiCall.parseCSV(action.object)
@@ -9,15 +9,21 @@ function parse(state=[], action) {
       // if(res.status === 201) {
         console.log("API CALL FOR PARSE WORKS ", res);
 
-        store.dispatch({ res.data });
-
+        store.dispatch({
+          type: "HYDRATE_TABLES",
+          res
+        });
 
       // }
     })
     .catch(function(err) {
       console.log(err);
     });
+    break;
+      case "HYDRATE_TABLES":
+      console.log("ACTION ", action);
   }
+  return state;
 }
 
-export default parse;
+export default parseCSV;
