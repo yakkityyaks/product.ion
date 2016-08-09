@@ -9,6 +9,7 @@ const Login = React.createClass({
     return {username: "", password: ""};
   },
   componentWillMount() {
+    this.props.resetLoginMessage();
     if (this.props.organization.user) {
       var joinedName = this.props.organization.orgName.split(" ").join("");
       browserHistory.push(`/dashboard/${joinedName}`);
@@ -51,7 +52,7 @@ const Login = React.createClass({
                           onChange={this.handlePassChange} required/>
            </div>
            <div className="">
-               <p id="loginMessage" className="">{this.props.messages.login}</p>
+               <p id="loginMessage">{this.props.messages.login}</p>
                <Button type="submit">Login</Button>
            </div>
          </Form>

@@ -157,9 +157,9 @@ module.exports = function routes(app){
   });
 
   app.get('/*', function(req, res){
-    console.log(req.params)
-    var wildcard = req.params['0']
-    res.redirect('/')
+    console.log(req.params);
+    var wildcard = req.params['0'];
+    res.redirect('/');
   });
 
   app.post('/api/update/expense', function(req, res) {
