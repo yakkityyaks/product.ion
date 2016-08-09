@@ -49,8 +49,8 @@ const NavBar = React.createClass({
                 </Link>
               </NavItem>
               <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/csvdrop'}>
-                  CSV TEST
+                <Link to={'/settings'}>
+                  Settings
                 </Link>
               </NavItem>
               <NavItem eventKey={2} onClick={this.selectSettings}>
