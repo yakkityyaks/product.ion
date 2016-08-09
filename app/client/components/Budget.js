@@ -2,21 +2,9 @@ import React from 'react';
 import { Button, Form, FormGroup,
   DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
+import CustomSearch from './CustomSearch';
 
 import cata from "../data/public";
-
-var SomeItem = React.createClass({
-	handleClick: function() {
-    	// this.props.onSelectItem(this.props.id, !this.props.selected);
-  },
-  render: function() {
-    return (
-      <MenuItem onClick={this.handleClick}>
-        <FormControl type="text" placeholder="Type to filter..."
-          value={this.props.data.value} onChange={this.props.data.onChange}/>
-      </MenuItem>
-    );}
-});
 
 const Budget = React.createClass({
 
@@ -49,7 +37,7 @@ const Budget = React.createClass({
       this.resetNewBudgetField();
       this.setState({
         tempStore : newList,
-        total: this.state.total + budg.total
+        total: this.state.total/1 + budg.total/1
       });
     },
     removeBudgetNode(idx) {
@@ -78,6 +66,7 @@ const Budget = React.createClass({
       this.setState({
         newBudgetCode: cata[e].code,
         newBudgetLabel: cata[e].label,
+        filter: "",
         lockInputs: true
       });
     },
@@ -85,7 +74,7 @@ const Budget = React.createClass({
       const budgetDropdownItem = (node, idx) =>
       (
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
-          : <MenuItem eventKey={idx} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
+          : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
 
       return (
@@ -97,11 +86,12 @@ const Budget = React.createClass({
           )
           }
           <Form inline onSubmit={this.handleSubmit}><FormGroup>
-            <DropdownButton bsStyle={"default"} title={"Category"} id={`catSelect`}>
-              <SomeItem id={"5"} name={"testing"}
+            <DropdownButton bsStyle={"default"} title={"Category"} id="catSelect">
+              <CustomSearch id={"5"} name={"testing"}
                       data={{value: this.state.filter, onChange: this.setFilter}}/>
              {cata
-               .filter((node) => node.label.includes(this.state.filter))
+               .filter((node) =>
+                  node.label.toLowerCase().includes(this.state.filter))
                .map(budgetDropdownItem)
              }
             </DropdownButton>
