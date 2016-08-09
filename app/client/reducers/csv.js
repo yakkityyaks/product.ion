@@ -1,7 +1,7 @@
 import ApiCall from "../utils/serverCalls";
 import store from "../store";
 
-function parse(state=[], action) {
+function parseCSV(state=[], action) {
   switch(action.type) {
     case "PARSE_CSV":
     ApiCall.parseCSV(action.object)
@@ -19,9 +19,11 @@ function parse(state=[], action) {
     .catch(function(err) {
       console.log(err);
     });
+    break;
+      case "HYDRATE_TABLES":
+      console.log("ACTION ", action);
   }
-  case "HYDRATE_TABLES":
-    console.log("ACTION ", action);
+  return state;
 }
 
 export default parseCSV;

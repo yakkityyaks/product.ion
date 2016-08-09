@@ -30,6 +30,7 @@ const modals = {
 const navBar = {
   key: 1
 };
+const parseCSV = [];
 
 const defaultState = {
   projects,
@@ -38,7 +39,7 @@ const defaultState = {
   messages,
   modals,
   navBar,
-  csv
+  parseCSV
 };
 
 //middleware for logging changes in state.

@@ -3,30 +3,24 @@ import Papa from 'papaparse';
 import Dropzone from 'react-dropzone';
 
 const CSVDrop = React.createClass({
-
-// onDrop: function(files){
-//     var req = request.post('/upload');
-//     files.forEach((file)=> {
-//         req.attach(file.name, file);
-//     });
-//     req.end(callback);
-// }
-
-  onDrop (event) {
-    let csvObj;
-    let file = event.target.files[0];
-    console.log("FILEEE ", file);
+  // Papaparse takes a blob file as its first argument.
+  // Its second argument is a customizable configuration object. Here, we set the download to true or else the blob file will not be fully downloaded.
+  onDrop (file) {
+    console.log("EVENTS FROM DROPZONE ", file);
+    console.log("THIS IS ", this);
+    console.log("THIS.REFS IS ", this.refs);
     let that = this;
-    Papa.parse(file, {
-      complete: function(data) {
-        csvObj = data;
-        console.log("DATA ", csvObj.data);
-        console.log("this is ", this);
-        console.log("Props are ", that.props);
-        that.props.parseCSV(csvObj.data);
-
-        // call server to post/create data based on json.
-        // render data
+    Papa.parse(file[0].preview, {
+      header: true,
+      download: true,
+      complete: function(res) {
+        if(res.length !== 0) {
+          console.log("COMPLETE DATA ", res);
+          console.log("Props are ", that.props);
+          that.props.parseCSV(res.data);
+        } else {
+          reject('Nothing parsed')
+        }
       }
     });
   },
@@ -35,15 +29,9 @@ const CSVDrop = React.createClass({
     return (
       <div>
         <h3>Drop your CSV here</h3>
-        <div  className="csv">
-          <input type="file" className="file" name="file" onChange={this.onDrop} />
-          <div class="fakefile">
-            <input />
-            <img src="http://files.softicons.com/download/business-icons/pretty-office-iv-icons-by-custom-icon-design/ico/download.ico" />
-          </div>
-            <label htmlFor="file">Drop some CSV files here, or click to select files to upload.</label>
-        </div>
-        <div id="demo"></div>
+        <Dropzone type="file" ref="file" onDrop={this.onDrop}>
+          <div>Try dropping some files here, or click to select files to upload.</div>
+        </Dropzone>
       </div>
     )
   }
