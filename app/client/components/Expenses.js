@@ -195,7 +195,7 @@ const Expenses = React.createClass({
                 <td><FormControl type="text" placeholder ="glCode" onChange={this.handleChangeGl}/></td>
                 <td><FormControl type="date" placeholder ="dateSpent" onChange={this.handleChangeDateSpent}/></td>
                 <td><FormControl type="date" placeholder ="dateTracked" onChange={this.handleChangeDateTracked}/></td>
-                <td><Button>Submit</Button></td>
+                <td><Button onClick={this.onSubmit}>Submit</Button></td>
               </tr>
             </tbody>
           {/* </Form> */}

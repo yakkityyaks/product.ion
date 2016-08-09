@@ -57,43 +57,11 @@ const ExpenseNode = React.createClass({
     console.log(e.target.value);
     this.setState({dateTracked: e.target.value});
   },
-  componentWillMount() {
-    // this.props.editMode = false;
-    // this.props.editTable = () => (
-    //   <Form inline>
-    //     <tr>
-    //       <td><FormControl type="text" value={this.props.expense.type} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.vertical} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.vendor} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.description} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.cost} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.method} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.category} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.glCode} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.dateSpent} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.dateTracked} /></td>
-    //     </tr>
-    //   </Form>
-    // );
-    // this.props.displayTable = () => (
-    //   <tr>
-    //     <td>{this.props.expense.type}</td>
-    //     <td>{this.props.expense.vertical}</td>
-    //     <td>{this.props.expense.vendor}</td>
-    //     <td>{this.props.expense.description}</td>
-    //     <td>{this.props.expense.cost}</td>
-    //     <td>{this.props.expense.method}</td>
-    //     <td>{this.props.expense.category}</td>
-    //     <td>{this.props.expense.glCode}</td>
-    //     <td>{this.props.expense.dateSpent}</td>
-    //     <td>{this.props.expense.dateTracked}</td>
-    //   </tr>
-    // );
+  handleUpdate() {
 
   },
-  testing() {
-    console.log("Refs are ", this.refs.readToggle);
-    this.refs.readToggle.props.readOnly = false;
+  remove() {
+
   },
   render() {
     return (
@@ -183,8 +151,8 @@ const ExpenseNode = React.createClass({
           <td><FormControl type="text" value={this.state.glCode} onChange={this.handleChangeGl}/></td>
           <td><FormControl type="text" value={this.state.dateSpent} onChange={this.handleChangeDateSpent}/></td>
           <td><FormControl type="text" value={this.state.dateTracked} onChange={this.handleChangeDateTracked}/></td>
-          <td><Button>Update</Button></td>
-          <td><Button>Remove</Button></td>
+          <td><Button onClick={this.handleUpdate}>Update</Button></td>
+          <td><Button onClick={this.handleRemove}>Remove</Button></td>
         </tr>
     );
   }

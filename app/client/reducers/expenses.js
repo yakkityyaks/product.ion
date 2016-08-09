@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 function expenses(state = [], action) {
   switch (action.type) {
     case "GET_EXPENSES":
+      console.log(action);
       ApiCall.getExpensesByProjectId(action.projectId)
         .then((res) => {
           if (res.status === 201) {

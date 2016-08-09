@@ -26,7 +26,7 @@ let getProjectsByOrgName = (orgName) =>
   axios.post('/api/get/org', {orgName: orgName});
 
 let getExpensesByProjectId = (projectId) =>
-  axios.post('/api/get/proj', {projId: projectId});
+  axios.post('/api/get/proj', {id: projectId});
 
 let registerExpense = (data) =>
   axios.post('/api/register/expenses', {data: data});
