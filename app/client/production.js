@@ -13,6 +13,7 @@ import Settings from './components/Settings';
 import Expenses from './components/Expenses';
 import CSVDrop from './components/CSVDrop';
 import ImageDrop from './components/ImageDrop';
+import Budget from './components/Budget';
 
 // Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -35,6 +36,7 @@ const router = (
         <Route path='/expenses' component={ Expenses }></Route>
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/pitch' component = { Pitch }></Route>
+        <Route path='/budget' component = { Budget } />
         <Route path='/adduser' component = { AddUser }></Route>
         <Route path='/csvdrop' component={ CSVDrop }></Route>
         <Route path='/imagedrop' component={ ImageDrop }></Route>
