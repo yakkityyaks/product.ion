@@ -20,7 +20,7 @@ const Settings = React.createClass({
   handleSubmit (e) {
     e.preventDefault();
     const {user} = this.props.organization;
-    if (user.perm === 0) {
+    if (user.perm === 0 && this.state.newPass1 === this.state.newPass2) {
       let currentPassword = this.state.currentPass,
           newPassword = this.state.newPass1;
       this.props.changePassword(user.name, currentPassword, newPassword);

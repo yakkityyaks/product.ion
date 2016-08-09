@@ -1,22 +1,22 @@
 
 const cata = [
-  {cat: "header", label: "Production"},
-  {name: "producer", cat: "production", code: 55201, label: "- Producer"},
-  {name: "associateProducer", cat: "production", code: 56891, label: "- Associate Producer"},
-  {name: "pa", cat: "production", code: 5912, label: "- Production Assistant"},
-  {name: "setPA", cat: "production", code: 12345, label: "- Set Production Assistant"},
-  {name: "intern", cat: "production", code: 47816, label: "- Intern"},
-  {name: "director", cat: "production", code: 10223, label: "- Director"},
-  {name: "writer", cat: "production", code: 10999, label: "- Writer"},
+  {id: 0, cat: "header", label: "Production"},
+  {id: 1, name: "producer", cat: "production", code: 55201, label: "Producer"},
+  {id: 2, name: "associateProducer", cat: "production", code: 56891, label: "Associate Producer"},
+  {id: 3, name: "pa", cat: "production", code: 5912, label: "Production Assistant"},
+  {id: 4, name: "setPA", cat: "production", code: 12345, label: "Set Production Assistant"},
+  {id: 5, name: "intern", cat: "production", code: 47816, label: "Intern"},
+  {id: 6, name: "director", cat: "production", code: 10223, label: "Director"},
+  {id: 7, name: "writer", cat: "production", code: 10999, label: "Writer"},
 
-  {cat: "header", label: "Camera"},
-  {name: "dp", cat: "camera", code: 10976, label: "- Director of Photography"},
-  {name: "camOp", cat: "camera", code: 50192, label: "- Camera Operator"},
+  {id: 8, cat: "header", label: "Camera"},
+  {id: 9, name: "dp", cat: "camera", code: 10976, label: "Director of Photography"},
+  {id: 10, name: "camOp", cat: "camera", code: 50192, label: "Camera Operator"},
 
-  {cat: "header", label: "Post-Production"},
-  {name: "editor", cat: "post", code: 9999, label: "- Editor"},
-  {name: "colorCorrection", cat: "post", code:50122, label: "- Color Correction"},
-  {name: "audioMix", cat: "post", code:11235, label: "- Audio Mixing"}
+  {id: 11, cat: "header", label: "Post-Production"},
+  {id: 12, name: "editor", cat: "post", code: 9999, label: "Editor"},
+  {id: 13, name: "colorCorrection", cat: "post", code:50122, label: "Color Correction"},
+  {id: 14, name: "audioMix", cat: "post", code:11235, label: "Audio Mixing"}
 ];
 
 export default cata;
