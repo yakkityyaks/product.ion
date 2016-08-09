@@ -49,7 +49,6 @@ const NavBar = React.createClass({
                 <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
                   Projects
                 </Link>
-<<<<<<< 88466ea3e3315f15b79e1eda956fcde3dfb098b0
               </NavItem>
               <NavItem eventKey={2} onClick={this.selectSettings}>
                 <Link to={'/settings'}>
@@ -60,18 +59,6 @@ const NavBar = React.createClass({
               <Link to={'/budget'}>
               Budget
               </Link>
-=======
-              </NavItem>
-              <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/csvdrop'}>
-                  CSV TEST
-                </Link>
-              </NavItem>
-              <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/imagedrop'}>
-                  IMG TEST
-                </Link>
->>>>>>> CSV data accessed
               </NavItem>
             </Nav>
             <Nav pullRight>
