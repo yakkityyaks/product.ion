@@ -60,6 +60,16 @@ const NavBar = React.createClass({
               Budget
               </Link>
               </NavItem>
+              <NavItem eventKey={4} onClick={this.selectBudget}>
+              <Link to={'/csvdrop'}>
+              CSV
+              </Link>
+              </NavItem>
+              <NavItem eventKey={5} onClick={this.selectBudget}>
+              <Link to={'/imagedrop'}>
+              IMAGE
+              </Link>
+              </NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1} onClick={this.logout}>

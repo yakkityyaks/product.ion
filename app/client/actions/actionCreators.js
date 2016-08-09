@@ -185,3 +185,12 @@ export function changePassword(username, perm, currentPassword, newPassword) {
     newPassword
   };
 }
+
+// CSV PARSING:
+
+export function parseCSV(object) {
+  return {
+    type: "PARSE_CSV",
+    object
+  };
+}
