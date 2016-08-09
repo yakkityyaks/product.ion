@@ -12,23 +12,21 @@ const CSVDrop = React.createClass({
 //     req.end(callback);
 // }
 
-
   onDrop (event) {
-    let data;
+    let csvObj;
     let file = event.target.files[0];
     console.log("FILEEE ", file);
     let that = this;
     Papa.parse(file, {
       complete: function(data) {
-        data = data;
-        console.log("DATA ", data);
+        csvObj = data;
+        console.log("DATA ", csvObj.data);
         console.log("this is ", this);
         console.log("Props are ", that.props);
-        that.props.parseCSV(data);
-        // create action
-        // create reducer
+        that.props.parseCSV(csvObj.data);
+
         // call server to post/create data based on json.
-        // render data via graph, spreadsheet...
+        // render data
       }
     });
   },
