@@ -8,7 +8,8 @@ const ProjectNode = React.createClass({
     return "$" + num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
   },
   showExpensePage () {
-    this.props.getExpenses(this.props.project.projId);
+    console.log('projId', this.props.project.projId, 'id', this.props.project.id);
+    this.props.getExpenses(this.props.project.projId, this.props.project.id);
   },
   render() {
     // es6 syntax to create 3 variables that pull their data from

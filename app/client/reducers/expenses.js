@@ -9,10 +9,14 @@ function expenses(state = [], action) {
       console.log(action);
       ApiCall.getExpensesByProjectId(action.projectId)
         .then((res) => {
+          console.log(res);
           if (res.status === 201) {
-            var projectId = res.data.id,
-                expenses = res.data.expenses;
-            store.dispatch({type:'HYDRATE_EXPENSES', projectId, expenses});
+            console.log(res.data.projId);
+            var projectId = res.data.projId,
+                expenses = res.data.expenses,
+                id = res.data.id;
+            console.log("i'm here?");
+            store.dispatch({type:'HYDRATE_EXPENSES', projectId, id, expenses});
             browserHistory.push('/expenses');
           }
         })
@@ -21,18 +25,19 @@ function expenses(state = [], action) {
         });
       break;
     case "HYDRATE_EXPENSES":
-      var id = "" + action.projectId;
-      state.current = action.expenses;
-      state.id = action.projectId;
+      state.projId = action.projectId;
+      state.expenses = action.expenses;
+      state.id = action.id;
 
       return state;
     case "SET_CURRENT_EXPENSE_PROJECT":
       state.current = action.expenses;
       return state;
     case "NEW_EXPENSE":
+      console.log('in new expense', action.data);
       ApiCall.registerExpense(action.data).then(function(res) {
-        console.log(res.data);
-        store.dispatch({type:'GET_EXPENSES', projectId: res.data.projs_id});
+        console.log('new expense', res.data);
+        store.dispatch({type:'GET_EXPENSES', projectId: action.projId, id: action.data.projs_id});
       })
       .catch(function(err) {
         console.error(err);

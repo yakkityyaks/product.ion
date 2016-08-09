@@ -26,7 +26,7 @@ const Expenses = React.createClass({
   },
   onSubmit(e) {
     e.preventDefault();
-    this.props.postNewExpense(this.state);
+    this.props.postNewExpense(this.state, this.props.expenses.projId);
   },
   handleChangeType(e) {
     e.preventDefault();
@@ -105,7 +105,7 @@ const Expenses = React.createClass({
           {/* <Form inline> */}
             <tbody>
               {
-                this.props.expenses.current && this.props.expenses.current
+                this.props.expenses.expenses && this.props.expenses.expenses
                   .map((expense, idx) =>
                   <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} />)
               }

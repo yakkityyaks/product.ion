@@ -128,25 +128,28 @@ export function changeSettingModal(name) {
 }
 //Expenses:
 
-export function getExpenses(projectId) {
+export function getExpenses(projectId, id) {
   return {
     type: "GET_EXPENSES",
-    projectId
+    projectId,
+    id
   };
 }
 
-export function hydrateExpenses(projectId, expenses) {
+export function hydrateExpenses(projectId, id, expenses) {
   return {
     type: "HYDRATE_EXPENSES",
     projectId,
+    id,
     expenses
   };
 }
 
-export function postNewExpense(data) {
+export function postNewExpense(data, projId) {
   return {
     type: "NEW_EXPENSE",
-    data
+    data,
+    projId
   };
 }
 
