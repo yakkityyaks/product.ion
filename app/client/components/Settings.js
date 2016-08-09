@@ -13,7 +13,7 @@ const Settings = React.createClass({
       currentPass: "",
       newPass1: "",
       newPass2: "",
-      validate: "default",
+      validate: "success",
       validateMessage: ""
     };
   },
@@ -33,7 +33,7 @@ const Settings = React.createClass({
     if (e.target.name === "currentPass") this.props.resetPasswordMessage();
     if (e.target.name === "newPass2") {
       if (e.target.value === this.state.newPass1) {
-        this.setState({validate: "default", validateMessage: ""});
+        this.setState({validate: "success", validateMessage: ""});
       } else {
         this.setState({validate: "error", validateMessage: "Error! Passwords must match"});
       }
@@ -100,12 +100,14 @@ const Settings = React.createClass({
                                 autoCorrect="off" autoCapitalize="off"
                                 spellCheck="false" onChange={this.changeOn}
                                 name = "newPass1" value={this.state.newPass1}/>
+                   <FormControl.Feedback />
                    <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
                    <FormControl type="password" placeholder="••••••••••"
                                 name="newPass2" autoCorrect="off"
                                 autoCapitalize="off" spellCheck="false"
                                 value={this.state.newPass2}
                                 onChange={this.changeOn} required />
+                  <FormControl.Feedback />
                   <p id="passwordMessage">{this.state.validateMessage}</p>
                  </FormGroup>
                  <div>
