@@ -202,4 +202,44 @@ module.exports = function routes(app){
       }) : res.sendStatus(404);
     });
   });
+
+  app.post('/api/remove/budget', function(req, res) {
+    Budget.getBudget(req.body.description, function(budg) {
+      budg ? budg.destroy().then(function(budg) {
+        res.status(201).json(budg);
+      }) : res.sendStatus(404);
+    });
+  });
+
+  app.post('/api/remove/org', function(req, res) {
+    Org.getOrg(req.body.orgName, function(org) {
+      org ? org.destroy().then(function(org) {
+        res.status(201).json(org);
+      }) : res.sendStatus(404);
+    });
+  });
+
+  app.post('/api/remove/user', function(req, res) {
+    User.getUser(req.body.username, function(user) {
+      user ? user.destroy().then(function(user) {
+        res.status(201).json(user);
+      }) : res.sendStatus(404);
+    });
+  });
+
+  app.post('/api/remove/proj', function(req, res) {
+    Project.getProj(req.body.projId, function(proj) {
+      proj ? proj.destroy().then(function(proj) {
+        res.status(201).json(proj);
+      }) : res.sendStatus(404);
+    });
+  });
+
+  app.post('/api/remove/expense', function(req, res) {
+    Expense.getExpense(req.body.description, function(exp) {
+      exp ? exp.destroy().then(function(exp) {
+        res.status(201).json(exp);
+      }) : res.sendStatus(404);
+    });
+  });
 };
