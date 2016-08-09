@@ -31,8 +31,9 @@ let getExpensesByProjectId = (projectId) =>
 let registerExpense = (data) =>
   axios.post('/api/register/expenses', {data: data});
 
-// let parseCSV = (data) =>
-//   axios.post('/api/update/expenses', {data: data});
+let removeExpense = (id) =>
+  axios.post('/api/remove/expense', {id: id});
+
 
 const ApiCall = {
   registrationCheck,
@@ -43,7 +44,8 @@ const ApiCall = {
   changePassword,
   getProjectsByOrgName,
   getExpensesByProjectId,
-  registerExpense
+  registerExpense,
+  removeExpense
 };
 
 export default ApiCall;

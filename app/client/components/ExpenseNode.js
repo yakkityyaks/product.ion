@@ -57,32 +57,34 @@ const ExpenseNode = React.createClass({
     console.log(e.target.value);
     this.setState({dateTracked: e.target.value});
   },
-  handleUpdate() {
-
+  handleUpdate(e) {
+    e.preventDefault();
   },
-  remove() {
-
+  handleRemove(e) {
+    e.preventDefault();
+    console.log('clicked remove');
+    this.props.removeExpense(this.props.expense.id, this.props.projId, this.props.projs_id);
   },
   render() {
     return (
         <tr>
           <td>
             <FormControl componentClass="select" value={this.state.type} onChange={this.handleChangeType}>
-                    <option value="Video Originals">Video Originals</option>
-                    <option value="Branded">Branded</option>
-                    <option value="Editorial">Editorial</option>
-                    <option value="Debt Expenses">Dept Expenses</option>
+              <option value="Video Originals">Video Originals</option>
+              <option value="Branded">Branded</option>
+              <option value="Editorial">Editorial</option>
+              <option value="Debt Expenses">Dept Expenses</option>
             </FormControl>
           </td>
           <td>
             <FormControl componentClass="select" value={this.state.vertical} onChange={this.handleChangeVertical}>
-                    <option value="Food">Food</option>
-                    <option value="Beauty">Beauty</option>
-                    <option value="Fashion & Style">Fashion & Style</option>
-                    <option value="News & Politics">News & Politics</option>
-                    <option value="News & Celeb">News & Celeb</option>
-                    <option value="Wellness">Wellness</option>
-                    <option value="Entertainment">Entertainment</option>
+              <option value="Food">Food</option>
+              <option value="Beauty">Beauty</option>
+              <option value="Fashion & Style">Fashion & Style</option>
+              <option value="News & Politics">News & Politics</option>
+              <option value="News & Celeb">News & Celeb</option>
+              <option value="Wellness">Wellness</option>
+              <option value="Entertainment">Entertainment</option>
             </FormControl>
           </td>
           <td><FormControl type="text" value={this.state.vendor} onChange={this.handleChangeVendor}/></td>

@@ -153,6 +153,23 @@ export function postNewExpense(data, projId) {
   };
 }
 
+export function removeExpense(id, projId, projs_id) {
+  return {
+    type: "REMOVE_EXPENSE",
+    id,
+    projId,
+    projs_id
+  }
+}
+
+export function updateExpense(data, projId) {
+  return {
+    type: "UPDATE_EXPENSE",
+    data,
+    projId
+  }
+}
+
 export function setCurrentExpenseProject(expenses) {
   return {type: "SET_CURRENT_EXPENSE_PROJECT", expenses};
 }

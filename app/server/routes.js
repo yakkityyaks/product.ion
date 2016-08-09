@@ -236,7 +236,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/remove/expense', function(req, res) {
-    Expense.getExpense(req.body.description, function(exp) {
+    Expense.getExpense(req.body.id, function(exp) {
       exp ? exp.destroy().then(function(exp) {
         res.status(201).json(exp);
       }) : res.sendStatus(404);

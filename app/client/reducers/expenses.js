@@ -43,6 +43,14 @@ function expenses(state = [], action) {
         console.error(err);
       })
       break;
+    case "REMOVE_EXPENSE":
+      console.log('removing');
+      ApiCall.removeExpense(action.id).then(function(res) {
+        store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
+      })
+      .catch(function(err) {
+        console.err(err);
+      })
     default:
       return state;
   }
