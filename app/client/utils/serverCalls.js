@@ -34,15 +34,6 @@ let getExpensesByProjectId = (projectId) =>
 let registerExpense = (data) =>
   axios.post('/api/register/expenses', {data: data});
 
-// let changePassword = (username, perm, currentPassword, newPassword) =>
-//   axios.post('/api/change/user', {
-//     username: username,
-//     perm: perm,
-//     currentPassword: currentPassword,
-//     newPassword: newPassword
-//   });
-
-
 // let parseCSV = (data) =>
 //   axios.post('/api/update/expenses', {data: data});
 
@@ -55,7 +46,6 @@ const ApiCall = {
   getProjectsByOrgName,
   getExpensesByProjectId,
   registerExpense
-  // changePassword,
   // parseCSV
 };
 

@@ -9,8 +9,10 @@ function parse(state=[], action) {
       // if(res.status === 201) {
         console.log("API CALL FOR PARSE WORKS ", res);
 
-        store.dispatch({ res.data });
-
+        store.dispatch({
+          type: "HYDRATE_TABLES",
+          res
+        });
 
       // }
     })
@@ -18,6 +20,8 @@ function parse(state=[], action) {
       console.log(err);
     });
   }
+  case "HYDRATE_TABLES":
+    console.log("ACTION ", action);
 }
 
-export default parse;
+export default parseCSV;

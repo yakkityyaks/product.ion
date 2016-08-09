@@ -35,8 +35,12 @@ const CSVDrop = React.createClass({
     return (
       <div>
         <h3>Drop your CSV here</h3>
-        <div>
-          <input type="file" name="file" onChange={this.onDrop} />
+        <div  className="csv">
+          <input type="file" className="file" name="file" onChange={this.onDrop} />
+          <div class="fakefile">
+            <input />
+            <img src="http://files.softicons.com/download/business-icons/pretty-office-iv-icons-by-custom-icon-design/ico/download.ico" />
+          </div>
             <label htmlFor="file">Drop some CSV files here, or click to select files to upload.</label>
         </div>
         <div id="demo"></div>

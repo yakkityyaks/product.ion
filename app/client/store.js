@@ -37,7 +37,8 @@ const defaultState = {
   organization,
   messages,
   modals,
-  navBar
+  navBar,
+  csv
 };
 
 //middleware for logging changes in state.
