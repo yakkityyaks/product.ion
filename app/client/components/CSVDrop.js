@@ -30,29 +30,6 @@ const CSVDrop = React.createClass({
       }
     });
 
-  //   var csvData = d3.text(file, function(datasetText) {
-  //
-  //     var parsedCSV = d3.csv.parseRows(datasetText);
-  //
-  //     var sampleHTML = d3.select("#demo")
-  //     .append("table")
-  //     .style("border-collapse", "collapse")
-  //     .style("border", "2px black solid")
-  //
-  //     .selectAll("tr")
-  //     .data(parsedCSV)
-  //     .enter().append("tr")
-  //
-  //     .selectAll("td")
-  //     .data(function(d){return d;})
-  //     .enter().append("td")
-  //     .style("border", "1px black solid")
-  //     .style("padding", "5px")
-  //     .on("mouseover", function(){d3.select(this).style("background-color", "aliceblue")})
-  //     .on("mouseout", function(){d3.select(this).style("background-color", "white")})
-  //     .text(function(d){return d;})
-  //     .style("font-size", "12px");
-  //   });
   },
 
   render () {
@@ -133,14 +110,3 @@ const CSVDrop = React.createClass({
 });
 
 export default CSVDrop;
-
-
-//
-// <label for="headers" >This CSV has headers: <input type="checkbox" id="headers"/></label>
-// <textarea type="text" id="headers" onDrop={ this.handleDrop } readOnly>
-//   Drag & Drop CSV File Here
-// </textarea>
-// <textarea id="jsonOutput">
-//   JSON will show up here
-// </textarea>
->>>>>>> CSV data accessed
