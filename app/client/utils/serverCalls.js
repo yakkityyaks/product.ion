@@ -42,6 +42,10 @@ let registerExpense = (data) =>
 //     newPassword: newPassword
 //   });
 
+
+// let parseCSV = (data) =>
+//   axios.post('/api/update/expenses', {data: data});
+
 const ApiCall = {
   registrationCheck,
   registerOrg,
@@ -51,7 +55,8 @@ const ApiCall = {
   getProjectsByOrgName,
   getExpensesByProjectId,
   registerExpense
-  // changePassword
+  // changePassword,
+  // parseCSV
 };
 
 export default ApiCall;

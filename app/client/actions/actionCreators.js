@@ -185,3 +185,13 @@ export function changePassword(username, perm, currentPassword, newPassword) {
     newPassword
   };
 }
+
+// CSV PARSING:
+
+export function parseCSV(object) {
+  console.log("object ", object)
+  return {
+    type: "PARSE_CSV",
+    object
+  };
+}
