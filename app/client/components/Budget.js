@@ -5,6 +5,19 @@ import BudgetNode from './BudgetNode';
 
 import cata from "../data/public";
 
+var SomeItem = React.createClass({
+	handleClick: function() {
+    	// this.props.onSelectItem(this.props.id, !this.props.selected);
+  },
+  render: function() {
+    return (
+      <MenuItem onClick={this.handleClick}>
+        <FormControl type="text" placeholder="Type to filter..."
+          value={this.props.data.value} onChange={this.props.data.onChange}/>
+      </MenuItem>
+    );}
+});
+
 const Budget = React.createClass({
 
     getInitialState: function() {
@@ -50,15 +63,16 @@ const Budget = React.createClass({
         console.log('the budget is', this.state.tempStore);
     // this.props.postNewBudget(budget);
     },
+    handleClick(e) {
+      e.preventDefault();
+    },
     handleNewTotalChange(e) {
       this.setState({
         newBudgetTotal: e.target.value
       });
     },
     setFilter(e) {
-      e.preventDefault();
-      console.log(e.target.value);
-      this.setState({filter: e.target.value});
+      this.setState({filter: e.target.value.toLowerCase()});
     },
     selectCata(e) {
       this.setState({
@@ -83,23 +97,14 @@ const Budget = React.createClass({
           )
           }
           <Form inline onSubmit={this.handleSubmit}><FormGroup>
-          <DropdownButton bsStyle={"default"} title={"Category"} id={`catSelect`}>
-            <FormControl type="text" placeholder="Type to filter..."
-                  ref={c => { this.input = c; }}
-                  // onClick={(e) => {console.log(e);
-                  //             e.preventDefault();
-                  //             e.stopPropagation();}}
-                  //
-                  //             onSelect={(e) => {console.log(e);
-                  //                         e.preventDefault();
-                  //                         e.stopPropagation();}}
-
-                  value={this.state.filter} onChange={this.setFilter} />
-           {cata
-             .filter((node) => node)
-             .map(budgetDropdownItem)
-           }
-          </DropdownButton>
+            <DropdownButton bsStyle={"default"} title={"Category"} id={`catSelect`}>
+              <SomeItem id={"5"} name={"testing"}
+                      data={{value: this.state.filter, onChange: this.setFilter}}/>
+             {cata
+               .filter((node) => node.label.includes(this.state.filter))
+               .map(budgetDropdownItem)
+             }
+            </DropdownButton>
             <FormControl readOnly={this.state.lockInputs} type="text"
                          value={this.state.newBudgetCode} placeholder="GL Code"/>
             <FormControl readOnly={this.state.lockInputs} type="text"
@@ -110,12 +115,13 @@ const Budget = React.createClass({
           <Button onClick={this.addBudgetNode} type="submit">
             Add
           </Button>
-          </FormGroup></Form>
-          <FormControl readOnly value={this.state.total} />
-          <Button type="submit">Submit your Budget!</Button>
-        </div>
-        );
-    }
+          </FormGroup>
+        </Form>
+        <FormControl readOnly value={this.state.total} />
+        <Button type="submit">Submit your Budget!</Button>
+      </div>
+    );
+   }
 });
 
 export default Budget;
