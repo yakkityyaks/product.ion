@@ -7,9 +7,12 @@ const ProjectNode = React.createClass({
   toDollar(num) {
     return "$" + num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
   },
-  showExpensePage () {
-    console.log('projId', this.props.project.projId, 'id', this.props.project.id);
-    this.props.getExpenses(this.props.project.projId, this.props.project.id);
+  triggerProjectClick () {
+    if (this.props.project.status === "Pitch") {
+      this.props.switchModal();
+    } else {
+      this.props.getExpenses(this.props.project.projId);
+    }
   },
   render() {
     // es6 syntax to create 3 variables that pull their data from
@@ -18,7 +21,7 @@ const ProjectNode = React.createClass({
     const { name, projId, status, costToDate, estimateToComplete } = this.props.project;
 
     return (
-      <tr onClick={this.showExpensePage}>
+      <tr onClick={this.triggerProjectClick}>
         <td>{name}</td>
         <td>{projId}</td>
         <td>{status}</td>

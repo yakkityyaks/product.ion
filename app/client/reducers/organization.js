@@ -1,6 +1,6 @@
 import ApiCall from "../utils/serverCalls";
 import store from "../store";
-import { push } from "react-router-redux";
+import { browserHistory } from 'react-router';
 
 function posts(state=[], action) {
   switch (action.type) {
@@ -71,7 +71,7 @@ function posts(state=[], action) {
                     organization
                   });
                   var joinedName = organization.orgName.split(" ").join("");
-                  store.dispatch(push(`/dashboard/${joinedName}`));
+                  browserHistory.push(`/dashboard/${joinedName}`);
                 }
               });
           }
@@ -135,7 +135,7 @@ function posts(state=[], action) {
               orgName: res.data.org.name,
               perm: res.data.perm});
             var joinedName = res.data.org.name.split(" ").join("");
-            store.dispatch(push(`/dashboard/${joinedName}`));
+            browserHistory.push(`/dashboard/${joinedName}`);
           } else {
             console.log("You done fucked up");
             store.dispatch({

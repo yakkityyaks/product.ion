@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectNode from './ProjectNode.js';
-import { Button } from 'react-bootstrap';
-import { Modal } from 'react-bootstrap';
-import { Panel } from 'react-bootstrap';
-import { OverlayTrigger } from 'react-bootstrap';
-import { Table } from 'react-bootstrap';
+import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
+
+import { OverlayTrigger } from 'react-bootstrap';//not used, could be cool
+
 const Projects = React.createClass({
 
   switchModal: function() {
@@ -49,7 +47,9 @@ const Projects = React.createClass({
           		<tbody>
           			{this.props.projects.map(
           				(project, idx) =>
-              			<ProjectNode key={idx} idx={idx} {...this.props} project={project} />)}
+              			<ProjectNode key={idx} idx={idx} {...this.props}
+                    project={project} switchModal={this.switchModal}/>
+                  )}
           		</tbody>
           	</Table>
           </Panel>
