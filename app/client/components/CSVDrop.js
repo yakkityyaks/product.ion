@@ -8,7 +8,6 @@ import FileDrop from 'filedrop';
 
 const CSVDrop = React.createClass({
 
-
 // for server posting.
 // onDrop: function(files){
 //     var req = request.post('/upload');
