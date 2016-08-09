@@ -50,6 +50,14 @@ function expenses(state = [], action) {
       })
       .catch(function(err) {
         console.err(err);
+      });
+    case "UPDATE_EXPENSE":
+      console.log('updating');
+      ApiCall.updateExpense(action.data, action.data.id).then(function(res) {
+        store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
+      })
+      .catch(function(err) {
+        console.err(err);
       })
     default:
       return state;

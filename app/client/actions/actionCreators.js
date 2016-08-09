@@ -162,11 +162,12 @@ export function removeExpense(id, projId, projs_id) {
   }
 }
 
-export function updateExpense(data, projId) {
+export function updateExpense(data, projId, projs_id) {
   return {
     type: "UPDATE_EXPENSE",
     data,
-    projId
+    projId,
+    projs_id
   }
 }
 

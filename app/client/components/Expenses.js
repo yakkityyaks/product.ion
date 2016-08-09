@@ -87,7 +87,7 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3>{" ProjectName goes here - ProjectID goes here -" + this.props.expenses.id}</h3>
+        <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
         <Form onSubmit={this.onSubmit}>
           <Table condensed style={{width: "100%"}}>
             <FormGroup controlId="whatToDo">

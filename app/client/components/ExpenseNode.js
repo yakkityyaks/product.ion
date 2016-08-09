@@ -58,7 +58,9 @@ const ExpenseNode = React.createClass({
     this.setState({dateTracked: e.target.value});
   },
   handleUpdate(e) {
+    console.log(this.state);
     e.preventDefault();
+    this.props.updateExpense(this.state, this.props.projId, this.props.projs_id);
   },
   handleRemove(e) {
     e.preventDefault();
