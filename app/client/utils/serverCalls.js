@@ -31,8 +31,6 @@ let getExpensesByProjectId = (projectId) =>
 let registerExpense = (data) =>
   axios.post('/api/register/expenses', {data: data});
 
-
-
 // let parseCSV = (data) =>
 //   axios.post('/api/update/expenses', {data: data});
 
