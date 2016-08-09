@@ -114,20 +114,6 @@ function posts(state=[], action) {
         console.log("TRIGGERED: ADD_USER_TO_STATE");
         return action.user;
 
-// update server with new endpoint for password change posts.
-// Then complete this ApiCall.
-      case "CHANGE_PASSWORD":
-        console.log("So you want to change your PW?");
-        ApiCall.changePassword(action.username, action.perm, action.currentPassword, action.newPassword)
-          .then(function(res) {
-            console.log("CHANGE_PASSWORD res ", res);
-          })
-          .catch(function(err) {
-            console.error(err);
-          });
-          break;
-
-
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)
         .catch(function(err) {
@@ -167,6 +153,29 @@ function posts(state=[], action) {
         orgName: action.orgName,
         orgs_id:action.orgs_id
       });
+
+      case "CHANGE_PASSWORD":
+        ApiCall.login(action.username, action.password)
+        .then(function(res) {
+          if (res.data.password === action.password) {
+            ApiCall.changePassword(action.username, action.newPassword)
+              .then(function(res) {
+                store.dispatch({type: "SET_PASSWORD_MESSAGE",
+                      message:"Success! You changed your password!"});
+              })
+              .catch(function(err) {
+                console.error(err);
+              });
+          } else {
+            store.dispatch({type: "SET_PASSWORD_MESSAGE",
+                  message:"Error. Please re-enter user password"});
+          }
+        })
+        .catch((err) => {
+          console.log("Reducers-CHANGE_PASSWORD: res is", err);
+        });
+
+      break;
     case "SET_USERS":
       return Object.assign({}, state, {users: action.users});
     case "LOGOUT":

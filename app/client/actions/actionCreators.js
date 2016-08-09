@@ -38,6 +38,16 @@ export function addNewUser(username, password, perm) {
     perm
   };
 }
+
+export function changePassword(username, password, newPassword) {
+  return {
+    type: "CHANGE_PASSWORD",
+    username,
+    password,
+    newPassword
+  };
+}
+
 export function logout() {
   return {
     type: "LOGOUT"
@@ -174,15 +184,16 @@ export function setLoginMessage(message, className) {
   };
 }
 
-// SETTINGS:
-
-export function changePassword(username, perm, currentPassword, newPassword) {
+export function setPasswordMessage(message) {
   return {
-    type: "CHANGE_PASSWORD",
-    username,
-    perm,
-    currentPassword,
-    newPassword
+    type: "SET_PASSWORD_MESSAGE",
+    message
+  };
+}
+
+export function resetPasswordMessage() {
+  return {
+    type: "RESET_PASSWORD_MESSAGE"
   };
 }
 

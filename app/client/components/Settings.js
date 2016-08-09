@@ -8,31 +8,39 @@ import AddUser from './AddUser';
 import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, Modal } from 'react-bootstrap';
 
 const Settings = React.createClass({
-  testing (event) {
-    event.preventDefault();
-    console.log("SETTINGS USER ", this.props.organization.user.perm);
-    console.log("SETTINGS USER ", this.props.organization.user.id);
-    console.log("SETTINGS USER ", this.props.organization.user.name);
-    console.log("PASS ", findDOMNode(this.refs.passwordInput).value);
-    console.log("NEW PASS ", findDOMNode(this.refs.newPasswordInput).value);
+  getInitialState() {
+    return {
+      currentPass: "",
+      newPass1: "",
+      newPass2: "",
+      validate: "default",
+      validateMessage: ""
+    };
   },
-  // check this user's username and current password in server.
-  // if good, update with new PW.
-  // if bad, return error.
-  // but how do i access this user's username/ID?
-
-  handleSubmit (event) {
-    event.preventDefault();
-    let username = this.props.organization.user.name,
-    perm = this.props.organization.user.perm,
-    currentPassword = findDOMNode(this.refs.passwordInput).value,
-    newPassword = findDOMNode(this.refs.newPasswordInput).value;
-
-    this.props.changePassword(username, perm, currentPassword, newPassword);
+  handleSubmit (e) {
+    e.preventDefault();
+    const {user} = this.props.organization;
+    if (user.perm === 0) {
+      let currentPassword = this.state.currentPass,
+          newPassword = this.state.newPass1;
+      this.props.changePassword(user.name, currentPassword, newPassword);
+    } else {
+      this.props.setPasswordMessage("You don't have permission to do that.");
+    }
+    this.setState({currentPass: "", newPass1: "", newPass2: ""});
   },
-
+  changeOn (e) {
+    if (e.target.name === "currentPass") this.props.resetPasswordMessage();
+    if (e.target.name === "newPass2") {
+      if (e.target.value === this.state.newPass1) {
+        this.setState({validate: "default", validateMessage: ""});
+      } else {
+        this.setState({validate: "error", validateMessage: "Error! Passwords must match"});
+      }
+    }
+    this.setState({[e.target.name]: e.target.value});
+  },
   switchModal () {
-    console.log("MODALS!")
     this.props.changeSettingModal('addUser');
   },
 
@@ -76,28 +84,32 @@ const Settings = React.createClass({
            <br></br>
            <div id="settingsWindow">
              <div id="settingsMain">
-               <Form onSubmit={this.testing}>
+             <Form onSubmit={this.handleSubmit}>
                  <FormGroup>
                    <ControlLabel >Current Password</ControlLabel>
-                   <FormControl type="password" placeholder="••••••••••"
-                                ref="passwordInput" autoCorrect="off" autoCapitalize="off"
-                                spellCheck="false" required />
+                   <FormControl type="password" placeholder="••••••••••" required
+                                name="currentPass" autoCorrect="off" autoCapitalize="off"
+                                spellCheck="false" value={this.state.currentPass}
+                                onChange={this.changeOn}  />
+                    <p id="passwordMessage">{this.props.messages.password}</p>
                  </FormGroup>
                  <br></br>
-                 <FormGroup>
+                 <FormGroup validationState={this.state.validate}>
                    <ControlLabel>New Password</ControlLabel>
-                   <FormControl type="password" placeholder="••••••••••"
+                   <FormControl type="password" placeholder="••••••••••" required
                                 autoCorrect="off" autoCapitalize="off"
-                                spellCheck="false" required />
-                 </FormGroup>
-                 <FormGroup>
+                                spellCheck="false" onChange={this.changeOn}
+                                name = "newPass1" value={this.state.newPass1}/>
                    <ControlLabel htmlFor="newPassword">Confirm New Password</ControlLabel>
                    <FormControl type="password" placeholder="••••••••••"
-                                ref="newPasswordInput" autoCorrect="off"
-                                autoCapitalize="off" spellCheck="false" required />
+                                name="newPass2" autoCorrect="off"
+                                autoCapitalize="off" spellCheck="false"
+                                value={this.state.newPass2}
+                                onChange={this.changeOn} required />
+                  <p id="passwordMessage">{this.state.validateMessage}</p>
                  </FormGroup>
                  <div>
-                   <Button>
+                   <Button type="submit">
                      Submit Change
                    </Button>
                   </div>

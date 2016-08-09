@@ -15,6 +15,10 @@ function messages(state = [], action) {
       return Object.assign({}, state, {login: ""});
     case "SET_LOGIN_MESSAGE":
       return Object.assign({}, state, {login: action.message});
+    case "SET_PASSWORD_MESSAGE":
+      return Object.assign({}, state, {password: action.message});
+    case "RESET_PASSWORD_MESSAGE":
+      return Object.assign({}, state, {password: ""});
     default:
       return state;
   }

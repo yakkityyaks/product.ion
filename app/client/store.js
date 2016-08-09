@@ -22,6 +22,7 @@ const messages = {
   pitch: "",
   registerOrg: "",
   registerUser: "",
+  password: ""
 };
 const modals = {
 	pitch: false,

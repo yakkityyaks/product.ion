@@ -3,11 +3,8 @@ import axios from 'axios';
 let registrationCheck = (orgName, username) =>
   axios.post('/api/register/check', {orgName, username});
 
-let registerOrg = (orgName) => {
-  var data = {orgName};
-
-  return axios.post('/api/register/org', data);
-};
+let registerOrg = (orgName) =>
+  axios.post('/api/register/org', {orgName});
 
 let registerUser = (username, password, orgs_id, perm) => {
   var data = {username: username, password: password, orgs_id: orgs_id, perm: perm};
@@ -15,15 +12,15 @@ let registerUser = (username, password, orgs_id, perm) => {
   return axios.post('/api/register/user', {data: data});
 };
 
-let registerProject = (projectObj) => {
-  return axios.post('/api/register/project', {data: projectObj});
-};
+let registerProject = (projectObj) =>
+  axios.post('/api/register/project', {data: projectObj});
 
-let login = (username, password) => {
-  var data = {username: username, password: password};
+let login = (username, password) =>
+  axios.post('/api/get/user', {username: username, password: password});
 
-  return axios.post('/api/get/user', data);
-};
+
+let changePassword = (username, password) =>
+  axios.post('/api/update/user', {username, data: {password}});
 
 let getProjectsByOrgName = (orgName) =>
   axios.post('/api/get/org', {orgName: orgName});
@@ -34,13 +31,6 @@ let getExpensesByProjectId = (projectId) =>
 let registerExpense = (data) =>
   axios.post('/api/register/expenses', {data: data});
 
-// let changePassword = (username, perm, currentPassword, newPassword) =>
-//   axios.post('/api/change/user', {
-//     username: username,
-//     perm: perm,
-//     currentPassword: currentPassword,
-//     newPassword: newPassword
-//   });
 
 
 // let parseCSV = (data) =>
@@ -52,11 +42,10 @@ const ApiCall = {
   registerUser,
   registerProject,
   login,
+  changePassword,
   getProjectsByOrgName,
   getExpensesByProjectId,
   registerExpense
-  // changePassword,
-  // parseCSV
 };
 
 export default ApiCall;

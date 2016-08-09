@@ -9,11 +9,8 @@ const Register = React.createClass({
   resetErrorMessages() {
     this.props.resetRegistrationMessages();
   },
-  handleOrgChange(e) {
-    this.setState({org:e.target.value});
-  },
-  handleAdminChange(e) {
-    this.setState({admin:e.target.value});
+  handleChange(e) {
+    this.setState({[e.target.name]: e.target.value});
   },
   handlePassChange(e) {
     if (this.validatePass() === "warning") {
@@ -45,19 +42,19 @@ const Register = React.createClass({
              </Link>
            </Button>
            <br></br>
-           <div className="">
+           <div>
              <label className="" htmlFor="username">Organization</label>
              <FormControl type="text" value={this.state.org} placeholder="Name it something catchy"
-                          onChange={this.handleOrgChange} required/>
+                          onChange={this.handleChange} name="org" required/>
              <p id="registerOrgMessage">{this.props.messages.registerOrg}</p>
            </div>
-           <div className="">
+           <div>
              <label className="" htmlFor="username">Admin</label>
              <FormControl type="text" value={this.state.admin} placeholder="The Company Leader"
-                          onChange={this.handleAdminChange} required/>
+                          onChange={this.handleChange} name="admin" required/>
              <p id="registerUserMessage" className="">{this.props.messages.registerUser}</p>
            </div>
-           <div className="">
+           <div>
              <label className="" htmlFor="password">Password</label>
              <FormGroup controlId="passwordControl" validationState = {this.validatePass()}>
                <FormControl type="password" value={this.state.pass} placeholder="••••••••••"
