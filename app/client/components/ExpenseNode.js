@@ -57,64 +57,36 @@ const ExpenseNode = React.createClass({
     console.log(e.target.value);
     this.setState({dateTracked: e.target.value});
   },
-  componentWillMount() {
-    // this.props.editMode = false;
-    // this.props.editTable = () => (
-    //   <Form inline>
-    //     <tr>
-    //       <td><FormControl type="text" value={this.props.expense.type} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.vertical} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.vendor} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.description} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.cost} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.method} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.category} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.glCode} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.dateSpent} /></td>
-    //       <td><FormControl type="text" value={this.props.expense.dateTracked} /></td>
-    //     </tr>
-    //   </Form>
-    // );
-    // this.props.displayTable = () => (
-    //   <tr>
-    //     <td>{this.props.expense.type}</td>
-    //     <td>{this.props.expense.vertical}</td>
-    //     <td>{this.props.expense.vendor}</td>
-    //     <td>{this.props.expense.description}</td>
-    //     <td>{this.props.expense.cost}</td>
-    //     <td>{this.props.expense.method}</td>
-    //     <td>{this.props.expense.category}</td>
-    //     <td>{this.props.expense.glCode}</td>
-    //     <td>{this.props.expense.dateSpent}</td>
-    //     <td>{this.props.expense.dateTracked}</td>
-    //   </tr>
-    // );
-
+  handleUpdate(e) {
+    console.log(this.state);
+    e.preventDefault();
+    this.props.updateExpense(this.state, this.props.projId, this.props.projs_id);
   },
-  testing() {
-    console.log("Refs are ", this.refs.readToggle);
-    this.refs.readToggle.props.readOnly = false;
+  handleRemove(e) {
+    e.preventDefault();
+    console.log('clicked remove');
+    this.props.removeExpense(this.props.expense.id, this.props.projId, this.props.projs_id);
   },
   render() {
     return (
         <tr>
           <td>
             <FormControl componentClass="select" value={this.state.type} onChange={this.handleChangeType}>
-                    <option value="Video Originals">Video Originals</option>
-                    <option value="Branded">Branded</option>
-                    <option value="Editorial">Editorial</option>
-                    <option value="Debt Expenses">Dept Expenses</option>
+              <option value="Video Originals">Video Originals</option>
+              <option value="Branded">Branded</option>
+              <option value="Editorial">Editorial</option>
+              <option value="Debt Expenses">Dept Expenses</option>
             </FormControl>
           </td>
           <td>
             <FormControl componentClass="select" value={this.state.vertical} onChange={this.handleChangeVertical}>
-                    <option value="Food">Food</option>
-                    <option value="Beauty">Beauty</option>
-                    <option value="Fashion & Style">Fashion & Style</option>
-                    <option value="News & Politics">News & Politics</option>
-                    <option value="News & Celeb">News & Celeb</option>
-                    <option value="Wellness">Wellness</option>
-                    <option value="Entertainment">Entertainment</option>
+              <option value="Food">Food</option>
+              <option value="Beauty">Beauty</option>
+              <option value="Fashion & Style">Fashion & Style</option>
+              <option value="News & Politics">News & Politics</option>
+              <option value="News & Celeb">News & Celeb</option>
+              <option value="Wellness">Wellness</option>
+              <option value="Entertainment">Entertainment</option>
             </FormControl>
           </td>
           <td><FormControl type="text" value={this.state.vendor} onChange={this.handleChangeVendor}/></td>
@@ -183,8 +155,8 @@ const ExpenseNode = React.createClass({
           <td><FormControl type="text" value={this.state.glCode} onChange={this.handleChangeGl}/></td>
           <td><FormControl type="text" value={this.state.dateSpent} onChange={this.handleChangeDateSpent}/></td>
           <td><FormControl type="text" value={this.state.dateTracked} onChange={this.handleChangeDateTracked}/></td>
-          <td><Button>Update</Button></td>
-          <td><Button>Remove</Button></td>
+          <td><Button onClick={this.handleUpdate}>Update</Button></td>
+          <td><Button onClick={this.handleRemove}>Remove</Button></td>
         </tr>
     );
   }
