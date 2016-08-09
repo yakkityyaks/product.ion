@@ -11,6 +11,8 @@ import Pitch from './components/Pitch';
 import AddUser from './components/AddUser';
 import Settings from './components/Settings';
 import Expenses from './components/Expenses';
+import CSVDrop from './components/CSVDrop';
+import ImageDrop from './components/ImageDrop';
 
 // Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
