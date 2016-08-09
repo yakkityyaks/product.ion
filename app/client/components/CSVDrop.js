@@ -17,10 +17,14 @@ const CSVDrop = React.createClass({
     let data;
     let file = event.target.files[0];
     console.log("FILEEE ", file);
+    let that = this;
     Papa.parse(file, {
       complete: function(data) {
         data = data;
         console.log("DATA ", data);
+        console.log("this is ", this);
+        console.log("Props are ", that.props);
+        that.props.parseCSV(data);
         // create action
         // create reducer
         // call server to post/create data based on json.
