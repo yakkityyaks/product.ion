@@ -1,8 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
 import Dropzone from 'react-dropzone';
-import FileDrop from 'filedrop';
-// import d3 from 'd3';
 
 // dropzone, papaparse
 
@@ -61,6 +59,7 @@ const CSVDrop = React.createClass({
     return (
       <div>
         <h3>Drop your CSV here</h3>
+
         <div>
           {/* <Dropzone ref="dropzone" onChange={this.onDrop}> */}
             <input type="file" name="file" onChange={this.onDrop} />
@@ -68,6 +67,7 @@ const CSVDrop = React.createClass({
           {/* </Dropzone> */}
         </div>
         <div id="demo"></div>
+
       </div>
     )
   }
