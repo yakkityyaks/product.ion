@@ -53,6 +53,18 @@ export function logout() {
     type: "LOGOUT"
   };
 }
+
+export function clearExp() {
+  return {
+    type: "CLEAR_EXP"
+  };
+}
+
+export function clearProj() {
+  return {
+    type: "CLEAR_PROJ"
+  };
+}
 //gets the organization information
 // export function getOrg(orgName) {
 //
@@ -220,10 +232,11 @@ export function resetPasswordMessage() {
 
 // CSV PARSING:
 
-export function parseCSV(object) {
+export function parseCSV(object, id) {
   console.log("object ", object)
   return {
     type: "PARSE_CSV",
-    object
+    object,
+    id
   };
 }

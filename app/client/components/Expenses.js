@@ -12,16 +12,16 @@ import { Panel } from 'react-bootstrap';
 const Expenses = React.createClass({
   getInitialState() {
     return {
-      type: undefined,
-      vertical: undefined,
-      vendor: undefined,
-      description: undefined,
-      cost: undefined,
-      method: undefined,
-      category: undefined,
-      glCode: undefined,
-      dateSpent: undefined,
-      dateTracked: undefined,
+      type: "",
+      vertical: "",
+      vendor: "",
+      description: "",
+      cost: "",
+      method: "",
+      category: "",
+      glCode: "",
+      dateSpent: "",
+      dateTracked:"",
       projs_id: this.props.expenses.id
     };
   },
@@ -32,16 +32,16 @@ const Expenses = React.createClass({
     e.preventDefault();
     var temp = this.state;
     this.setState({
-      type: undefined,
-      vertical: undefined,
-      vendor: undefined,
-      description: undefined,
-      method: undefined,
-      category: undefined,
-      glCode: undefined,
-      dateSpent: undefined,
-      dateTracked: undefined,
-      cost: undefined,
+      type: "",
+      vertical: "",
+      vendor: "",
+      description: "",
+      method: "",
+      category: "",
+      glCode: "",
+      dateSpent: "",
+      dateTracked: "",
+      cost: "",
       projs_id: this.props.expenses.id
     });
     this.props.postNewExpense(temp, this.props.expenses.projId);
@@ -133,7 +133,7 @@ const Expenses = React.createClass({
                   }
                   <tr>
                     <td>
-                      <FormControl componentClass="select" placeholder="Type" ref="exType" onChange={this.handleChangeType}>
+                      <FormControl componentClass="select" placeholder="Type" value={this.state.type} onChange={this.handleChangeType}>
                         <option value="Video Originals">Video Originals</option>
                         <option value="Branded">Branded</option>
                         <option value="Editorial">Editorial</option>
@@ -141,7 +141,7 @@ const Expenses = React.createClass({
                       </FormControl>
                     </td>
                     <td>
-                      <FormControl componentClass="select" placeholder="Vertical" onChange={this.handleChangeVertical}>
+                      <FormControl componentClass="select" placeholder="Vertical" value={this.state.vertical} onChange={this.handleChangeVertical}>
                         <option value="Food">Food</option>
                         <option value="Beauty">Beauty</option>
                         <option value="Fashion & Style">Fashion & Style</option>
@@ -151,11 +151,11 @@ const Expenses = React.createClass({
                         <option value="Entertainment">Entertainment</option>
                       </FormControl>
                     </td>
-                    <td><FormControl type="text" placeholder="Vendor" onChange={this.handleChangeVendor}/></td>
-                    <td><FormControl type="text" placeholder ="description" onChange={this.handleChangeDescription}/></td>
-                    <td><FormControl type="text" placeholder ="cost" onChange={this.handleChangeCost}/></td>
+                    <td><FormControl type="text" placeholder="Vendor" value={this.state.vendor} onChange={this.handleChangeVendor}/></td>
+                    <td><FormControl type="text" placeholder ="description" value={this.state.description} onChange={this.handleChangeDescription}/></td>
+                    <td><FormControl type="text" placeholder ="cost" value={this.state.cost} onChange={this.handleChangeCost}/></td>
                     <td>
-                      <FormControl componentClass="select" placeholder="Method" onChange={this.handleChangeMethod}>
+                      <FormControl componentClass="select" placeholder="Method" value={this.state.method} onChange={this.handleChangeMethod}>
                         <option value="Credit Card">Credit Card</option>
                         <option value="Invoice">Invoice</option>
                         <option value="Payroll">Payroll</option>
@@ -164,7 +164,7 @@ const Expenses = React.createClass({
                       </FormControl>
                     </td>
                     <td>
-                      <FormControl componentClass="select" placeholder="Category" onChange={this.handleChangeCategory}>
+                      <FormControl componentClass="select" placeholder="Category" value={this.state.category} onChange={this.handleChangeCategory}>
                         <option value="Consultant">Consultant</option>
                         <option value="Writer">Writer</option>
                         <option value="Director">Director</option>
@@ -214,9 +214,9 @@ const Expenses = React.createClass({
                         <option value="Third Party Production/Licensing">Third Party Production/Licensing</option>
                       </FormControl>
                     </td>
-                    <td><FormControl type="text" placeholder ="glCode" onChange={this.handleChangeGl}/></td>
-                    <td><FormControl type="date" placeholder ="dateSpent" onChange={this.handleChangeDateSpent}/></td>
-                    <td><FormControl type="date" placeholder ="dateTracked" onChange={this.handleChangeDateTracked}/></td>
+                    <td><FormControl type="text" placeholder ="glCode" value={this.state.glCode} onChange={this.handleChangeGl}/></td>
+                    <td><FormControl type="date" placeholder ="dateSpent" value={this.state.dateSpent} onChange={this.handleChangeDateSpent}/></td>
+                    <td><FormControl type="date" placeholder ="dateTracked" value={this.state.dateTracked} onChange={this.handleChangeDateTracked}/></td>
                     <td><Button onClick={this.onSubmit}>Submit</Button></td>
                   </tr>
                 </tbody>

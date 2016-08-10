@@ -18,6 +18,8 @@ const NavBar = React.createClass({
   },
   logout() {
     this.props.logout();
+    this.props.clearExp();
+    this.props.clearProj();
     browserHistory.push('/');
   },
   handleSelect(eventKey) {

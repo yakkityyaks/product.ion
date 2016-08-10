@@ -153,8 +153,8 @@ const ExpenseNode = React.createClass({
             </FormControl>
           </td>
           <td><FormControl type="text" value={this.state.glCode} onChange={this.handleChangeGl}/></td>
-          <td><FormControl type="text" value={this.state.dateSpent} onChange={this.handleChangeDateSpent}/></td>
-          <td><FormControl type="text" value={this.state.dateTracked} onChange={this.handleChangeDateTracked}/></td>
+          <td><FormControl type="text" value={this.state.dateSpent.slice(0,10)} onChange={this.handleChangeDateSpent}/></td>
+          <td><FormControl type="text" value={this.state.dateTracked.slice(0,10)} onChange={this.handleChangeDateTracked}/></td>
           <td><Button onClick={this.handleUpdate}>Update</Button></td>
           <td><Button onClick={this.handleRemove}>Remove</Button></td>
         </tr>

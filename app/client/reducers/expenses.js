@@ -58,7 +58,9 @@ function expenses(state = [], action) {
       })
       .catch(function(err) {
         console.err(err);
-      })
+      });
+    case "CLEAR_EXP":
+      return {};
     default:
       return state;
   }

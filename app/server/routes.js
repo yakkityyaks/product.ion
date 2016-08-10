@@ -242,4 +242,24 @@ module.exports = function routes(app){
       }) : res.sendStatus(404);
     });
   });
+
+  app.post('/api/register/csv', function(req, res) {
+    console.log(req.body.id);
+    console.log(req.body.data);
+    var rows = req.body.data;
+    var length = rows.length;
+    var count = 0;
+    rows.forEach(function(row) {
+      Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {
+        if (!exp) {
+          res.sendStatus(403);
+        } else {
+          count++
+          if (count === length) {
+            res.sendStatus(201);
+          }
+        }
+      });
+    });
+  });
 };
