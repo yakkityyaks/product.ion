@@ -26,6 +26,8 @@ function projects(state = [], action) {
     case "HYDRATE_PROJECTS":
       console.log("You want to hydrate the projects state with ", action.projects);
       return action.projects;
+    case "CLEAR_PROJ":
+      return {};
     default:
       return state;
   }

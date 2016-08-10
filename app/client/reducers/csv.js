@@ -4,7 +4,8 @@ import store from "../store";
 function parseCSV(state=[], action) {
   switch(action.type) {
     case "PARSE_CSV":
-    ApiCall.parseCSV(action.object)
+    console.log(action.object);
+    ApiCall.parseCSV(action.object, action.id)
     .then(function(res) {
       // if(res.status === 201) {
         console.log("API CALL FOR PARSE WORKS ", res);
