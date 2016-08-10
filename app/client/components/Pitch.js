@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, Tabs, Tab } from 'react-bootstrap';
+import { Form, FormControl, Button, Tabs, Tab } from 'react-bootstrap';
 
 import Budget from "./Budget";
 
@@ -26,42 +26,22 @@ const Pitch = React.createClass({
   render() {
     const thing = (
       <div className="Pitch">
-        <form className="form">
+        <Form>
            <div className="">
-             <label
-               className="form__field-label"
-               htmlFor="projectName">
-                 Project Name
-             </label>
-             <input
-               className="form__field-input"
-               type="text" id="projectName"
+             <label className="">Project Name</label>
+             <input className="" type="text" id="projectName"
                placeholder="Please fill me out!"
-               ref="projectName"
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
-
            <div className="">
-             <label
-               className="form__field-label"
-               htmlFor="numberOfAssets">
-                 Number of Assets
-             </label>
-             <input
-               className="form__field-input"
-               type="text" id="numberOfAssets"
+             <label className="">Number of Assets</label>
+             <input className="" type="text" id="numberOfAssets"
                placeholder="Please fill me out!"
-               ref="numberOfAssets"
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
-
            <div className="">
-             <label
-               className="form__field-label"
-               htmlFor="videoType">
-                 Video Type
-             </label>
-             <select className="form__field-input" ref="videoType">
+             <label className="">Video Type</label>
+             <select className="" ref="videoType">
                <option value="feature">Feature</option>
                <option value="short">Short</option>
                <option value="television">Television</option>
@@ -71,26 +51,20 @@ const Pitch = React.createClass({
            </div>
 
            <div className="">
-             <label className="form__field-label"
-             htmlFor="requestedBudget">
-               Requested Budget
-             </label>
-             <input
-               className="form__field-input"
-               type="text" id="requestedBudget"
+             <label className="">Requested Budget</label>
+             <input className="" type="text" id="requestedBudget"
                placeholder="Please fill me out"
-               ref="requestedBudget"
                autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
 
            <div className="">
              <label
-               className="form__field-label"
+               className=""
                htmlFor="studioNeeds">
                  Studio Needs
              </label>
              <input
-               className="form__field-input"
+               className=""
                type="text" id="studioNeeds"
                placeholder="Please fill me out"
                ref="studioNeeds"
@@ -99,12 +73,12 @@ const Pitch = React.createClass({
 
            <div className="">
              <label
-               className="form__field-label"
+               className=""
                htmlFor="startDate">
                  Start Date
              </label>
              <input
-             className="form__field-input"
+             className=""
              type="date" id="startDate"
              ref="startDate"
              />
@@ -112,21 +86,21 @@ const Pitch = React.createClass({
 
            <div className="">
              <label
-             className="form__field-label"
+             className=""
              htmlFor="endDate">
                End Date
              </label>
              <input
-             className="form__field-input"
+             className=""
              type="date" id="endDate"
              ref="endDate" />
            </div>
-           <div className="form__submit-btn-wrapper">
+           <div className="">
              <Button onClick={this.handleSubmit}>
                Submit your Pitch!
              </Button>
            </div>
-         </form>
+         </Form>
       </div>
     );
     return (
