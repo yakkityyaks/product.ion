@@ -5,8 +5,6 @@ import { Table, Form, FormControl, FormGroup, ControlId, Button } from 'react-bo
 
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
-import Menu from './Menu';
-import Sidebar from 'react-sidebar';
 import { Panel } from 'react-bootstrap';
 
 const Expenses = React.createClass({
@@ -108,9 +106,6 @@ const Expenses = React.createClass({
 
     return (
       <div style={{fontSize : "14px"}}>
-        <div>
-          <Menu {...this.props}/>
-        </div>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
@@ -144,6 +139,7 @@ const Expenses = React.createClass({
                       .map((expense, idx) =>
                       <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} projId={this.props.expenses.projId} projs_id={this.props.expenses.id}/>)
                   }
+                  <Button>ThisButton</Button>
                   <tr>
                     <td>
                       <FormControl componentClass="select" placeholder="Type" value={this.state.type} onChange={this.handleChangeType}>
