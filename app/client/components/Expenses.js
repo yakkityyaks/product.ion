@@ -10,17 +10,16 @@ import { Panel } from 'react-bootstrap';
 const Expenses = React.createClass({
   getInitialState() {
     return {
-      type: null,
-      vertical: null,
-      vendor: null,
-      description: null,
-      cost: null,
-      method: null,
-      category: null,
-      glCode: null,
-      dateSpent: null,
-      dateTracked: null,
-      cost: null,
+      type: undefined,
+      vertical: undefined,
+      vendor: undefined,
+      description: undefined,
+      cost: undefined,
+      method: undefined,
+      category: undefined,
+      glCode: undefined,
+      dateSpent: undefined,
+      dateTracked: undefined,
       projs_id: this.props.expenses.id
     };
   },
@@ -29,7 +28,21 @@ const Expenses = React.createClass({
   },
   onSubmit(e) {
     e.preventDefault();
-    this.props.postNewExpense(this.state, this.props.expenses.projId);
+    var temp = this.state;
+    this.setState({
+      type: undefined,
+      vertical: undefined,
+      vendor: undefined,
+      description: undefined,
+      method: undefined,
+      category: undefined,
+      glCode: undefined,
+      dateSpent: undefined,
+      dateTracked: undefined,
+      cost: undefined,
+      projs_id: this.props.expenses.id
+    });
+    this.props.postNewExpense(temp, this.props.expenses.projId);
   },
   handleChangeType(e) {
     e.preventDefault();

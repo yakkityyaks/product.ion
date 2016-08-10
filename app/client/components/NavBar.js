@@ -29,55 +29,45 @@ const NavBar = React.createClass({
   selectSettings() {
     this.props.changeNavKey(2);
   },
-  selectBudget() {
+  selectCSV() {
     this.props.changeNavKey(3);
   },
   render() {
 
     return (
-        <div>
-          <Navbar>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <Link to="/">
-                  <a>product.ion</a>
-                </Link>
-              </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-              <NavItem eventKey={1} onClick={this.selectDashboard}>
-                <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
-                  Projects
-                </Link>
-              </NavItem>
-              <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link to={'/settings'}>
-                  Settings
-                </Link>
-              </NavItem>
-              <NavItem eventKey={3} onClick={this.selectBudget}>
-              <Link to={'/budget'}>
-              Budget
+      <div>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/">
+                <a>product.ion</a>
               </Link>
-              </NavItem>
-              <NavItem eventKey={4} onClick={this.selectBudget}>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} onClick={this.selectDashboard}>
+              <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
+                Projects
+              </Link>
+            </NavItem>
+            <NavItem eventKey={2} onClick={this.selectSettings}>
+              <Link to={'/settings'}>
+                Settings
+              </Link>
+            </NavItem>
+            <NavItem eventKey={3} onClick={this.selectBudget}>
               <Link to={'/csvdrop'}>
-              CSV
+                CSV
               </Link>
-              </NavItem>
-              <NavItem eventKey={5} onClick={this.selectBudget}>
-              <Link to={'/imagedrop'}>
-              IMAGE
-              </Link>
-              </NavItem>
-            </Nav>
-            <Nav pullRight>
-              <NavItem eventKey={1} onClick={this.logout}>
-                Logout
-              </NavItem>
-            </Nav>
-          </Navbar>
-        </div>
+            </NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={1} onClick={this.logout}>
+              Logout
+            </NavItem>
+          </Nav>
+        </Navbar>
+      </div>
     );
   }
 });
