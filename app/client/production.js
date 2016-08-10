@@ -12,7 +12,6 @@ import AddUser from './components/AddUser';
 import Settings from './components/Settings';
 import Expenses from './components/Expenses';
 import CSVDrop from './components/CSVDrop';
-import ImageDrop from './components/ImageDrop';
 import Budget from './components/Budget';
 
 // Set up routers
@@ -39,7 +38,6 @@ const router = (
         <Route path='/budget' component = { Budget } />
         <Route path='/adduser' component = { AddUser }></Route>
         <Route path='/csvdrop' component={ CSVDrop }></Route>
-        <Route path='/imagedrop' component={ ImageDrop }></Route>
       </Route>
     </Router>
   </Provider>
