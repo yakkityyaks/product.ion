@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
+import { Button, Tabs, Tab } from 'react-bootstrap';
+
+import Budget from "./Budget";
 
 const Pitch = React.createClass({
   handleSubmit(event) {
@@ -22,17 +24,10 @@ const Pitch = React.createClass({
   },
 
   render() {
-    return (
+    const thing = (
       <div className="Pitch">
         <form className="form">
-
-           <div className="form__error-wrapper">
-             <p className="form__error form__error--username-not-registered">This username does not exist!</p>
-             <p className="form__error form__error--field-missing">Please fill out the entire form!</p>
-             <p className="form__error form__error--failed">Something went wrong, please try again!</p>
-           </div>
-
-           <div className="form__field-wrapper">
+           <div className="">
              <label
                className="form__field-label"
                htmlFor="projectName">
@@ -46,7 +41,7 @@ const Pitch = React.createClass({
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label
                className="form__field-label"
                htmlFor="numberOfAssets">
@@ -60,7 +55,7 @@ const Pitch = React.createClass({
                autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label
                className="form__field-label"
                htmlFor="videoType">
@@ -75,7 +70,7 @@ const Pitch = React.createClass({
              </select>
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label className="form__field-label"
              htmlFor="requestedBudget">
                Requested Budget
@@ -88,7 +83,7 @@ const Pitch = React.createClass({
                autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label
                className="form__field-label"
                htmlFor="studioNeeds">
@@ -102,7 +97,7 @@ const Pitch = React.createClass({
                autoCorrect="off" autoCapitalize="off" spellCheck="false" />
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label
                className="form__field-label"
                htmlFor="startDate">
@@ -115,7 +110,7 @@ const Pitch = React.createClass({
              />
            </div>
 
-           <div className="form__field-wrapper">
+           <div className="">
              <label
              className="form__field-label"
              htmlFor="endDate">
@@ -133,6 +128,12 @@ const Pitch = React.createClass({
            </div>
          </form>
       </div>
+    );
+    return (
+      <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+        <Tab eventKey={1} title="Pitch">{thing}</Tab>
+        <Tab eventKey={2} title="Budget">{<Budget />}</Tab>
+      </Tabs>
     );
   }
 });
