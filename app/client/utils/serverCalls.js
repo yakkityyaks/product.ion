@@ -37,7 +37,6 @@ let removeExpense = (id) =>
 let updateExpense = (data, id) =>
   axios.post('/api/update/expense', {data: data, id:id});
 
-
 const ApiCall = {
   registrationCheck,
   registerOrg,
