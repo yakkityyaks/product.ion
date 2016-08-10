@@ -6,10 +6,6 @@
 	margin-right: auto;
 }
 
-.menu {
-	position: absolute;
-}
-
 #pitchButton {
 	display: block;
 	float: none;
@@ -52,12 +48,6 @@
 .settingsMemberNode-perm {
 	display: inline-block;
 	width: auto;
-}
-
-.sidebar {
-	background-color: black;
-	color: black;
-	position: absolute;
 }
 
 .testing{

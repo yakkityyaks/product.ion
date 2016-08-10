@@ -5,14 +5,14 @@ import NavBar from './NavBar';
 import { Panel } from 'react-bootstrap';
 
 const Dashboard = React.createClass({
-  
+
   render() {
     return (
       <div className="dashboard">
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <div> 
+        <div>
           <Projects {...this.props}/>
         </div>
       </div>
