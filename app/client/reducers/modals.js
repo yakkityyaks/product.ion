@@ -7,7 +7,7 @@ function modals(state = [], action) {
       console.log(state, action.name);
       var name = action.name;
       console.log(name);
-      return Object.assign({}, state, { pitch: !state.pitch });
+      return Object.assign({}, state, { [action.name]: !state[action.name] });
 
     case "CHANGE_SETTING_MODAL":
       console.log(state, action.name);
