@@ -26,7 +26,7 @@ const CSVDrop = React.createClass({
   render () {
     return (
       <div>
-        <h3>Drop your CSV here</h3>
+        <b>Drop your CSV here</b>
         <Dropzone type="file" onDrop={this.onDrop}>
           <div>Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>

@@ -26,7 +26,8 @@ const messages = {
 };
 const modals = {
 	pitch: false,
-  addUser: false
+  addUser: false,
+  csv: false
 };
 const navBar = {
   key: 1
