@@ -95,12 +95,21 @@ const Expenses = React.createClass({
     this.setState({dateTracked: e.target.value});
   },
   render() {
+    let projName="THIS AINT RIGHT";
+
+    this.props.projects.forEach((project) => {
+      if (project.projId === this.props.expenses.projId) {
+        projName = project.name;
+        return;
+      }
+    });
+
     return (
       <div style={{fontSize : "14px"}}>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
+        <h3>{"Expenses for " + projName }</h3>
         <Form onSubmit={this.onSubmit}>
           <Table condensed style={{width: "100%"}}>
             <FormGroup controlId="whatToDo">
