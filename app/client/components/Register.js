@@ -36,11 +36,11 @@ const Register = React.createClass({
       <div id="loginPanel">
         <Panel bsStyle="primary" header={<h3>We're happy you want to do this</h3>}>
          <Form onSubmit={this.handleSubmit} onBlur={this.resetErrorMessages}>
-           <Button>
-             <Link to={`/login`}>
+           <Link to={`/login`}>
+             <Button>
                Login
-             </Link>
-           </Button>
+             </Button>
+           </Link>
            <br></br>
            <div>
              <label className="" htmlFor="username">Organization</label>
@@ -67,7 +67,7 @@ const Register = React.createClass({
              </FormGroup>
            </div>
            <div className="">
-               <Button type="submit">CREATE</Button>
+               <Button type="submit">Create</Button>
            </div>
          </Form>
       </Panel>
