@@ -15,15 +15,17 @@ const Pitch = React.createClass({
         m = now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth(),
         d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate(),
         date = [now.getFullYear(), m, d];
+    const { data } = this.props;
+    console.log("data is ", data);
     return {
       activeTab: 1,
-      projName: "",
-      numAssets: "",
-      videoType: "",
-      reqBudget: "",
-      studioNeeds: "",
-      startDate: date.join("-"),
-      endDate: date.join("-")
+      projName: data.name || "",
+      numAssets: data.numAssets || "",
+      videoType: data.type || "",
+      reqBudget: data.reqBudget || "",
+      studioNeeds: data.needs || "",
+      startDate: data.startDate ? data.startDate.split("T")[0] : date.join("-"),
+      endDate: data.endDate ? data.endDate.split("T")[0] : date.join("-")
     };
   },
   handleSelect(key) {

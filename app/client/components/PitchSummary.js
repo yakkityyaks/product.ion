@@ -71,7 +71,7 @@ const PitchSummary = React.createClass({
               </InputGroup.Button>
             </InputGroup>
             <ControlLabel>Studio Needs</ControlLabel>
-            <FormControl type="number" placeholder="I forget what this is"
+            <FormControl type="string" placeholder="I forget what this is"
                         name="studioNeeds" onChange={this.handleChange}
                         value={this.state.studioNeeds} />
           </FormGroup>
