@@ -12,6 +12,7 @@ import Settings from './components/Settings';
 import Expenses from './components/Expenses';
 import CSVDrop from './components/CSVDrop';
 import Budget from './components/Budget';
+import Menu from './components/Menu';
 
 // Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -35,6 +36,7 @@ const router = (
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
         <Route path='/csvdrop' component={ CSVDrop }></Route>
+        <Route path='/menu' component={ Menu }></Route>
       </Route>
     </Router>
   </Provider>

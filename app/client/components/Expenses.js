@@ -5,7 +5,8 @@ import { Table, Form, FormControl, FormGroup, ControlId, Button } from 'react-bo
 
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
-import CSVDrop from './CSVDrop';
+import Menu from './Menu';
+import Sidebar from 'react-sidebar';
 import { Panel } from 'react-bootstrap';
 
 const Expenses = React.createClass({
@@ -98,25 +99,12 @@ const Expenses = React.createClass({
   render() {
     return (
       <div style={{fontSize : "14px"}}>
+        <div>
+          <Menu {...this.props}/>
+        </div>
         <Panel>
           <NavBar {...this.props}/>
-
-          <Button bsStyle="primary" bsSize="large" id="csvButton" onClick={this.switchModal}>
-            Upload a CSV File
-          </Button>
         </Panel>
-        
-          <Modal show={this.props.modals.csv} onHide={this.switchModal} >
-            <Modal.Header closeButton>
-              <Modal.Title>Upload a CSV</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <CSVDrop {...this.props}/>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.switchModal}>Close</Button>
-            </Modal.Footer>
-          </Modal>
 
         <h3>{" ProjectName goes here - ProjectID goes here -" + this.props.expenses.id}</h3>
         <Form onSubmit={this.onSubmit}>
