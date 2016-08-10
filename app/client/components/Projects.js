@@ -10,7 +10,7 @@ const Projects = React.createClass({
 
   switchModal: function() {
     this.props.changePitchModal('pitch');
-    this.props.getOrgProjects(this.props.organization.orgName);
+    // this.props.getOrgProjects(this.props.organization.orgName);//why was this here?
   },
 
   render() {
@@ -28,9 +28,7 @@ const Projects = React.createClass({
             <Modal.Body>
               <Pitch {...this.props}/>
             </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.switchModal}>Close</Button>
-            </Modal.Footer>
+            <Modal.Footer />
           </Modal>
 
           <Panel>
