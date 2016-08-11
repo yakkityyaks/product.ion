@@ -41,7 +41,7 @@ const Settings = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
   switchModal () {
-    this.props.changeSettingModal('addUser');
+    this.props.changeModal('addUser');
   },
 
   render() {
@@ -64,7 +64,7 @@ const Settings = React.createClass({
            </div>
            <br></br>
            <div>
-             <Button bsStyle="primary" bsSize="large" id="addUserButton" onClick={this.switchModal}>
+             <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
                Add a User to Organization
              </Button>
            </div>

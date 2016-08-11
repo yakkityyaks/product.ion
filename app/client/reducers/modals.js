@@ -3,15 +3,9 @@ import store from "../store";
 
 function modals(state = [], action) {
   switch (action.type) {
-    case "CHANGE_PITCH_MODAL":
+    case "CHANGE_MODAL":
       var name = action.name;
       return Object.assign({}, state, { [action.name]: !state[action.name] });
-
-    case "CHANGE_SETTING_MODAL":
-      console.log(state, action.name);
-      name = action.name;
-      return Object.assign({}, state, { addUser: !state.addUser });
-
     default:
       return state;
   }

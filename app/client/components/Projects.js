@@ -16,7 +16,7 @@ const Projects = React.createClass({
     } else {
       this.setState({editProject: null});
     }
-    this.props.changePitchModal('pitch');
+    this.props.changeModal('pitch');
     // this.setState({editProject: undefined});
     // this.props.getOrgProjects(this.props.organization.orgName);//why was this here?
   },
@@ -25,7 +25,7 @@ const Projects = React.createClass({
     return (
       <div style={{fontSize : "14px"}}>
         <Panel>
-          <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
+          <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
             Create a Pitch
           </Button>
 
