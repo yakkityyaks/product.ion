@@ -7,7 +7,6 @@ import CustomSearch from './CustomSearch';
 import cata from "../data/public";
 
 const Budget = React.createClass({
-
     getInitialState: function() {
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
@@ -48,7 +47,12 @@ const Budget = React.createClass({
       this.setState({tempStore : newStore});
     },
     handleSubmit(e) {
-        console.log('the budget is', this.state.tempStore);
+      e.preventDefault();
+      var budget = {total: this.state.total, list: this.state.tempStore};
+      var string = JSON.stringify(budget);
+      console.log('the budget is', string);
+      console.log("The length is ", string.length);
+      console.log("The object is ", JSON.parse(string));
     // this.props.postNewBudget(budget);
     },
     handleClick(e) {
@@ -78,7 +82,7 @@ const Budget = React.createClass({
       );
 
       return (
-        <div className="Budget2">
+        <div>
           {
             this.state.tempStore.map((node, key) =>
               <BudgetNode key={key} idx={key} node = {node} lock={true}
@@ -101,14 +105,14 @@ const Budget = React.createClass({
                          value={this.state.newBudgetLabel} placeholder="Category"/>
             <FormControl type="text" placeholder="Total Estimate"
                          onChange={this.handleNewTotalChange}
-                         value={this.state.newBudgetTotal} required />
+                         value={this.state.newBudgetTotal} />
           <Button onClick={this.addBudgetNode} type="submit">
             Add
           </Button>
           </FormGroup>
+          <FormControl readOnly value={this.props.total || this.state.total} />
+          <Button type="submit">Submit your Budget!</Button>
         </Form>
-        <FormControl readOnly value={this.state.total} />
-        <Button type="submit">Submit your Budget!</Button>
       </div>
     );
    }

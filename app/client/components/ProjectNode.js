@@ -9,7 +9,8 @@ const ProjectNode = React.createClass({
   },
   triggerProjectClick () {
     if (this.props.project.status === "Pitch") {
-      this.props.switchModal();
+      console.log("Ding ding ding, project is ", this.props.project);
+      this.props.switchModal(this.props.project);
     } else {
       this.props.getExpenses(this.props.project.projId);
     }

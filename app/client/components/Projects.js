@@ -7,9 +7,17 @@ import Pitch from './Pitch.js';
 import { OverlayTrigger } from 'react-bootstrap';//not used, could be cool
 
 const Projects = React.createClass({
-
-  switchModal: function() {
+  getInitialState() {
+    return {editProject: null};
+  },
+  switchModal: function(Project) {
+    if (Project !== null) {
+      this.setState({editProject: Project});
+    } else {
+      this.setState({editProject: null});
+    }
     this.props.changePitchModal('pitch');
+    // this.setState({editProject: undefined});
     // this.props.getOrgProjects(this.props.organization.orgName);//why was this here?
   },
 
@@ -22,11 +30,8 @@ const Projects = React.createClass({
           </Button>
 
           <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
-            <Modal.Header closeButton>
-              <Modal.Title>Create a Pitch</Modal.Title>
-            </Modal.Header>
             <Modal.Body>
-              <Pitch {...this.props}/>
+              <Pitch {...this.props} data={this.state.editProject}/>
             </Modal.Body>
             <Modal.Footer />
           </Modal>

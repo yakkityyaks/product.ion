@@ -36,6 +36,7 @@ Promise.all([
     table.string('status');
     table.float('costToDate').defaultTo(0);
     table.float('estimateToComplete');
+    table.integer('createdBy');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
 
