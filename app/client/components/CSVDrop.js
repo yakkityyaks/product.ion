@@ -40,20 +40,20 @@ const CSVDrop = React.createClass({
     this.setState({projs_id: e.target.value})
   },
   render () {
+    let projName="THIS AINT RIGHT";
+
+    this.props.projects.forEach((project) => {
+      if (project.projId === this.props.expenses.projId) {
+        projName = project.name;
+        return;
+      }
+    });
     return (
       <div>
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
-        <h3>Add Expenses to a Project with a CSV</h3>
+        <h3>{"Add Expenses to " + projName + " with a CSV"}</h3>
         <form>
           <FormGroup>
             <ControlLabel>Select a Project</ControlLabel>
-            <FormControl componentClass="select" placeholder="Project" onChange={this.handleChangeProj}>
-              {this.props.projects.map(function(project, idx) {
-                return (<option key={idx} value={project.id}>{project.name}</option>)
-              })}
-            </FormControl>
           </FormGroup>
         </form>
         <Dropzone type="file" ref="file" onDrop={this.onDrop}>

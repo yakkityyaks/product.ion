@@ -125,19 +125,13 @@ export function hydrateProjects(projects) {
   };
 }
 
-export function changePitchModal(name) {
+export function changeModal(name) {
   return {
-    type: "CHANGE_PITCH_MODAL",
+    type: "CHANGE_MODAL",
     name
   };
 }
 
-export function changeSettingModal(name) {
-  return {
-    type: "CHANGE_SETTING_MODAL",
-    name
-  };
-}
 //Expenses:
 
 export function getExpenses(projectId, id) {
