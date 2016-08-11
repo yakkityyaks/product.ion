@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
+<<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
 import ExpenseChart from './ExpenseChart';
 
 import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
 
+=======
+import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
+>>>>>>> (feat) Expense Component
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
 import CSVDrop from './CSVDrop';
 import { Panel } from 'react-bootstrap';
+
 
 const Expenses = React.createClass({
   getInitialState() {
@@ -47,6 +52,7 @@ const Expenses = React.createClass({
     });
     this.props.postNewExpense(temp, this.props.expenses.projId);
   },
+<<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
   handleChangeType(e) {
     e.preventDefault();
     console.log(e.target.value);
@@ -103,6 +109,9 @@ const Expenses = React.createClass({
   switchChart() {
     this.setState({open: !this.state.open});
   },
+=======
+
+>>>>>>> (feat) Expense Component
   render() {
     let projName="THIS AINT RIGHT";
 
@@ -118,6 +127,7 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
+<<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
         <h3>{"Expenses for " + projName }</h3>
         <Panel>
           <h3>Data Visualization!!!</h3>
@@ -127,8 +137,22 @@ const Expenses = React.createClass({
             </Panel>
         </Panel>
         <Form onSubmit={this.onSubmit}>
+=======
+        <Panel>
+          <Button bsStyle="primary" bsSize="large" id="expenseButton" onClick={this.switchModal}>Create an Expense</Button>
+        <Modal show={this.props.modals.expense} onHide={this.switchModal} >
+          <Modal.Header closeButton>
+            <Modal.Title>Add an Expense</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ExpenseNode {...this.props}/>
+          </Modal.Body>
+        <Modal.Footer />
+        </Modal>
+        </Panel>
+        <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
+>>>>>>> (feat) Expense Component
           <Table condensed style={{width: "100%"}}>
-            <FormGroup controlId="whatToDo">
               <thead>
                 <tr>
                   <th>Type</th>
@@ -143,13 +167,11 @@ const Expenses = React.createClass({
                   <th>Date Tracked</th>
                 </tr>
               </thead>
-              {/* <Form inline> */}
                 <tbody>
-                  {
-                    this.props.expenses.expenses && this.props.expenses.expenses
-                      .map((expense, idx) =>
+                  {this.props.expenses.expenses.map((expense, idx) =>
                       <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} projId={this.props.expenses.projId} projs_id={this.props.expenses.id}/>)
                   }
+<<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
                   <tr>
                     <td>
                       <FormControl componentClass="select" placeholder="Type" value={this.state.type} onChange={this.handleChangeType}>
@@ -258,62 +280,13 @@ const Expenses = React.createClass({
               </Modal>
 
             </FormGroup>
+=======
+                </tbody>
+>>>>>>> (feat) Expense Component
           </Table>
-        </Form>
       </div>
     );
   }
 });
 
 export default Expenses;
-
-const glCodes = {
-  Consultant: 580200,
-  Writer:	560100,
-  Director:	560270,
-  Producer:	560260,
-  AssociateProducer:	560260,
-  ProductionAssistant:	560230,
-  ResearchMaterials:	545010,
-  OnCameraTalent:	560250,
-  MakeUpArtist:	560350,
-  HairStylist:	560350,
-  WardrobeStylist:	560350,
-  WardrobeAllowance:	560350,
-  DirectorofPhotography:	560220,
-  CameraOperator: 560220,
-  AssistantCamera:	560230,
-  AudioOperator:	560210,
-  GafferGripBestBoy:	560220,
-  Photographer:	560450,
-  SetPA:	560230,
-  Intern:	500120,
-  CameraRental:	570100,
-  LightingRental:	570100,
-  MiscEquipmentRental:	570100,
-  LocationFeesPermits:	570150,
-  LocationManager:	570150,
-  SetDesign:	570150,
-  Props:	545100,
-  MealsCraftService:	590200,
-  TaxisLocalTranspo:	590500,
-  Airfare:	590400,
-  Hotel:	590300,
-  CarRental:	590400,
-  GasTollsParking:	590600,
-  Editor: 560240,
-  AssistantEditor:	560240,
-  EditSuite:	560240,
-  DesignMotionGFX:	660400,
-  Transcription:	515250,
-  ColorCorrection:	515250,
-  AudioMix:	515250,
-  MiscPost:	515250,
-  PhotoLicensing:	564000,
-  FootageLicensing:	570200,
-  MusicLicensing:	570200,
-  Insurance:	"NONE",
-  HostingService:	500950,
-  ThirdPartyProduction:	560275,
-  ThirdPartyProductionLicensing:	560280,
-};

@@ -4,8 +4,6 @@ import ProjectNode from './ProjectNode.js';
 import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 
-import { OverlayTrigger } from 'react-bootstrap';//not used, could be cool
-
 const Projects = React.createClass({
   getInitialState() {
     return {editProject: null};
@@ -28,14 +26,12 @@ const Projects = React.createClass({
           <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
             Create a Pitch
           </Button>
-
           <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
             <Modal.Body>
               <Pitch {...this.props} data={this.state.editProject}/>
             </Modal.Body>
             <Modal.Footer />
           </Modal>
-
           <Panel>
           	<Table striped bordered>
           		<thead>
