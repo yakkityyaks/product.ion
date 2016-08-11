@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import { Table, Form, FormControl, FormGroup, ControlId, Button } from 'react-bootstrap';
+import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
 
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
-import Sidebar from 'react-sidebar';
+import CSVDrop from './CSVDrop';
 import { Panel } from 'react-bootstrap';
 
 const Expenses = React.createClass({
@@ -107,9 +107,6 @@ const Expenses = React.createClass({
 
     return (
       <div style={{fontSize : "14px"}}>
-        <div>
-          <Menu {...this.props}/>
-        </div>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
@@ -228,6 +225,18 @@ const Expenses = React.createClass({
                   </tr>
                 </tbody>
               {/* </Form> */}
+
+              <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
+                Upload a CSV File
+              </Button>
+
+              <Modal show={this.props.modals.csv} onHide={this.switchModal} >
+                <Modal.Body>
+                  <CSVDrop {...this.props}/>
+                </Modal.Body>
+                <Modal.Footer />
+              </Modal>
+
             </FormGroup>
           </Table>
         </Form>

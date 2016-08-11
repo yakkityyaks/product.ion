@@ -42,9 +42,6 @@ const CSVDrop = React.createClass({
   render () {
     return (
       <div>
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
         <h3>Add Expenses to a Project with a CSV</h3>
         <form>
           <FormGroup>
