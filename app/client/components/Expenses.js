@@ -95,6 +95,9 @@ const Expenses = React.createClass({
     console.log(e.target.value);
     this.setState({dateTracked: e.target.value});
   },
+  switchModal () {
+    this.props.changeModal('csv');
+  },
   render() {
     let projName="THIS AINT RIGHT";
 
@@ -226,15 +229,20 @@ const Expenses = React.createClass({
                 </tbody>
               {/* </Form> */}
 
-              <Button bsStyle="primary" bsSize="large" id="pitchButton" onClick={this.switchModal}>
+              <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
                 Upload a CSV File
               </Button>
 
               <Modal show={this.props.modals.csv} onHide={this.switchModal} >
-                <Modal.Body>
-                  <CSVDrop {...this.props}/>
-                </Modal.Body>
-                <Modal.Footer />
+                <Modal.Header closeButton>
+                  <Modal.Title>CSV File Drop</Modal.Title>
+                </Modal.Header>
+               <Modal.Body>
+                    <CSVDrop {...this.props} />
+                  </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={this.switchModal}>Close</Button>
+                </Modal.Footer>
               </Modal>
 
             </FormGroup>
