@@ -110,9 +110,20 @@ function posts(state=[], action) {
         });
       break;
 
-      case "ADD_USER_TO_STATE":
-        console.log("TRIGGERED: ADD_USER_TO_STATE");
-        return action.user;
+    case "UPDATE_USER":
+      console.log("ding ding ding", action.user);
+      ApiCall.updateUser(action.user)
+              .then(res => {
+                console.log(res);
+              })
+              .catch(err => {
+                console.error(err);
+              });
+      break;
+
+    case "ADD_USER_TO_STATE":
+      console.log("TRIGGERED: ADD_USER_TO_STATE");
+      return action.user;
 
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)

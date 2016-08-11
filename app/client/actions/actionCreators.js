@@ -39,6 +39,20 @@ export function addNewUser(username, password, perm) {
   };
 }
 
+export function updateUser(user) {
+  return {
+    type: "UPDATE_USER",
+    user
+  };
+}
+
+export function deleteUser(user) {
+  return {
+    type: "DELETE_USER",
+    user
+  };
+}
+
 export function changePassword(username, password, newPassword) {
   return {
     type: "CHANGE_PASSWORD",
@@ -165,7 +179,7 @@ export function removeExpense(id, projId, projs_id) {
     id,
     projId,
     projs_id
-  }
+  };
 }
 
 export function updateExpense(data, projId, projs_id) {
@@ -227,7 +241,7 @@ export function resetPasswordMessage() {
 // CSV PARSING:
 
 export function parseCSV(object, id) {
-  console.log("object ", object)
+  console.log("object ", object);
   return {
     type: "PARSE_CSV",
     object,

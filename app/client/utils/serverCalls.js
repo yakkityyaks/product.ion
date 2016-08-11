@@ -12,6 +12,10 @@ let registerUser = (username, password, orgs_id, perm) => {
   return axios.post('/api/register/user', {data: data});
 };
 
+let updateUser = (user) => {
+  return axios.post('/api/update/user', {});
+};
+
 let registerProject = (projectObj) =>
   axios.post('/api/register/project', {data: projectObj});
 
@@ -44,6 +48,7 @@ const ApiCall = {
   registrationCheck,
   registerOrg,
   registerUser,
+  updateUser,
   registerProject,
   login,
   changePassword,
