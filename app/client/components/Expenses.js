@@ -97,6 +97,15 @@ const Expenses = React.createClass({
     this.setState({dateTracked: e.target.value});
   },
   render() {
+    let projName="THIS AINT RIGHT";
+
+    this.props.projects.forEach((project) => {
+      if (project.projId === this.props.expenses.projId) {
+        projName = project.name;
+        return;
+      }
+    });
+
     return (
       <div style={{fontSize : "14px"}}>
         <div>
@@ -105,8 +114,12 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
+<<<<<<< HEAD
 
         <h3>{" ProjectName goes here - ProjectID goes here -" + this.props.expenses.id}</h3>
+=======
+        <h3>{"Expenses for " + projName }</h3>
+>>>>>>> pitch
         <Form onSubmit={this.onSubmit}>
           <Table condensed style={{width: "100%"}}>
             <FormGroup controlId="whatToDo">
