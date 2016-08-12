@@ -50,7 +50,10 @@ const Budget = React.createClass({
       e.preventDefault();
       var budget = {total: this.state.total, list: this.state.tempStore};
       var string = JSON.stringify(budget);
-    // this.props.postNewBudget(budget);
+      console.log('the budget is', string);
+      console.log("The length is ", string.length);
+      console.log("The object is ", JSON.parse(string));
+      this.props.postProjectBudgets(budget);
     },
     handleClick(e) {
       e.preventDefault();

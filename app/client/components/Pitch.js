@@ -38,7 +38,7 @@ const Pitch = React.createClass({
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
         <Tab eventKey={1} title="Pitch">{<PitchSummary {...this.props}
             data={this.state} tabToBudget={this.tabToBudget}/>}</Tab>
-        <Tab eventKey={2} title="Budget">{<Budget total={this.state.reqBudget}/>}</Tab>
+        <Tab eventKey={2} title="Budget">{<Budget {...this.props} total={this.state.reqBudget}/>}</Tab>
       </Tabs>
     );
   }
