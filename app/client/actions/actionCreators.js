@@ -238,6 +238,30 @@ export function resetPasswordMessage() {
   };
 }
 
+//budgets:
+
+export function postProjectBudgets(budgetsArray) {
+  return {
+    type: "POST_PROJECT_BUDGETS",
+    budgetsArray
+  };
+}
+
+export function getProjBudgets(projId) {
+  return {
+    type: "GET_PROJECT_BUDGETS",
+    projId
+  };
+}
+
+export function hydrateBudget(projId, budgetsArray) {
+  return {
+    type: "GET_PROJECT_BUDGETS",
+    projId,
+    budgetsArray
+  };
+}
+
 // CSV PARSING:
 
 export function parseCSV(object, id) {

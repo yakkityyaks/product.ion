@@ -9,10 +9,7 @@ import PitchSummary from "./PitchSummary";
 
 const Pitch = React.createClass({
   getInitialState() {
-    if (this.props.data.id) {
-      console.log(this.props.data);
-    }
-    var now = new Date(),
+    var now = new Date(),//just formatting the date as yyyy-mm-dd
         m = now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth(),
         d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate(),
         date = [now.getFullYear(), m, d];

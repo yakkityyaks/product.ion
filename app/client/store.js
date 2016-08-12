@@ -14,6 +14,8 @@ import rootReducer from './reducers/index';
 
 // create an object for the default data
 const projects = [];
+const budgets = {};
+    //budgets{proj15: []}
 const expenses = {};
 const organization = {};
 const messages = {
@@ -36,6 +38,7 @@ const parseCSV = [];
 
 const defaultState = {
   projects,
+  budgets,
   expenses,
   organization,
   messages,
