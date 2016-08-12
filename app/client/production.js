@@ -35,6 +35,7 @@ const router = (
         <Route path='/settings' component = { Settings }></Route>
         <Route path='/adduser' component = { AddUser }></Route>
         <Route path='/csvdrop' component={ CSVDrop }></Route>
+        <Route path='/budget' component={  Budget }></Route>
       </Route>
     </Router>
   </Provider>
