@@ -18,6 +18,7 @@ const Pitch = React.createClass({
     return {
       activeTab: 1,
       projName: data.name || "",
+      projId: data.id || null,
       numAssets: data.numAssets || "",
       videoType: data.type || "",
       reqBudget: data.reqBudget || "",
