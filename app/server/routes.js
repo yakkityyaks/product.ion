@@ -105,16 +105,17 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/budget', function(req, res) {
-    Budget.makeBudget(req.body.data, function(budg) {
-      budg ? res.status(201).json(budg) : res.sendStatus(404);
-    });
+    console.log("making it to server ", req.body.data);
+    // Budget.makeBudget(req.body.data, function(budg) {
+    //   budg ? res.status(201).json(budg) : res.sendStatus(404);
+    // });
   });
 
   app.post('/api/get/budget', function(req, res) {
     Budget.getBudget(req.body.description, function(budg) {
       budg ? res.status(201).json(budg) : res.sendStatus(404);
-    })
-  })
+    });
+  });
 
   app.post('/api/get/org', function(req, res) {
     // input: req.body.orgName
@@ -254,7 +255,7 @@ module.exports = function routes(app){
         if (!exp) {
           res.sendStatus(403);
         } else {
-          count++
+          count++;
           if (count === length) {
             res.sendStatus(201);
           }
