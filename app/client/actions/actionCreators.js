@@ -240,10 +240,11 @@ export function resetPasswordMessage() {
 
 //budgets:
 
-export function postProjectBudgets(budgetsArray) {
+export function postProjectBudgets(budgetsObject) {
+  console.log("action created");
   return {
     type: "POST_PROJECT_BUDGETS",
-    budgetsArray
+    budgetsObject
   };
 }
 

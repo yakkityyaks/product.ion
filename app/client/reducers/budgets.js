@@ -3,6 +3,19 @@ import store from "../store";
 
 function budgets(state = {}, action) {
   switch (action.type) {
+    case "POST_PROJECT_BUDGETS":
+    // let newState = state;
+    // newState[]
+    console.log("Making it to budget the reducer ", action.budgetsObject);
+      ApiCall.addBudget(action.budgetsObject)
+      .then(function(res) {
+        console.log("BUDGET RES ", res);
+      })
+      .catch(function(err) {
+        console.error('BUDGET Error ', err);
+      });
+      break;
+
     case "HYDRATE_PROJECT_BUDGETS":
       var newState = state;
       newState["proj" + action.projId] = action.list;

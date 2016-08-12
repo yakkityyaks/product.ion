@@ -26,9 +26,9 @@ const Budget = React.createClass({
     addBudgetNode: function(e) {
       e.preventDefault();
       var budg = {
-        code: this.state.newBudgetCode,
-        total: this.state.newBudgetTotal,
-        label: this.state.newBudgetLabel
+        glCode: this.state.newBudgetCode,
+        cost: this.state.newBudgetTotal,
+        category: this.state.newBudgetLabel
       },
       newList = this.state.tempStore;
       newList.push(budg);
@@ -50,7 +50,10 @@ const Budget = React.createClass({
       e.preventDefault();
       var budget = {total: this.state.total, list: this.state.tempStore};
       var string = JSON.stringify(budget);
-    // this.props.postNewBudget(budget);
+      console.log('the budget is', string);
+      console.log("The length is ", string.length);
+      console.log("The object is ", JSON.parse(string));
+      this.props.postProjectBudgets(budget);
     },
     handleClick(e) {
       e.preventDefault();

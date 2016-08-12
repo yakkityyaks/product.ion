@@ -18,7 +18,6 @@ const PitchSummary = React.createClass({
       type: this.state.videoType,
       status: 'Pitch',
       estimateToComplete: this.state.reqBudget,
-      needs: this.state.studioNeeds,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
       orgs_id: this.props.organization.orgs_id,
