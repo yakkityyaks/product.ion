@@ -4,6 +4,8 @@ import store from "../store";
 function budgets(state = {}, action) {
   switch (action.type) {
     case "POST_PROJECT_BUDGETS":
+    // let newState = state;
+    // newState[]
     console.log("Making it to budget the reducer ", action.budgetsObject);
       ApiCall.addBudget(action.budgetsObject)
       .then(function(res) {
