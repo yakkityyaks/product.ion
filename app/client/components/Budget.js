@@ -26,9 +26,9 @@ const Budget = React.createClass({
     addBudgetNode: function(e) {
       e.preventDefault();
       var budg = {
-        code: this.state.newBudgetCode,
-        total: this.state.newBudgetTotal,
-        label: this.state.newBudgetLabel
+        glCode: this.state.newBudgetCode,
+        cost: this.state.newBudgetTotal,
+        category: this.state.newBudgetLabel
       },
       newList = this.state.tempStore;
       newList.push(budg);

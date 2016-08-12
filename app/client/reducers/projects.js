@@ -5,6 +5,22 @@ function projects(state = [], action) {
   switch (action.type) {
     case "POST_NEW_PROJECT":
       ApiCall.registerProject(action.pitch)
+        .then(function(res) {
+          let project = {
+            id: res.data.id,
+            name: res.data.name,
+            numAssets: res.data.numAssets,
+            user_id: res.data.createdBy,
+            endDate: res.data.endDate,
+            orgs_id: res.data.orgs_id,
+            projId: res.data.projId,
+            startDate: res.data.startDate,
+            status: res.data.status,
+            type: res.data.type,
+            estimateToComplete: res.data.estimateToComplete
+          };
+          console.log(res);
+        })
         .catch((err) => {
           console.error(err);
         });

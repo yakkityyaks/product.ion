@@ -55,6 +55,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/project', function(req, res) {
+    console.log(req);
     //req body should hold the following
     // {
       // data: {
