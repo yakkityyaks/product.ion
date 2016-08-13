@@ -18,13 +18,16 @@ const Pitch = React.createClass({
     return {
       activeTab: 1,
       projName: data.name || "",
-      projId: data.id || null,
+      projId: data.projId || "",
       numAssets: data.numAssets || "",
       videoType: data.type || "",
-      reqBudget: data.reqBudget || "",
-      studioNeeds: data.needs || "",
+      reqBudget: data.reqBudget || 0,
       startDate: data.startDate ? data.startDate.split("T")[0] : date.join("-"),
-      endDate: data.endDate ? data.endDate.split("T")[0] : date.join("-")
+      endDate: data.endDate ? data.endDate.split("T")[0] : date.join("-"),
+      editDate: data.editDate ? data.endDate.split("T")[0] : "",
+      releaseDate: data.editDate ? data.endDate.split("T")[0] : date.join("-"),
+      adminNotes: data.adminNotes || "",
+      approvals: data.approvals || "111111111111"
     };
   },
   handleSelect(key) {
@@ -34,12 +37,19 @@ const Pitch = React.createClass({
     console.log("ding ding ding");
     this.setState({activeTab: 2});
   },
+  updateBudget(newTotal) {
+    this.setState({reqBudget: newTotal});
+  },
+  updatePitch() {
+
+  },
   render() {
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
         <Tab eventKey={1} title="Pitch">{<PitchSummary {...this.props}
-            data={this.state} tabToBudget={this.tabToBudget}/>}</Tab>
-        <Tab eventKey={2} title="Budget">{<Budget {...this.props} total={this.state.reqBudget}/>}</Tab>
+            data={this.state} tabToBudget={this.tabToBudget} updatePitch={this.updatePitch} />}</Tab>
+        <Tab eventKey={2} title="Budget">{<Budget total={this.state.reqBudget}
+            updateBudget={this.updateBudget}/>}</Tab>
       </Tabs>
     );
   }

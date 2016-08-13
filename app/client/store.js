@@ -54,12 +54,12 @@ const middleware = applyMiddleware(routerMiddleware(browserHistory));
 const store = createStore(rootReducer, defaultState, middleware);
 
 //Not sure what this did, hopefully we can leave this out without any problems
-// if(module.hot) {
-//   module.hot.accept('./reducers/',() => {
-//     const nextRootReducer = require('./reducers/index').default;
-//     store.replaceReducer(nextRootReducer);
-//   });
-// }
+if(module.hot) {
+  module.hot.accept('./reducers/',() => {
+    const nextRootReducer = require('./reducers/index').default;
+    store.replaceReducer(nextRootReducer);
+  });
+}
 
 export const history = syncHistoryWithStore(browserHistory, store);
 export default store;
