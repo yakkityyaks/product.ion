@@ -1,10 +1,11 @@
 import ApiCall from "../utils/serverCalls";
 import store from "../store";
+import { browserHistory } from 'react-router';
 
 function budgets(state = {}, action) {
   switch (action.type) {
     case "POST_PROJECT_BUDGETS":
-    console.log("Making it to budget the reducer ", action.budget);
+    console.log("Making it to budget the reducer ", action.budget, action.id);
       ApiCall.addBudget(action.budget, action.id)
       .then(function(res) {
         console.log("BUDGET RES ", res);

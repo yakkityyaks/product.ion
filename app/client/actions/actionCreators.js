@@ -188,7 +188,7 @@ export function updateExpense(data, projId, projs_id) {
     data,
     projId,
     projs_id
-  }
+  };
 }
 
 export function setCurrentExpenseProject(expenses) {
