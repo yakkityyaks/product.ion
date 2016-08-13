@@ -1,16 +1,17 @@
 import React from 'react';
-import { Button, Form, FormGroup,
+import { Button, Form, FormGroup, InputGroup,
   DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
 import CustomSearch from './CustomSearch';
 
 import cata from "../data/public";
 
+//lockInputs: are they still needed?
 const Budget = React.createClass({
     getInitialState: function() {
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
-        lockInputs: false, total: 0, filter: "",
+        newBudgetCost: "", newBudgetQuant: "", filter: "",
 
         tempStore: []
       };
@@ -19,12 +20,13 @@ const Budget = React.createClass({
       this.setState({
               newBudgetCode: "",
               newBudgetLabel: "",
-              newBudgetTotal: "",
-              lockInputs: false
+              newBudgetTotal: ""
       });
     },
     addBudgetNode: function(e) {
       e.preventDefault();
+
+      //create a budget object, push it to the temp budget storage array
       var budg = {
         code: this.state.newBudgetCode,
         total: this.state.newBudgetTotal,
@@ -33,11 +35,15 @@ const Budget = React.createClass({
       newList = this.state.tempStore;
       newList.push(budg);
 
-      this.resetNewBudgetField();
+      //set the new total budget
+      const newTotal = this.props.total/1 + this.state.newBudgetTotal/1;
+      this.props.updateBudget(newTotal);
+
+      //updates the temp store
       this.setState({
-        tempStore : newList,
-        total: this.state.total/1 + budg.total/1
+        tempStore : newList
       });
+      this.resetNewBudgetField();
     },
     removeBudgetNode(idx) {
       var newStore = this.state.tempStore
@@ -63,12 +69,14 @@ const Budget = React.createClass({
     setFilter(e) {
       this.setState({filter: e.target.value.toLowerCase()});
     },
+    handleChange(e) {
+      this.setState({[e.target.name]: e.target.value});
+    },
     selectCata(e) {
       this.setState({
         newBudgetCode: cata[e].code,
         newBudgetLabel: cata[e].label,
-        filter: "",
-        lockInputs: true
+        filter: ""
       });
     },
     render: function (){
@@ -95,19 +103,37 @@ const Budget = React.createClass({
                   node.label.toLowerCase().includes(this.state.filter))
                .map(budgetDropdownItem)
              }
+            <br></br>
             </DropdownButton>
-            <FormControl readOnly={this.state.lockInputs} type="text"
-                         value={this.state.newBudgetCode} placeholder="GL Code"/>
-            <FormControl readOnly={this.state.lockInputs} type="text"
-                         value={this.state.newBudgetLabel} placeholder="Category"/>
-            <FormControl type="text" placeholder="Total Estimate"
-                         onChange={this.handleNewTotalChange}
-                         value={this.state.newBudgetTotal} />
+            <FormGroup>
+              <FormControl readOnly type="text"
+                           value={this.state.newBudgetCode} placeholder="GL Code"/>
+              <FormControl readOnly type="text" className="budgetFormCata1"
+                           value={this.state.newBudgetLabel} placeholder="Category"/>
+            </FormGroup>
+            <InputGroup className="testing2">
+              <InputGroup.Addon>Cost: $</InputGroup.Addon>
+              <FormControl type="number" placeholder="Cost"
+                           onChange={this.handleChange} name="newBudgetCost"
+                           value={this.state.newBudgetCost} />
+            </InputGroup>
+            <InputGroup className="testing2">
+              <InputGroup.Addon>Quant: $</InputGroup.Addon>
+              <FormControl type="number" placeholder="Units"
+                           onChange={this.handleChange} name="newBudgetQuant"
+                           value={this.state.newBudgetQuant} />
+            </InputGroup>
+            <InputGroup className="testing2">
+              <InputGroup.Addon>Total: $</InputGroup.Addon>
+              <FormControl type="number" placeholder="Total Estimate"
+                           onChange={this.handleChange} name="newBudgetTotal"
+                           value={this.state.newBudgetTotal} />
+            </InputGroup>
           <Button onClick={this.addBudgetNode} type="submit">
             Add
           </Button>
           </FormGroup>
-          <FormControl readOnly value={this.props.total || this.state.total} />
+          <FormControl readOnly value={"$" + this.props.total} />
           <Button type="submit">Submit your Budget!</Button>
         </Form>
       </div>
