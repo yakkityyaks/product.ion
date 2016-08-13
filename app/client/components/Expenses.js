@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
 <<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
 import ExpenseChart from './ExpenseChart';
 
@@ -8,15 +9,23 @@ import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'r
 =======
 import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
 >>>>>>> (feat) Expense Component
+=======
+import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
+>>>>>>> (feat) Expense Components
 import ExpenseNode from './ExpenseNode';
+import StaticExpenseNode from './ExpenseNode(Static)';
 import NavBar from './NavBar';
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
 import CSVDrop from './CSVDrop';
 import { Panel } from 'react-bootstrap';
 
+=======
+>>>>>>> (feat) Expense Components
 
 const Expenses = React.createClass({
   getInitialState() {
     return {
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
       type: "",
       vertical: "",
       vendor: "",
@@ -29,15 +38,33 @@ const Expenses = React.createClass({
       dateTracked:"",
       projs_id: this.props.expenses.id,
       open: false
+=======
+      expenses: this.props.expenses.expenses,
+      type: undefined,
+      vertical: undefined,
+      vendor: undefined,
+      description: undefined,
+      cost: undefined,
+      method: undefined,
+      category: undefined,
+      glCode: undefined,
+      dateSpent: undefined,
+      dateTracked: undefined,
+      projs_id: this.props.expenses.id,
+      count: 0,
+      addedExpenses: [0]
+>>>>>>> (feat) Expense Components
     };
   },
-  getValidationState() {
 
-  },
-  onSubmit(e) {
+  addExpenseNode: function(e) {
     e.preventDefault();
-    var temp = this.state;
+    var count = this.state.count;
+    var newCount = ++count;
+    var addedExpenses = this.state.addedExpenses;
+    addedExpenses.push(newCount);
     this.setState({
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
       type: "",
       vertical: "",
       vendor: "",
@@ -49,8 +76,25 @@ const Expenses = React.createClass({
       dateTracked: "",
       cost: "",
       projs_id: this.props.expenses.id
+=======
+      count : newCount
+>>>>>>> (feat) Expense Components
     });
-    this.props.postNewExpense(temp, this.props.expenses.projId);
+    console.log(count, newCount, addedExpenses)
+  },
+
+  removeExpenseNode(idx) {
+    var last = this.state.addedExpenses.length-1
+    var newExpensesCount = this.state.addedExpenses.slice(0,last);
+    this.setState({addedExpenses : newExpensesCount});
+  },
+
+  handleSubmit: function() {
+    console.log('hey')
+  },
+
+  handleUpdate: function(){
+
   },
 <<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
   handleChangeType(e) {
@@ -123,10 +167,11 @@ const Expenses = React.createClass({
     });
 
     return (
-      <div style={{fontSize : "14px"}}>
+      <div>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
 <<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
         <h3>{"Expenses for " + projName }</h3>
         <Panel>
@@ -153,6 +198,10 @@ const Expenses = React.createClass({
         <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
 >>>>>>> (feat) Expense Component
           <Table condensed style={{width: "100%"}}>
+=======
+        <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
+          <Table striped bordered condensed hover style={{width: "90%"}}>
+>>>>>>> (feat) Expense Components
               <thead>
                 <tr>
                   <th>Type</th>
@@ -168,6 +217,7 @@ const Expenses = React.createClass({
                 </tr>
               </thead>
                 <tbody>
+<<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
                   {this.props.expenses.expenses.map((expense, idx) =>
                       <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} projId={this.props.expenses.projId} projs_id={this.props.expenses.id}/>)
                   }
@@ -281,9 +331,36 @@ const Expenses = React.createClass({
 
             </FormGroup>
 =======
+=======
+                  {this.state.expenses.map((expense, index) => {return <StaticExpenseNode expenses={expense} idx={index} readOnly={this.handleUpdate} /> })}
+>>>>>>> (feat) Expense Components
                 </tbody>
 >>>>>>> (feat) Expense Component
           </Table>
+          <h3>New Expenses</h3>
+
+          <Table striped bordered condensed hover style={{width: "90%"}}>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Vertical</th>
+                  <th>Vendor</th>
+                  <th>Description</th>
+                  <th>Cost</th>
+                  <th>Method</th>
+                  <th>Expense Category</th>
+                  <th>GL Code</th>
+                  <th>Date Spent</th>
+                  <th>Date Tracked</th>
+                </tr>
+              </thead>
+            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} key={index} />)}</tbody>
+          </Table>
+          <Button onClick={this.addExpenseNode}>Add Expense</Button>
+          <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
+          <div>
+          <Button onClick={this.handleSubmit}>Submit New Expenses</Button>
+          </div>
       </div>
     );
   }

@@ -17,6 +17,7 @@ const SelectInput = React.createClass({
     if (!input) {
       return;
     }
+    console.log(input);
     this.props.onInput(input);
   },
 
