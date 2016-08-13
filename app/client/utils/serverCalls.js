@@ -47,6 +47,7 @@ let parseCSV = (data, id) =>
 let addBudget = (data, id) =>
   axios.post('/api/register/budget', { data: data, id: id });
 
+
 const ApiCall = {
   registrationCheck,
   registerOrg,
