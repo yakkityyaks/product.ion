@@ -188,7 +188,7 @@ export function updateExpense(data, projId, projs_id) {
     data,
     projId,
     projs_id
-  }
+  };
 }
 
 export function setCurrentExpenseProject(expenses) {
@@ -240,10 +240,12 @@ export function resetPasswordMessage() {
 
 //budgets:
 
-export function postProjectBudgets(budgetsArray) {
+export function postProjectBudgets(budget, id) {
+  console.log("action created");
   return {
     type: "POST_PROJECT_BUDGETS",
-    budgetsArray
+    budget,
+    id
   };
 }
 

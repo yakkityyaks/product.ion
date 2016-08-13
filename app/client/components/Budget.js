@@ -8,10 +8,17 @@ import cata from "../data/public";
 
 const Budget = React.createClass({
     getInitialState: function() {
+      const { data } = this.props;
+      console.log("data is ", data);
       return {
-        newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
-        lockInputs: false, total: 0, filter: "",
-
+        projName: data.name || "",
+        projId: data.id || null,
+        newBudgetCode: "",
+        newBudgetLabel: "",
+        newBudgetTotal: "",
+        lockInputs: false,
+        total: 0,
+        filter: "",
         tempStore: []
       };
     },
@@ -26,9 +33,9 @@ const Budget = React.createClass({
     addBudgetNode: function(e) {
       e.preventDefault();
       var budg = {
-        code: this.state.newBudgetCode,
-        total: this.state.newBudgetTotal,
-        label: this.state.newBudgetLabel
+        glCode: this.state.newBudgetCode,
+        cost: this.state.newBudgetTotal,
+        category: this.state.newBudgetLabel
       },
       newList = this.state.tempStore;
       newList.push(budg);
@@ -48,9 +55,17 @@ const Budget = React.createClass({
     },
     handleSubmit(e) {
       e.preventDefault();
-      var budget = {total: this.state.total, list: this.state.tempStore};
+      var budget = this.state.tempStore;
       var string = JSON.stringify(budget);
-    // this.props.postNewBudget(budget);
+      console.log('the budget is', string);
+      console.log("The length is ", string.length);
+      console.log("This.state.id ", this.state.projId);
+      console.log("The object is ", JSON.parse(string));
+      let budgetObj = this.state.tempStore;
+      let id = this.state.projId;
+
+      console.log("budget object: ", budget);
+      this.props.postProjectBudgets(budget, id);
     },
     handleClick(e) {
       e.preventDefault();

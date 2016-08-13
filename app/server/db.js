@@ -30,7 +30,6 @@ Promise.all([
     table.string('type');
     table.integer('numAssets');
     table.float('reqBudget');
-    table.string('needs');
     table.date('startDate');
     table.date('endDate');
     table.string('status');
@@ -61,14 +60,12 @@ Promise.all([
   }),
 
   knex.schema.createTableIfNotExists('budgets', function(table) {
-    table.increments('id').primary();
-    table.integer('glCode');
-    table.string('subCategory');
-    table.string('description');
-    table.float('cost');
-    table.integer('projs_id').unsigned().references('id').inTable('projs');
-  })
-]);
+     table.increments('id').primary();
+     table.integer('glCode');
+     table.string('category');
+     table.float('cost');
+     table.integer('projs_id').unsigned().references('id').inTable('projs');
+   }),
 
 var Bookshelf = require('bookshelf')(knex);
 
