@@ -19,8 +19,23 @@ const cata = [
   {id: 14, name: "audioMix", cat: "post", code:11235, label: "Audio Mixing"}
 ];
 
+export var judy = {
+  projName: undefined,
+  projId: undefined,
+  vertical: undefined,
+  tier: undefined,
+  numAssets: undefined,
+  videoType: undefined,
+  reqBudget: undefined,
+  startDate: undefined,
+  endDate: undefined,
+  editDate: undefined,
+  releaseDate: undefined
+};
+
 export default cata;
 
+//Refactor All below this point. Probably delete it:
 const options = [
 {
 type: 'group', name: 'Production-CREW', items: [

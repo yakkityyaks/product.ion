@@ -27,14 +27,20 @@ Promise.all([
     table.increments('id').primary();
     table.string('name');
     table.integer('projId');
+    table.string('vertical', 20);
+    table.string('tier', 20);
     table.string('type');
     table.integer('numAssets');
     table.float('reqBudget');
     table.date('startDate');
     table.date('endDate');
+    table.data('editDate');
+    table.date('releaseDate');
     table.string('status');
     table.float('costToDate').defaultTo(0);
     table.float('estimateToComplete');
+    table.string('approvals', 12).defaultTo("111111111111");
+    table.string('adminNotes', 1000);
     table.integer('createdBy');
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
