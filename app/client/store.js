@@ -13,7 +13,6 @@ import rootReducer from './reducers/index';
 // import organization from './data/organization';// TAKE THESE OUT
 
 // create an object for the default data
-const project = [];
 const projects = [];
 const budgets = {};
     //budgets{proj15: []}
@@ -38,7 +37,6 @@ const navBar = {
 const parseCSV = [];
 
 const defaultState = {
-  project,
   projects,
   budgets,
   expenses,
