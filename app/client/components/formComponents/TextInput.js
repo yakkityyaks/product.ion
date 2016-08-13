@@ -2,29 +2,23 @@ import React from 'react';
 import { FormControl } from 'react-bootstrap';
 
 const TextInput = React.createClass({
-  getInitialState: function() {
-    return {
-      input: this.props.value
-    };
-  },
   handleInputChange: function(e) {
-    this.setState({input: e.target.value});
-    var input = this.state.input.trim();
-    if (!input) {
-      return;
-    }
-    this.props.onInput(input);
+    e.preventDefault();
+    this.props.onChange(e.target.name, e.target.value);
   },
 
   render() {
     return (
       <FormControl
         componentClass="input"
-        value = {this.state.input}
+        name={this.props.name}
+        readOnly={this.props.readOnlyStatus}
+        value = {this.props.value}
         onChange = {this.handleInputChange}
         placeholder={this.props.title}>
       </FormControl>
     );
   }
 });
+
 export default TextInput;

@@ -2,26 +2,17 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
 import ExpenseNode from './ExpenseNode';
-import StaticExpenseNode from './ExpenseNode(Static)';
 import NavBar from './NavBar';
+import FormTable from './formComponents/Table.js';
 
 const Expenses = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return {
       expenses: this.props.expenses.expenses,
-      type: undefined,
-      vertical: undefined,
-      vendor: undefined,
-      description: undefined,
-      cost: undefined,
-      method: undefined,
-      category: undefined,
-      glCode: undefined,
-      dateSpent: undefined,
-      dateTracked: undefined,
       projs_id: this.props.expenses.id,
       count: 0,
-      addedExpenses: [0]
+      addedExpenses: [0],
+      newExpenses: []
     };
   },
 
@@ -34,7 +25,6 @@ const Expenses = React.createClass({
     this.setState({
       count : newCount
     });
-    console.log(count, newCount, addedExpenses)
   },
 
   removeExpenseNode(idx) {
@@ -43,11 +33,15 @@ const Expenses = React.createClass({
     this.setState({addedExpenses : newExpensesCount});
   },
 
-  handleSubmit: function() {
-    console.log('hey')
+  handleNewExpense: function(singleExpense){
+    var newExpenses = this.state.newExpenses;
+    newExpenses.push(singleExpense);
+    this.setState({newExpenses: newExpenses})
+    console.log('new state', this.state.newExpenses);
   },
 
-  handleUpdate: function(){
+  handleSubmit: function(){
+    var newExpenses = this.state.newExpenses;
 
   },
 
@@ -74,7 +68,7 @@ const Expenses = React.createClass({
                 </tr>
               </thead>
                 <tbody>
-                  {this.state.expenses.map((expense, index) => {return <StaticExpenseNode expenses={expense} idx={index} readOnly={this.handleUpdate} /> })}
+                  {this.state.expenses.map((item, index) => <ExpenseNode expense={item} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
                 </tbody>
           </Table>
           <h3>New Expenses</h3>
@@ -94,12 +88,12 @@ const Expenses = React.createClass({
                   <th>Date Tracked</th>
                 </tr>
               </thead>
-            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} key={index} />)}</tbody>
+            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} handleNewExpense={this.handleNewExpense} projs_id={this.state.projs_id} key={index} readOnlyStatus={false}/>)}</tbody>
           </Table>
           <Button onClick={this.addExpenseNode}>Add Expense</Button>
           <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
           <div>
-          <Button onClick={this.handleSubmit}>Submit New Expenses</Button>
+          <Button>Submit New Expenses</Button>
           </div>
       </div>
     );

@@ -5,31 +5,26 @@ import { FormControl } from 'react-bootstrap';
 
 const SelectInput = React.createClass({
 
-  getInitialState: function() {
-    return {
-      input: this.props.value,
-      options: this.props.options
-    };
-  },
   handleInputChange: function(e) {
-    this.setState({input: e.target.value});
-    var input = this.state.input.trim();
-    if (!input) {
-      return;
-    }
-    console.log(input);
-    this.props.onInput(input);
+    e.preventDefault();
+    this.props.onChange(e.target.name, e.target.value);
   },
 
   render () {
 
     return (
         <div className="selectInput">
-        <FormControl componentClass="select" value={this.state.input} onChange={this.handleInputChange}>
-            {this.state.options.map((option, index) => (
-                <option key={index} value={option}>{option}</option>
-            ))}
-        </FormControl>
+          <FormControl
+            componentClass="select"
+            readOnly={this.props.readOnlyStatus}
+            name={this.props.name}
+            onChange={this.handleInputChange}>
+              {this.props.options.map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+              ))}
+
+            value={this.props.value}
+          </FormControl>
         </div>
     );
   }
