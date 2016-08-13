@@ -13,17 +13,20 @@ import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'r
 import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
 >>>>>>> (feat) Expense Components
 import ExpenseNode from './ExpenseNode';
-import StaticExpenseNode from './ExpenseNode(Static)';
 import NavBar from './NavBar';
+<<<<<<< bc64bbd90ee547db92519b2b2ac05b95c568a0b6
 <<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
 import CSVDrop from './CSVDrop';
 import { Panel } from 'react-bootstrap';
 
 =======
 >>>>>>> (feat) Expense Components
+=======
+import FormTable from './formComponents/Table.js';
+>>>>>>> (feat) expenseComponent
 
 const Expenses = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return {
 <<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
       type: "",
@@ -40,20 +43,15 @@ const Expenses = React.createClass({
       open: false
 =======
       expenses: this.props.expenses.expenses,
-      type: undefined,
-      vertical: undefined,
-      vendor: undefined,
-      description: undefined,
-      cost: undefined,
-      method: undefined,
-      category: undefined,
-      glCode: undefined,
-      dateSpent: undefined,
-      dateTracked: undefined,
       projs_id: this.props.expenses.id,
       count: 0,
+<<<<<<< bc64bbd90ee547db92519b2b2ac05b95c568a0b6
       addedExpenses: [0]
 >>>>>>> (feat) Expense Components
+=======
+      addedExpenses: [0],
+      newExpenses: []
+>>>>>>> (feat) expenseComponent
     };
   },
 
@@ -80,7 +78,6 @@ const Expenses = React.createClass({
       count : newCount
 >>>>>>> (feat) Expense Components
     });
-    console.log(count, newCount, addedExpenses)
   },
 
   removeExpenseNode(idx) {
@@ -89,11 +86,15 @@ const Expenses = React.createClass({
     this.setState({addedExpenses : newExpensesCount});
   },
 
-  handleSubmit: function() {
-    console.log('hey')
+  handleNewExpense: function(singleExpense){
+    var newExpenses = this.state.newExpenses;
+    newExpenses.push(singleExpense);
+    this.setState({newExpenses: newExpenses})
+    console.log('new state', this.state.newExpenses);
   },
 
-  handleUpdate: function(){
+  handleSubmit: function(){
+    var newExpenses = this.state.newExpenses;
 
   },
 <<<<<<< 24aeb35257b28e73bfccde1fe31f198535cc6beb
@@ -217,6 +218,7 @@ const Expenses = React.createClass({
                 </tr>
               </thead>
                 <tbody>
+<<<<<<< bc64bbd90ee547db92519b2b2ac05b95c568a0b6
 <<<<<<< 825d902fb84c076c66d2f6294f6792df3a017dc3
                   {this.props.expenses.expenses.map((expense, idx) =>
                       <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} projId={this.props.expenses.projId} projs_id={this.props.expenses.id}/>)
@@ -334,6 +336,9 @@ const Expenses = React.createClass({
 =======
                   {this.state.expenses.map((expense, index) => {return <StaticExpenseNode expenses={expense} idx={index} readOnly={this.handleUpdate} /> })}
 >>>>>>> (feat) Expense Components
+=======
+                  {this.state.expenses.map((item, index) => <ExpenseNode expense={item} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
+>>>>>>> (feat) expenseComponent
                 </tbody>
 >>>>>>> (feat) Expense Component
           </Table>
@@ -354,12 +359,12 @@ const Expenses = React.createClass({
                   <th>Date Tracked</th>
                 </tr>
               </thead>
-            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} key={index} />)}</tbody>
+            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} handleNewExpense={this.handleNewExpense} projs_id={this.state.projs_id} key={index} readOnlyStatus={false}/>)}</tbody>
           </Table>
           <Button onClick={this.addExpenseNode}>Add Expense</Button>
           <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
           <div>
-          <Button onClick={this.handleSubmit}>Submit New Expenses</Button>
+          <Button>Submit New Expenses</Button>
           </div>
       </div>
     );
