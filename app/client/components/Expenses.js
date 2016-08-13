@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
+import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
 import ExpenseNode from './ExpenseNode';
+import StaticExpenseNode from './ExpenseNode(Static)';
 import NavBar from './NavBar';
-import { Panel } from 'react-bootstrap';
-
 
 const Expenses = React.createClass({
   getInitialState() {
     return {
+      expenses: this.props.expenses.expenses,
       type: undefined,
       vertical: undefined,
       vendor: undefined,
@@ -19,51 +19,46 @@ const Expenses = React.createClass({
       glCode: undefined,
       dateSpent: undefined,
       dateTracked: undefined,
-      projs_id: this.props.expenses.id
+      projs_id: this.props.expenses.id,
+      count: 0,
+      addedExpenses: [0]
     };
   },
-  getValidationState() {
 
-  },
-  onSubmit(e) {
+  addExpenseNode: function(e) {
     e.preventDefault();
-    var temp = this.state;
+    var count = this.state.count;
+    var newCount = ++count;
+    var addedExpenses = this.state.addedExpenses;
+    addedExpenses.push(newCount);
     this.setState({
-      type: undefined,
-      vertical: undefined,
-      vendor: undefined,
-      description: undefined,
-      method: undefined,
-      category: undefined,
-      glCode: undefined,
-      dateSpent: undefined,
-      dateTracked: undefined,
-      cost: undefined,
-      projs_id: this.props.expenses.id
+      count : newCount
     });
-    this.props.postNewExpense(temp, this.props.expenses.projId);
+    console.log(count, newCount, addedExpenses)
+  },
+
+  removeExpenseNode(idx) {
+    var last = this.state.addedExpenses.length-1
+    var newExpensesCount = this.state.addedExpenses.slice(0,last);
+    this.setState({addedExpenses : newExpensesCount});
+  },
+
+  handleSubmit: function() {
+    console.log('hey')
+  },
+
+  handleUpdate: function(){
+
   },
 
   render() {
     return (
-      <div style={{fontSize : "14px"}}>
+      <div>
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <Panel>
-          <Button bsStyle="primary" bsSize="large" id="expenseButton" onClick={this.switchModal}>Create an Expense</Button>
-        <Modal show={this.props.modals.expense} onHide={this.switchModal} >
-          <Modal.Header closeButton>
-            <Modal.Title>Add an Expense</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ExpenseNode {...this.props}/>
-          </Modal.Body>
-        <Modal.Footer />
-        </Modal>
-        </Panel>
         <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
-          <Table condensed style={{width: "100%"}}>
+          <Table striped bordered condensed hover style={{width: "90%"}}>
               <thead>
                 <tr>
                   <th>Type</th>
@@ -79,11 +74,33 @@ const Expenses = React.createClass({
                 </tr>
               </thead>
                 <tbody>
-                  {this.props.expenses.expenses.map((expense, idx) =>
-                      <ExpenseNode key={idx} idx={idx} {...this.props} expense={expense} projId={this.props.expenses.projId} projs_id={this.props.expenses.id}/>)
-                  }
+                  {this.state.expenses.map((expense, index) => {return <StaticExpenseNode expenses={expense} idx={index} readOnly={this.handleUpdate} /> })}
                 </tbody>
           </Table>
+          <h3>New Expenses</h3>
+
+          <Table striped bordered condensed hover style={{width: "90%"}}>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Vertical</th>
+                  <th>Vendor</th>
+                  <th>Description</th>
+                  <th>Cost</th>
+                  <th>Method</th>
+                  <th>Expense Category</th>
+                  <th>GL Code</th>
+                  <th>Date Spent</th>
+                  <th>Date Tracked</th>
+                </tr>
+              </thead>
+            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} key={index} />)}</tbody>
+          </Table>
+          <Button onClick={this.addExpenseNode}>Add Expense</Button>
+          <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
+          <div>
+          <Button onClick={this.handleSubmit}>Submit New Expenses</Button>
+          </div>
       </div>
     );
   }

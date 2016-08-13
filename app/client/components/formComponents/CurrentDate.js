@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 
 const TextInput = React.createClass({
   getInitialState: function() {
@@ -21,7 +21,7 @@ const TextInput = React.createClass({
 
   render() {
     return (
-      <Panel>{this.state.date}</Panel>
+      <FormControl readOnly value={this.state.date}></FormControl>
     );
   }
 });
