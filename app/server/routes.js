@@ -106,10 +106,10 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/budget', function(req, res) {
-    console.log("making it to server ", req.body.data);
-    // Budget.makeBudget(req.body.data, function(budg) {
-    //   budg ? res.status(201).json(budg) : res.sendStatus(404);
-    // });
+    console.log("making it to server ", req);
+    Budget.makeBudget(req.body.data, function(budg) {
+      budg ? res.status(201).json(budg) : res.sendStatus(404);
+    });
   });
 
   app.post('/api/get/budget', function(req, res) {
