@@ -267,4 +267,24 @@ module.exports = function routes(app){
       });
     });
   });
+
+  app.post('/api/register/budgets', function(req, res) {
+    console.log(req.body.id);
+    console.log(req.body.data);
+    var rows = req.body.data;
+    var length = rows.length;
+    var count = 0;
+    rows.forEach(function(row) {
+      Budget.makeBudget(Object.assign({}, row, {projs_id: req.body.id}), function(budg) {
+        if (!budg) {
+          res.sendStatus(403);
+        } else {
+          count++
+          if (count === length) {
+            res.sendStatus(201);
+          }
+        }
+      });
+    });
+  });
 };

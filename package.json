@@ -38,6 +38,8 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-watch": "^4.3.9",
+    "highcharts": "^4.2.6",
+    "highcharts-3d": "^0.1.2",
     "knex": "^0.11.9",
     "mysql": "^2.11.1",
     "nodemon": "^1.10.0",
