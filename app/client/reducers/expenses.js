@@ -44,13 +44,20 @@ function expenses(state = [], action) {
       })
       break;
     case "REMOVE_EXPENSE":
-      console.log('removing');
+      console.log(state);
       ApiCall.removeExpense(action.id).then(function(res) {
         store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
       })
       .catch(function(err) {
         console.err(err);
       });
+      // var temp = [];
+      // for (var i = 0; i < state.expenses.length; i++) {
+      //   if (state.expenses[i].id !== action.id) {
+      //     temp.push(state.expenses[i]);
+      //   }
+      // }
+      // return {id: state.id, projId: state.projId, expenses: temp}
     case "UPDATE_EXPENSE":
       console.log('updating');
       ApiCall.updateExpense(action.data, action.data.id).then(function(res) {

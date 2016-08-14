@@ -32,7 +32,7 @@ module.exports = function routes(app){
     });
   });
 
-  app.post('/api/register/user', function(req, res){
+  app.post('/api/register/user', function(req, res) {
     //makes username w/ name req.body.username, req.body.password, req.body.perm, and req.body.orgs_id and returns the user model
     //if a user with that username already exists return a 403
     //req.body should be
@@ -44,6 +44,7 @@ module.exports = function routes(app){
     //       orgs_id: int
     //   }
     // }
+    console.log("I'm alive!");
     User.getUser(req.body.data.username, function(user) {
       if (!user) {
         User.makeUser(req.body.data, function(user){
@@ -239,6 +240,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/remove/expense', function(req, res) {
+    console.log("I'm removing an expense!");
     Expense.getExpense(req.body.id, function(exp) {
       exp ? exp.destroy().then(function(exp) {
         res.status(201).json(exp);
