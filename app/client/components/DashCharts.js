@@ -13,7 +13,6 @@ const DashCharts = React.createClass({
 		}
 	},
 	componentDidMount() {
-		console.log('mounted', this.state.expenses, this.props.projects);
 		this.getExpenses();
 	},
 	getExpenses() {
@@ -22,17 +21,11 @@ const DashCharts = React.createClass({
 	    for (var i = 0; i < this.props.projects.length; i++) {
 	      ids.push(this.props.projects[i].projId);
 	    }
-	    var temp = [Promise.resolve([this.setState.bind(this), this.sortBy])];
-	    for (var i = 0; i < ids.length; i++) {
-	      // console.log(p
-	      temp.push(ApiCall.getExpensesByProjectId(ids[i]));
-	    }
+	    var temp = [Promise.resolve([this.setState.bind(this), this.sortBy]), ApiCall.getExpenses(ids)];
 	    Promise.all(temp).then(function(vals) {
-	    	var exps = [];
-	    	vals.forEach(function(val, idx) {
-	    		if (idx !== 0) val.data.expenses.forEach(function(exp) { exps.push(exp)})
-	    	})
-	    	console.log('exps', exps)
+	    	var exps = vals[1].data.reduce(function(a,b) {
+	    		return a.concat(b);
+	    	}, []);
 	    	vals[0][0]({expenses: exps}, vals[0][1]);
 	    });
 	  } else {
@@ -41,16 +34,13 @@ const DashCharts = React.createClass({
 	},
 	sortBy() {
 		var temp = {};
-		console.log(this.state.type);
 		if (this.state.sortBy !== "project") {
-			console.log('sorting by not project');
 			for (var i = 0; i < this.state.expenses.length; i++) {
 				var exp = this.state.expenses[i];
 				temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] || 0;
 				temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] + exp.cost;
 			};
 		} else {
-			console.log('sorting by project');
 			for (var i = 0; i < this.state.expenses.length; i++) {
 				var exp = this.state.expenses[i];
 				var projName = this.getProjName(exp.projs_id);
@@ -108,7 +98,6 @@ const DashCharts = React.createClass({
 		for (var i = 0; i < this.props.projects.length; i++) {
 			if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i].name;};
 		}
-		console.log('not found');
 		return 'proj not found';
 	},
 	render() {
@@ -116,7 +105,7 @@ const DashCharts = React.createClass({
 			<div>
 				<Form inline>
 					<FormGroup controlId="formControlsSelect">
-			      <ControlLabel>Sort by</ControlLabel>
+			      <ControlLabel>Sort by</ControlLabel>&nbsp;
 			      <FormControl componentClass="select" placeholder="Type" value={this.state.sortBy} onChange={this.handleSortChange}>
 			        <option value="type">Type</option>
 			        <option value="vertical">Vertical</option>

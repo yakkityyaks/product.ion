@@ -17,11 +17,9 @@ const Login = React.createClass({
   },
   handleUserChange(e) {
     this.setState({username:e.target.value});
-    // this.props.resetLoginMessage();
   },
   handlePassChange(e) {
     this.setState({password:e.target.value});
-    // this.props.resetLoginMessage();
   },
   handleSubmit(event) {
     event.preventDefault();

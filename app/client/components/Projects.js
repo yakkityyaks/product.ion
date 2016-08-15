@@ -24,15 +24,20 @@ const Projects = React.createClass({
     return (
       <div style={{fontSize : "14px"}}>
         <Panel>
-          <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
-            Create a Pitch
-          </Button>
-          <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
-            <Modal.Body>
-              <Pitch {...this.props} data={this.state.editProject}/>
-            </Modal.Body>
-            <Modal.Footer />
-          </Modal>
+          {
+            this.props.short ? <div></div> :
+            <div>
+              <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
+                Create a Pitch
+              </Button>
+              <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
+                <Modal.Body>
+                  <Pitch {...this.props} data={this.state.editProject}/>
+                </Modal.Body>
+                <Modal.Footer />
+              </Modal>
+            </div>
+          }
           <Panel>
           	<Table striped bordered>
           		<thead>
@@ -45,11 +50,11 @@ const Projects = React.createClass({
           			</tr>
           		</thead>
           		<tbody>
-          			{this.props.projects.map(
-          				(project, idx) =>
-              			<ProjectNode key={idx} idx={idx} {...this.props}
-                    project={project} switchModal={this.switchModal}/>
-                  )}
+          			{this.props.short ? this.props.projects.slice(-3).map((project, idx) =>
+              			<ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>) 
+                  : this.props.projects.map((project, idx) =>
+                    <ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>
+                )}
           		</tbody>
           	</Table>
           </Panel>

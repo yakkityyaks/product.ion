@@ -84,9 +84,7 @@ const Expenses = React.createClass({
         <Panel>
           <h3>Data Visualization!!!</h3>
           <Button onClick={this.switchChart}>Click for Visuals</Button>
-          <Panel>
-            {this.state.open ? <ExpenseChart {...this.props}/> : null}
-            </Panel>
+          {this.state.open ? <ExpenseChart {...this.props}/> : null}
         </Panel>
         <h3>{"Project ID: "+ this.state.projId}</h3>
           <Table striped bordered condensed hover style={{width: "90%"}}>

@@ -103,140 +103,151 @@ const ExpenseNode = React.createClass({
 
   render() {
     return (
-        <tr>
-          <td width="auto">
-            {(this.state.importedExpenses.type && this.state.readOnlyStatus === true) ?
+      <tr>
+        <td width="auto">
+          {(this.state.importedExpenses.type && this.state.readOnlyStatus === true) ?
+          <TextInput
+            name="type"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.importedExpenses.type}
+            value={this.state.importedExpenses.type} /> :
+          <SelectInput
+            name="type"
+            onChange={this.handleChange}
+            options={['Video Originals', 'Branded', 'Editorial', 'Debt Expenses']}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title ="Type"
+            value={this.state.importedExpenses.type} />
+          }
+        </td>
+        <td width="auto">
+          {(this.state.importedExpenses.vertical && this.state.readOnlyStatus === true) ?
+          <TextInput
+            name="vertical"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.importedExpenses.vertical}
+            value={this.state.importedExpenses.vertical} /> :
+          <SelectInput
+            name="vertical"
+            onChange={this.handleChange}
+            options={['Food', 'Beauty', 'Fashion & Style', 'News & Politics', 'News & Celeb', 'Wellness', 'Entertainment']}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title ="Vertical"
+            value={this.state.importedExpenses.vertical} />
+          }
+        </td>
+        <td width="auto">
+          <TextInput
+            name="vendor"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.importedExpenses.vendor}
+            value={this.state.importedExpenses.vendor} />
+        </td>
+        <td width="auto">
+          <TextInput
+            name="description"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.importedExpenses.description}
+            value={this.state.importedExpenses.description} />
+        </td>
+        <td width="auto">
+          <InputGroup>
+            <InputGroup.Addon>$</InputGroup.Addon>
+               <TextInput
+                 name="cost"
+                 onChange={this.handleChange}
+                 readOnlyStatus={this.state.readOnlyStatus}
+                 title={this.state.importedExpenses.cost}
+                 value={this.state.importedExpenses.cost} />
+            <InputGroup.Addon>.00</InputGroup.Addon>
+          </InputGroup></td>
+        <td width="auto">
+          {(this.state.importedExpenses.method && this.state.readOnlyStatus === true) ?
+          <TextInput
+            name="method"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.importedExpenses.method}
+            value={this.state.importedExpenses.method} /> :
+          <SelectInput
+            name="method"
+            onChange={this.handleChange}
+            options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title ="Method"
+            value={this.state.importedExpenses.method} />
+          }
+        </td>
+        <td width="auto">
+          {(this.state.importedExpenses.category && this.state.readOnlyStatus === true) ?
             <TextInput
-              name="type"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.importedExpenses.type}
-              value={this.state.importedExpenses.type} /> :
-            <SelectInput
-              name="type"
-              onChange={this.handleChange}
-              options={['Video Originals', 'Branded', 'Editorial', 'Debt Expenses']}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title ="Type"
-              value={this.state.importedExpenses.type} />
-            }
-          </td>
-          <td width="auto">
-            {(this.state.importedExpenses.vertical && this.state.readOnlyStatus === true) ?
-            <TextInput
-              name="vertical"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.importedExpenses.vertical}
-              value={this.state.importedExpenses.vertical} /> :
-            <SelectInput
-              name="vertical"
-              onChange={this.handleChange}
-              options={['Food', 'Beauty', 'Fashion & Style', 'News & Politics', 'News & Celeb', 'Wellness', 'Entertainment']}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title ="Vertical"
-              value={this.state.importedExpenses.vertical} />
-            }
-          </td>
-          <td width="auto">
-            <TextInput
-              name="vendor"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.importedExpenses.vendor}
-              value={this.state.importedExpenses.vendor} />
-          </td>
-          <td width="auto">
-            <TextInput
-              name="description"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.importedExpenses.description}
-              value={this.state.importedExpenses.description} />
-          </td>
-          <td width="auto">
-            <InputGroup>
-              <InputGroup.Addon>$</InputGroup.Addon>
-                 <TextInput
-                   name="cost"
-                   onChange={this.handleChange}
-                   readOnlyStatus={this.state.readOnlyStatus}
-                   title={this.state.importedExpenses.cost}
-                   value={this.state.importedExpenses.cost} />
-              <InputGroup.Addon>.00</InputGroup.Addon>
-            </InputGroup></td>
-          <td width="auto">
-            {(this.state.importedExpenses.method && this.state.readOnlyStatus === true) ?
-            <TextInput
-              name="method"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.importedExpenses.method}
-              value={this.state.importedExpenses.method} /> :
-            <SelectInput
-              name="method"
-              onChange={this.handleChange}
-              options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title ="Method"
-              value={this.state.importedExpenses.method} />
-            }
-          </td>
-          <td width="auto">
-            {(this.state.importedExpenses.category && this.state.readOnlyStatus === true) ?
-              <TextInput
-                name="category"
-                onChange={this.handleChange}
-                readOnlyStatus={this.state.readOnlyStatus}
-                title={this.state.importedExpenses.category}
-                value={this.state.importedExpenses.category} /> :
-            <SelectInput
               name="category"
               onChange={this.handleChange}
-              options={[
-              'Producer', 'Associate Producer', 'Production Assistant', 'Set Production Assistant', 'Intern',
-              'Director', 'Writer', 'Director of Photography', 'Camera Operator', 'Assistant Camera','Audio Operator',
-              'Gaffer/Grip/Best Boy', 'Set Design', 'Location Manager','Make-Up Artist','Hair Stylist', 'Wardrobe Stylist',
-              'Wardrobe Allowance','Photographer', 'On-Camera Talent', 'Equipment', 'Camera Rental', 'Camera Rental',
-              'Lighting Rental', 'Misc Equipment Rental', 'Misc Equipment Rental', 'Props', 'Insurance', 'Meals & Craft Service',
-              'Hosting Service', 'Taxis & Local Transpo', 'Airfare', 'Hotel', 'Car Rental', 'Gas, Tolls, Parking', 'Research Materials',
-              'Location Fees & Permits', 'Editor', 'Assistant Editor', 'Edit Suite', 'Color Correction', 'Audio Mix',
-              'Design & Motion GFX', 'Transcription', 'Misc Post', 'Photo Licensing', 'Footage Licensing', 'Music Licensing'
-              ]}
               readOnlyStatus={this.state.readOnlyStatus}
-              title ="category"
-              value={this.state.importedExpenses.category} />
-            }
-          </td>
-          <td width="83">{this.state.importedExpenses.glCode ? <TextInput value={this.state.importedExpenses.glCode} readOnlyStatus={true} /> : <TextInput value={this.state.glCode} readOnlyStatus={true} />
+              title={this.state.importedExpenses.category}
+              value={this.state.importedExpenses.category} /> :
+          <SelectInput
+            name="category"
+            onChange={this.handleChange}
+            options={[
+            'Producer', 'Associate Producer', 'Production Assistant', 'Set Production Assistant', 'Intern',
+            'Director', 'Writer', 'Director of Photography', 'Camera Operator', 'Assistant Camera','Audio Operator',
+            'Gaffer/Grip/Best Boy', 'Set Design', 'Location Manager','Make-Up Artist','Hair Stylist', 'Wardrobe Stylist',
+            'Wardrobe Allowance','Photographer', 'On-Camera Talent', 'Equipment', 'Camera Rental', 'Camera Rental',
+            'Lighting Rental', 'Misc Equipment Rental', 'Misc Equipment Rental', 'Props', 'Insurance', 'Meals & Craft Service',
+            'Hosting Service', 'Taxis & Local Transpo', 'Airfare', 'Hotel', 'Car Rental', 'Gas, Tolls, Parking', 'Research Materials',
+            'Location Fees & Permits', 'Editor', 'Assistant Editor', 'Edit Suite', 'Color Correction', 'Audio Mix',
+            'Design & Motion GFX', 'Transcription', 'Misc Post', 'Photo Licensing', 'Footage Licensing', 'Music Licensing'
+            ]}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title ="category"
+            value={this.state.importedExpenses.category} />
           }
-          </td>
-          <td width="107">
-            {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?
-              <StaticDate name="dateSpent" value={this.state.importedExpenses.dateSpent} readOnlyStatus={this.state.readOnlyStatus} /> :
+        </td>
+        <td width="83">
+          <TextInput value={this.state.glCode} readOnlyStatus={true} />
+        </td>
+        <td width="107">
+          {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?
+            <StaticDate name="dateSpent" value={this.state.importedExpenses.dateSpent} readOnlyStatus={this.state.readOnlyStatus} /> :
+          <DatePicker
+            name="dateSpent"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.dateSpent}
+            value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />}
+        </td>
+        <td width="107">
+          {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
+            <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
             <DatePicker
               name="dateSpent"
               onChange={this.handleChange}
               readOnlyStatus={this.state.readOnlyStatus}
               title={this.state.dateSpent}
-              value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />}
-          </td>
-          <td width="107">
-            {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
-              <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
-              <DatePicker
-              name="dateTracked"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              title={this.state.dateTracked}
-              value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
-            }
-          </td>
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense.bind(this)}>Delete</Button></td> : null}
-          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
-        </tr>
+              value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />
+          }
+        </td>
+        <td width="107">
+          {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
+            <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
+            <DatePicker
+            name="dateTracked"
+            onChange={this.handleChange}
+            readOnlyStatus={this.state.readOnlyStatus}
+            title={this.state.dateTracked}
+            value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
+          }
+        </td>
+        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
+        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
+        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense.bind(this)}>Delete</Button></td> : null}
+        {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
+      </tr>
     );
   }
 });

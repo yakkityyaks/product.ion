@@ -132,6 +132,22 @@ module.exports = function routes(app){
     });
   });
 
+  app.post('/api/get/expenses', function(req, res) {
+    var exps = [];
+    var count = 0;
+    console.log('getting', req.body.projIds)
+    req.body.projIds.forEach(function(projId) {
+      Project.getProj(projId, function(proj) {
+        count++;
+        if (proj) exps = exps.concat(proj.related('expenses'));
+        if (count === req.body.projIds.length) {
+          console.log('sending', exps)
+          res.status(201).json(exps);
+        }
+      })
+    })
+  })
+
   app.post('/api/get/org', function(req, res) {
     // input: req.body.orgName
     // outpout: org w/ attached users and projects || 404
