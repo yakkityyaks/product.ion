@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Form, FormControl, Button, Modal, OverlayTrigger } from 'react-bootstrap';
+import ApiCall from "../utils/serverCalls";
+
 // import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 const ExpenseNode = React.createClass({
@@ -65,6 +67,7 @@ const ExpenseNode = React.createClass({
   handleRemove(e) {
     e.preventDefault();
     console.log('clicked remove');
+    // ApiCall.removeExpense(this.props.expense.id);
     this.props.removeExpense(this.props.expense.id, this.props.projId, this.props.projs_id);
   },
   render() {

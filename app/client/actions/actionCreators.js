@@ -132,6 +132,13 @@ export function getOrgProjects(orgName) {
   };
 }
 
+export function getProjExpenses(projIds) {
+  return {
+    type: 'GET_PROJ_EXPENSES',
+    projIds
+  };
+}
+
 export function hydrateProjects(projects) {
   return {
     type: "HYDRATE_PROJECTS",
@@ -139,6 +146,12 @@ export function hydrateProjects(projects) {
   };
 }
 
+export function hydrateProjExpenses(expenses) {
+  return {
+    type: "HYDRATE_PROJ_EXPENSES",
+    expenses
+  }
+}
 export function changeModal(name) {
   return {
     type: "CHANGE_MODAL",

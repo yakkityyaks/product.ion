@@ -32,14 +32,14 @@ function projects(state = [], action) {
         });
       break;
     case "GET_ORG_PROJECTS":
-      console.log("You want to get org projects from ", action);
+      console.log("You want to get org projects from ", action, 'store', store);
       ApiCall.getProjectsByOrgName(action.orgName)
         .catch((err) => {
           console.error(err);
         })
         .then((res) => {
           if (res) {
-            console.log("Get_Org_Projects: Response received. Res is ", res);
+            console.log("Get_Org_Projects: Response received. Res is ", res, store);
             store.dispatch({type:"SET_USERS", users: res.data.users});
             store.dispatch({type:"HYDRATE_PROJECTS", projects: res.data.projects});
           }
@@ -54,8 +54,29 @@ function projects(state = [], action) {
     case "UPDATE_ID":
       console.log("You want to update ID");
       return action.project;
+    case "HYDRATE_PROJ_EXPENSES":
+      console.log('hydrating ', action);
+      return Object.assign({}, state, {expenses: action.expenses});
     case "CLEAR_PROJ":
       return {};
+    case "GET_PROJ_EXPENSES":
+      console.log('getting proj expenses', action.projIds);
+      var length = action.projIds.length;
+      var count = 0;
+      var temp = [];
+      action.projIds.forEach(function(projId) {
+        // console.log(p
+        ApiCall.getExpensesByProjectId(projId).then(function(res) {
+          count++;
+          console.log('in call')
+          res.data.expenses.forEach(function(exp) {
+            temp.push(exp);
+          });
+          if (count === length) {
+            store.dispatch({type:"HYDRATE_PROJ_EXPENSES", expenses: temp});
+          }
+        })
+      })
     default:
       return state;
   }

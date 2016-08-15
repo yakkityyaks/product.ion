@@ -32,7 +32,7 @@ module.exports = function routes(app){
     });
   });
 
-  app.post('/api/register/user', function(req, res){
+  app.post('/api/register/user', function(req, res) {
     //makes username w/ name req.body.username, req.body.password, req.body.perm, and req.body.orgs_id and returns the user model
     //if a user with that username already exists return a 403
     //req.body should be
@@ -44,6 +44,7 @@ module.exports = function routes(app){
     //       orgs_id: int
     //   }
     // }
+    console.log("I'm alive!");
     User.getUser(req.body.data.username, function(user) {
       if (!user) {
         User.makeUser(req.body.data, function(user){
@@ -239,6 +240,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/remove/expense', function(req, res) {
+    console.log("I'm removing an expense!");
     Expense.getExpense(req.body.id, function(exp) {
       exp ? exp.destroy().then(function(exp) {
         res.status(201).json(exp);
@@ -258,6 +260,26 @@ module.exports = function routes(app){
           res.sendStatus(403);
         } else {
           count++;
+          if (count === length) {
+            res.sendStatus(201);
+          }
+        }
+      });
+    });
+  });
+
+  app.post('/api/register/budgets', function(req, res) {
+    console.log(req.body.id);
+    console.log(req.body.data);
+    var rows = req.body.data;
+    var length = rows.length;
+    var count = 0;
+    rows.forEach(function(row) {
+      Budget.makeBudget(Object.assign({}, row, {projs_id: req.body.id}), function(budg) {
+        if (!budg) {
+          res.sendStatus(403);
+        } else {
+          count++
           if (count === length) {
             res.sendStatus(201);
           }

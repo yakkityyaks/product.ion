@@ -52,14 +52,14 @@ const NavBar = React.createClass({
                 Projects
               </Link>
             </NavItem>
+          </Nav>
+          <Nav pullRight>
             <NavItem eventKey={2} onClick={this.selectSettings}>
               <Link to={'/settings'}>
                 Settings
               </Link>
             </NavItem>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} onClick={this.logout}>
+            <NavItem onClick={this.logout}>
               Logout
             </NavItem>
           </Nav>
