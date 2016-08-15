@@ -5,7 +5,6 @@ import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 
 const Projects = React.createClass({
-<<<<<<< HEAD
   getInitialState() {
     return {editProject: null};
   },
@@ -18,11 +17,7 @@ const Projects = React.createClass({
     this.props.changeModal('pitch');
     // this.setState({editProject: undefined});
     // this.props.getOrgProjects(this.props.organization.orgName);//why was this here?
-=======
-
-  switchModal: function() {
-    this.props.changePitchModal('pitch');
->>>>>>> 5e1b99dc0de25f8d946f9866698764f9cb835087
+    // this.props.changePitchModal('pitch');
   },
 
   render() {
