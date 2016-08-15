@@ -5,6 +5,7 @@ var Project = require('./controllers/projectController.js');
 var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 var util = require('./lib/utility.js');
+var session = require('express-session');
 
 
 module.exports = function routes(app){
@@ -12,7 +13,12 @@ module.exports = function routes(app){
     //makes organization w/ name req.body.orgName and returns the organization model
     //if an org with that name already exists return a 403
     Organization.makeOrg({name: req.body.orgName}, function(org){
-      org ? res.status(201).json(org) : res.sendStatus(404);
+      if(!user) {
+        res.sendStatus(404);
+      } else {
+        util.createSession(req, res, user);
+        res.status(201).json(user);
+      }
     });
   });
 
@@ -46,11 +52,16 @@ module.exports = function routes(app){
     // }
     User.getUser(req.body.data.username, function(user) {
       if (!user) {
-        User.makeUser(req.body.data, function(user){
-          user ? res.status(201).json(user) : res.sendStatus(404);
-        });
-      } else {
         res.sendStatus(403);
+      } else {
+        User.makeUser(req.body.data, function(user){
+          if(!user) {
+            res.sendStatus(404);
+          } else {
+            util.createSession(req, res, user);
+            res.status(201).json(user);
+          }
+        });
       }
     });
   });
@@ -131,7 +142,14 @@ module.exports = function routes(app){
     // input: req.body.username
     // output: user w/ attached org and projects || 404
     User.getUser(req.body.username, function(user) {
-      user ? res.status(201).json(user) : res.sendStatus(404);
+      console.log("login serverside");
+      if(!user) {
+        res.sendStatus(404);
+      } else {
+        util.createSession(req, res, user);
+        res.status(201).json(user);
+      }
+      console.log(req.session);
     });
   });
 
@@ -263,6 +281,13 @@ module.exports = function routes(app){
           }
         }
       });
+    });
+  });
+
+  app.post('/api/get/logout', function(req, res) {
+    console.log("Logging out");
+    req.session.destroy(function() {
+      res.sendStatus(204);
     });
   });
 };

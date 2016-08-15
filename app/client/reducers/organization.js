@@ -190,6 +190,7 @@ function posts(state=[], action) {
     case "SET_USERS":
       return Object.assign({}, state, {users: action.users});
     case "LOGOUT":
+      ApiCall.logout();
       return {};
   }
   return state;
