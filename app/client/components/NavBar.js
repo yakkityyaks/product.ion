@@ -48,7 +48,7 @@ const NavBar = React.createClass({
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} onClick={this.selectDashboard}>
-              <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
+              <Link to={'/projects'}>
                 Projects
               </Link>
             </NavItem>

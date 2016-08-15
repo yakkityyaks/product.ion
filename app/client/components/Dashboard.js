@@ -35,7 +35,6 @@ const Dashboard = React.createClass({
             <h3>Most Recent Three Projects</h3>
             <Projects {...this.props} short={true}/>
           </Panel>
-          <Projects {...this.props} short={false}/> 
         </div>
       </div>
     );
