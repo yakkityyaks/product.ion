@@ -6,6 +6,7 @@ var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 var util = require('./lib/utility.js');
 var session = require('express-session');
+var jwt = require('jsonwebtoken');
 
 
 module.exports = function routes(app){
@@ -50,8 +51,9 @@ module.exports = function routes(app){
     //       orgs_id: int
     //   }
     // }
-    console.log("I'm alive!");
-    User.getUser(req.body.data.username, function(user) {
+    var body = req.body;
+
+    User.getUser(body.data.username, function(user) {
       if (!user) {
         res.sendStatus(403);
       } else {
@@ -59,8 +61,11 @@ module.exports = function routes(app){
           if(!user) {
             res.sendStatus(404);
           } else {
-            util.createSession(req, res, user);
-            res.status(201).json(user);
+           var token = utils.generateToken(user);
+           res.status(201).json({
+              user: user,
+              token: token
+           });
           }
         });
       }
@@ -144,14 +149,13 @@ module.exports = function routes(app){
     // input: req.body.username
     // output: user w/ attached org and projects || 404
     User.getUser(req.body.username, function(user) {
-      console.log("login serverside");
+      console.log("user serverside", user);
       if(!user) {
         res.sendStatus(404);
       } else {
         util.createSession(req, res, user);
         res.status(201).json(user);
       }
-      console.log(req.session);
     });
   });
 

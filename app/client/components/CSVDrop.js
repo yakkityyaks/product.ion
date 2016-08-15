@@ -44,7 +44,7 @@ const CSVDrop = React.createClass({
       <div>
         <h3>{"Add Expenses to " + projName + " with a CSV"}</h3>
         <Dropzone type="file" ref="file" onDrop={this.onDrop}>
-          <div>Try dropping some files here, or click to select files to upload.</div>
+          <div>Try dropping some CSV files here, or click to select files to upload.</div>
         </Dropzone>
       </div>
     );
