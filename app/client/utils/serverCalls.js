@@ -22,6 +22,8 @@ let registerProject = (projectObj) =>
 let login = (username, password) =>
   axios.post('/api/get/user', {username: username, password: password});
 
+let logout = () =>
+  axios.post('/api/get/logout', {});
 
 let changePassword = (username, password) =>
   axios.post('/api/update/user', {username, data: {password}});
@@ -54,6 +56,7 @@ const ApiCall = {
   updateUser,
   registerProject,
   login,
+  logout,
   changePassword,
   getProjectsByOrgName,
   getExpensesByProjectId,
