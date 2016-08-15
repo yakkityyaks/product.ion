@@ -56,6 +56,11 @@ const Expenses = React.createClass({
     this.props.postNewExpense(this.state.projId, singleExpense);
   },
 
+  handleExpenseToDelete: function(expenseToDelete){
+    console.log('back at expense ', expenseToDelete)
+    this.props.removeExpense(expenseToDelete.id);
+  },
+
   handleSubmit: function(){
     var newExpenses = this.state.newExpenses;
   },
@@ -100,7 +105,7 @@ const Expenses = React.createClass({
                 </tr>
               </thead>
                 <tbody>
-                  {this.state.expenses.map((item, index) => <ExpenseNode expense={item} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
+                  {this.state.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
                 </tbody>
           </Table>
           <h3>New Expenses</h3>

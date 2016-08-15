@@ -96,6 +96,11 @@ const ExpenseNode = React.createClass({
     this.Date();
   },
 
+  deleteExpense: function(){
+    var expenseToDelete = this.props.expense;
+    this.props.handleExpenseToDelete(expenseToDelete);
+  },
+
   render() {
     return (
         <tr>
@@ -229,6 +234,7 @@ const ExpenseNode = React.createClass({
           </td>
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense.bind(this)}>Delete</Button></td> : null}
           {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
         </tr>
     );
