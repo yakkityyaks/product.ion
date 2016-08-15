@@ -45,12 +45,38 @@ function projects(state = [], action) {
           }
         });
       break;
+    case "GET_PROJECT":
+      console.log("You want to get a single project with id", action.projId);
+      ApiCall.getProjectByProjId(action.projId)
+        .then(res => {
+          console.log("Res is ", res);
+          let id = res.data.id,
+              list = res.data.budgets;
+          store.dispatch({type: "HYDRATE_PROJECT_BUDGETS", id, list});
+        })
+        .catch(err => {
+          console.log("Whoopsie in GET_PROJECT");
+          console.error(err);
+        });
+      break;
     case "HYDRATE_PROJECT":
       console.log("You want to hydrate the single project state with ", action.projects);
       return action.projects;
     case "HYDRATE_PROJECTS":
       console.log("You want to hydrate the projects state with ", action.projects);
       return action.projects;
+    case "UPDATE_PROJECT":
+      console.log("You want to update project ", action.project);
+      ApiCall.updateProject(action.project, action.project.projId)
+        .then(res => {
+          console.log("Successfully updated a project!");
+          console.log(res);
+        })
+        .catch(err => {
+          console.log("Error in update Project");
+          console.error(err);
+        });
+      break;
     case "UPDATE_ID":
       console.log("You want to update ID");
       return action.project;
@@ -68,15 +94,16 @@ function projects(state = [], action) {
         // console.log(p
         ApiCall.getExpensesByProjectId(projId).then(function(res) {
           count++;
-          console.log('in call')
+          console.log('in call');
           res.data.expenses.forEach(function(exp) {
             temp.push(exp);
           });
           if (count === length) {
             store.dispatch({type:"HYDRATE_PROJ_EXPENSES", expenses: temp});
           }
-        })
-      })
+        });
+      });
+      break;
     default:
       return state;
   }

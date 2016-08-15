@@ -19,6 +19,9 @@ let updateUser = (user) => {
 let registerProject = (projectObj) =>
   axios.post('/api/register/project', {data: projectObj});
 
+let updateProject = (data, projId) =>
+  axios.post('/api/update/proj', {data, projId});
+
 let login = (username, password) =>
   axios.post('/api/get/user', {username: username, password: password});
 
@@ -31,21 +34,24 @@ let changePassword = (username, password) =>
 let getProjectsByOrgName = (orgName) =>
   axios.post('/api/get/org', {orgName: orgName});
 
+let getProjectByProjId = (projId) =>
+  axios.post('/api/get/proj', {projId});
+
 let getExpensesByProjectId = (projectId) =>
   axios.post('/api/get/proj', {projId: projectId});
 
 let registerExpense = (action) => {
   var data = action.singleExpense;
   data.projs_Id = action.projs_Id;
-  console.log('in servercalls ', data)
+  console.log('in servercalls ', data);
   return axios.post('/api/register/expenses', {data: data});
-}
+};
 
 let removeExpense = (action) => {
-  console.log('at the sever call ', action)
+  console.log('at the sever call ', action);
   var data = action.id;
   return axios.post('/api/remove/expense', {id: data});
-}
+};
 
 let updateExpense = (data, id) =>
   axios.post('/api/update/expense', {data: data, id:id});
@@ -65,10 +71,12 @@ const ApiCall = {
   registerUser,
   updateUser,
   registerProject,
+  updateProject,
   login,
   logout,
   changePassword,
   getProjectsByOrgName,
+  getProjectByProjId,
   getExpensesByProjectId,
   registerExpense,
   removeExpense,

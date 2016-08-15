@@ -8,8 +8,9 @@ const ProjectNode = React.createClass({
     return "$" + num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
   },
   triggerProjectClick () {
+    this.props.getProject(this.props.project.projId);
+
     if (this.props.project.status === "Pitch") {
-      console.log("Ding ding ding, project is ", this.props.project);
       this.props.switchModal(this.props.project);
     } else {
       this.props.getExpenses(this.props.project.projId);
