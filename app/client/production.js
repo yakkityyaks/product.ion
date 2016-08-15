@@ -12,6 +12,7 @@ import Settings from './components/Settings';
 import Expenses from './components/Expenses';
 import CSVDrop from './components/CSVDrop';
 import Budget from './components/Budget';
+import MasterSheet from './components/MasterSheet';
 
 // Set up routers
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -36,6 +37,7 @@ const router = (
         <Route path='/adduser' component = { AddUser }></Route>
         <Route path='/csvdrop' component={ CSVDrop }></Route>
         <Route path='/budget' component={  Budget }></Route>
+        <Route path='/mastersheet' component={ MasterSheet }></Route>
       </Route>
     </Router>
   </Provider>

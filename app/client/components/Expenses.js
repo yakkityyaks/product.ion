@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import ExpenseChart from './ExpenseChart';
 
 import { Table, Form, FormControl, FormGroup, ControlId, Button, Modal } from 'react-bootstrap';
 
@@ -21,7 +22,8 @@ const Expenses = React.createClass({
       glCode: "",
       dateSpent: "",
       dateTracked:"",
-      projs_id: this.props.expenses.id
+      projs_id: this.props.expenses.id,
+      open: false
     };
   },
   getValidationState() {
@@ -98,6 +100,9 @@ const Expenses = React.createClass({
   switchModal () {
     this.props.changeModal('csv');
   },
+  switchChart() {
+    this.setState({open: !this.state.open});
+  },
   render() {
     let projName="THIS AINT RIGHT";
 
@@ -114,6 +119,13 @@ const Expenses = React.createClass({
           <NavBar {...this.props}/>
         </Panel>
         <h3>{"Expenses for " + projName }</h3>
+        <Panel>
+          <h3>Data Visualization!!!</h3>
+          <Button onClick={this.switchChart}>Click for Visuals</Button>
+          <Panel>
+            {this.state.open ? <ExpenseChart {...this.props}/> : null}
+            </Panel>
+        </Panel>
         <Form onSubmit={this.onSubmit}>
           <Table condensed style={{width: "100%"}}>
             <FormGroup controlId="whatToDo">

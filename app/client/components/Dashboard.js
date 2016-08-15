@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Projects from './Projects';
 import ProjectNode from './ProjectNode';
 import NavBar from './NavBar';
-import { Panel, Button } from 'react-bootstrap';
+import { Panel, Button, Label } from 'react-bootstrap';
 import DashCharts from './DashCharts';
 
 const Dashboard = React.createClass({
@@ -22,10 +23,15 @@ const Dashboard = React.createClass({
         </Panel>
         <div>
           <Panel>
+            <div>
+              <Link to="/mastersheet">
+                <h3><Label byStyle="primary">Click for Master Sheet</Label></h3>
+              </Link>
+            </div>
             <h3>Data Visualization!!!</h3>
             <Button onClick={this.switchChart}>Click for Visuals</Button>
-            <Panel  collapsible expanded={this.state.open}>
-              <DashCharts {...this.props}/>
+            <Panel>
+              {this.state.open ? <DashCharts {...this.props}/> : null}
             </Panel>  
             <h3>Most Recent Three Projects</h3>
           </Panel>
@@ -37,6 +43,3 @@ const Dashboard = React.createClass({
 });
 
 export default Dashboard;
-            // <ProjectNode key={1} idx={1} {...this.props} project={this.props.projects[this.props.projects.length - 1]}/>
-            // <ProjectNode key={2} idx={2} {...this.props} project={this.props.projects[this.props.projects.length - 2]}/>
-            // <ProjectNode key={3} idx={3} {...this.props} project={this.props.projects[this.props.projects.length - 3]}/>

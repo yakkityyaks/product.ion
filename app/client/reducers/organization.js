@@ -188,6 +188,7 @@ function posts(state=[], action) {
 
       break;
     case "SET_USERS":
+      console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
     case "LOGOUT":
       return {};
