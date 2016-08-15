@@ -1,7 +1,7 @@
 import React from 'react';
-import { Panel, Table, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import NavBar from './NavBar';
+import { ControlLabel, Form, FormControl, FormGroup, Panel, Table } from 'react-bootstrap';
 import ApiCall from "../utils/serverCalls";
+import NavBar from './NavBar';
 
 const MasterSheet = React.createClass({
 	getInitialState() {
@@ -13,11 +13,13 @@ const MasterSheet = React.createClass({
 			table: []
 		}
 	},
+
 	componentDidMount() {
 		var ids = [];
     for (var i = 0; i < this.props.projects.length; i++) {
       ids.push(this.props.projects[i].projId);
     }
+    
     var temp = [Promise.resolve([this.setState.bind(this), this.parseData]), ApiCall.getExpenses(ids)];
     Promise.all(temp).then(function(vals) {
       var exps = vals[1].data.reduce(function(a,b) {
@@ -26,6 +28,7 @@ const MasterSheet = React.createClass({
       vals[0][0]({expenses: exps}, vals[0][1]);
     });
 	},
+
 	parseData() {
 		var temp = {};
 
@@ -54,6 +57,7 @@ const MasterSheet = React.createClass({
 		}
 		this.setState({chartData: chartData, table: table, sortBy: Object.keys(temp)[0], projNames: Object.keys(temp)}, this.loadChart);
 	},
+
 	loadChart() {
 		var line = new Highcharts.Chart({
 			chart: {
@@ -82,23 +86,28 @@ const MasterSheet = React.createClass({
       }]
     });  
 	},
+
 	handleSortChange(e) {
 		e.preventDefault();
 		this.setState({sortBy: e.target.value}, this.loadChart);
 	},
+
 	getProjName(id) {
 		for (var i = 0; i < this.props.projects.length; i++) {
 			if (this.props.projects[i].id === id) return this.props.projects[i].name;
 		}
 		return 'proj not found';
 	},
+
 	render() {
 		return (
 			<div>
-			  <Panel>
+			  
+        <Panel>
 	        <NavBar {...this.props}/>
 	      </Panel>
-				<Panel>
+				
+        <Panel>
 					<Form inline>
 						<FormGroup controlId="formControlsSelect">
 				      <ControlLabel>Choose Project</ControlLabel>&nbsp;
@@ -110,8 +119,10 @@ const MasterSheet = React.createClass({
 				      </FormControl>
 				    </FormGroup>
 					</Form>
-	      	<div id="chartContainer"></div>
-					<Table striped bordered>
+	      	
+          <div id="chartContainer"></div>
+					
+          <Table striped bordered>
         		<thead>
         			<tr>
         				<th>Project</th>

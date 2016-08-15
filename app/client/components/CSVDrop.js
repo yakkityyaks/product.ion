@@ -1,6 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
-import { FormGroup, FormControl, ControlLabel, Panel } from 'react-bootstrap';
+import { ControlLabel, FormControl, FormGroup, Panel } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import NavBar from './NavBar.js';
 
@@ -32,7 +32,7 @@ const CSVDrop = React.createClass({
   // we can easily obtain the project name to render by cycling through the list of projects in this.props.
   // we match the project id to the id we have in order to obtain the project name.
   render () {
-    let projName="THIS AINT RIGHT";
+    let projName="";
 
     this.props.projects.forEach((project) => {
       if (project.projId === this.props.expenses.projId) {
@@ -40,6 +40,7 @@ const CSVDrop = React.createClass({
         return;
       }
     });
+
     return (
       <div>
         <h3>{"Add Expenses to " + projName + " with a CSV"}</h3>

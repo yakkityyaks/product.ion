@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button, Form, FormGroup, InputGroup,
-  DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
+import { Button, DropdownButton, Form, FormGroup, InputGroup, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
 import CustomSearch from './CustomSearch';
 
 import cata from "../data/public";
 
-//lockInputs: are they still needed?
 const Budget = React.createClass({
     getInitialState: function() {
       const { data } = this.props;
