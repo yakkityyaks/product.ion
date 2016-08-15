@@ -1,165 +1,240 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router';
-import { Form, FormControl, Button, Modal, OverlayTrigger } from 'react-bootstrap';
+import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
 import ApiCall from "../utils/serverCalls";
-
-// import CSSTransitionGroup from 'react-addons-css-transition-group';
+=======
+import { Button, FormControl, InputGroup} from 'react-bootstrap';
+>>>>>>> 5e1b99dc0de25f8d946f9866698764f9cb835087
+import SelectInput from './formComponents/SelectInput.js';
+import TextInput from './formComponents/TextInput.js';
+import CurrentDate from './formComponents/CurrentDate.js';
+import StaticDate from './formComponents/StaticDate.js';
+import DatePicker from './formComponents/DatePicker.js';
 
 const ExpenseNode = React.createClass({
-  getInitialState() {
-    return this.props.expense;
+  getInitialState: function() {
+    return {
+      importedExpenses: this.props.expense,
+      readOnlyStatus: this.props.readOnlyStatus,
+      category: "Producer",
+      cost: 0,
+      dateSpent: "",
+      dateTracked: "",
+      description: "",
+      glCode: 560260,
+      id: 0,
+      method: "",
+      projs_id: this.props.projs_id,
+      type: "",
+      vendor: "",
+      vertical: ""
+    };
   },
-    handleChangeType(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({type: e.target.value});
+
+  Date: function(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    this.setState({dateTracked: mm+'/'+ dd + '/' + yyyy})
   },
-  handleChangeVertical(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({vertical: e.target.value});
+
+  handleChange: function(inputName, inputValue) {
+    console.log("The input name is ", inputName, "This is the value ", inputValue)
+    var nextState = {};
+    nextState[inputName] = inputValue;
+    this.setState(nextState);
+    var codes = {'Consultant': 580200, 'Writer': 560100, 'Director': 560270,
+    'Producer': 560260, 'Associate Producer': 560260, 'Production Assistant':  560230,
+    'Research Materials': 545010, 'On-Camera Talent': 560250, 'Make-Up Artist': 560350,
+    'Hair Stylist':  560350, 'Wardrobe Stylist':  560350, 'Wardrobe Allowance': 560350,
+    'Director of Photography': 560220, 'Camera Operator': 560220, 'Assistant Camera': 560230,
+    'Audio Operator': 560210, 'Gaffer/Grip/Best Boy': 560220, 'Photographer':  560450, 'Set PA': 560230,
+    'Intern': 500120, 'Camera Rental': 570100, 'Lighting Rental':  570100, 'Misc Equipment Rental':570100,
+    'Location Fees & Permits': 570150, 'Location Manager': 570150, 'Set Design': 570150, 'Props': 545100,
+    'Meals & Craft Service': 590200, 'Taxis & Local Transpo': 590500, 'Airfare': 590400, 'Hotel': 590300,
+    'Car Rental': 590400, 'Gas, Tolls, Parking': 590600, 'Editor': 560240, 'Assistant Editor': 560240,
+    'Edit Suite': 560240, 'Design & Motion GFX': 660400, 'Transcription': 515250, 'Color Correction': 515250,
+    'Audio Mix': 515250, 'Misc Post': 515250, 'Photo Licensing': 564000, 'Footage Licensing': 570200,
+    'Music Licensing': 570200, 'Insurance':  null, 'Hosting Service': 500950, 'Third Party Production': 560275,
+    'Third Party Production - Licensing': 560280};
+    if(inputName === "category"){
+      for (var key in codes){
+        if(inputValue === key){
+          this.setState({glCode: codes[key]});
+        }
+      }
+    }
   },
-  handleChangeVendor(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({vendor: e.target.value});
+
+  handleEdit: function(){
+    var off = false;
+    this.setState({readOnlyStatus: off})
+    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
   },
-  handleChangeDescription(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({description: e.target.value});
+  handleUpdate: function(){
+    var on = true;
+    this.setState({readOnlyStatus: on})
+    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
+    // this.props.updateExpense(this.state, this.props.projId, this.props.projs_id);
   },
-  handleChangeCost(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({cost: e.target.value});
+
+  addExpense: function(){
+    var singleExpense = {
+      category: this.state.category,
+      cost: this.state.cost,
+      dateSpent: this.state.dateSpent,
+      dateTracked: this.state.dateTracked,
+      description: this.state.description,
+      glCode: this.state.glCode,
+      method: this.state.method,
+      projs_id: this.state.projs_id,
+      type: this.state.type,
+      vendor: this.state.vendor,
+      vertical: this.state.vertical
+    }
+    console.log('addExpense built ', singleExpense);
+    this.props.handleNewExpense(singleExpense);
   },
-  handleChangeMethod(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({method: e.target.value});
+  componentDidMount: function(){
+    this.Date();
   },
-  handleChangeCategory(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({category: e.target.value});
-  },
-  handleChangeGl(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({glCode: e.target.value});
-  },
-  handleChangeDateSpent(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({dateSpent: e.target.value});
-  },
-  handleChangeDateTracked(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({dateTracked: e.target.value});
-  },
-  handleUpdate(e) {
-    console.log(this.state);
-    e.preventDefault();
-    this.props.updateExpense(this.state, this.props.projId, this.props.projs_id);
-  },
-  handleRemove(e) {
-    e.preventDefault();
-    console.log('clicked remove');
-    // ApiCall.removeExpense(this.props.expense.id);
-    this.props.removeExpense(this.props.expense.id, this.props.projId, this.props.projs_id);
-  },
+
   render() {
     return (
         <tr>
-          <td>
-            <FormControl componentClass="select" value={this.state.type} onChange={this.handleChangeType}>
-              <option value="Video Originals">Video Originals</option>
-              <option value="Branded">Branded</option>
-              <option value="Editorial">Editorial</option>
-              <option value="Debt Expenses">Dept Expenses</option>
-            </FormControl>
+          <td width="auto">
+            {(this.state.importedExpenses.type && this.state.readOnlyStatus === true) ?
+            <TextInput
+              name="type"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.importedExpenses.type}
+              value={this.state.importedExpenses.type} /> :
+            <SelectInput
+              name="type"
+              onChange={this.handleChange}
+              options={['Video Originals', 'Branded', 'Editorial', 'Debt Expenses']}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title ="Type"
+              value={this.state.importedExpenses.type} />
+            }
           </td>
-          <td>
-            <FormControl componentClass="select" value={this.state.vertical} onChange={this.handleChangeVertical}>
-              <option value="Food">Food</option>
-              <option value="Beauty">Beauty</option>
-              <option value="Fashion & Style">Fashion & Style</option>
-              <option value="News & Politics">News & Politics</option>
-              <option value="News & Celeb">News & Celeb</option>
-              <option value="Wellness">Wellness</option>
-              <option value="Entertainment">Entertainment</option>
-            </FormControl>
+          <td width="auto">
+            {(this.state.importedExpenses.vertical && this.state.readOnlyStatus === true) ?
+            <TextInput
+              name="vertical"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.importedExpenses.vertical}
+              value={this.state.importedExpenses.vertical} /> :
+            <SelectInput
+              name="vertical"
+              onChange={this.handleChange}
+              options={['Food', 'Beauty', 'Fashion & Style', 'News & Politics', 'News & Celeb', 'Wellness', 'Entertainment']}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title ="Vertical"
+              value={this.state.importedExpenses.vertical} />
+            }
           </td>
-          <td><FormControl type="text" value={this.state.vendor} onChange={this.handleChangeVendor}/></td>
-          <td><FormControl type="text" value={this.state.description} onChange={this.handleChangeDescription}/></td>
-          <td><FormControl type="text" value={this.state.cost} onChange={this.handleChangeCost}/></td>
-          <td>
-            <FormControl componentClass="select" value={this.state.method} onChange={this.handleChangeMethod}>
-              <option value="Credit Card">Credit Card</option>
-              <option value="Invoice">Invoice</option>
-              <option value="Payroll">Payroll</option>
-              <option value="Petty Cash">Petty Cash</option>
-              <option value="Misc">Misc</option>
-            </FormControl>
+          <td width="auto">
+            <TextInput
+              name="vendor"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.importedExpenses.vendor}
+              value={this.state.importedExpenses.vendor} />
           </td>
-          <td>
-            <FormControl componentClass="select" value={this.state.category} onChange={this.handleChangeCategory}>
-              <option value="Consultant">Consultant</option>
-              <option value="Writer">Writer</option>
-              <option value="Director">Director</option>
-              <option value="Producer">Producer</option>
-              <option value="Associate Producer">Associate Producer</option>
-              <option value="Production Assistant">Production Assistant</option>
-              <option value="Research Materials">Research Materials</option>
-              <option value="On-Camera Talent">On-Camera Talent</option>
-              <option value="Make-Up Artist">Make-Up Artist</option>
-              <option value="Hair Stylist">Hair Stylist</option>
-              <option value="Wardrobe & Stylist">Wardrobe & Stylist</option>
-              <option value="Wardrobe Allowance">Wardrobe Allowance</option>
-              <option value="Director of Photography">Director of Photography</option>
-              <option value="Camera Operator">Camera Operator</option>
-              <option value="Assistant Camera">Assistant Camera</option>
-              <option value="Audio Operator">Audio Operator</option>
-              <option value="Gaffer/Grip/Best-Boy">Gaffer/Grip/Best-Boy</option>
-              <option value="Photographer">Photographer</option>
-              <option value="Set PA">Set PA</option>
-              <option value="Intern">Intern</option>
-              <option value="Camera Rental">Camera Rental</option>
-              <option value="Lighting Rental">Lighting Rental</option>
-              <option value="Misc Equipment Rental">Misc Equipment Rental</option>
-              <option value="Location Fees/Permits">Location Fees/Permits</option>
-              <option value="Location Manager">Location Manager</option>
-              <option value="Set Design">Set Design</option>
-              <option value="Meals & Craft Service">Meals & Craft Service</option>
-              <option value="Taxis/Local/Transpo">Taxis/Local/Transpo</option>
-              <option value="Airfare">Airfare</option>
-              <option value="Hotel">Hotel</option>
-              <option value="Car Rental">Car Rental</option>
-              <option value="Gas Tolls Parking">Gas Tolls Parking</option>
-              <option value="Editor">Editor</option>
-              <option value="Assistant Editor">Assistant Editor</option>
-              <option value="Edit Suite">Edit Suite</option>
-              <option value="Design & Motion GFX">Design & Motion GFX</option>
-              <option value="Transcription">Transcription</option>
-              <option value="Color Correction">Color Correction</option>
-              <option value="Audio Mix">Audio Mix</option>
-              <option value="Misc Post">Misc Post</option>
-              <option value="Photo Licensing">Photo Licensing</option>
-              <option value="Footage Licensing">Footage Licensing</option>
-              <option value="Music Licensing">Music Licensing</option>
-              <option value="Insurance">Insurance</option>
-              <option value="Hosting Service">Hosting Service</option>
-              <option value="Third Party Production">Third Party Production</option>
-              <option value="Third Party Production/Licensing">Third Party Production/Licensing</option>
-            </FormControl>
+          <td width="auto">
+            <TextInput
+              name="description"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.importedExpenses.description}
+              value={this.state.importedExpenses.description} />
           </td>
-          <td><FormControl type="text" value={this.state.glCode} onChange={this.handleChangeGl}/></td>
-          <td><FormControl type="text" value={this.state.dateSpent.slice(0,10)} onChange={this.handleChangeDateSpent}/></td>
-          <td><FormControl type="text" value={this.state.dateTracked.slice(0,10)} onChange={this.handleChangeDateTracked}/></td>
-          <td><Button onClick={this.handleUpdate}>Update</Button></td>
-          <td><Button onClick={this.handleRemove}>Remove</Button></td>
+          <td width="auto">
+            <InputGroup>
+              <InputGroup.Addon>$</InputGroup.Addon>
+                 <TextInput
+                   name="cost"
+                   onChange={this.handleChange}
+                   readOnlyStatus={this.state.readOnlyStatus}
+                   title={this.state.importedExpenses.cost}
+                   value={this.state.importedExpenses.cost} />
+              <InputGroup.Addon>.00</InputGroup.Addon>
+            </InputGroup></td>
+          <td width="auto">
+            {(this.state.importedExpenses.method && this.state.readOnlyStatus === true) ?
+            <TextInput
+              name="method"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.importedExpenses.method}
+              value={this.state.importedExpenses.method} /> :
+            <SelectInput
+              name="method"
+              onChange={this.handleChange}
+              options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title ="Method"
+              value={this.state.importedExpenses.method} />
+            }
+          </td>
+          <td width="auto">
+            {(this.state.importedExpenses.category && this.state.readOnlyStatus === true) ?
+              <TextInput
+                name="category"
+                onChange={this.handleChange}
+                readOnlyStatus={this.state.readOnlyStatus}
+                title={this.state.importedExpenses.category}
+                value={this.state.importedExpenses.category} /> :
+            <SelectInput
+              name="category"
+              onChange={this.handleChange}
+              options={[
+              'Producer', 'Associate Producer', 'Production Assistant', 'Set Production Assistant', 'Intern',
+              'Director', 'Writer', 'Director of Photography', 'Camera Operator', 'Assistant Camera','Audio Operator',
+              'Gaffer/Grip/Best Boy', 'Set Design', 'Location Manager','Make-Up Artist','Hair Stylist', 'Wardrobe Stylist',
+              'Wardrobe Allowance','Photographer', 'On-Camera Talent', 'Equipment', 'Camera Rental', 'Camera Rental',
+              'Lighting Rental', 'Misc Equipment Rental', 'Misc Equipment Rental', 'Props', 'Insurance', 'Meals & Craft Service',
+              'Hosting Service', 'Taxis & Local Transpo', 'Airfare', 'Hotel', 'Car Rental', 'Gas, Tolls, Parking', 'Research Materials',
+              'Location Fees & Permits', 'Editor', 'Assistant Editor', 'Edit Suite', 'Color Correction', 'Audio Mix',
+              'Design & Motion GFX', 'Transcription', 'Misc Post', 'Photo Licensing', 'Footage Licensing', 'Music Licensing'
+              ]}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title ="category"
+              value={this.state.importedExpenses.category} />
+            }
+          </td>
+          <td width="83">
+            <TextInput value={this.state.glCode} readOnlyStatus={true} />
+          </td>
+          <td width="107">
+            {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?
+              <StaticDate name="dateSpent" value={this.state.importedExpenses.dateSpent} readOnlyStatus={this.state.readOnlyStatus} /> :
+            <DatePicker
+              name="dateSpent"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.dateSpent}
+              value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />}
+          </td>
+          <td width="107">
+            {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
+              <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
+              <DatePicker
+              name="dateTracked"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.dateTracked}
+              value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
+            }
+          </td>
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
+          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
         </tr>
     );
   }
