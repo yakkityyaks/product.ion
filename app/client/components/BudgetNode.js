@@ -9,18 +9,14 @@ import cata from "../data/public.js";
 const BudgetNode = React.createClass({
   getInitialState() {
     return {
-      lockInputs: this.props.lock
+      lock: this.props.lock
     };
   },
-  handleCommonChange(e) {
-    console.log(e);
+  handleChange(e) {
+    this.props.handleBudgetChange(e.target, this.props.idx);
   },
   selectCata(e) {
-    this.setState({
-      code: cata[e].code,
-      label: cata[e].label,
-      lockInputs: true
-    });
+    this.props.handleBudgetSelect(e, this.props.idx);
   },
   remove(e) {
     this.props.removeBudgetNode(this.props.idx);
@@ -42,23 +38,26 @@ const BudgetNode = React.createClass({
          }
         </DropdownButton>
           <FormControl readOnly type="number"
-                       value={cata[codeID].code} placeholder="GL Code"/>
-          <FormControl readOnly={this.props.lockInputs} type="text"
-                       value={cata[codeID].label} placeholder="Category"/>
+                       defaultValue={cata[codeID].code} placeholder="GL Code"/>
+          <FormControl readOnly type="text"
+                       defaultValue={cata[codeID].label} placeholder="Category"/>
          <InputGroup>
              <InputGroup.Addon>Description</InputGroup.Addon>
-            <FormControl readOnly={this.props.lockInputs} type="text"
-                      value={this.props.budget.description} placeholder="Description" />
+            <FormControl type="text" value={this.props.budget.description}
+                         name="description" required
+                        placeholder="Description" onChange={this.handleChange}/>
           </InputGroup>
           <InputGroup>
             <InputGroup.Addon>Cost</InputGroup.Addon>
-            <FormControl type="text" placeholder="Cost"
-                         value={"$" + this.props.budget.cost} required/>
+            <FormControl type="number" placeholder="Cost" name="cost"
+                         value={this.props.budget.cost} required
+                         onChange={this.handleChange}/>
           </InputGroup>
           <InputGroup>
             <InputGroup.Addon>Quant</InputGroup.Addon>
-            <FormControl type="text" placeholder="Quant"
-                         value={this.props.budget.quantity} required/>
+            <FormControl type="number" placeholder="Quant" name="quant"
+                         value={this.props.budget.quantity} required
+                         onChange={this.handleChange}/>
           </InputGroup>
           <InputGroup>
             <InputGroup.Addon>Total</InputGroup.Addon>
