@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ProjectNode from './ProjectNode.js';
 import NavBar from './NavBar.js';
-import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
+import ProjectNode from './ProjectNode.js';
+import { Button, Modal, Panel, Table } from 'react-bootstrap';
 
 const Projects = React.createClass({
   getInitialState() {
@@ -11,16 +11,14 @@ const Projects = React.createClass({
       editProject: null
     };
   },
-  switchModal: function(Project) {
+
+  switchModal(Project) {
     if (Project !== null) {
       this.setState({editProject: Project});
     } else {
       this.setState({editProject: null});
     }
     this.props.changeModal('pitch');
-    // this.setState({editProject: undefined});
-    // this.props.getOrgProjects(this.props.organization.orgName);//why was this here?
-    // this.props.changePitchModal('pitch');
   },
 
   render() {
@@ -34,6 +32,7 @@ const Projects = React.createClass({
             </Panel>
           </div>  
         }
+
         <Panel>
           {
             this.props.short ? <div></div> :
@@ -49,6 +48,7 @@ const Projects = React.createClass({
               </Modal>
             </div>
           }
+
         	<Table striped bordered>
         		<thead>
         			<tr>

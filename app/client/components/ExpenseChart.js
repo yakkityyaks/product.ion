@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
 import ApiCall from "../utils/serverCalls";
-// import Highcharts from 'highcharts';
-// import Highcharts3D from 'highcharts-3d';
 
 const ExpenseChart = React.createClass({
 	getInitialState() {
@@ -11,9 +9,11 @@ const ExpenseChart = React.createClass({
 			sortBy: "type"
 		}
 	},
+
 	componentDidMount() {
 		this.sortBy();
 	},
+
 	sortBy() {
 		var temp = {};
 		for (var i = 0; i < this.props.expenses.expenses.length; i++) {
@@ -27,8 +27,8 @@ const ExpenseChart = React.createClass({
 		}
 		this.setState({data: data}, this.loadChart);
 	},
+
 	loadChart() {
-		var data = this.state.data;
 		var pie = new Highcharts.Chart({
 			chart: {
         type: 'pie',
@@ -59,14 +59,16 @@ const ExpenseChart = React.createClass({
       series: [{
         type: 'pie',
         name: 'Expenses share',
-        data: data
+        data: this.state.data
       }]
     });  
 	},
+
 	handleSortChange(e) {
 		e.preventDefault()
 		this.setState({sortBy: e.target.value}, this.sortBy);
 	},
+
 	render() {
 		return (
 			<div>

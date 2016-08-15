@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 import Pitch from './Pitch';
 import ProjectNode from './ProjectNode';
 import Projects from './Projects';
-import { Panel, Button, Label, Modal, Table } from 'react-bootstrap';
+import { Button, Label, Modal, Panel, Table } from 'react-bootstrap';
 
 const Dashboard = React.createClass({
   getInitialState() {
@@ -14,10 +14,12 @@ const Dashboard = React.createClass({
       editProject: null
     }
   },
+
   switchChart() {
     this.setState({open: !this.state.open});
   },
-  switchModal: function(Project) {
+
+  switchModal(Project) {
     if (Project !== null) {
       this.setState({editProject: Project});
     } else {
@@ -25,6 +27,7 @@ const Dashboard = React.createClass({
     }
     this.props.changeModal('pitch');
   },
+  
   render() {
     return (
       <div className="dashboard">
@@ -74,6 +77,7 @@ const Dashboard = React.createClass({
               }
               </tbody>
             </Table>
+            
             {
               this.props.organization.user.perm === 0 ?
               <div>
@@ -99,11 +103,7 @@ const Dashboard = React.createClass({
                   </tbody>
                 </Table>
               </div> :
-              this.props.organization.user.perm === 1 ?
-              <div>
-                <h3>Pitches awaiting Approval</h3>
-              </div> :
-              <div></div>
+              this.props.organization.user.perm === 1 ? <div><h3>Pitches awaiting Approval</h3></div> : <div></div>
             }
           </Panel>
         </div>

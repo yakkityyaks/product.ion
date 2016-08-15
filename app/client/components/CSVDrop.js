@@ -40,6 +40,7 @@ const CSVDrop = React.createClass({
         return;
       }
     });
+
     return (
       <div>
         <h3>{"Add Expenses to " + projName + " with a CSV"}</h3>

@@ -7,19 +7,17 @@ const ProjectNode = React.createClass({
   toDollar(num) {
     return "$" + num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
   },
+
   triggerProjectClick () {
     this.props.getProject(this.props.project.projId);
-
     if (this.props.project.status === "Pitch") {
       this.props.switchModal(this.props.project);
     } else {
       this.props.getExpenses(this.props.project.projId);
     }
   },
+
   render() {
-    // es6 syntax to create 3 variables that pull their data from
-    // this.props
-    // const { post, idx, comments } = this.props;
     const { name, projId, status, costToDate, estimateToComplete } = this.props.project;
 
     return (

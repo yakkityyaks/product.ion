@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import ApiCall from "../utils/serverCalls";
-// import Highcharts from 'highcharts';
-// import Highcharts3D from 'highcharts-3d';
 
 const DashCharts = React.createClass({
 	getInitialState() {
@@ -12,15 +10,18 @@ const DashCharts = React.createClass({
 			sortBy: "type"
 		}
 	},
+
 	componentDidMount() {
 		this.getExpenses();
 	},
+
 	getExpenses() {
 		if (!this.state.expenses) {
 			var ids = [];
 	    for (var i = 0; i < this.props.projects.length; i++) {
 	      ids.push(this.props.projects[i].projId);
 	    }
+	    
 	    var temp = [Promise.resolve([this.setState.bind(this), this.sortBy]), ApiCall.getExpenses(ids)];
 	    Promise.all(temp).then(function(vals) {
 	    	var exps = vals[1].data.reduce(function(a,b) {
@@ -28,12 +29,15 @@ const DashCharts = React.createClass({
 	    	}, []);
 	    	vals[0][0]({expenses: exps}, vals[0][1]);
 	    });
+
 	  } else {
 	  	this.sortBy();
 	  }
 	},
+
 	sortBy() {
 		var temp = {};
+		
 		if (this.state.sortBy !== "project") {
 			for (var i = 0; i < this.state.expenses.length; i++) {
 				var exp = this.state.expenses[i];
@@ -48,14 +52,15 @@ const DashCharts = React.createClass({
 				temp[projName] = temp[projName] + exp.cost;
 			};
 		}
+		
 		var data = [];
 		for (var key in temp) {
 			data.push([key, temp[key]])
 		}
 		this.setState({data: data}, this.loadChart);
 	},
+
 	loadChart() {
-		var data = this.state.data;
 		var pie = new Highcharts.Chart({
 			chart: {
         type: 'pie',
@@ -86,20 +91,23 @@ const DashCharts = React.createClass({
       series: [{
         type: 'pie',
         name: 'Expenses share',
-        data: data
+        data: this.state.data
       }]
     });  
+
 	},
 	handleSortChange(e) {
 		e.preventDefault()
 		this.setState({sortBy: e.target.value}, this.getExpenses);
 	},
+
 	getProjName(id) {
 		for (var i = 0; i < this.props.projects.length; i++) {
 			if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i].name;};
 		}
 		return 'proj not found';
 	},
+
 	render() {
 		return (
 			<div>
@@ -120,8 +128,6 @@ const DashCharts = React.createClass({
 			</div>
 		)
 	}
-
-
 });
 
 export default DashCharts;
