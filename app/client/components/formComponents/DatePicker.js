@@ -3,8 +3,9 @@ import DayPicker, { DateUtils } from "react-day-picker";
 import { FormControl } from 'react-bootstrap';
 
 const DatePicker = React.createClass({
+
   componentDidMount: function(){
-    var value = this.props.value;
+    console.log('in the date picker ', this.props.value)
   },
 
   handleInputChange: function(e) {
@@ -21,12 +22,9 @@ const DatePicker = React.createClass({
     return (
        <FormControl
          name={this.props.name}
-         className="form__field-input"
          readOnly={this.props.readOnlyStatus}
          type = "date"
-         value = {this.props.value}
-         onChange = {this.handleInputChange}
-         placeholder={this.props.value} />
+         onChange = {this.handleInputChange} />
     );
   }
 });

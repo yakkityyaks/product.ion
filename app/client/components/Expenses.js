@@ -9,7 +9,7 @@ const Expenses = React.createClass({
   getInitialState: function() {
     return {
       expenses: this.props.expenses.expenses,
-      projs_id: this.props.expenses.id,
+      projId: this.props.expenses.projId,
       count: 0,
       addedExpenses: [0],
       newExpenses: []
@@ -37,7 +37,8 @@ const Expenses = React.createClass({
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
     this.setState({newExpenses: newExpenses})
-    console.log('new state', this.state.newExpenses);
+    console.log('new state', 'Project ID is ', this.state.projId, 'THe expense object is',this.state.newExpenses);
+    this.props.postNewExpense(this.state.projId, singleExpense);
   },
 
   handleSubmit: function(){
@@ -51,7 +52,7 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3>{"Expenses for project w/ project ID" + this.props.expenses.projId}</h3>
+        <h3>{"Project ID: "+ this.state.projId}</h3>
           <Table striped bordered condensed hover style={{width: "90%"}}>
               <thead>
                 <tr>
