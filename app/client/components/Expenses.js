@@ -41,21 +41,6 @@ const Expenses = React.createClass({
     this.props.postNewExpense(this.state.projId, singleExpense);
   },
 
-  switchModal () {
-    this.props.changeModal('csv');
-  },
-  switchChart() {
-    this.setState({open: !this.state.open});
-  },
-
-  handleNewExpense: function(singleExpense){
-    var newExpenses = this.state.newExpenses;
-    newExpenses.push(singleExpense);
-    this.setState({newExpenses: newExpenses})
-    console.log('new state', 'Project ID is ', this.state.projId, 'THe expense object is',this.state.newExpenses);
-    this.props.postNewExpense(this.state.projId, singleExpense);
-  },
-
   handleExpenseToDelete: function(expenseToDelete){
     this.props.removeExpense(expenseToDelete.id);
   },
@@ -65,8 +50,12 @@ const Expenses = React.createClass({
     this.props.updateExpense(expenseToUpdate);
   },
 
-  handleSubmit: function(){
-    var newExpenses = this.state.newExpenses;
+  switchModal () {
+    this.props.changeModal('csv');
+  },
+
+  switchChart() {
+    this.setState({open: !this.state.open});
   },
 
   render() {
