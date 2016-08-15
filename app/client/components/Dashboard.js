@@ -23,19 +23,19 @@ const Dashboard = React.createClass({
         </Panel>
         <div>
           <Panel>
+            <h2>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</h2>
             <div>
-              <Link to="/mastersheet">
-                <h3><Label byStyle="primary">Click for Master Sheet</Label></h3>
-              </Link>
+              {this.props.organization.user.perm === 0 ? (<Link to="/mastersheet">
+                <h3><Label byStyle="danger">Click for Master Sheet</Label></h3>
+              </Link>) : <div></div>}
             </div>
             <h3>Data Visualization!!!</h3>
             <Button onClick={this.switchChart}>Click for Visuals</Button>
-            <Panel>
-              {this.state.open ? <DashCharts {...this.props}/> : null}
-            </Panel>  
+            {this.state.open ? <DashCharts {...this.props}/> : null}
             <h3>Most Recent Three Projects</h3>
+            <Projects {...this.props} short={true}/>
           </Panel>
-          <Projects {...this.props}/> 
+          <Projects {...this.props} short={false}/> 
         </div>
       </div>
     );

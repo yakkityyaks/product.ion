@@ -7,7 +7,7 @@ const MasterSheet = React.createClass({
 	getInitialState() {
 		return {
 			expenses: [],
-			data: {},
+			chartData: {},
 			sortBy: '',
 			projNames: [],
 			table: []
@@ -15,23 +15,15 @@ const MasterSheet = React.createClass({
 	},
 	componentDidMount() {
 		var ids = [];
-		console.log(this.props.projects);
     for (var i = 0; i < this.props.projects.length; i++) {
       ids.push(this.props.projects[i].projId);
     }
-    var temp = [Promise.resolve([this.setState.bind(this), this.parseData])];
-    for (var i = 0; i < ids.length; i++) {
-      // console.log(p
-      temp.push(ApiCall.getExpensesByProjectId(ids[i]));
-    }
+    var temp = [Promise.resolve([this.setState.bind(this), this.parseData]), ApiCall.getExpenses(ids)];
     Promise.all(temp).then(function(vals) {
-    	console.log(vals);
-    	var exps = [];
-    	vals.forEach(function(val, idx) {
-    		if (idx !== 0) val.data.expenses.forEach(function(exp) { exps.push(exp)})
-    	})
-    	console.log('exps', exps)
-    	vals[0][0]({expenses: exps}, vals[0][1]);
+      var exps = vals[1].data.reduce(function(a,b) {
+        return a.concat(b);
+      }, []);
+      vals[0][0]({expenses: exps}, vals[0][1]);
     });
 	},
 	parseData() {
@@ -43,27 +35,26 @@ const MasterSheet = React.createClass({
 			temp[name] = temp[name] || [];
 			temp[name].push(exp);
 		};
-		console.log('temp', temp);
 
 		var table = [];
-		var data = {Total: [0,0,0,0,0,0,0,0,0,0,0,0]};
+		var chartData = {Total: [0,0,0,0,0,0,0,0,0,0,0,0]};
 		for (var key in temp) {
-			var row = [0,0,0,0,0,0,0,0,0,0,0,0,key];
-			data[key] = [];
+			var row = [0,0,0,0,0,0,0,0,0,0,0,0,0,key];
+			chartData[key] = [];
 			for (var i = 0; i < 12; i++) {
-				data[key][i] = 0;
+				chartData[key][i] = 0;
 			}
 			temp[key].forEach(function(exp) {
-				data[key][exp.dateSpent.slice(5,7) - 1] = data[key][exp.dateSpent.slice(5,7) - 1] + exp.cost;
-				data.Total[exp.dateSpent.slice(5,7) - 1] = data.Total[exp.dateSpent.slice(5,7) - 1] + exp.cost;
+				chartData[key][exp.dateSpent.slice(5,7) - 1] = chartData[key][exp.dateSpent.slice(5,7) - 1] + exp.cost;
+				chartData.Total[exp.dateSpent.slice(5,7) - 1] = chartData.Total[exp.dateSpent.slice(5,7) - 1] + exp.cost;
 				row[exp.dateSpent.slice(5,7) - 1] = row[exp.dateSpent.slice(5,7) - 1] + exp.cost;
+        row[12] = row[12] + exp.cost;
 			})
 			table.push(row);
 		}
-		this.setState({data: data, table: table, sortBy: Object.keys(temp)[0], projNames: Object.keys(temp)}, this.loadChart);
+		this.setState({chartData: chartData, table: table, sortBy: Object.keys(temp)[0], projNames: Object.keys(temp)}, this.loadChart);
 	},
 	loadChart() {
-		console.log(this.state.sortBy, this.state.data[this.state.sortBy]);
 		var line = new Highcharts.Chart({
 			chart: {
         type: 'line',
@@ -87,7 +78,7 @@ const MasterSheet = React.createClass({
       series: [{
         type: 'line',
         name: 'Expenses share',
-        data: this.state.data[this.state.sortBy]
+        data: this.state.chartData[this.state.sortBy]
       }]
     });  
 	},
@@ -110,7 +101,7 @@ const MasterSheet = React.createClass({
 				<Panel>
 					<Form inline>
 						<FormGroup controlId="formControlsSelect">
-				      <ControlLabel>Choose Project   </ControlLabel>
+				      <ControlLabel>Choose Project</ControlLabel>&nbsp;
 				      <FormControl componentClass="select" value={this.state.sortBy} onChange={this.handleSortChange}>
 				        {this.state.projNames.map(function(name, idx) {
 				        	return <option key={idx} value={name}>{name}</option>
@@ -120,8 +111,6 @@ const MasterSheet = React.createClass({
 				    </FormGroup>
 					</Form>
 	      	<div id="chartContainer"></div>
-				</Panel>
-				<Panel>
 					<Table striped bordered>
         		<thead>
         			<tr>
@@ -145,7 +134,7 @@ const MasterSheet = React.createClass({
         			{this.state.table.map(function(row) {
         				return (
         					<tr>
-        						<td>{row[12]}</td>
+        						<td>{row[13]}</td>
         						<td>{row[0]}</td>
         						<td>{row[1]}</td>
         						<td>{row[2]}</td>
@@ -158,6 +147,7 @@ const MasterSheet = React.createClass({
         						<td>{row[9]}</td>
         						<td>{row[10]}</td>
         						<td>{row[11]}</td>
+                    <td>{row[12]}</td>
         					</tr>
         				)
         			})}
@@ -170,21 +160,3 @@ const MasterSheet = React.createClass({
 });
 
 export default MasterSheet;
-// {Object.entries(this.state.data).map(function(proj) {
-//         				return (
-//         					<tr>
-//         						<td>proj[1][0]</td>
-//         						<td>proj[1][1]</td>
-//         						<td>proj[1][2]</td>
-//         						<td>proj[1][3]</td>
-//         						<td>proj[1][4]</td>
-//         						<td>proj[1][5]</td>
-//         						<td>proj[1][6]</td>
-//         						<td>proj[1][7]</td>
-//         						<td>proj[1][8]</td>
-//         						<td>proj[1][9]</td>
-//         						<td>proj[1][10]</td>
-//         						<td>proj[1][11]</td>
-//         					</tr>
-//         				)
-//         			})}
