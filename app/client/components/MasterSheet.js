@@ -15,22 +15,18 @@ const MasterSheet = React.createClass({
 	},
 	componentDidMount() {
 		var ids = [];
-		console.log(this.props.projects);
     for (var i = 0; i < this.props.projects.length; i++) {
       ids.push(this.props.projects[i].projId);
     }
     var temp = [Promise.resolve([this.setState.bind(this), this.parseData])];
     for (var i = 0; i < ids.length; i++) {
-      // console.log(p
       temp.push(ApiCall.getExpensesByProjectId(ids[i]));
     }
     Promise.all(temp).then(function(vals) {
-    	console.log(vals);
     	var exps = [];
     	vals.forEach(function(val, idx) {
     		if (idx !== 0) val.data.expenses.forEach(function(exp) { exps.push(exp)})
     	})
-    	console.log('exps', exps)
     	vals[0][0]({expenses: exps}, vals[0][1]);
     });
 	},
@@ -43,7 +39,6 @@ const MasterSheet = React.createClass({
 			temp[name] = temp[name] || [];
 			temp[name].push(exp);
 		};
-		console.log('temp', temp);
 
 		var table = [];
 		var data = {Total: [0,0,0,0,0,0,0,0,0,0,0,0]};
@@ -63,7 +58,6 @@ const MasterSheet = React.createClass({
 		this.setState({data: data, table: table, sortBy: Object.keys(temp)[0], projNames: Object.keys(temp)}, this.loadChart);
 	},
 	loadChart() {
-		console.log(this.state.sortBy, this.state.data[this.state.sortBy]);
 		var line = new Highcharts.Chart({
 			chart: {
         type: 'line',
@@ -170,21 +164,3 @@ const MasterSheet = React.createClass({
 });
 
 export default MasterSheet;
-// {Object.entries(this.state.data).map(function(proj) {
-//         				return (
-//         					<tr>
-//         						<td>proj[1][0]</td>
-//         						<td>proj[1][1]</td>
-//         						<td>proj[1][2]</td>
-//         						<td>proj[1][3]</td>
-//         						<td>proj[1][4]</td>
-//         						<td>proj[1][5]</td>
-//         						<td>proj[1][6]</td>
-//         						<td>proj[1][7]</td>
-//         						<td>proj[1][8]</td>
-//         						<td>proj[1][9]</td>
-//         						<td>proj[1][10]</td>
-//         						<td>proj[1][11]</td>
-//         					</tr>
-//         				)
-//         			})}
