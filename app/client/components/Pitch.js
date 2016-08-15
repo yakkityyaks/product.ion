@@ -13,6 +13,7 @@ const Pitch = React.createClass({
         m = now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth(),
         d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate(),
         date = [now.getFullYear(), m, d];
+
     let { data } = this.props,
           good = {val: "success", style: "success", action: "Reject"},
           bad = {val: "error", style: "danger", action: "Approve"},
@@ -28,6 +29,9 @@ const Pitch = React.createClass({
       counter ++;
     }
     this.props.getProject(data.projId);
+
+    const { data } = this.props;
+
     return {
       activeTab: 1,
       id: data.id || null,
@@ -113,7 +117,7 @@ const Pitch = React.createClass({
 
     this.props.updateProject(data, this.props.projId);
     this.props.changeModal("pitch");
-  },
+  }
   render() {
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
