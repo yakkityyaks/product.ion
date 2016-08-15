@@ -49,9 +49,7 @@ const PitchSummary = React.createClass({
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
 
-    console.log("Approvals at index ", index, "is ", approvals[index]);
     approvals[index] = Number(!Boolean(approvals[index]/1));
-    console.log("Approvals at index ", index, "is now ", approvals[index]);
 
     this.setState({approvals: approvals.join("")});
   },
@@ -61,11 +59,11 @@ const PitchSummary = React.createClass({
           bad = {val: "error", style: "danger", action: "Approve"},
           newJudge = this.state.judge;
 
-    if (this.state.judge[name].vars.action === "Reject") {
-      newJudge[name].vars = bad;
-    } else {
-      newJudge[name].vars = good;
-    }
+    //set the judgement state of each field to the inverse
+    newJudge[name].vars =
+      this.state.judge[name].vars.action === "Reject" ? bad
+      : good;
+
     this.updateApproval(newJudge[name].index);
     this.setState({judge: newJudge});
   },

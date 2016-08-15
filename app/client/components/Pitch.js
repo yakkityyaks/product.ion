@@ -14,7 +14,6 @@ const Pitch = React.createClass({
         d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate(),
         date = [now.getFullYear(), m, d];
     const { data } = this.props;
-    console.log("data is ", data);
     return {
       activeTab: 1,
       projName: data.name || "",
@@ -25,7 +24,7 @@ const Pitch = React.createClass({
       startDate: data.startDate ? data.startDate.split("T")[0] : date.join("-"),
       endDate: data.endDate ? data.endDate.split("T")[0] : date.join("-"),
       editDate: data.editDate ? data.endDate.split("T")[0] : "",
-      releaseDate: data.editDate ? data.endDate.split("T")[0] : date.join("-"),
+      releaseDate: data.editDate ? data.endDate.split("T")[0] : "",
       adminNotes: data.adminNotes || "",
       approvals: data.approvals || "111111111111"
     };
@@ -34,14 +33,13 @@ const Pitch = React.createClass({
     this.setState({activeTab: key});
   },
   tabToBudget() {
-    console.log("ding ding ding");
     this.setState({activeTab: 2});
   },
   updateBudget(newTotal) {
     this.setState({reqBudget: newTotal});
   },
   updatePitch() {
-
+    
   },
   render() {
     return (
