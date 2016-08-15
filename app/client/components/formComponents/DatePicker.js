@@ -15,7 +15,10 @@ const DatePicker = React.createClass({
     var dd = date[2];
     var yyyy = date[0];
     var data = mm+'-'+dd+'-'+yyyy;
-    this.props.onChange(e.target.name, data);
+    var formats = {};
+    formats.rawDate = e.target.value;
+    formats.formattedDate = data;
+    this.props.onChange(e.target.name, formats);
   },
 
   render() {

@@ -21,7 +21,6 @@ const ExpenseNode = React.createClass({
       glCode: 560260,
       id: 0,
       method: "",
-      projs_id: this.props.projs_id,
       type: "",
       vendor: "",
       vertical: ""
@@ -80,8 +79,8 @@ const ExpenseNode = React.createClass({
     var singleExpense = {
       category: this.state.category,
       cost: this.state.cost,
-      dateSpent: this.state.dateSpent,
-      dateTracked: this.state.dateTracked,
+      dateSpent: this.state.dateSpent.rawDate,
+      dateTracked: this.state.dateTracked.rawDate,
       description: this.state.description,
       glCode: this.state.glCode,
       method: this.state.method,
@@ -204,8 +203,8 @@ const ExpenseNode = React.createClass({
               value={this.state.importedExpenses.category} />
             }
           </td>
-          <td width="83">
-            <TextInput value={this.state.glCode} readOnlyStatus={true} />
+          <td width="83">{this.state.importedExpenses.glCode ? <TextInput value={this.state.importedExpenses.glCode} readOnlyStatus={true} /> : <TextInput value={this.state.glCode} readOnlyStatus={true} />
+          }
           </td>
           <td width="107">
             {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?

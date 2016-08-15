@@ -178,11 +178,11 @@ export function hydrateExpenses(projectId, id, expenses) {
   };
 }
 
-export function postNewExpense(data, projId) {
+export function postNewExpense(projs_Id, singleExpense) {
   return {
     type: "NEW_EXPENSE",
-    data,
-    projId
+    projs_Id,
+    singleExpense
   };
 }
 

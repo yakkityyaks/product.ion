@@ -94,6 +94,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/expenses', function(req, res) {
+    console.log('In the routes ', req.body)
     // req body should hold the following
     // {
     //  data: {
