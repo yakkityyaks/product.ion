@@ -103,15 +103,6 @@ const Budget = React.createClass({
                           removeBudgetNode={this.removeBudgetNode}/>
           )
           }
-          {
-            this.state.tempStore.map((node, key) =>
-              <FormGroup>
-                <BudgetNode key={key} idx={key} node = {node} lock={true}
-                            removeBudgetNode={this.removeBudgetNode}/>
-              <br />
-              </FormGroup>
-          )
-          }
           <Form inline onSubmit={this.handleSubmit}><FormGroup>
             <DropdownButton bsStyle={"default"} title={"Category"} id="catSelect">
               <CustomSearch id={"5"} name={"testing"}
