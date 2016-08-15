@@ -72,6 +72,7 @@ Promise.all([
      table.float('cost');
      table.integer('projs_id').unsigned().references('id').inTable('projs');
    }),
+]);
 
 var Bookshelf = require('bookshelf')(knex);
 
