@@ -32,7 +32,7 @@ const CSVDrop = React.createClass({
   // we can easily obtain the project name to render by cycling through the list of projects in this.props.
   // we match the project id to the id we have in order to obtain the project name.
   render () {
-    let projName="THIS AINT RIGHT";
+    let projName="";
 
     this.props.projects.forEach((project) => {
       if (project.projId === this.props.expenses.projId) {
