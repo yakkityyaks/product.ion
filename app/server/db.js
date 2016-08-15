@@ -68,8 +68,10 @@ Promise.all([
   knex.schema.createTableIfNotExists('budgets', function(table) {
      table.increments('id').primary();
      table.integer('glCode');
-     table.string('category');
+     table.string('description');
      table.float('cost');
+     table.integer('quantity');
+     table.float('total');
      table.integer('projs_id').unsigned().references('id').inTable('projs');
    }),
 ]);

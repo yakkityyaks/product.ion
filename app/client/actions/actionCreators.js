@@ -132,10 +132,18 @@ export function getOrgProjects(orgName) {
   };
 }
 
+
 export function getProjExpenses(projIds) {
   return {
     type: 'GET_PROJ_EXPENSES',
     projIds
+  };
+}
+
+export function getProject(projId) {
+  return {
+    type: 'GET_PROJECT',
+    projId
   };
 }
 

@@ -27,7 +27,7 @@ const Pitch = React.createClass({
       judge[key].index = counter;
       counter ++;
     }
-
+    this.props.getProject(data.projId);
     return {
       activeTab: 1,
       id: data.id || null,

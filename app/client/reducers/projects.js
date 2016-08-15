@@ -45,6 +45,17 @@ function projects(state = [], action) {
           }
         });
       break;
+    case "GET_PROJECT":
+      console.log("You want to get a single project with id", action.projId);
+      ApiCall.getProjectByProjId(action.projId)
+        .then(res => {
+          console.log("Res is ", res);
+        })
+        .catch(err => {
+          console.log("Whoopsie in GET_PROJECT");
+          console.error(err);
+        });
+      break;
     case "HYDRATE_PROJECT":
       console.log("You want to hydrate the single project state with ", action.projects);
       return action.projects;
