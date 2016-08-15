@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ProjectNode from './ProjectNode.js';
+import NavBar from './NavBar.js';
 import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Pitch from './Pitch.js';
 
@@ -23,6 +24,14 @@ const Projects = React.createClass({
   render() {
     return (
       <div style={{fontSize : "14px"}}>
+        {
+          this.props.short ? <div></div> :
+          <div>  
+            <Panel>
+              <NavBar {...this.props}/>
+            </Panel>
+          </div>  
+        }
         <Panel>
           {
             this.props.short ? <div></div> :
