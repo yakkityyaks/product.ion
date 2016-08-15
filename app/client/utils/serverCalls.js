@@ -32,8 +32,12 @@ let getProjectsByOrgName = (orgName) =>
 let getExpensesByProjectId = (projectId) =>
   axios.post('/api/get/proj', {projId: projectId});
 
-let registerExpense = (data) =>
-  axios.post('/api/register/expenses', {data: data});
+let registerExpense = (action) => {
+  var data = action.singleExpense;
+  data.projs_Id = action.projs_Id;
+  console.log('in servercalls ', data)
+  return axios.post('/api/register/expenses', {data: data});
+}
 
 let removeExpense = (id) =>
   axios.post('/api/remove/expense', {id: id});

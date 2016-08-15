@@ -34,10 +34,11 @@ function expenses(state = [], action) {
       state.current = action.expenses;
       return state;
     case "NEW_EXPENSE":
-      console.log('in new expense', action.data);
-      ApiCall.registerExpense(action.data).then(function(res) {
+      console.log('in new expense ACTION IS ', action);
+      ApiCall.registerExpense(action)
+      .then(function(res) {
         console.log('new expense', res.data);
-        store.dispatch({type:'GET_EXPENSES', projectId: action.projId, id: action.data.projs_id});
+        store.dispatch({type:'GET_EXPENSES', projectId: action.projs_Id, singleExpense: action.singleExpense});
       })
       .catch(function(err) {
         console.error(err);
