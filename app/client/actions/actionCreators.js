@@ -150,13 +150,17 @@ export function hydrateProjExpenses(expenses) {
   return {
     type: "HYDRATE_PROJ_EXPENSES",
     expenses
-  }
+  };
 }
 export function changeModal(name) {
   return {
     type: "CHANGE_MODAL",
     name
   };
+}
+
+export function updateProject(project) {
+  return {type: "UPDATE_PROJECT", project};
 }
 
 //Expenses:
@@ -206,6 +210,14 @@ export function updateExpense(data, projId, projs_id) {
 
 export function setCurrentExpenseProject(expenses) {
   return {type: "SET_CURRENT_EXPENSE_PROJECT", expenses};
+}
+
+//Modals:
+export function changeModal(name) {
+  return {
+    type: "CHANGE_MODAL",
+    name
+  };
 }
 
 //MESSAGES:

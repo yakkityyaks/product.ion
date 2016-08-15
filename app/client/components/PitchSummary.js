@@ -1,96 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Form, FormControl, FormGroup, ControlLabel, Button,
-        InputGroup, Tabs, Tab } from 'react-bootstrap';
+  InputGroup, Tabs, Tab } from 'react-bootstrap';
 
 import Budget from "./Budget";
 import { judy } from "../data/public";
 
 const PitchSummary = React.createClass({
-  getInitialState() {
-    let { data } = this.props,
-        judge = {},
-        counter = 0;
-    const good = {val: "success", style: "success", action: "Reject"},
-          bad = {val: "error", style: "danger", action: "Approve"},
-          notAdmin = {val: null, action: undefined};
-
-    for (var key in judy) {
-      judge[key] = {vars: this.props.organization.user.perm ?
-          notAdmin
-        : data.approvals[counter] == 1 ? good : bad};
-      judge[key].index = counter;
-      counter ++;
-    }
-
-    data.judge = judge;
-    return this.props.data;
-  },
-  handleSubmit(event) {
-    event.preventDefault();
-    var pitch = {
-      name: this.state.projName,
-      projId: this.props.projects.length + 1,//TEMPORARY, FIX LATER
-      numAssets: this.state.numAssets,
-      type: this.state.videoType,
-      status: 'Pitch',
-      estimateToComplete: this.state.reqBudget,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-      orgs_id: this.props.organization.orgs_id,
-      createdBy: this.props.organization.user.id
-    };
-    console.log("Submitting function temporaritly disabled. pitch is ", pitch);
-    // this.props.postNewProject(pitch);
-  },
-  handleChange(e) {
-    this.setState({[e.target.name]: e.target.value});
-  },
-  updateApproval(index) {
-    var approvals = this.state.approvals.split("");
-
-    approvals[index] = Number(!Boolean(approvals[index]/1));
-
-    this.setState({approvals: approvals.join("")});
-  },
-  handleJudgement(e) {
-    const name = e.target.name,
-          good = {val: "success", style: "success", action: "Reject"},
-          bad = {val: "error", style: "danger", action: "Approve"},
-          newJudge = this.state.judge;
-
-    //set the judgement state of each field to the inverse
-    newJudge[name].vars =
-      this.state.judge[name].vars.action === "Reject" ? bad
-      : good;
-
-    this.updateApproval(newJudge[name].index);
-    this.setState({judge: newJudge});
-  },
-  handleSelect(key) {
-    this.setState({activeTab: key});
-  },
   render() {
-    const { user } = this.props.organization,
-          { data } = this.props,
-          { judge } = this.state;
+    const { user, judge, handleChange, handleJudgement,
+          handleReject, handlePitchSubmit} = this.props;
+
     const adminControls = (name) => (
-        !user.perm &&
-        <InputGroup.Button>
-          <Button bsStyle={judge[name].vars.style} name={name} onClick={this.handleJudgement}>
-            {judge[name].vars.action}
-          </Button>
-        </InputGroup.Button>
+      !user.perm &&
+      <InputGroup.Button>
+        <Button bsStyle={judge[name].vars.style} name={name} onClick={handleJudgement}>
+          {judge[name].vars.action}
+        </Button>
+      </InputGroup.Button>
     );
     return (
       <div className="Pitch">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={handlePitchSubmit}>
           <FormGroup controlId="formProjName" validationState = {judge.projName.vars.val}>
             <ControlLabel>Project Name</ControlLabel>
             <InputGroup>
               <FormControl type="text" placeholder="What's the project called?"
-                          name="projName" onChange={this.handleChange}
-                          value={this.state.projName} required />
+                          name="projName" onChange={handleChange}
+                          value={this.props.projName} required />
               {adminControls("projName")}
             </InputGroup>
           </FormGroup>
@@ -98,8 +35,8 @@ const PitchSummary = React.createClass({
             <ControlLabel>Project Id</ControlLabel>
             <InputGroup>
               <FormControl type="text" placeholder="Get this from accounting"
-                          name="projId" onChange={this.handleChange}
-                          value={this.state.projId} required />
+                          name="projId" onChange={handleChange}
+                          value={this.props.projId} required />
               {adminControls("projId")}
             </InputGroup>
           </FormGroup>
@@ -107,7 +44,7 @@ const PitchSummary = React.createClass({
             <ControlLabel>Vertical</ControlLabel>
             <InputGroup>
               <FormControl componentClass="select" placeholder="Vertical"
-                          name="vertical" onChange={this.handleChange}>
+                          name="vertical" onChange={handleChange}>
                 <option value="food">Food</option>
                 <option value="beauty">Bearty</option>
                 <option value="fashionStyle">Fashion & Style</option>
@@ -124,7 +61,7 @@ const PitchSummary = React.createClass({
             <InputGroup>
               <InputGroup.Addon>Tier</InputGroup.Addon>
               <FormControl componentClass="select" placeholder="Tier"
-                          name="tier" onChange={this.handleChange}>
+                          name="tier" onChange={handleChange}>
                 <option value="br">BR</option>
                 <option value="t1">T1</option>
                 <option value="t2">T2</option>
@@ -140,8 +77,8 @@ const PitchSummary = React.createClass({
             <ControlLabel>Number of Assets</ControlLabel>
             <InputGroup>
               <FormControl type="number" placeholder="How many episodes?"
-                          name="numAssets" onChange={this.handleChange}
-                          value={this.state.numAssets} required />
+                          name="numAssets" onChange={handleChange}
+                          value={this.props.numAssets} required />
               {adminControls("numAssets")}
             </InputGroup>
           </FormGroup>
@@ -149,7 +86,7 @@ const PitchSummary = React.createClass({
             <ControlLabel>Video Type</ControlLabel>
             <InputGroup>
               <FormControl componentClass="select" placeholder="Video Type"
-                          name="videoType" onChange={this.handleChange}>
+                          name="videoType" onChange={handleChange}>
                 <option value="feature">Feature</option>
                 <option value="short">Short</option>
                 <option value="television">Television</option>
@@ -163,8 +100,8 @@ const PitchSummary = React.createClass({
             <ControlLabel>Requested Budget</ControlLabel>
             <InputGroup>
               <FormControl type="text" placeholder="Estimate budget on next tab"
-                          name="reqBudget" onChange={this.handleChange}
-                          value={(data.reqBudget && "$" + data.reqBudget) || ""} readOnly/>
+                          name="reqBudget" onChange={handleChange}
+                          value={(this.props.reqBudget && "$" + this.props.reqBudget) || ""} readOnly/>
               <InputGroup.Button>
                 <Button onClick={this.props.tabToBudget}>Switch to Detailed Budget Breakdown</Button>
               </InputGroup.Button>
@@ -176,8 +113,8 @@ const PitchSummary = React.createClass({
             <InputGroup>
               <InputGroup.Addon>Start Date</InputGroup.Addon>
               <FormControl type="date"
-                          name="startDate" onChange={this.handleChange}
-                          value={this.state.startDate} />
+                          name="startDate" onChange={handleChange}
+                          value={this.props.startDate} />
               {adminControls("startDate")}
             </InputGroup>
           </FormGroup>
@@ -185,8 +122,8 @@ const PitchSummary = React.createClass({
             <InputGroup>
               <InputGroup.Addon>End Date</InputGroup.Addon>
               <FormControl type="date"
-                          name="endDate" onChange={this.handleChange}
-                          value={this.state.endDate} />
+                          name="endDate" onChange={handleChange}
+                          value={this.props.endDate} />
               {adminControls("endDate")}
             </InputGroup>
           </FormGroup>
@@ -194,8 +131,8 @@ const PitchSummary = React.createClass({
             <InputGroup>
               <InputGroup.Addon>Edit Date</InputGroup.Addon>
               <FormControl type="date"
-                          name="editDate" onChange={this.handleChange}
-                          value={this.state.editDate} />
+                          name="editDate" onChange={handleChange}
+                          value={this.props.editDate} />
               {adminControls("editDate")}
             </InputGroup>
           </FormGroup>
@@ -203,8 +140,8 @@ const PitchSummary = React.createClass({
             <InputGroup>
               <InputGroup.Addon>Release Date</InputGroup.Addon>
               <FormControl type="date"
-                          name="releaseDate" onChange={this.handleChange}
-                          value={this.state.releaseDate} />
+                          name="releaseDate" onChange={handleChange}
+                          value={this.props.releaseDate} />
               {adminControls("releaseDate")}
             </InputGroup>
           </FormGroup>
@@ -213,14 +150,14 @@ const PitchSummary = React.createClass({
               <ControlLabel>Admin Notes</ControlLabel>
               <FormControl componentClass="textarea" name="adminNotes"
                 placeholder={user.name+", if you're rejecting please explain why here."}
-                value = {this.state.adminNotes} onChange={this.handleChange} />
+                value = {this.props.adminNotes} onChange={handleChange} />
             </FormGroup>
           }
           {user.perm ?
             <Button type="submit">Submit pitch for approval</Button>
             : <FormGroup>
                <Button bsStyle="success" type="submit">Approve Proposal</Button>
-               <Button bsStyle="danger" onClick={this.handleReject}>Reject with Reasons</Button>
+               <Button bsStyle="danger" onClick={handleReject}>Reject with Reasons</Button>
               </FormGroup>
           }
         </Form>

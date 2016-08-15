@@ -51,6 +51,18 @@ function projects(state = [], action) {
     case "HYDRATE_PROJECTS":
       console.log("You want to hydrate the projects state with ", action.projects);
       return action.projects;
+    case "UPDATE_PROJECT":
+      console.log("You want to update project ", action.project);
+      ApiCall.updateProject(action.project, action.project.projId)
+        .then(res => {
+          console.log("Successfully updated a project!");
+          console.log(res);
+        })
+        .catch(err => {
+          console.log("Error in update Project");
+          console.error(err);
+        });
+      break;
     case "UPDATE_ID":
       console.log("You want to update ID");
       return action.project;

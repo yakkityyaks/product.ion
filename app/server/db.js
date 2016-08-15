@@ -26,7 +26,7 @@ Promise.all([
   knex.schema.createTableIfNotExists('projs', function(table) {
     table.increments('id').primary();
     table.string('name');
-    table.integer('projId');
+    table.string('projId');
     table.string('vertical', 20);
     table.string('tier', 20);
     table.string('type');
