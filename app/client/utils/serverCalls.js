@@ -53,8 +53,12 @@ let removeExpense = (action) => {
   return axios.post('/api/remove/expense', {id: data});
 };
 
-let updateExpense = (data, id) =>
-  axios.post('/api/update/expense', {data: data, id:id});
+let updateExpense = (action) => {
+  var data = action.data;
+  var id = action.data.id;
+  console.log('in the server call ', id, 'the data is ', data)
+  return axios.post('/api/update/expense', {data: data, id:id});
+}
 
 let parseCSV = (data, id) =>
   axios.post('/api/register/csv', {data: data, id: id});
