@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { findDOMNode } from 'react-dom';
-import { Form, FormGroup, FormControl, ControlLabel, Panel, Button, PageHeader, Radio } from 'react-bootstrap';
+import { Button, ControlLabel, Form, FormControl, FormGroup, PageHeader, Panel, Radio } from 'react-bootstrap';
 
 const AddUser = React.createClass({
 
@@ -10,8 +10,6 @@ const AddUser = React.createClass({
     name = findDOMNode(this.refs.usernameInput).value;
     if (named.length < 6 || !regex) {
       console.log("Password must be greater than 6 characters");
-    } else {
-      //trigger successful user view
     }
   },
 

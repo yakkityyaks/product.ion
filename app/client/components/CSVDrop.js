@@ -1,6 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
-import { FormGroup, FormControl, ControlLabel, Panel } from 'react-bootstrap';
+import { ControlLabel, FormControl, FormGroup, Panel } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import NavBar from './NavBar.js';
 
