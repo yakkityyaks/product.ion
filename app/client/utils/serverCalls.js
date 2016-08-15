@@ -41,8 +41,11 @@ let registerExpense = (action) => {
   return axios.post('/api/register/expenses', {data: data});
 }
 
-let removeExpense = (id) =>
-  axios.post('/api/remove/expense', {id: id});
+let removeExpense = (action) => {
+  console.log('at the sever call ', action)
+  var data = action.id;
+  return axios.post('/api/remove/expense', {id: data});
+}
 
 let updateExpense = (data, id) =>
   axios.post('/api/update/expense', {data: data, id:id});

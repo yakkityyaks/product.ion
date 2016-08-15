@@ -46,7 +46,7 @@ function expenses(state = [], action) {
       break;
     case "REMOVE_EXPENSE":
       console.log(state);
-      ApiCall.removeExpense(action.id).then(function(res) {
+      ApiCall.removeExpense(action).then(function(res) {
         store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
       })
       .catch(function(err) {
@@ -61,7 +61,7 @@ function expenses(state = [], action) {
       // return {id: state.id, projId: state.projId, expenses: temp}
     case "UPDATE_EXPENSE":
       console.log('updating');
-      ApiCall.updateExpense(action.data, action.data.id).then(function(res) {
+      ApiCall.updateExpense(action.id).then(function(res) {
         store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
       })
       .catch(function(err) {
