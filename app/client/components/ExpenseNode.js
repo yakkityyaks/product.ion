@@ -1,7 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router';
 import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
 import ApiCall from "../utils/serverCalls";
+=======
+import { Button, FormControl, InputGroup} from 'react-bootstrap';
+>>>>>>> 5e1b99dc0de25f8d946f9866698764f9cb835087
 import SelectInput from './formComponents/SelectInput.js';
 import TextInput from './formComponents/TextInput.js';
 import CurrentDate from './formComponents/CurrentDate.js';
