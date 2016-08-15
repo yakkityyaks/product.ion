@@ -69,10 +69,24 @@ const ExpenseNode = React.createClass({
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
   },
   handleUpdate: function(){
+    var expenseToUpdate = this.props.expense.id;
+    var singleExpense = {
+      category: this.state.category,
+      cost: this.state.cost,
+      dateSpent: this.state.dateSpent.rawDate,
+      dateTracked: this.state.dateTracked.rawDate,
+      description: this.state.description,
+      glCode: this.state.glCode,
+      method: this.state.method,
+      projs_id: this.state.projs_id,
+      type: this.state.type,
+      vendor: this.state.vendor,
+      vertical: this.state.vertical
+    }
     var on = true;
     this.setState({readOnlyStatus: on})
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
-    // this.props.updateExpense(this.state, this.props.projId, this.props.projs_id);
+    this.props.handleExpenseUpdate(expenseToUpdate, singleExpense);
   },
 
   addExpense: function(){
@@ -229,25 +243,24 @@ const ExpenseNode = React.createClass({
               onChange={this.handleChange}
               readOnlyStatus={this.state.readOnlyStatus}
               title={this.state.dateSpent}
-              value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />
-          }
-        </td>
-        <td width="107">
-          {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
-            <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
-            <DatePicker
-            name="dateTracked"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title={this.state.dateTracked}
-            value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
-          }
-        </td>
-        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
-        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
-        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense.bind(this)}>Delete</Button></td> : null}
-        {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
-      </tr>
+              value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />}
+          </td>
+          <td width="107">
+            {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
+              <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
+              <DatePicker
+              name="dateTracked"
+              onChange={this.handleChange}
+              readOnlyStatus={this.state.readOnlyStatus}
+              title={this.state.dateTracked}
+              value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
+            }
+          </td>
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate.bind(this)}>Update</Button></td> : null}
+          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense.bind(this)}>Delete</Button></td> : null}
+          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
+        </tr>
     );
   }
 });
