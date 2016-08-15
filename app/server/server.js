@@ -4,6 +4,7 @@ var config = require('../../webpack.config.dev');
 var express = require('express');
 var path = require('path');
 var webpack = require('webpack');
+var session = require('express-session');
 
 //instantiate server
 var app = express();
@@ -30,6 +31,12 @@ app.use(function setHeaders(req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
+
+app.use(session({
+  secret: 'secret session',
+  resave: false,
+  saveUninitialized: true
+}));
 
 var port = process.env.PORT || 7000;
 

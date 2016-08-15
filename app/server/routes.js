@@ -4,6 +4,7 @@ var Organization = require('./controllers/organizationController.js');
 var Project = require('./controllers/projectController.js');
 var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
+var util = require('./lib/utility.js');
 
 
 module.exports = function routes(app){
