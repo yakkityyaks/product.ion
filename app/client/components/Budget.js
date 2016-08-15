@@ -15,7 +15,6 @@ const Budget = React.createClass({
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", filter: "",
 
-        tempStore: []
       };
     },
     resetNewBudgetField() {
@@ -66,7 +65,7 @@ const Budget = React.createClass({
       let id = this.state.projId;
 
       console.log("budget object: ", budget);
-      this.props.postProjectBudgets(budget, id);
+      // this.props.postProjectBudgets(budget, id);
     },
     handleClick(e) {
       e.preventDefault();
@@ -89,7 +88,7 @@ const Budget = React.createClass({
         filter: ""
       });
     },
-    render: function (){
+    render: function () {
       const budgetDropdownItem = (node, idx) =>
       (
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
@@ -99,9 +98,18 @@ const Budget = React.createClass({
       return (
         <div>
           {
-            this.state.tempStore.map((node, key) =>
-              <BudgetNode key={key} idx={key} node = {node} lock={true}
+            this.props.budgets && this.props.budgets.map((row, key) =>
+              <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           removeBudgetNode={this.removeBudgetNode}/>
+          )
+          }
+          {
+            this.state.tempStore.map((node, key) =>
+              <FormGroup>
+                <BudgetNode key={key} idx={key} node = {node} lock={true}
+                            removeBudgetNode={this.removeBudgetNode}/>
+              <br />
+              </FormGroup>
           )
           }
           <Form inline onSubmit={this.handleSubmit}><FormGroup>
@@ -113,7 +121,6 @@ const Budget = React.createClass({
                   node.label.toLowerCase().includes(this.state.filter))
                .map(budgetDropdownItem)
              }
-            <br></br>
             </DropdownButton>
             <FormGroup>
               <FormControl readOnly type="text"
@@ -122,19 +129,19 @@ const Budget = React.createClass({
                            value={this.state.newBudgetLabel} placeholder="Category"/>
             </FormGroup>
             <InputGroup className="testing2">
-              <InputGroup.Addon>Cost: $</InputGroup.Addon>
+              <InputGroup.Addon>Cost:</InputGroup.Addon>
               <FormControl type="number" placeholder="Cost"
                            onChange={this.handleChange} name="newBudgetCost"
                            value={this.state.newBudgetCost} />
             </InputGroup>
             <InputGroup className="testing2">
-              <InputGroup.Addon>Quant: $</InputGroup.Addon>
+              <InputGroup.Addon>Quant:</InputGroup.Addon>
               <FormControl type="number" placeholder="Units"
                            onChange={this.handleChange} name="newBudgetQuant"
                            value={this.state.newBudgetQuant} />
             </InputGroup>
             <InputGroup className="testing2">
-              <InputGroup.Addon>Total: $</InputGroup.Addon>
+              <InputGroup.Addon>Total:</InputGroup.Addon>
               <FormControl type="number" placeholder="Total Estimate"
                            onChange={this.handleChange} name="newBudgetTotal"
                            value={this.state.newBudgetTotal} />

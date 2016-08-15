@@ -16,9 +16,12 @@ function budgets(state = {}, action) {
       break;
 
     case "HYDRATE_PROJECT_BUDGETS":
+      console.log("Here here here!, action is", action);
+      console.log("State is, ", state);
       var newState = state;
-      newState["proj" + action.projId] = action.list;
+      newState["proj" + action.id] = action.list;
 
+      console.log("newstate is ", newState);
       return newState;
     default:
       return state;

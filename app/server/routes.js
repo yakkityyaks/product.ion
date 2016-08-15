@@ -132,7 +132,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/get/budget', function(req, res) {
-    Budget.getBudget(req.body.id, function(budgetArray) {
+    Budget.getBudget(req.body.projId, function(budgetArray) {
       budgetArray ? res.status(201).json(budgetArray) : res.sendStatus(404);
     });
   });

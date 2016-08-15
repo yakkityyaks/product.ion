@@ -289,6 +289,14 @@ export function getProjBudgets(projId) {
   };
 }
 
+export function hydrateProjectBudgets(id, list) {
+  return {
+    type: "HYDRATE_PROJECT_BUDGETS",
+    id,
+    list
+  };
+}
+
 export function hydrateBudget(projId, budgetsArray) {
   return {
     type: "GET_PROJECT_BUDGETS",

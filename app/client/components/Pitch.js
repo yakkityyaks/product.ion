@@ -28,9 +28,6 @@ const Pitch = React.createClass({
       judge[key].index = counter;
       counter ++;
     }
-    this.props.getProject(data.projId);
-
-    const { data } = this.props;
 
     return {
       activeTab: 1,
@@ -117,8 +114,9 @@ const Pitch = React.createClass({
 
     this.props.updateProject(data, this.props.projId);
     this.props.changeModal("pitch");
-  }
+  },
   render() {
+    let budgets = this.props.budgets["proj" + this.state.id];
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
         <Tab eventKey={1} title="Pitch">
@@ -128,7 +126,8 @@ const Pitch = React.createClass({
             handleReject={this.handleReject} handlePitchSubmit={this.handlePitchSubmit}/>
           }
         </Tab>
-        <Tab eventKey={2} title="Budget">{<Budget total={this.state.reqBudget}
+        <Tab eventKey={2} title="Budget">{<Budget budgets={budgets}
+            total={this.state.reqBudget}
             updateBudget={this.updateBudget}/>}</Tab>
       </Tabs>
     );

@@ -50,6 +50,9 @@ function projects(state = [], action) {
       ApiCall.getProjectByProjId(action.projId)
         .then(res => {
           console.log("Res is ", res);
+          let id = res.data.id,
+              list = res.data.budgets;
+          store.dispatch({type: "HYDRATE_PROJECT_BUDGETS", id, list});
         })
         .catch(err => {
           console.log("Whoopsie in GET_PROJECT");
@@ -91,15 +94,16 @@ function projects(state = [], action) {
         // console.log(p
         ApiCall.getExpensesByProjectId(projId).then(function(res) {
           count++;
-          console.log('in call')
+          console.log('in call');
           res.data.expenses.forEach(function(exp) {
             temp.push(exp);
           });
           if (count === length) {
             store.dispatch({type:"HYDRATE_PROJ_EXPENSES", expenses: temp});
           }
-        })
-      })
+        });
+      });
+      break;
     default:
       return state;
   }
