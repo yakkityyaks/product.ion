@@ -141,6 +141,7 @@ function posts(state=[], action) {
             store.dispatch({
               type:"LOGIN",
               username: res.data.username,
+              password: res.data.password,
               id: res.data.id,
               orgs_id: res.data.orgs_id,
               orgName: res.data.org.name,
@@ -160,7 +161,7 @@ function posts(state=[], action) {
     case "LOGIN":
       console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
-        user: {name: action.username, perm: action.perm, id: action.id},
+        user: {name: action.username, password: action.password, perm: action.perm, id: action.id},
         orgName: action.orgName,
         orgs_id:action.orgs_id
       });

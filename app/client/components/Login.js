@@ -15,6 +15,14 @@ const Login = React.createClass({
       browserHistory.push(`/dashboard/${joinedName}`);
     }
   },
+  // componentWillMount() {
+  //   let name = this.state.username,
+  //   password = this.state.password;
+  //   this.props.resetLoginMessage();
+  //   if (name && password) {
+  //     this.props.postLogin(name, password);
+  //   }
+  // },
   handleUserChange(e) {
     this.setState({username:e.target.value});
   },
