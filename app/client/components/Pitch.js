@@ -22,7 +22,9 @@ const Pitch = React.createClass({
     let judge = {},
         counter = 0;
 
-    data.approvals = data.approvals || "111111111111";
+    //set default approval data if none present.
+    data = data.approvals ? data :  {approvals:"11111111111"};
+    //sets validation object to be mapped to each field in PitchSummary
     for (var key in judy) {
       judge[key] = {vars: this.props.organization.user.perm ?
           notAdmin
@@ -33,6 +35,7 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
+      newPitch: data.id ? false : true,
       id: data.id || null,
       projName: data.name || "",
       projId: data.projId || "",

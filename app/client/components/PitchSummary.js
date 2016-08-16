@@ -157,7 +157,8 @@ const PitchSummary = React.createClass({
             <Button type="submit">Submit pitch for approval</Button>
             : <FormGroup>
                <Button bsStyle="success" type="submit">Approve Proposal</Button>
-               <Button bsStyle="danger" onClick={handleReject}>Reject with Reasons</Button>
+               {!this.props.newPitch &&
+                 <Button bsStyle="danger" onClick={handleReject}>Reject with Reasons</Button>}
               </FormGroup>
           }
         </Form>
