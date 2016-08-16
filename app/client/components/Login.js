@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import { Link, browserHistory } from 'react-router';
 import ApiCall from '../utils/serverCalls';
 
@@ -7,27 +6,16 @@ import { Button, Panel, FormGroup, FormControl, Form } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState() {
-    return {username: "", password: ""};
+    return {username: "", password: "", renderStuff: true};
   },
-  // componentWillMount() {
-  //   this.props.resetLoginMessage();
-  //   if (this.props.organization.user) {
-  //     var joinedName = this.props.organization.orgName.split(" ").join("");
-  //     browserHistory.push(`/dashboard/${joinedName}`);
-  //   }
-  // },
   componentWillMount() {
     this.props.resetLoginMessage();
-      //get token from local sessionStorage, send it to server
-          // the server decrypts and gets username from token
-          // with a username, the server can get all user info from the database
-          // server sends back username and password
-          // this.props.postLogin(username, password);
     let token = sessionStorage.getItem('jwtToken');
     console.log("TOKEN ", token);
     if(!token || token === '') {
       return;
     } else {
+      this.setState({renderStuff: false})
       this.props.refreshLogin(token);
     }
   },
@@ -44,8 +32,8 @@ const Login = React.createClass({
 
   render() {
     return (
-     <div id="loginPanel">
-        <Panel bsStyle="primary" header={<h3>Login</h3>}>
+       <div id="loginPanel">
+        {this.state.renderStuff && <Panel bsStyle="primary" header={<h3>Login</h3>}>
          <Form onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Link to={`/register`}>
              <Button>
@@ -70,7 +58,7 @@ const Login = React.createClass({
                <Button type="submit">Login</Button>
            </div>
          </Form>
-        </Panel>
+        </Panel>}
       </div>
     );
   }
