@@ -9,7 +9,7 @@ import { judy } from "../data/public";
 const PitchSummary = React.createClass({
   render() {
     const { user, judge, handleChange, handleJudgement,
-          handleReject, handlePitchSubmit} = this.props;
+          handleReject, handleApprove, handlePitchSubmit} = this.props;
 
     const adminControls = (name) => (
       !user.perm &&
@@ -156,8 +156,9 @@ const PitchSummary = React.createClass({
           {user.perm ?
             <Button type="submit">Submit pitch for approval</Button>
             : <FormGroup>
-               <Button bsStyle="success" type="submit">Approve Proposal</Button>
-               <Button bsStyle="danger" onClick={handleReject}>Reject with Reasons</Button>
+               <Button bsStyle="success" onClick={handleApprove}>Approve Proposal</Button>
+               {!this.props.newPitch &&
+                 <Button bsStyle="danger" onClick={handleReject}>Reject with Reasons</Button>}
               </FormGroup>
           }
         </Form>
