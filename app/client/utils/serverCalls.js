@@ -69,6 +69,9 @@ let addBudget = (data, id) =>
 let getExpenses = (projIds) =>
   axios.post('/api/get/expenses', { projIds: projIds});
 
+let checkToken = (token) =>
+  axios.post('/api/post/token', {token: token});
+
 const ApiCall = {
   registrationCheck,
   registerOrg,
@@ -87,7 +90,8 @@ const ApiCall = {
   updateExpense,
   parseCSV,
   addBudget,
-  getExpenses
+  getExpenses,
+  checkToken
 };
 
 export default ApiCall;

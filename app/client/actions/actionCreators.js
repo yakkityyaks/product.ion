@@ -316,3 +316,12 @@ export function parseCSV(object, id) {
     id
   };
 }
+
+// Token
+
+export function refreshLogin(token) {
+  return {
+    type: "REFRESHED_LOGIN",
+    token
+  };
+}

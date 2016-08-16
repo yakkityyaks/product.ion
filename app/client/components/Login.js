@@ -1,6 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Link, browserHistory } from 'react-router';
+import ApiCall from '../utils/serverCalls';
 
 import { Button, Panel, FormGroup, FormControl, Form } from 'react-bootstrap';
 
@@ -8,21 +9,28 @@ const Login = React.createClass({
   getInitialState() {
     return {username: "", password: ""};
   },
-  componentWillMount() {
-    this.props.resetLoginMessage();
-    if (this.props.organization.user) {
-      var joinedName = this.props.organization.orgName.split(" ").join("");
-      browserHistory.push(`/dashboard/${joinedName}`);
-    }
-  },
   // componentWillMount() {
-  //   let name = this.state.username,
-  //   password = this.state.password;
   //   this.props.resetLoginMessage();
-  //   if (name && password) {
-  //     this.props.postLogin(name, password);
+  //   if (this.props.organization.user) {
+  //     var joinedName = this.props.organization.orgName.split(" ").join("");
+  //     browserHistory.push(`/dashboard/${joinedName}`);
   //   }
   // },
+  componentWillMount() {
+    this.props.resetLoginMessage();
+      //get token from local sessionStorage, send it to server
+          // the server decrypts and gets username from token
+          // with a username, the server can get all user info from the database
+          // server sends back username and password
+          // this.props.postLogin(username, password);
+    let token = sessionStorage.getItem('jwtToken');
+    console.log("TOKEN ", token);
+    if(!token || token === '') {
+      return;
+    } else {
+      this.props.refreshLogin(token);
+    }
+  },
   handleUserChange(e) {
     this.setState({username:e.target.value});
   },

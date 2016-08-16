@@ -41,6 +41,7 @@ function posts(state=[], action) {
         }
       });
       break;
+
     case "ADD_NEW_ORG":
       console.log("Lets get started. action is ", action);
       ApiCall.registerOrg(action.orgName)
@@ -83,7 +84,6 @@ function posts(state=[], action) {
       console.log("state is, ", state, "\naction is ", action);
       return action.organization;
 
-
     case "ADD_NEW_USER":
       console.log("So you want to make a new user");
       console.log("ORGS ID ", state.orgs_id);
@@ -91,6 +91,7 @@ function posts(state=[], action) {
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
         .then(function(res) {
+          console.log("USER RES ", res);
           let userData = res.data;
           if(res.status === 201) {
             let user = {
@@ -129,18 +130,23 @@ function posts(state=[], action) {
           console.error(err);
         })
         .then(function(res) {
-          if (res.data.password === action.password) {
+          console.log("the res i wanna see ", res);
+          console.log("ACTION PW ", action.password);
+          if (res.data.user.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
             store.dispatch({
               type:"LOGIN",
-              username: res.data.username,
-              password: res.data.password,
-              id: res.data.id,
-              orgs_id: res.data.orgs_id,
-              orgName: res.data.org.name,
-              perm: res.data.perm});
-            var joinedName = res.data.org.name.split(" ").join("");
+              username: res.data.user.username,
+              password: res.data.user.password,
+              id: res.data.user.id,
+              orgs_id: res.data.user.orgs_id,
+              orgName: res.data.user.org.name,
+              perm: res.data.user.perm,
+              jwt: res.data.token
+            });
+            var joinedName = res.data.user.org.name.split(" ").join("");
             browserHistory.push(`/dashboard/${joinedName}`);
+            sessionStorage.setItem('jwtToken', res.data.token);
           } else {
             console.log("You done fucked up");
             store.dispatch({
@@ -151,13 +157,29 @@ function posts(state=[], action) {
           }
         });
       return state;
+
     case "LOGIN":
       console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
         user: {name: action.username, password: action.password, perm: action.perm, id: action.id},
         orgName: action.orgName,
-        orgs_id:action.orgs_id
+        orgs_id: action.orgs_id,
+        jwt: action.jwt
       });
+
+      case "REFRESHED_LOGIN":
+        ApiCall.checkToken(action.token)
+          .then(res => {
+            if (res.status === 201) {
+              console.log("REFRESH res.data ", res.data);
+              const user = res.data;
+              store.dispatch({type:"POST_LOGIN", username:user.username, password: user.password});
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        break;
 
       case "CHANGE_PASSWORD":
         ApiCall.login(action.username, action.password)
@@ -179,13 +201,13 @@ function posts(state=[], action) {
         .catch((err) => {
           console.log("Reducers-CHANGE_PASSWORD: res is", err);
         });
-
       break;
+
     case "SET_USERS":
       console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
     case "LOGOUT":
-      ApiCall.logout();
+      sessionStorage.removeItem('jwtToken');
       return {};
   }
   return state;

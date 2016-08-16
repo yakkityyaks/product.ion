@@ -5,7 +5,6 @@ var Project = require('./controllers/projectController.js');
 var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 var utils = require('./lib/utility.js');
-var session = require('express-session');
 var jwt = require('jsonwebtoken');
 
 
@@ -17,7 +16,8 @@ module.exports = function routes(app){
       if(!org) {
         res.sendStatus(404);
       } else {
-        res.status(201).json(org);
+        // var token = utils.generateToken(user);
+        // res.status(201).json({user:user, token:token});
       }
     });
   });
@@ -61,10 +61,7 @@ module.exports = function routes(app){
             res.sendStatus(404);
           } else {
           //  var token = utils.generateToken(user);
-           res.status(201).json({
-              user: user//,
-              // token: token
-           });
+          //  res.status(201).json(user, {user:user, token:token});
           }
         });
       }
@@ -168,10 +165,42 @@ module.exports = function routes(app){
       if(!user) {
         res.sendStatus(404);
       } else {
-        // utils.createSession(req, res, user);
-        res.status(201).json(user);
+        var token = utils.generateToken(user);
+        res.status(201).json(user, {user:user, token:token});
       }
     });
+  });
+
+  app.post('/api/post/token', function (req, res, next) {
+    // check header or url parameters or post parameters for token
+    console.log("API REQ, TOKEN ", req.body);
+    var token = req.body.token || req.query.token;
+    if (!token) {
+      return res.status(401).json({
+        message: 'Must pass token'
+      });
+    } else {
+      // Check token that was passed by decoding token using secret
+      jwt.verify(token, "SSSHHHitsaSECRET", function (err, user) {
+        console.log("Verified User ", user);
+        if (err) {
+          throw err;
+        } else {
+          //return user using the username from w/in JWTToken
+          User.getUser(user.username, function (user) {
+            console.log("GET USER ", user);
+            if (!user) {
+              res.sendStatus(404);
+            } else {
+              res.status(201).json({
+                username: user.attributes.username,
+                password: user.attributes.password
+              });
+            }
+          });
+        }
+      });
+    }
   });
 
   app.post('/api/get/proj', function(req, res) {
@@ -199,8 +228,10 @@ module.exports = function routes(app){
   });
 
   app.get('/*', function(req, res){
-    console.log(req.params);
-    var wildcard = req.params['0'];
+    //check to see if a token exists
+    //if a token exists, redirect to dashboard
+    // - send a response object to the client tha routes to login page with
+    // user login information
     res.redirect('/');
   });
 
@@ -323,13 +354,6 @@ module.exports = function routes(app){
           }
         }
       });
-    });
-  });
-
-  app.post('/api/get/logout', function(req, res) {
-    console.log("Logging out");
-    req.session.destroy(function() {
-      res.sendStatus(204);
     });
   });
 };
