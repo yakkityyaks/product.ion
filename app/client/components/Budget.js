@@ -7,8 +7,6 @@ import cata from "../data/public";
 
 const Budget = React.createClass({
     getInitialState: function() {
-      const { data } = this.props;
-      console.log("data is ", data);
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", filter: "",
@@ -96,9 +94,11 @@ const Budget = React.createClass({
       return (
         <div>
           {
-            this.props.budgets && this.props.budgets.map((row, key) =>
+            this.props.budget && this.props.budget.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
-                          removeBudgetNode={this.removeBudgetNode}/>
+                          removeBudgetNode={this.removeBudgetNode}
+                          handleBudgetChange = {this.props.handleBudgetChange}
+                          handleBudgetSelect = {this.props.handleBudgetSelect}/>
           )
           }
           <Form inline onSubmit={this.handleSubmit}><FormGroup>

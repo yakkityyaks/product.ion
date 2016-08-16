@@ -77,16 +77,31 @@ const Pitch = React.createClass({
     this.props.changeModal("pitch");
   },
   handleSelect(key) {
-    this.setState({activeTab: key});
+    this.setState({
+        activeTab: key,
+        budget: this.props.budgets["proj" + this.state.id],
+    });
   },
   tabToBudget() {
-    this.setState({activeTab: 2});
+    this.handleSelect(2);
   },
   updateBudget(newTotal) {
     this.setState({reqBudget: newTotal});
   },
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
+  },
+  handleBudgetChange(e, idx) {
+    let newBudget = this.state.budget;
+    newBudget[idx][e.name] = e.value;
+
+    this.setState({budget: newBudget});
+  },
+  handleBudgetSelect(e, idx) {
+    let newBudget = this.state.budget;
+    newBudget[idx].codeID = e;
+
+    this.setState({budget: newBudget});
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
@@ -116,7 +131,6 @@ const Pitch = React.createClass({
     this.props.changeModal("pitch");
   },
   render() {
-    let budgets = this.props.budgets["proj" + this.state.id];
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
         <Tab eventKey={1} title="Pitch">
@@ -126,8 +140,10 @@ const Pitch = React.createClass({
             handleReject={this.handleReject} handlePitchSubmit={this.handlePitchSubmit}/>
           }
         </Tab>
-        <Tab eventKey={2} title="Budget">{<Budget budgets={budgets}
+        <Tab eventKey={2} title="Budget">{<Budget budget={this.state.budget}
             total={this.state.reqBudget}
+            handleBudgetChange={this.handleBudgetChange}
+            handleBudgetSelect={this.handleBudgetSelect}
             updateBudget={this.updateBudget}/>}</Tab>
       </Tabs>
     );
