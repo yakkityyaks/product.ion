@@ -340,8 +340,4 @@ module.exports = function routes(app){
       });
     });
   });
-
-  app.post('/api/get/logout', function(req, res) {
-    console.log("Logging out");
-  });
 };

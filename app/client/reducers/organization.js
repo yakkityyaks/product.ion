@@ -214,7 +214,7 @@ function posts(state=[], action) {
       console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
     case "LOGOUT":
-      ApiCall.logout();
+      sessionStorage.removeItem('jwtToken');
       return {};
   }
   return state;
