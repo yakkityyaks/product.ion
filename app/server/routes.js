@@ -17,7 +17,8 @@ module.exports = function routes(app){
       if(!org) {
         res.sendStatus(404);
       } else {
-        res.status(201).json(org);
+        // var token = utils.generateToken(user);
+        // res.status(201).json({user:user, token:token});
       }
     });
   });
@@ -61,10 +62,7 @@ module.exports = function routes(app){
             res.sendStatus(404);
           } else {
           //  var token = utils.generateToken(user);
-           res.status(201).json({
-              user: user//,
-              // token: token
-           });
+          //  res.status(201).json(user, {user:user, token:token});
           }
         });
       }
@@ -168,9 +166,39 @@ module.exports = function routes(app){
       if(!user) {
         res.sendStatus(404);
       } else {
-        // utils.createSession(req, res, user);
-        res.status(201).json(user);
+        var token = utils.generateToken(user);
+        res.status(201).json(user, {user:user, token:token});
       }
+    });
+  });
+
+  app.post('/me/from/token', function (req, res, next) {
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token;
+    if (!token) {
+      return res.status(401).json({
+        message: 'Must pass token'
+      });
+    }
+    // Check token that was passed by decoding token using secret
+    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+      if (err) throw err;
+      //return user using the id from w/in JWTToken
+      User.getUserById({
+        id: user.id
+      }, function (err, user) {
+        if (err) {
+          throw err;
+        } else if (!user) {
+          res.sendStatus(404);
+        } else {
+          var token = utils.generateToken(user);
+          res.status(201).json({
+            user: user,
+            token: token
+          });
+        }
+      });
     });
   });
 
