@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Button, Label, Modal, Panel, Table } from 'react-bootstrap';
+import Papa from 'papaparse';
+import ApiCall from "../utils/serverCalls";
 import DashCharts from './DashCharts';
 import NavBar from './NavBar';
 import Pitch from './Pitch';
 import ProjectNode from './ProjectNode';
 import Projects from './Projects';
-import { Button, Label, Modal, Panel, Table } from 'react-bootstrap';
 
 const Dashboard = React.createClass({
   getInitialState() {
@@ -28,6 +30,91 @@ const Dashboard = React.createClass({
     this.props.changeModal('pitch');
   },
   
+  exportCSV() {
+    var fields = [
+    "Project",
+    "Name",
+    "Project ID",
+    "Type",
+    "Vertical",
+    "Tier",
+    "Status",
+    "Number of Assets",
+    "Start Date",
+    "End Date",
+    "Edit Date",
+    "Release Date",
+    "Requested Budget",
+    "Cost to Date",
+    "Estimate to Complete",
+    "Expense",
+    "Category",
+    "GL Code",
+    "Date Spent",
+    "Date Tracked",
+    "Vendor",
+    "Method",
+    "Description",
+    "Cost"
+    ]
+    var getProj = this.getProj;
+    var ids = [];
+    this.props.projects.forEach(function(proj) {
+      ids.push(proj.projId);
+    })
+    ApiCall.getExpenses(ids).then(function(res) {
+      console.log(res);
+      var exps = res.data.reduce(function(a,b) {
+          return a.concat(b);
+        }, []);
+      var data = [];
+      for (var i = 0; i < exps.length; i++) {  
+        var proj = getProj(exps[i].projs_id);
+        data.push([
+          ' ',
+          proj.name,
+          proj.projId,
+          proj.type,
+          proj.vertical,
+          proj.tier,
+          proj.status,
+          proj.numAssets,
+          proj.startDate,
+          proj.endDate,
+          proj.editDate,
+          proj.releaseDate,
+          proj.reqBudget,
+          proj.costToDate,
+          proj.estimateToComplete,
+          ' ',
+          exps[i].category,
+          exps[i].glCode,
+          exps[i].dateSpent,
+          exps[i].dateTracked,
+          exps[i].vendor,
+          exps[i].method,
+          exps[i].description,
+          exps[i].cost
+        ])
+      }
+      var csv = {fields: fields, data: data};
+      csv = Papa.unparse(csv);
+      console.log(csv)
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = 'data.csv';
+      hiddenElement.click();
+    })
+  },
+
+  getProj(id) {
+    for (var i = 0; i < this.props.projects.length; i++) {
+      if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i];};
+    }
+    return 'proj not found';
+  },
+
   render() {
     return (
       <div className="dashboard">
@@ -49,11 +136,19 @@ const Dashboard = React.createClass({
           <Panel>
             <h2>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</h2>
             <div>
-              {this.props.organization.user.perm === 0 ? (<Link to="/mastersheet">
-                <h3><Label byStyle="danger">Click for Master Sheet</Label></h3>
-              </Link>) : <div></div>}
+              <Button onClick={this.exportCSV} bsStyle="primary" bsSize="large" id="csvExport">Export Projects/Expenses to a CSV</Button>
             </div>
-        
+            <br></br>
+            <div>
+              {
+                this.props.organization.user.perm === 0 ?
+                (<Link to="/mastersheet">
+                  <Button bsStyle="primary" bsSize="large">Click for Master Sheet</Button>
+                </Link>) : 
+                <div></div>
+              }
+            </div>
+
             <h3>Data Visualization!!!</h3>
             <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
             {this.state.open ? <DashCharts {...this.props}/> : null}

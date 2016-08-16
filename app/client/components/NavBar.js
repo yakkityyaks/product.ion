@@ -60,7 +60,7 @@ const NavBar = React.createClass({
               </Link>
             </NavItem>
             <NavItem onClick={this.logout}>
-              Logout
+              <Link to="/">Logout</Link>
             </NavItem>
           </Nav>
         </Navbar>
