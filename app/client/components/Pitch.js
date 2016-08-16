@@ -36,7 +36,7 @@ const Pitch = React.createClass({
     return {
       activeTab: 1,
       newPitch: data.id ? false : true,
-      id: data.id || null,
+      id: data.id || undefined,
       projName: data.name || "",
       projId: data.projId || "",
       vertical: data.vertical || "",
@@ -56,6 +56,7 @@ const Pitch = React.createClass({
   },
   buildPitch() {
     return {
+      orgs_id: this.props.organization.orgs_id,
       id: this.state.id,
       name: this.state.projName,
       projId: this.state.projId,
@@ -76,9 +77,28 @@ const Pitch = React.createClass({
   handlePitchSubmit(event) {
     event.preventDefault();
     var data = this.buildPitch();
-    data.status = "Production";
+
+    this.props.postNewProject(data);
+    this.closeModal();
+  },
+  handleReject(e) {
+    var data = this.buildPitch();
 
     this.props.updateProject(data, this.props.projId);
+    this.closeModal();
+  },
+  handleApprove(e) {
+    var data = this.buildPitch();
+    data.status = "Production";
+
+    console.log("Pitch approved. Pitch is ", data);
+    this.state.newPitch ? this.props.postNewProject(data)
+        : this.props.updateProject(data, this.props.projId);
+
+    this.closeModal();
+  },
+  closeModal() {
+    this.props.getOrgProjects(this.props.organization.orgName);
     this.props.changeModal("pitch");
   },
   handleSelect(key) {
@@ -128,12 +148,6 @@ const Pitch = React.createClass({
 
     this.updateApproval(newJudge[name].index);
     this.setState({judge: newJudge});
-  },
-  handleReject(e) {
-    var data = this.buildPitch();
-
-    this.props.updateProject(data, this.props.projId);
-    this.props.changeModal("pitch");
   },
   render() {
     return (
