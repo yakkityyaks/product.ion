@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ExpenseChart from './ExpenseChart';
 import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
+import CSVDrop from './CSVDrop';
+import ExpenseChart from './ExpenseChart';
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
-import CSVDrop from './CSVDrop';
 
 const Expenses = React.createClass({
   getInitialState: function() {
@@ -14,7 +14,8 @@ const Expenses = React.createClass({
       projId: this.props.expenses.projId,
       count: 0,
       addedExpenses: [0],
-      newExpenses: []
+      newExpenses: [],
+      modal: false
     };
   },
 
@@ -51,7 +52,7 @@ const Expenses = React.createClass({
   },
 
   switchModal () {
-    this.props.changeModal('csv');
+    this.setState({modal: !this.state.modal});
   },
 
   switchChart() {
@@ -70,60 +71,74 @@ const Expenses = React.createClass({
 
     return (
       <div>
+        <Modal show={this.state.modal} onHide={this.switchModal} >
+          <Modal.Body>
+            <CSVDrop {...this.props}/>
+          </Modal.Body>
+          <Modal.Footer />
+      
+        </Modal>
+
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
+
         <h3>{"Expenses for " + projName }</h3>
         <Panel>
           <h3>Data Visualization!!!</h3>
-          <Button onClick={this.switchChart}>Click for Visuals</Button>
+          <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
           {this.state.open ? <ExpenseChart {...this.props}/> : null}
         </Panel>
-        <h3>{"Project ID: "+ this.state.projId}</h3>
+        <Panel>
+          <span>
+            <h3>{"Project ID: "+ this.state.projId}</h3>
+          </span>
           <Table striped bordered condensed hover style={{width: "90%"}}>
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Vertical</th>
-                  <th>Vendor</th>
-                  <th>Description</th>
-                  <th>Cost</th>
-                  <th>Method</th>
-                  <th>Expense Category</th>
-                  <th>GL Code</th>
-                  <th>Date Spent</th>
-                  <th>Date Tracked</th>
-                </tr>
-              </thead>
-                <tbody>
-                  {this.state.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete}
-                   handleExpenseUpdate={this.handleExpenseUpdate} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
-                </tbody>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Vertical</th>
+                <th>Vendor</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Method</th>
+                <th>Expense Category</th>
+                <th>GL Code</th>
+                <th>Date Spent</th>
+                <th>Date Tracked</th>
+              </tr>
+            </thead>
+              <tbody>
+                {this.state.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete}
+                 handleExpenseUpdate={this.handleExpenseUpdate} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
+              </tbody>
           </Table>
           <h3>New Expenses</h3>
 
           <Table striped bordered condensed hover style={{width: "90%"}}>
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Vertical</th>
-                  <th>Vendor</th>
-                  <th>Description</th>
-                  <th>Cost</th>
-                  <th>Method</th>
-                  <th>Expense Category</th>
-                  <th>GL Code</th>
-                  <th>Date Spent</th>
-                  <th>Date Tracked</th>
-                </tr>
-              </thead>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Vertical</th>
+                <th>Vendor</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Method</th>
+                <th>Expense Category</th>
+                <th>GL Code</th>
+                <th>Date Spent</th>
+                <th>Date Tracked</th>
+              </tr>
+            </thead>
             <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} handleNewExpense={this.handleNewExpense} projs_id={this.state.projs_id} key={index} readOnlyStatus={false}/>)}</tbody>
           </Table>
           <Button onClick={this.addExpenseNode}>Add Expense</Button>
           <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
           <div>
-          <Button>Submit New Expenses</Button>
+            <Button>Submit New Expenses</Button>
+            <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add with a csv</Button>
           </div>
+        </Panel>  
       </div>
     );
   }
