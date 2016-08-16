@@ -22,6 +22,7 @@ const Pitch = React.createClass({
     let judge = {},
         counter = 0;
 
+    data.approvals = data.approvals || "111111111111";
     for (var key in judy) {
       judge[key] = {vars: this.props.organization.user.perm ?
           notAdmin
