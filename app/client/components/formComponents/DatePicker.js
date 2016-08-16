@@ -23,11 +23,11 @@ const DatePicker = React.createClass({
 
   render() {
     return (
-       <FormControl
-         name={this.props.name}
-         readOnly={this.props.readOnlyStatus}
-         type = "date"
-         onChange = {this.handleInputChange} />
+      <FormControl
+        name={this.props.name}
+        readOnly={this.props.readOnlyStatus}
+        type = "date"
+        onChange = {this.handleInputChange} />
     );
   }
 });
