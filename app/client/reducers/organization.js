@@ -145,8 +145,8 @@ function posts(state=[], action) {
               jwt: res.data.token
             });
             var joinedName = res.data.user.org.name.split(" ").join("");
-            browserHistory.push(`/dashboard/${joinedName}`);
             sessionStorage.setItem('jwtToken', res.data.token);
+            browserHistory.push(`/dashboard/${joinedName}`);
           } else {
             console.log("You done fucked up");
             store.dispatch({

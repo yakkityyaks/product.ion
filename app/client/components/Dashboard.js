@@ -17,6 +17,11 @@ const Dashboard = React.createClass({
     }
   },
 
+  componentWillMount() {
+    var orgName = this.props.organization.orgName;
+    this.props.getOrgProjects(orgName);
+  },
+
   switchChart() {
     this.setState({open: !this.state.open});
   },
@@ -166,9 +171,9 @@ const Dashboard = React.createClass({
               </thead>
               <tbody>
               {
-                this.props.projects.slice(-3).map(function(proj, idx) {
+                this.props.projects.length > 0 ? this.props.projects.slice(-3).map(function(proj, idx) {
                   return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>
-                }, this)
+                }, this) : null
               }
               </tbody>
             </Table>
@@ -189,11 +194,11 @@ const Dashboard = React.createClass({
                   </thead>
                   <tbody>
                     {
-                      this.props.projects.filter(function(proj) {
+                      this.props.projects.length > 0 ? this.props.projects.filter(function(proj) {
                         return proj.status === "Pitch";
                       }).map(function(proj, idx) {
                         return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>
-                      }, this)
+                      }, this) : null
                     }
                   </tbody>
                 </Table>
