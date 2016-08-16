@@ -55,7 +55,7 @@ const Dashboard = React.createClass({
             </div>
         
             <h3>Data Visualization!!!</h3>
-            <Button onClick={this.switchChart}>Click for Visuals</Button>
+            <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
             {this.state.open ? <DashCharts {...this.props}/> : null}
             
             <h3>Most Recent Three Projects</h3>

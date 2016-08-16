@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
 import { push } from "react-router-redux";
-import { Nav, Navbar, NavItem, PageHeader } from 'react-bootstrap';
+import { Glyphicon, Nav, Navbar, NavItem, PageHeader } from 'react-bootstrap';
 
 const NavBar = React.createClass({
   componentWillMount() {
@@ -40,7 +40,7 @@ const NavBar = React.createClass({
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">
-                <a>product.ion</a>
+                <a>Dashboard</a>
               </Link>
             </Navbar.Brand>
           </Navbar.Header>
@@ -56,7 +56,7 @@ const NavBar = React.createClass({
           <Nav pullRight>
             <NavItem eventKey={2} onClick={this.selectSettings}>
               <Link to={'/settings'}>
-                Settings
+                <Glyphicon glyph="cog"/>
               </Link>
             </NavItem>
             <NavItem onClick={this.logout}>
