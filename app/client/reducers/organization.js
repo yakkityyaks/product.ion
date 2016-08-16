@@ -138,7 +138,6 @@ function posts(state=[], action) {
         })
         .then(function(res) {
           console.log("the res i wanna see ", res);
-          console.log("RES PW ", res.data.user.password);
           console.log("ACTION PW ", action.password);
           if (res.data.user.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
@@ -174,6 +173,20 @@ function posts(state=[], action) {
         orgs_id: action.orgs_id,
         jwt: action.jwt
       });
+
+      case "REFRESHED_LOGIN":
+        ApiCall.checkToken(action.token)
+          .then(res => {
+            if (res.status === 201) {
+              console.log("REFRESH res.data ", res.data);
+              const user = res.data;
+              store.dispatch({type:"POST_LOGIN", username:user.username, password: user.password});
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        break;
 
       case "CHANGE_PASSWORD":
         ApiCall.login(action.username, action.password)
