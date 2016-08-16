@@ -41,6 +41,7 @@ function posts(state=[], action) {
         }
       });
       break;
+
     case "ADD_NEW_ORG":
       console.log("Lets get started. action is ", action);
       ApiCall.registerOrg(action.orgName)
@@ -81,7 +82,6 @@ function posts(state=[], action) {
     case "HYDRATE_ORG":
       console.log("state is, ", state, "\naction is ", action);
       return action.organization;
-
 
     case "ADD_NEW_USER":
       console.log("So you want to make a new user");
@@ -138,17 +138,21 @@ function posts(state=[], action) {
         })
         .then(function(res) {
           console.log("the res i wanna see ", res);
-          if (res.data.password === action.password) {
+          console.log("RES PW ", res.data.user.password);
+          console.log("ACTION PW ", action.password);
+          if (res.data.user.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
             store.dispatch({
               type:"LOGIN",
-              username: res.data.username,
-              password: res.data.password,
-              id: res.data.id,
-              orgs_id: res.data.orgs_id,
-              orgName: res.data.org.name,
-              perm: res.data.perm});
-            var joinedName = res.data.org.name.split(" ").join("");
+              username: res.data.user.username,
+              password: res.data.user.password,
+              id: res.data.user.id,
+              orgs_id: res.data.user.orgs_id,
+              orgName: res.data.user.org.name,
+              perm: res.data.user.perm,
+              jwt: res.data.token
+            });
+            var joinedName = res.data.user.org.name.split(" ").join("");
             browserHistory.push(`/dashboard/${joinedName}`);
             sessionStorage.setItem('jwtToken', res.data.token);
           } else {
@@ -161,12 +165,14 @@ function posts(state=[], action) {
           }
         });
       return state;
+
     case "LOGIN":
       console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
         user: {name: action.username, password: action.password, perm: action.perm, id: action.id},
         orgName: action.orgName,
-        orgs_id:action.orgs_id
+        orgs_id: action.orgs_id,
+        jwt: action.jwt
       });
 
       case "CHANGE_PASSWORD":
@@ -189,8 +195,8 @@ function posts(state=[], action) {
         .catch((err) => {
           console.log("Reducers-CHANGE_PASSWORD: res is", err);
         });
-
       break;
+
     case "SET_USERS":
       console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
@@ -202,37 +208,3 @@ function posts(state=[], action) {
 }
 
 export default posts;
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// dispatch(signUpUser(values))
-//  .then((response) => {
-//  let data = response.payload.data;
-//  //if any one of these exist, then there is a field error
-//  if(response.payload.status != 200) {
-//    //let other components know
-//    dispatch(signUpUserFailure(response.payload));
-//    reject(data); //this is for redux-form itself
-//  } else {
-//    //store JWT Token to browser session storage
-//    //If you use localStorage instead of sessionStorage, then this w/
-//    //persisted across tabs and new windows.
-//    //sessionStorage = persisted only in current tab
-//
-//   sessionStorage.setItem(‘jwtToken’, response.payload.data.token);
-//
-//   //let other components know that we got user and things are fine
-//   dispatch(signUpUserSuccess(response.payload));
-//   resolve();//this is for redux-form itself
-//  }
-// });

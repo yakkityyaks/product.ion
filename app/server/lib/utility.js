@@ -24,9 +24,6 @@ exports.createSession = function(req, res, newUser, password) {
 //Generate Token using secret from process.env.JWT_SECRET
 
 exports.generateToken = function(user) {
-  //1. Dont use password and other sensitive fields
-  //2. Use fields that are useful in other parts of the
-  //app/collections/models
   var u = {
    name: user.name,
    username: user.username,

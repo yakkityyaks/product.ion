@@ -211,8 +211,10 @@ module.exports = function routes(app){
   });
 
   app.get('/*', function(req, res){
-    console.log(req.params);
-    var wildcard = req.params['0'];
+    //check to see if a token exists
+    //if a token exists, redirect to dashboard
+    // - send a response object to the client tha routes to login page with
+    // user login information
     res.redirect('/');
   });
 

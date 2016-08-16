@@ -16,12 +16,19 @@ const Login = React.createClass({
     }
   },
   // componentWillMount() {
-  //   let name = this.state.username,
-  //   password = this.state.password;
   //   this.props.resetLoginMessage();
-  //   if (name && password) {
-  //     this.props.postLogin(name, password);
-  //   }
+  //     // check token for username and password
+  //     // if exists, call this.props.login(username, password);
+  //   let token = sessionStorage.getItem('jwtToken');
+  //   console.log(token);
+  //   // if(!token || token === '') {
+  //   //   return;
+  //   // }
+  //     if (this.props.organization.user) {
+  //       var joinedName = this.props.organization.orgName.split(" ").join("");
+  //       browserHistory.push(`/dashboard/${joinedName}`);
+  //     }
+  //
   // },
   handleUserChange(e) {
     this.setState({username:e.target.value});
