@@ -14,7 +14,7 @@ const AddUser = React.createClass({
   },
 
   randomPassword (length, username) {
-    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>_ABCDEFGHIJKLMNOP1234567890",
+    let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^*_ABCDEFGHIJKLMNOP1234567890",
     pass = "";
     if(username.length >= 6) {
       for (let x = 0; x < length; x++) {

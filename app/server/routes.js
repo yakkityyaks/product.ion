@@ -166,7 +166,7 @@ module.exports = function routes(app){
         res.sendStatus(404);
       } else {
         var token = utils.generateToken(user);
-        res.status(201).json(user, {user:user, token:token});
+        res.status(201).json({user:user, token:token});
       }
     });
   });
