@@ -52,6 +52,7 @@ function posts(state=[], action) {
             console.log("Step 2 complete. Organization is registered. res is ", res);
             var orgData = res.data;
 
+            //create a new user with Amdmin powers (the 0)
             ApiCall.registerUser(action.username, action.password, res.data.id, 0)
               .catch(function (err) {
                 console.error(err);
@@ -99,10 +100,6 @@ function posts(state=[], action) {
               orgs_id: userData.orgs_id,
               perm: userData.perm
             };
-            store.dispatch({
-              type: "ADD_USER_TO_STATE",
-              user
-            });
           }
         })
         .catch(function(err) {
@@ -120,10 +117,6 @@ function posts(state=[], action) {
                 console.error(err);
               });
       break;
-
-    case "ADD_USER_TO_STATE":
-      console.log("TRIGGERED: ADD_USER_TO_STATE");
-      return action.user;
 
     case "POST_LOGIN":
       ApiCall.login(action.username, action.password)

@@ -30,11 +30,12 @@ export function changeNavKey(key) {
   };
 }
 
-export function addNewUser(username, password, perm) {
+export function addNewUser(username, password, orgs_id, perm) {
   return {
     type: 'ADD_NEW_USER',
     username,
     password,
+    orgs_id,
     perm
   };
 }

@@ -59,9 +59,6 @@ function projects(state = [], action) {
           console.error(err);
         });
       break;
-    case "HYDRATE_PROJECT":
-      console.log("You want to hydrate the single project state with ", action.projects);
-      return action.projects;
     case "HYDRATE_PROJECTS":
       console.log("You want to hydrate the projects state with ", action.projects);
       return action.projects;
