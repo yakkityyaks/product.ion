@@ -10,50 +10,34 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: "",
-
+        filter: ""
       };
     },
     resetNewBudgetField() {
       this.setState({
               newBudgetCode: "",
               newBudgetLabel: "",
-              newBudgetTotal: ""
+              newBudgetCost: "",
+              newBudgetQuant: "",
+              newBudgetTotal: "",
+              newBudgetDescription: "",
       });
     },
-    removeBudgetNode(idx) {
-      var newStore = this.state.tempStore
-          .slice(0, idx).concat()
-          .concat(this.state.tempStore.slice(idx + 1));
-
-      this.setState({tempStore : newStore});
-    },
     handleSubmit(e) {
+      e.preventDefault();
       //create a budget object, push it to the temp budget storage array
       var budget = {
         description: this.state.newBudgetDescription,
         glCode: this.state.newBudgetCode,
-        category: this.state.newBudgetLabel,
-        cost: this.state.newBudgetTotal,
-        quant: this.state.newBudgetQuant,
+        cost: this.state.newBudgetCost,
+        quantity: this.state.newBudgetQuant,
         total: this.state.newBudgetTotal * this.state.newBudgetQuant,
         projs_id: 2
       };
       console.log("Budget object is ", budget);
 
-      // newList = this.state.tempStore;
-      // newList.push(budget);
-
-      //set the new total budget
-      const newTotal = this.props.total/1 + this.state.newBudgetTotal/1;
-      this.props.updateBudget(newTotal);
-
-      //updates the temp store
-      // this.setState({
-      //   tempStore : newList
-      // });
+      this.props.addNewBudget(budget);
       this.resetNewBudgetField();
-      this.props.postNewBudget(budget);
     },
     handleClick(e) {
       e.preventDefault();
@@ -88,7 +72,7 @@ const Budget = React.createClass({
           {
             this.props.budget && this.props.budget.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
-                          removeBudgetNode={this.removeBudgetNode}
+                          deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
                           handleBudgetSelect = {this.props.handleBudgetSelect}/>
           )
@@ -136,7 +120,7 @@ const Budget = React.createClass({
                               "$" + this.state.newBudgetCost *
                                   this.state.newBudgetQuant} />
             </InputGroup>
-          <Button onClick={this.onSubmit} type="submit">
+          <Button onClick={this.handleSubmit} type="submit">
             Add
           </Button>
           </FormGroup>

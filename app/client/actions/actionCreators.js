@@ -304,6 +304,9 @@ export function hydrateBudget(projId, budgetsArray) {
   };
 }
 
+export function deleteBudgetNode(id) {
+  return {type:"DELETE_BUDGET_NODE", id};
+}
 // CSV PARSING:
 
 export function parseCSV(object, id) {

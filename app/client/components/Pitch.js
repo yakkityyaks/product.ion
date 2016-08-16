@@ -129,6 +129,33 @@ const Pitch = React.createClass({
 
     this.setState({budget: newBudget});
   },
+  addNewBudget(budget) {
+    let newBudget = this.state.budget;
+
+    this.props.postNewBudget(budget);
+    newBudget.push(budget);
+    this.setState({
+      reqBudget: this.state.reqBudget + budget.total,
+      budget: newBudget
+    });
+    console.log("New State is ", this.state);
+  },
+  deleteBudgetNode(budgetId) {
+    let { budget } = this.state;
+
+    this.props.deleteBudgetNode(budgetId);
+    for (var x = 0; x < this.state.budget.length; x++) {
+      if (budget.id === budgetId) {
+        let newBudget = budget.slice(0, x).concat(budget.slice(x+1));
+        console.log("newBudget is ", newBudget);
+        this.setState({
+            reqBudget: this.state.reqBudget - budget.total,
+            budget: newBudget
+          });
+        break;
+      }
+    }
+  },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
 
@@ -161,10 +188,10 @@ const Pitch = React.createClass({
           }
         </Tab>
         <Tab eventKey={2} title="Budget">{<Budget budget={this.state.budget}
-            total={this.state.reqBudget}
+            total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
-            updateBudget={this.updateBudget}/>}</Tab>
+            deleteBudgetNode = {this.deleteBudgetNode}/>}</Tab>
       </Tabs>
     );
   }

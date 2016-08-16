@@ -64,7 +64,10 @@ let parseCSV = (data, id) =>
   axios.post('/api/register/csv', {data: data, id: id});
 
 let addBudget = (data, id) =>
-  axios.post('/api/register/budget', { data: data, id: id });
+  axios.post('/api/register/budget', {data: data});
+
+let deleteBudget = (id) =>
+  axios.post('/api/remove/budget', {id: id});
 
 let getExpenses = (projIds) =>
   axios.post('/api/get/expenses', { projIds: projIds});
@@ -87,6 +90,7 @@ const ApiCall = {
   updateExpense,
   parseCSV,
   addBudget,
+  deleteBudget,
   getExpenses
 };
 

@@ -246,7 +246,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/remove/budget', function(req, res) {
-    Budget.getBudget(req.body.description, function(budg) {
+    Budget.getSingleBudget(req.body.id, function(budg) {
       budg ? budg.destroy().then(function(budg) {
         res.status(201).json(budg);
       }) : res.sendStatus(404);

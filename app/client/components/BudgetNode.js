@@ -23,7 +23,7 @@ const BudgetNode = React.createClass({
     this.setState({filter: e.target.value.toLowerCase()});
   },
   remove(e) {
-    this.props.removeBudgetNode(this.props.idx);
+    this.props.deleteBudgetNode(this.props.budget.id);
   },
   render() {
     const budgetDropdownItem = (node, idx) =>

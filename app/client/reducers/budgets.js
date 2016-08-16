@@ -23,6 +23,17 @@ function budgets(state = {}, action) {
 
       console.log("newstate is ", newState);
       return newState;
+    case "DELETE_BUDGET_NODE":
+      console.log("Ready to delete a node. Node is ", action.id);
+      ApiCall.deleteBudget(action.id)
+        .then(res => {
+          console.log("Successfully talked with server. Res is ", res);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+      break;
+
     default:
       return state;
   }
