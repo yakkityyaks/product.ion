@@ -102,9 +102,10 @@ const Pitch = React.createClass({
     this.props.changeModal("pitch");
   },
   handleSelect(key) {
+    //budget set here to accomodate asynchronous budget list hydration.
     this.setState({
-        activeTab: key,
         budget: this.props.budgets["proj" + this.state.id],
+        activeTab: key,
     });
   },
   tabToBudget() {

@@ -4,9 +4,9 @@ import { browserHistory } from 'react-router';
 
 function budgets(state = {}, action) {
   switch (action.type) {
-    case "POST_PROJECT_BUDGETS":
-    console.log("Making it to budget the reducer ", action.budget, action.id);
-      ApiCall.addBudget(action.budget, action.id)
+    case "POST_NEW_BUDGET":
+    console.log("Making it to budget the reducer ", action.budget);
+      ApiCall.addBudget(action.budget)
       .then(function(res) {
         console.log("BUDGET RES ", res);
       })

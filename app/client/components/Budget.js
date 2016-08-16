@@ -9,7 +9,8 @@ const Budget = React.createClass({
     getInitialState: function() {
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
-        newBudgetCost: "", newBudgetQuant: "", filter: "",
+        newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
+        filter: "",
 
       };
     },
@@ -20,28 +21,6 @@ const Budget = React.createClass({
               newBudgetTotal: ""
       });
     },
-    addBudgetNode: function(e) {
-      e.preventDefault();
-
-      //create a budget object, push it to the temp budget storage array
-      var budg = {
-        glCode: this.state.newBudgetCode,
-        cost: this.state.newBudgetTotal,
-        category: this.state.newBudgetLabel
-      },
-      newList = this.state.tempStore;
-      newList.push(budg);
-
-      //set the new total budget
-      const newTotal = this.props.total/1 + this.state.newBudgetTotal/1;
-      this.props.updateBudget(newTotal);
-
-      //updates the temp store
-      this.setState({
-        tempStore : newList
-      });
-      this.resetNewBudgetField();
-    },
     removeBudgetNode(idx) {
       var newStore = this.state.tempStore
           .slice(0, idx).concat()
@@ -50,18 +29,31 @@ const Budget = React.createClass({
       this.setState({tempStore : newStore});
     },
     handleSubmit(e) {
-      e.preventDefault();
-      var budget = this.state.tempStore;
-      var string = JSON.stringify(budget);
-      console.log('the budget is', string);
-      console.log("The length is ", string.length);
-      console.log("This.state.id ", this.state.projId);
-      console.log("The object is ", JSON.parse(string));
-      let budgetObj = this.state.tempStore;
-      let id = this.state.projId;
+      //create a budget object, push it to the temp budget storage array
+      var budget = {
+        description: this.state.newBudgetDescription,
+        glCode: this.state.newBudgetCode,
+        category: this.state.newBudgetLabel,
+        cost: this.state.newBudgetTotal,
+        quant: this.state.newBudgetQuant,
+        total: this.state.newBudgetTotal * this.state.newBudgetQuant,
+        projs_id: 2
+      };
+      console.log("Budget object is ", budget);
 
-      console.log("budget object: ", budget);
-      // this.props.postProjectBudgets(budget, id);
+      // newList = this.state.tempStore;
+      // newList.push(budget);
+
+      //set the new total budget
+      const newTotal = this.props.total/1 + this.state.newBudgetTotal/1;
+      this.props.updateBudget(newTotal);
+
+      //updates the temp store
+      // this.setState({
+      //   tempStore : newList
+      // });
+      this.resetNewBudgetField();
+      this.props.postNewBudget(budget);
     },
     handleClick(e) {
       e.preventDefault();
@@ -101,7 +93,16 @@ const Budget = React.createClass({
                           handleBudgetSelect = {this.props.handleBudgetSelect}/>
           )
           }
+          <br>
+          </br>
+            <br></br>
           <Form inline onSubmit={this.handleSubmit}><FormGroup>
+            <InputGroup>
+                <InputGroup.Addon>Description</InputGroup.Addon>
+               <FormControl type="text" value={this.state.newBudgetDescription}
+                            name="newBudgetDescription" required
+                           placeholder="Description" onChange={this.handleChange}/>
+             </InputGroup>
             <DropdownButton bsStyle={"default"} title={"Category"} id="catSelect">
               <CustomSearch id={"5"} name={"testing"}
                       data={{value: this.state.filter, onChange: this.setFilter}}/>
@@ -131,11 +132,11 @@ const Budget = React.createClass({
             </InputGroup>
             <InputGroup className="testing2">
               <InputGroup.Addon>Total:</InputGroup.Addon>
-              <FormControl type="number" placeholder="Total Estimate"
-                           onChange={this.handleChange} name="newBudgetTotal"
-                           value={this.state.newBudgetTotal} />
+              <FormControl type="text" readOnly value={this.state.newBudgetTotal =
+                              "$" + this.state.newBudgetCost *
+                                  this.state.newBudgetQuant} />
             </InputGroup>
-          <Button onClick={this.addBudgetNode} type="submit">
+          <Button onClick={this.onSubmit} type="submit">
             Add
           </Button>
           </FormGroup>
