@@ -9,6 +9,7 @@ import { judy } from "../data/public";
 
 const Pitch = React.createClass({
   getInitialState() {
+    console.log("Opening Pitch page. Props are ", this.props);
     var now = new Date(),//just formatting the date as yyyy-mm-dd
         m = now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth(),
         d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate(),

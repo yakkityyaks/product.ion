@@ -33,31 +33,42 @@ const AddUser = React.createClass({
     findDOMNode(this.refs.passwordInput).value = this.randomPassword(3, username);
   },
 
+  setPerm (e) {
+    this.setState({perm: e.target.value});
+  },
+
   handleSubmit (event) {
     event.preventDefault();
     let username = findDOMNode(this.refs.usernameInput).value,
-    password = findDOMNode(this.refs.passwordInput).value,
-    perm = document.querySelector('input[name="user-class"]:checked').value;
-    this.props.addNewUser(username, password, perm);
+        password = findDOMNode(this.refs.passwordInput).value,
+        orgs_id = this.props.organization.id,
+        perm = this.state.perm;
+    this.props.addNewUser(username, password, orgs_id, perm);
   },
 
   render() {
+    const setRadio = ref => {this.input = ref;};
     return (
       <div>
         <PageHeader id="loginHeader"><small>add a new user</small></PageHeader>
-        <div>
-          <Radio id="userRadio" name="user-class" ref="admin" value="0" />
-          <ControlLabel> ADMIN</ControlLabel>
-
-          <Radio id="userRadio" name="user-class" ref="producer" value="1" />
-          <ControlLabel> PRODUCER</ControlLabel>
-
-          <Radio id="userRadio" name="user-class" ref="user" value="2" />
-          <ControlLabel> USER</ControlLabel>
-        </div>
-        <br></br>
+        <FormGroup>
+          <Radio inline id="userRadio" name="user-class" value={0}
+                onClick={this.setPerm}>
+            ADMIN
+          </Radio>
+            {' '}
+          <Radio inline id="userRadio" name="user-class" value={1}
+                onClick={this.setPerm}>
+            Producer
+          </Radio>
+            {' '}
+          <Radio inline id="userRadio" name="user-class" value={2} defaultChecked
+                onClick={this.setPerm}>
+            User
+          </Radio>
+            {' '}
+        </FormGroup>
         <Form inline className="testFormCenter" onSubmit={this.handleSubmit}>
-           <br></br>
            <div>
              <ControlLabel>Username</ControlLabel>
              <br></br>

@@ -34,7 +34,7 @@ Promise.all([
     table.float('reqBudget');
     table.date('startDate');
     table.date('endDate');
-    table.data('editDate');
+    table.date('editDate');
     table.date('releaseDate');
     table.string('status');
     table.float('costToDate').defaultTo(0);

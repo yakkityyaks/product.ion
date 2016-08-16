@@ -4,7 +4,7 @@ var Organization = require('./controllers/organizationController.js');
 var Project = require('./controllers/projectController.js');
 var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
-var util = require('./lib/utility.js');
+var utils = require('./lib/utility.js');
 var session = require('express-session');
 var jwt = require('jsonwebtoken');
 
@@ -14,11 +14,10 @@ module.exports = function routes(app){
     //makes organization w/ name req.body.orgName and returns the organization model
     //if an org with that name already exists return a 403
     Organization.makeOrg({name: req.body.orgName}, function(org){
-      if(!user) {
+      if(!org) {
         res.sendStatus(404);
       } else {
-        util.createSession(req, res, user);
-        res.status(201).json(user);
+        res.status(201).json(org);
       }
     });
   });
@@ -54,17 +53,17 @@ module.exports = function routes(app){
     var body = req.body;
 
     User.getUser(body.data.username, function(user) {
-      if (!user) {
+      if (user) {
         res.sendStatus(403);
       } else {
         User.makeUser(req.body.data, function(user){
           if(!user) {
             res.sendStatus(404);
           } else {
-           var token = utils.generateToken(user);
+          //  var token = utils.generateToken(user);
            res.status(201).json({
-              user: user,
-              token: token
+              user: user//,
+              // token: token
            });
           }
         });
@@ -169,7 +168,7 @@ module.exports = function routes(app){
       if(!user) {
         res.sendStatus(404);
       } else {
-        util.createSession(req, res, user);
+        // utils.createSession(req, res, user);
         res.status(201).json(user);
       }
     });
