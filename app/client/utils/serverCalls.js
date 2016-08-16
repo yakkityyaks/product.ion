@@ -37,9 +37,9 @@ let getExpensesByProjectId = (projectId) =>
 let registerExpense = (action) => {
   var data = action.singleExpense;
   data.projs_Id = action.projs_Id;
-  console.log('in servercalls ', data)
+  console.log('in servercalls ', data);
   return axios.post('/api/register/expenses', {data: data});
-}
+};
 
 let removeExpense = (id) =>
   axios.post('/api/remove/expense', {id: id});

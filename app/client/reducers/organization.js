@@ -90,6 +90,7 @@ function posts(state=[], action) {
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
         .then(function(res) {
+          console.log("USER RES ", res);
           let userData = res.data;
           if(res.status === 201) {
             let user = {
@@ -136,6 +137,7 @@ function posts(state=[], action) {
           console.error(err);
         })
         .then(function(res) {
+          console.log("the res i wanna see ", res);
           if (res.data.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
             store.dispatch({
@@ -148,6 +150,7 @@ function posts(state=[], action) {
               perm: res.data.perm});
             var joinedName = res.data.org.name.split(" ").join("");
             browserHistory.push(`/dashboard/${joinedName}`);
+            sessionStorage.setItem('jwtToken', res.data.token);
           } else {
             console.log("You done fucked up");
             store.dispatch({
@@ -199,3 +202,37 @@ function posts(state=[], action) {
 }
 
 export default posts;
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// dispatch(signUpUser(values))
+//  .then((response) => {
+//  let data = response.payload.data;
+//  //if any one of these exist, then there is a field error
+//  if(response.payload.status != 200) {
+//    //let other components know
+//    dispatch(signUpUserFailure(response.payload));
+//    reject(data); //this is for redux-form itself
+//  } else {
+//    //store JWT Token to browser session storage
+//    //If you use localStorage instead of sessionStorage, then this w/
+//    //persisted across tabs and new windows.
+//    //sessionStorage = persisted only in current tab
+//
+//   sessionStorage.setItem(‘jwtToken’, response.payload.data.token);
+//
+//   //let other components know that we got user and things are fine
+//   dispatch(signUpUserSuccess(response.payload));
+//   resolve();//this is for redux-form itself
+//  }
+// });
