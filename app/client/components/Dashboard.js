@@ -104,7 +104,6 @@ const Dashboard = React.createClass({
       }
       var csv = {fields: fields, data: data};
       csv = Papa.unparse(csv);
-      console.log(csv);
       var hiddenElement = document.createElement('a');
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
       hiddenElement.target = '_blank';
