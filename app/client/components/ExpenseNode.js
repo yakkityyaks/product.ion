@@ -27,12 +27,33 @@ const ExpenseNode = React.createClass({
     };
   },
 
+  componentDidMount: function(){
+    this.Date();
+  },
+
   Date: function(){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
     this.setState({dateTracked: mm+'/'+ dd + '/' + yyyy});
+  },
+
+  handleAdd: function(){
+    var singleExpense = {
+      category: this.state.category,
+      cost: this.state.cost,
+      dateSpent: this.state.dateSpent.rawDate,
+      dateTracked: this.state.dateTracked.rawDate,
+      description: this.state.description,
+      glCode: this.state.glCode,
+      method: this.state.method,
+      type: this.state.type,
+      vendor: this.state.vendor,
+      vertical: this.state.vertical
+    }
+    console.log('addExpense built ', singleExpense);
+    this.props.handleNewExpense(singleExpense);
   },
 
   handleChange: function(inputName, inputValue) {
@@ -63,8 +84,14 @@ const ExpenseNode = React.createClass({
     }
   },
 
+  handleDelete: function(){
+    var expenseToDelete = this.props.expense;
+    this.props.handleExpenseToDelete(expenseToDelete);
+  },
+
   handleEdit: function(){
     var off = false;
+<<<<<<< fe0feb48494a187cfb060e095288dd22eb33cdb7
     this.setState({readOnlyStatus: off});
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
   },
@@ -109,10 +136,39 @@ const ExpenseNode = React.createClass({
   componentDidMount: function(){
     this.Date();
   },
+=======
+    this.setState({readOnlyStatus: off})
+    this.setState({category:this.props.expense.category})
+    this.setState({cost:this.props.expense.cost})
+    this.setState({dateSpent:this.props.expense.dateSpent})
+    this.setState({dateTracked:this.props.expense.dateTracked})
+    this.setState({description:this.props.expense.description})
+    this.setState({glCode:this.props.expense.glCode})
+    this.setState({id:this.props.expense.id})
+    this.setState({method:this.props.expense.method})
+    this.setState({type:this.props.expense.type})
+    this.setState({vendor:this.props.expense.vendor})
+    this.setState({vertical:this.props.expense.vertical})
+  },
+  handleUpdate: function(){
+    var on = true;
+    this.setState({readOnlyStatus: on})
+    var expenseToUpdate = {
+      category:this.state.category,
+      cost:this.state.cost,
+      dateSpent:this.state.dateSpent.rawDate || this.state.dateSpent,
+      dateTracked:this.state.dateTracked.rawDate || this.state.dateTracked,
+      description:this.state.description,
+      glCode:this.state.glCode,
+      id:this.state.id,
+      method:this.state.method,
+      type:this.state.type,
+      vendor:this.state.vendor,
+      vertical:this.state.vertical
+    }
+    this.props.handleExpenseUpdate(expenseToUpdate);
+>>>>>>> (feat) expenseComponent
 
-  deleteExpense: function(){
-    var expenseToDelete = this.props.expense;
-    this.props.handleExpenseToDelete(expenseToDelete);
   },
 
   render() {
@@ -250,8 +306,8 @@ const ExpenseNode = React.createClass({
         </td>
         {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
         {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
-        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.deleteExpense}>Delete</Button></td> : null}
-        {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.addExpense}>addExpense</Button></td>}
+        {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
+        {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>addExpense</Button></td>}
         </tr>
     );
   }

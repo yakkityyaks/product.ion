@@ -92,7 +92,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/expenses', function(req, res) {
-    console.log('In the routes ', req.body)
+    console.log('In /api/register/expenses ', req.body.data)
     // req body should hold the following
     // {
     //  data: {
@@ -112,10 +112,19 @@ module.exports = function routes(app){
 
     // makes an expense w/ the provided data linked to the provided project
     // returns it on completion
-    Expense.makeExpense(req.body.data, function(exp) {
+    Expense.makeExpense(req.body.data.singleExpense, function(exp) {
       exp ? res.status(201).json(exp) : res.sendStatus(404);
     });
   });
+
+  // app.post('/api/remove/expense', function(req, res) {
+  //   console.log("I'm removing an expense!");
+  //   Expense.getExpense(req.body.id, function(exp) {
+  //     exp ? exp.destroy().then(function(exp) {
+  //       res.status(201).json(exp);
+  //     }) : res.sendStatus(404);
+  //   });
+  // });
 
   app.post('/api/register/budget', function(req, res) {
     Budget.makeBudget(req.body.data, function(budg) {
@@ -232,6 +241,7 @@ module.exports = function routes(app){
   });
 
   app.post('/api/update/expense', function(req, res) {
+    console.log('In /api/update/expense ', req.body.data)
     Expense.getExpense(req.body.id, function(exp) {
       exp ? exp.save(req.body.data).then(function(exp) {
         res.status(201).json(exp);
@@ -305,8 +315,8 @@ module.exports = function routes(app){
   });
 
   app.post('/api/remove/expense', function(req, res) {
-    console.log("I'm removing an expense!");
-    Expense.getExpense(req.body.id, function(exp) {
+    console.log("In /api/remove/expense ", req.body.data.singleExpense);
+    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp ? exp.destroy().then(function(exp) {
         res.status(201).json(exp);
       }) : res.sendStatus(404);
