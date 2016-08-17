@@ -12,12 +12,16 @@ const Login = React.createClass({
     this.props.resetLoginMessage();
     let token = sessionStorage.getItem('jwtToken');
     console.log("TOKEN ", token);
-    if(!token || token === '') {
-      return;
-    } else {
+    if(token && token !== '') {
       this.setState({renderStuff: false});
       this.props.refreshLogin(token);
     }
+    // if(!token || token === '') {
+    //   return;
+    // } else {
+    //   this.setState({renderStuff: false});
+    //   this.props.refreshLogin(token);
+    // }
   },
   handleUserChange(e) {
     this.setState({username:e.target.value});
