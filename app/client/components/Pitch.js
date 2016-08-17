@@ -174,7 +174,7 @@ const Pitch = React.createClass({
     this.setState({judge: newJudge});
   },
   render() {
-    this.setState({budget: this.props.budgets["proj" + this.state.id]});
+
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="pitchTabs">
         <Tab eventKey={1} title="Pitch">

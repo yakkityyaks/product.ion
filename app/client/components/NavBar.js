@@ -44,7 +44,7 @@ const NavBar = React.createClass({
               </Link>
             </Navbar.Brand>
           </Navbar.Header>
-          
+
           <Nav>
             <NavItem eventKey={1} onClick={this.selectDashboard}>
               <Link to={'/projects'}>
