@@ -91,52 +91,6 @@ const ExpenseNode = React.createClass({
 
   handleEdit: function(){
     var off = false;
-<<<<<<< fe0feb48494a187cfb060e095288dd22eb33cdb7
-    this.setState({readOnlyStatus: off});
-    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
-  },
-  handleUpdate: function(){
-    var expenseToUpdate = this.props.expense.id;
-    var singleExpense = {
-      category: this.state.category,
-      cost: this.state.cost,
-      dateSpent: this.state.dateSpent.rawDate,
-      dateTracked: this.state.dateTracked.rawDate,
-      description: this.state.description,
-      glCode: this.state.glCode,
-      method: this.state.method,
-      projs_id: this.state.projs_id,
-      type: this.state.type,
-      vendor: this.state.vendor,
-      vertical: this.state.vertical
-    };
-    var on = true;
-    this.setState({readOnlyStatus: on});
-    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
-    this.props.handleExpenseUpdate(expenseToUpdate, singleExpense);
-  },
-
-  addExpense: function(){
-    var singleExpense = {
-      category: this.state.category,
-      cost: this.state.cost,
-      dateSpent: this.state.dateSpent.rawDate,
-      dateTracked: this.state.dateTracked.rawDate,
-      description: this.state.description,
-      glCode: this.state.glCode,
-      method: this.state.method,
-      projs_id: this.state.projs_id,
-      type: this.state.type,
-      vendor: this.state.vendor,
-      vertical: this.state.vertical
-    };
-    console.log('addExpense built ', singleExpense);
-    this.props.handleNewExpense(singleExpense);
-  },
-  componentDidMount: function(){
-    this.Date();
-  },
-=======
     this.setState({readOnlyStatus: off})
     this.setState({category:this.props.expense.category})
     this.setState({cost:this.props.expense.cost})
@@ -149,7 +103,9 @@ const ExpenseNode = React.createClass({
     this.setState({type:this.props.expense.type})
     this.setState({vendor:this.props.expense.vendor})
     this.setState({vertical:this.props.expense.vertical})
+    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
   },
+
   handleUpdate: function(){
     var on = true;
     this.setState({readOnlyStatus: on})
@@ -167,8 +123,6 @@ const ExpenseNode = React.createClass({
       vertical:this.state.vertical
     }
     this.props.handleExpenseUpdate(expenseToUpdate);
->>>>>>> (feat) expenseComponent
-
   },
 
   render() {
