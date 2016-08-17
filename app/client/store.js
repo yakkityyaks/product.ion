@@ -19,6 +19,7 @@ const budgets = {};
 const expenses = {};
 const organization = {};
 const messages = {
+  csv: "",
   login: "",
   register: "",
   pitch: "",

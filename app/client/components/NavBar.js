@@ -4,10 +4,10 @@ import { push } from "react-router-redux";
 import { Glyphicon, Nav, Navbar, NavItem, PageHeader } from 'react-bootstrap';
 
 const NavBar = React.createClass({
-  componentWillMount() {
-    var orgName = this.props.organization.orgName;
-    this.props.getOrgProjects(orgName);
-  },
+  // componentWillMount() {
+  //   var orgName = this.props.organization.orgName;
+  //   this.props.getOrgProjects(orgName);
+  // },
 
   logout() {
     this.props.logout();

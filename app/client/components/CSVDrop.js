@@ -17,12 +17,26 @@ const CSVDrop = React.createClass({
   onDrop (file) {
     let that = this;
     let id = this.props.expenses.projId;
+    console.log('file', file);
     Papa.parse(file[0].preview, {
       header: true,
       download: true,
       complete: function(res) {
         if(res.length !== 0) {
-          that.props.parseCSV(res.data, id);
+          console.log(res);
+          if (JSON.stringify(res.meta.fields) !== JSON.stringify(["type","vertical","glCode","dateSpent","dateTracked","vendor","method","description","cost"])) {
+            alert("Your CSV has an invalid column structure. The first line of your CSV should be 'type,vertical,glCode,dateSpent,dateTracked,vendor,method,description,cost'");
+          } else {
+            var valid = true;
+            res.data.forEach(function(row) {
+              if (Object.keys(row).length !== 9) valid = false;
+            })
+            if (valid) {
+              that.props.parseCSV(res.data, id)
+            } else {
+              alert("Invalid row(s)");
+            }
+          }
         } else {
           reject('Nothing parsed');
         }
@@ -47,6 +61,8 @@ const CSVDrop = React.createClass({
         <Dropzone type="file" ref="file" onDrop={this.onDrop}>
           <div>Try dropping some CSV files here, or click to select files to upload.</div>
         </Dropzone>
+        <h4>The first line of your CSV should be 'type,vertical,glCode,</h4>
+        <h4>dateSpent,dateTracked,vendor,method,description,cost'</h4>
       </div>
     );
   }

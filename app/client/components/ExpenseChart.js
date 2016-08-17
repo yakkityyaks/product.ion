@@ -6,7 +6,7 @@ const ExpenseChart = React.createClass({
 	getInitialState() {
 		return {
 			data: [],
-			sortBy: "type"
+			sortBy: "vendor"
 		};
 	},
 
@@ -75,9 +75,7 @@ const ExpenseChart = React.createClass({
 				<Form inline>
 					<FormGroup controlId="formControlsSelect">
 			      <ControlLabel>Sort by</ControlLabel>
-			      <FormControl componentClass="select" placeholder="Type" value={this.state.sortBy} onChange={this.handleSortChange}>
-			        <option value="type">Type</option>
-			        <option value="vertical">Vertical</option>
+			      <FormControl componentClass="select" placeholder="Vendor" value={this.state.sortBy} onChange={this.handleSortChange}>
 			        <option value="vendor">Vendor</option>
 			        <option value="method">Method</option>
 			        <option value="category">Category</option>

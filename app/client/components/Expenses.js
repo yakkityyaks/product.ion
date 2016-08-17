@@ -151,7 +151,7 @@ const Expenses = React.createClass({
           <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
           <div>
             <Button>Submit New Expenses</Button>
-            <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add with a csv</Button>
+            <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add expenses with a csv</Button>
           </div>
         </Panel>
       </div>
