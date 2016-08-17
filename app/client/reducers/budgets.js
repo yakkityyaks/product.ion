@@ -9,6 +9,7 @@ function budgets(state = {}, action) {
       ApiCall.addBudget(action.budget)
       .then(function(res) {
         console.log("BUDGET RES ", res);
+        store.dispatch({type: "ADD_BUDGET_NODE", node: res.data});
       })
       .catch(function(err) {
         console.error('BUDGET Error ', err);
@@ -23,6 +24,12 @@ function budgets(state = {}, action) {
 
       console.log("newstate is ", newState);
       return newState;
+    case "ADD_BUDGET_NODE":
+      console.log("At add budget node. Action is ", action.node);
+      console.log("State is ", state);
+      state["proj" + action.node.projs_id].push(action.node);
+      console.log("New state is ", state);
+      return state;
     case "DELETE_BUDGET_NODE":
       console.log("Ready to delete a node. Node is ", action.id);
       ApiCall.deleteBudget(action.id)

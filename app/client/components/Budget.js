@@ -70,7 +70,7 @@ const Budget = React.createClass({
       return (
         <div>
           {
-            this.props.budget && this.props.budget.map((row, key) =>
+            this.props.budget.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
