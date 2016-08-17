@@ -66,11 +66,11 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-
+      let budgets = this.props.budgets;
       return (
         <div>
           {
-            this.props.budget.map((row, key) =>
+            budgets["proj" + this.props.id] && budgets["proj" + this.props.id].map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}

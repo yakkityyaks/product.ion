@@ -26,9 +26,7 @@ function budgets(state = {}, action) {
       return newState;
     case "ADD_BUDGET_NODE":
       console.log("At add budget node. Action is ", action.node);
-      console.log("State is ", state);
       state["proj" + action.node.projs_id].push(action.node);
-      console.log("New state is ", state);
       return state;
     case "DELETE_BUDGET_NODE":
       console.log("Ready to delete a node. Node is ", action.id);
@@ -40,7 +38,10 @@ function budgets(state = {}, action) {
           console.error(err);
         });
       break;
-
+    case "REMOVE_BUDGET_NODE_FROM_STORE"://INCOMPLETE, FINISH LATER
+      console.log("Removing budget node from store. Action is ", action);
+      state[action.project] = [...state[action.project].slice(0, action.index)];
+      break;
     default:
       return state;
   }

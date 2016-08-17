@@ -174,7 +174,8 @@ const Pitch = React.createClass({
     this.setState({judge: newJudge});
   },
   render() {
-    this.setState({budget: this.props.budgets["proj" + this.state.id]});
+    let { budgets } = this.props;
+    let budget = budgets["proj" + this.state.id];
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="pitchTabs">
         <Tab eventKey={1} title="Pitch">
@@ -186,12 +187,12 @@ const Pitch = React.createClass({
         </Tab>
         <Tab eventKey={2} title="Budget">
           <Budget
-            budget={this.state.budget}
+            {...this.props}
+            id = {this.state.id}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
             deleteBudgetNode = {this.deleteBudgetNode}
-            otherBudget={this.props.budgets["proj" + this.state.id]}
             />
 
 
