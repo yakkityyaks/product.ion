@@ -19,6 +19,9 @@ function messages(state = [], action) {
       return Object.assign({}, state, {password: action.message});
     case "RESET_PASSWORD_MESSAGE":
       return Object.assign({}, state, {password: ""});
+    case "BAD_CSV":
+      console.log('changing csv message');
+      return Object.assign({}, state, {csv: action.message});
     default:
       return state;
   }

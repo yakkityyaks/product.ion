@@ -313,6 +313,12 @@ export function parseCSV(object, id) {
   };
 }
 
+export function badCSV(message) {
+  return {
+    type: "BAD_CSV",
+    message
+  };
+}
 // Token
 
 export function refreshLogin(token) {

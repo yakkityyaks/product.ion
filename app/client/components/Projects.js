@@ -37,7 +37,7 @@ const Projects = React.createClass({
           {
             this.props.short ? <div></div> :
             <div>
-              <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
+              <Button bsStyle="primary" style={{"margin-bottom":"15px"}} bsSize="large" id="modalButton" onClick={this.switchModal}>
                 Create a Pitch
               </Button>
               <Modal show={this.props.modals.pitch} onHide={this.switchModal} >

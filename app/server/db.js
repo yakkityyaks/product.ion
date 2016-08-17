@@ -1,3 +1,7 @@
+/**
+ *   This file instantiates our sql database using mysql, knex, and bookshelf
+ **/
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -9,6 +13,8 @@ var knex = require('knex')({
   }
 });
 
+// Here we use a Promise.all to handle table creation, doing it synchronously introduces conflicts where foreign keys
+// reference tables that have not been created
 Promise.all([
   knex.schema.createTableIfNotExists('orgs', function(table) {
     table.increments('id').primary();

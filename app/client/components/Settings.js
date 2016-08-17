@@ -52,15 +52,8 @@ const Settings = React.createClass({
           <NavBar {...this.props}/>
         </Panel>
         <Panel>
-          <h2>Welcome to your settings page, { user.name }!</h2>
-          <h2>You are { permName[user.perm] } of { orgName }</h2>
-          <div>
-            <Button>
-               <Link to={`/dashboard/${this.props.organization.orgName.split(" ").join("")}`}>
-                 Back
-               </Link>
-             </Button>
-           </div>
+          <h2>Welcome to your settings page, {user.name }!</h2>
+          <h2>You are {permName[user.perm]} of { orgName }</h2>
            <br></br>
            <div>
              <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>

@@ -100,8 +100,7 @@ const Expenses = React.createClass({
 
         <h3>{"Expenses for " + projName }</h3>
         <Panel>
-          <h3>Data Visualization!!!</h3>
-          <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
+          <Button bsStyle="primary" bsSize="large" onClick={this.switchChart}>Click for Visuals</Button>
           {this.state.open ? <ExpenseChart {...this.props}/> : null}
         </Panel>
         <Panel>
@@ -151,7 +150,7 @@ const Expenses = React.createClass({
           <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
           <div>
             <Button>Submit New Expenses</Button>
-            <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add with a csv</Button>
+            <Button bsStyle="primary" bsSize="large" onClick={this.switchModal} id="csvModalButton">Add expenses with a CSV</Button>
           </div>
         </Panel>
       </div>
