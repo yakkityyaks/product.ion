@@ -15,7 +15,7 @@ const Login = React.createClass({
     if(!token || token === '') {
       return;
     } else {
-      this.setState({renderStuff: false})
+      this.setState({renderStuff: false});
       this.props.refreshLogin(token);
     }
   },

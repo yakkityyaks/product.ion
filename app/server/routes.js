@@ -16,8 +16,7 @@ module.exports = function routes(app){
       if(!org) {
         res.sendStatus(404);
       } else {
-        // var token = utils.generateToken(user);
-        // res.status(201).json({user:user, token:token});
+        res.status(201).json(org);
       }
     });
   });
@@ -60,8 +59,7 @@ module.exports = function routes(app){
           if(!user) {
             res.sendStatus(404);
           } else {
-          //  var token = utils.generateToken(user);
-          //  res.status(201).json(user, {user:user, token:token});
+           res.status(201).json(user);
           }
         });
       }
@@ -136,18 +134,18 @@ module.exports = function routes(app){
   app.post('/api/get/expenses', function(req, res) {
     var exps = [];
     var count = 0;
-    console.log('getting', req.body.projIds)
+    console.log('getting', req.body.projIds);
     req.body.projIds.forEach(function(projId) {
       Project.getProj(projId, function(proj) {
         count++;
         if (proj) exps = exps.concat(proj.related('expenses'));
         if (count === req.body.projIds.length) {
-          console.log('sending', exps)
+          console.log('sending', exps);
           res.status(201).json(exps);
         }
-      })
-    })
-  })
+      });
+    });
+  });
 
   app.post('/api/get/org', function(req, res) {
     // input: req.body.orgName
