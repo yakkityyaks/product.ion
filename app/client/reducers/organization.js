@@ -171,22 +171,24 @@ function posts(state=[], action) {
 
       case "REFRESHED_LOGIN":
         ApiCall.checkToken(action.token)
-          .then(res => {
-            if (res.status === 201) {
-              console.log("REFRESH res.data ", res.data);
-              const user = res.data;
-              store.dispatch({type:"POST_LOGIN", username:user.username, password: user.password});
-            }
-          })
-          .catch(err => {
-            console.error(err);
-          });
+        .then(res => {
+          if (res.status === 201) {
+            console.log("REFRESH res.data ", res.data);
+            const user = res.data;
+            store.dispatch({type:"POST_LOGIN", username:user.username, password: user.password});
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
         break;
 
       case "CHANGE_PASSWORD":
         ApiCall.login(action.username, action.password)
         .then(function(res) {
-          if (res.data.password === action.password) {
+          console.log("resword is ", res.data.user.password);
+          console.log("actionword is ", action.password);
+          if (res.data.user.password === action.password) {
             ApiCall.changePassword(action.username, action.newPassword)
               .then(function(res) {
                 store.dispatch({type: "SET_PASSWORD_MESSAGE",
@@ -203,11 +205,12 @@ function posts(state=[], action) {
         .catch((err) => {
           console.log("Reducers-CHANGE_PASSWORD: res is", err);
         });
-      break;
+        break;
 
     case "SET_USERS":
       console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
+
     case "LOGOUT":
       sessionStorage.removeItem('jwtToken');
       return {};

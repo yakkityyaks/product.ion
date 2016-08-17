@@ -23,6 +23,7 @@ const UserList = React.createClass({
     e.preventDefault();
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
+        console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
         this.props.updateUser(this.state.users[idx]);
       }
     });
