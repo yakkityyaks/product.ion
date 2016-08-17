@@ -16,12 +16,6 @@ const Login = React.createClass({
       this.setState({renderStuff: false});
       this.props.refreshLogin(token);
     }
-    // if(!token || token === '') {
-    //   return;
-    // } else {
-    //   this.setState({renderStuff: false});
-    //   this.props.refreshLogin(token);
-    // }
   },
   handleUserChange(e) {
     this.setState({username:e.target.value});
