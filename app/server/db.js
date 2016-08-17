@@ -53,8 +53,6 @@ Promise.all([
 
   knex.schema.createTableIfNotExists('expenses', function(table) {
     table.increments('id').primary();
-    table.string('type');
-    table.string('vertical');
     table.string('category');
     table.string('glCode');
     table.date('dateSpent');

@@ -25,7 +25,6 @@ const DatePicker = React.createClass({
     return (
       <FormControl
         name={this.props.name}
-        readOnly={this.props.readOnlyStatus}
         type = "date"
         onChange = {this.handleInputChange} />
     );
