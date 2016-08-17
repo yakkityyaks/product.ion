@@ -7,7 +7,6 @@ var User = require('./controllers/userController.js');
 var utils = require('./lib/utility.js');
 var jwt = require('jsonwebtoken');
 
-
 module.exports = function routes(app){
   app.post('/api/register/org', function(req, res){
     //makes organization w/ name req.body.orgName and returns the organization model
@@ -167,9 +166,9 @@ module.exports = function routes(app){
     });
   });
 
-  app.post('/api/post/token', function (req, res, next) {
-    // check header or url parameters or post parameters for token
+  app.post('/api/post/token', function (req, res) {
     console.log("API REQ, TOKEN ", req.body);
+    // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token;
     if (!token) {
       return res.status(401).json({
@@ -177,12 +176,14 @@ module.exports = function routes(app){
       });
     } else {
       // Check token that was passed by decoding token using secret
-      jwt.verify(token, "SSSHHHitsaSECRET", function (err, user) {
+      // ignoreExpiration, otherwise, login is hampered by error.
+      jwt.verify(token, "SSSHHHitsaSECRET", {ignoreExpiration:true}, function (err, user) {
         console.log("Verified User ", user);
         if (err) {
-          throw err;
+          console.log(err);
         } else {
-          //return user using the username from w/in JWTToken
+          //return user using the username from w/in JWTToken.
+          // send back the username and password to log user back in.
           User.getUser(user.username, function (user) {
             if (!user) {
               res.sendStatus(404);
