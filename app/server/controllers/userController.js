@@ -20,9 +20,4 @@ exports.makeUser = function(data, cb) {
 exports.getUser = function(name, cb) {
 	new User({username: name}).fetch({withRelated: ['org', 'projects']}).then(cb);
 };
-
-exports.getUserById = function(id, cb) {
-	new User({id: id}).fetch({withRelated: ['org', 'projects']}).then(cb);
-};
-
 // {withRelated: ['orgs']}

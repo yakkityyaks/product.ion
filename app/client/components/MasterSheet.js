@@ -19,7 +19,7 @@ const MasterSheet = React.createClass({
     for (var i = 0; i < this.props.projects.length; i++) {
       ids.push(this.props.projects[i].projId);
     }
-    
+
     var temp = [Promise.resolve([this.setState.bind(this), this.parseData]), ApiCall.getExpenses(ids)];
     Promise.all(temp).then(function(vals) {
       var exps = vals[1].data.reduce(function(a,b) {
@@ -37,7 +37,7 @@ const MasterSheet = React.createClass({
 			var name = this.getProjName(exp.projs_id);
 			temp[name] = temp[name] || [];
 			temp[name].push(exp);
-		};
+		}
 
 		var table = [];
 		var chartData = {Total: [0,0,0,0,0,0,0,0,0,0,0,0]};
@@ -52,7 +52,7 @@ const MasterSheet = React.createClass({
 				chartData.Total[exp.dateSpent.slice(5,7) - 1] = chartData.Total[exp.dateSpent.slice(5,7) - 1] + exp.cost;
 				row[exp.dateSpent.slice(5,7) - 1] = row[exp.dateSpent.slice(5,7) - 1] + exp.cost;
         row[12] = row[12] + exp.cost;
-			})
+			});
 			table.push(row);
 		}
 		this.setState({chartData: chartData, table: table, sortBy: Object.keys(temp)[0], projNames: Object.keys(temp)}, this.loadChart);
@@ -84,7 +84,7 @@ const MasterSheet = React.createClass({
         name: 'Expenses share',
         data: this.state.chartData[this.state.sortBy]
       }]
-    });  
+    });
 	},
 
 	handleSortChange(e) {
@@ -102,11 +102,11 @@ const MasterSheet = React.createClass({
 	render() {
 		return (
 			<div>
-			  
+
         <Panel>
 	        <NavBar {...this.props}/>
 	      </Panel>
-				
+
         <Panel>
 					<Form inline>
 						<FormGroup controlId="formControlsSelect">
@@ -119,9 +119,9 @@ const MasterSheet = React.createClass({
 				      </FormControl>
 				    </FormGroup>
 					</Form>
-	      	
+
           <div id="chartContainer"></div>
-					
+
           <Table striped bordered>
         		<thead>
         			<tr>
@@ -160,13 +160,13 @@ const MasterSheet = React.createClass({
         						<td>{row[11]}</td>
                     <td>{row[12]}</td>
         					</tr>
-        				)
+        				);
         			})}
         		</tbody>
         	</Table>
 				</Panel>
 			</div>
-		)
+		);
 	}
 });
 
