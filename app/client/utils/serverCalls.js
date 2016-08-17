@@ -40,24 +40,19 @@ let getProjectByProjId = (projId) =>
 let getExpensesByProjectId = (projectId) =>
   axios.post('/api/get/proj', {projId: projectId});
 
-let registerExpense = (action) => {
-  var data = action.singleExpense;
-  data.projs_Id = action.projs_Id;
-  console.log('in servercalls ', data);
-  return axios.post('/api/register/expenses', {data: data});
+let registerExpense = (singleExpense) => {
+  console.log('in servercalls registerExpense', singleExpense);
+  return axios.post('/api/register/expenses', {data: singleExpense});
 };
 
-let removeExpense = (action) => {
-  console.log('at the sever call ', action);
-  var data = action.id;
-  return axios.post('/api/remove/expense', {id: data});
+let removeExpense = (singleExpense) => {
+  console.log('in servercalls removeExpense ', singleExpense);
+  return axios.post('/api/remove/expense', {data: singleExpense});
 };
 
-let updateExpense = (action) => {
-  var data = action.data;
-  var id = action.data.id;
-  console.log('in the server call ', id, 'the data is ', data)
-  return axios.post('/api/update/expense', {data: data, id:id});
+let updateExpense = (singleExpense) => {
+  console.log('in servercalls updateExpense ', singleExpense)
+  return axios.post('/api/update/expense', {data: singleExpense});
 }
 
 let parseCSV = (data, id) =>

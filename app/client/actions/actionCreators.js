@@ -191,29 +191,24 @@ export function hydrateExpenses(projectId, id, expenses) {
   };
 }
 
-export function postNewExpense(projs_Id, singleExpense) {
+export function postNewExpense(singleExpense) {
   return {
     type: "NEW_EXPENSE",
-    projs_Id,
     singleExpense
   };
 }
 
-export function removeExpense(id, projId, projs_id) {
+export function removeExpense(singleExpense) {
   return {
     type: "REMOVE_EXPENSE",
-    id,
-    projId,
-    projs_id
+    singleExpense
   };
 }
 
-export function updateExpense(data, projId, projs_id) {
+export function updateExpense(singleExpense) {
   return {
     type: "UPDATE_EXPENSE",
-    data,
-    projId,
-    projs_id
+    singleExpense
   };
 }
 
