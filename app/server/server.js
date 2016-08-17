@@ -1,3 +1,7 @@
+/**
+ *    This file creates our server using express and implements webpack for deployment
+ **/
+
 //Added module dependencies
 var bodyParser = require('body-parser');
 var config = require('../../webpack.config.dev');
@@ -6,7 +10,7 @@ var path = require('path');
 var webpack = require('webpack');
 var session = require('express-session');
 
-//instantiate server
+//instantiate our server with express and webpack for deployment
 var app = express();
 var compiler = webpack(config);
 
@@ -32,6 +36,7 @@ app.use(function setHeaders(req, res, next) {
     next();
 });
 
+//do we still need this
 app.use(session({
   secret: 'secret session',
   resave: false,
@@ -40,6 +45,7 @@ app.use(session({
 
 var port = process.env.PORT || 7000;
 
+//imports our endpoints
 require('./routes.js')(app);
 
 app.listen(port, function listeningOnPort() {

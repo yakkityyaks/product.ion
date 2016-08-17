@@ -138,24 +138,19 @@ const Dashboard = React.createClass({
           </Modal>
 
           <Panel>
-            <h2>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</h2>
             <div>
-              <Button onClick={this.exportCSV} bsStyle="primary" bsSize="large" id="csvExport">Export Projects/Expenses to a CSV</Button>
-            </div>
-            <br></br>
-            <div>
+              <b style={{"font-size":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
+              <Button onClick={this.exportCSV} style={{"float":"right"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
               {
                 this.props.organization.user.perm === 0 ?
                 (<Link to="/mastersheet">
-                  <Button bsStyle="primary" bsSize="large">Click for Master Sheet</Button>
+                  <Button style={{"float":"right","margin-right":"5px"}} bsStyle="primary">Click for Master Sheet</Button>
                 </Link>) :
                 <div></div>
               }
+              <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Click for Visuals</Button>
+              {this.state.open ? <DashCharts {...this.props}/> : null}
             </div>
-
-            <h3>Data Visualization!!!</h3>
-            <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
-            {this.state.open ? <DashCharts {...this.props}/> : null}
 
             <h3>Most Recent Three Projects</h3>
             <Table striped bordered>
