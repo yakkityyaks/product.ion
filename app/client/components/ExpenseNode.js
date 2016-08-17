@@ -32,11 +32,11 @@ const ExpenseNode = React.createClass({
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-    this.setState({dateTracked: mm+'/'+ dd + '/' + yyyy})
+    this.setState({dateTracked: mm+'/'+ dd + '/' + yyyy});
   },
 
   handleChange: function(inputName, inputValue) {
-    console.log("The input name is ", inputName, "This is the value ", inputValue)
+    console.log("The input name is ", inputName, "This is the value ", inputValue);
     var nextState = {};
     nextState[inputName] = inputValue;
     this.setState(nextState);
@@ -65,8 +65,8 @@ const ExpenseNode = React.createClass({
 
   handleEdit: function(){
     var off = false;
-    this.setState({readOnlyStatus: off})
-    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
+    this.setState({readOnlyStatus: off});
+    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
   },
   handleUpdate: function(){
     var expenseToUpdate = this.props.expense.id;
@@ -82,10 +82,10 @@ const ExpenseNode = React.createClass({
       type: this.state.type,
       vendor: this.state.vendor,
       vertical: this.state.vertical
-    }
+    };
     var on = true;
-    this.setState({readOnlyStatus: on})
-    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus)
+    this.setState({readOnlyStatus: on});
+    console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
     this.props.handleExpenseUpdate(expenseToUpdate, singleExpense);
   },
 
@@ -102,7 +102,7 @@ const ExpenseNode = React.createClass({
       type: this.state.type,
       vendor: this.state.vendor,
       vertical: this.state.vertical
-    }
+    };
     console.log('addExpense built ', singleExpense);
     this.props.handleNewExpense(singleExpense);
   },

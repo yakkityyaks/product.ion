@@ -8,7 +8,7 @@ const DashCharts = React.createClass({
 			expenses: undefined,
 			data: [],
 			sortBy: "type"
-		}
+		};
 	},
 
 	componentDidMount() {
@@ -21,7 +21,7 @@ const DashCharts = React.createClass({
 	    for (var i = 0; i < this.props.projects.length; i++) {
 	      ids.push(this.props.projects[i].projId);
 	    }
-	    
+
 	    var temp = [Promise.resolve([this.setState.bind(this), this.sortBy]), ApiCall.getExpenses(ids)];
 	    Promise.all(temp).then(function(vals) {
 	    	var exps = vals[1].data.reduce(function(a,b) {
@@ -37,25 +37,25 @@ const DashCharts = React.createClass({
 
 	sortBy() {
 		var temp = {};
-		
+
 		if (this.state.sortBy !== "project") {
 			for (var i = 0; i < this.state.expenses.length; i++) {
 				var exp = this.state.expenses[i];
 				temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] || 0;
 				temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] + exp.cost;
-			};
+			}
 		} else {
 			for (var i = 0; i < this.state.expenses.length; i++) {
 				var exp = this.state.expenses[i];
 				var projName = this.getProjName(exp.projs_id);
 				temp[projName] = temp[projName] || 0;
 				temp[projName] = temp[projName] + exp.cost;
-			};
+			}
 		}
-		
+
 		var data = [];
 		for (var key in temp) {
-			data.push([key, temp[key]])
+			data.push([key, temp[key]]);
 		}
 		this.setState({data: data}, this.loadChart);
 	},
@@ -93,7 +93,7 @@ const DashCharts = React.createClass({
         name: 'Expenses share',
         data: this.state.data
       }]
-    });  
+    });
 
 	},
 	handleSortChange(e) {

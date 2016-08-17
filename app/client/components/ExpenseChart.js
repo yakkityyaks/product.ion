@@ -7,7 +7,7 @@ const ExpenseChart = React.createClass({
 		return {
 			data: [],
 			sortBy: "type"
-		}
+		};
 	},
 
 	componentDidMount() {
@@ -20,10 +20,10 @@ const ExpenseChart = React.createClass({
 			var exp = this.props.expenses.expenses[i];
 			temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] || 0;
 			temp[exp[this.state.sortBy]] = temp[exp[this.state.sortBy]] + exp.cost;
-		};
+		}
 		var data = [];
 		for (var key in temp) {
-			data.push([key, temp[key]])
+			data.push([key, temp[key]]);
 		}
 		this.setState({data: data}, this.loadChart);
 	},
@@ -61,11 +61,11 @@ const ExpenseChart = React.createClass({
         name: 'Expenses share',
         data: this.state.data
       }]
-    });  
+    });
 	},
 
 	handleSortChange(e) {
-		e.preventDefault()
+		e.preventDefault();
 		this.setState({sortBy: e.target.value}, this.sortBy);
 	},
 
@@ -86,7 +86,7 @@ const ExpenseChart = React.createClass({
 				</Form>
 				<div id="expChartContainer"></div>
 			</div>
-		)
+		);
 	}
 
 

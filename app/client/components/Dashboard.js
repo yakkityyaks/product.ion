@@ -14,7 +14,7 @@ const Dashboard = React.createClass({
     return {
       open: false,
       editProject: null
-    }
+    };
   },
 
   componentWillMount() {
@@ -34,7 +34,7 @@ const Dashboard = React.createClass({
     }
     this.props.changeModal('pitch');
   },
-  
+
   exportCSV() {
     var fields = [
     "Project",
@@ -61,19 +61,19 @@ const Dashboard = React.createClass({
     "Method",
     "Description",
     "Cost"
-    ]
+  ];
     var getProj = this.getProj;
     var ids = [];
     this.props.projects.forEach(function(proj) {
       ids.push(proj.projId);
-    })
+    });
     ApiCall.getExpenses(ids).then(function(res) {
       console.log(res);
       var exps = res.data.reduce(function(a,b) {
           return a.concat(b);
         }, []);
       var data = [];
-      for (var i = 0; i < exps.length; i++) {  
+      for (var i = 0; i < exps.length; i++) {
         var proj = getProj(exps[i].projs_id);
         data.push([
           ' ',
@@ -100,17 +100,17 @@ const Dashboard = React.createClass({
           exps[i].method,
           exps[i].description,
           exps[i].cost
-        ])
+        ]);
       }
       var csv = {fields: fields, data: data};
       csv = Papa.unparse(csv);
-      console.log(csv)
+      console.log(csv);
       var hiddenElement = document.createElement('a');
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
       hiddenElement.target = '_blank';
       hiddenElement.download = 'data.csv';
       hiddenElement.click();
-    })
+    });
   },
 
   getProj(id) {
@@ -123,21 +123,21 @@ const Dashboard = React.createClass({
   render() {
     return (
       <div className="dashboard">
-        
+
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        
+
         <div>
-        
+
           <Modal show={this.props.modals.pitch} onHide={this.switchModal} >
             <Modal.Body>
               <Pitch {...this.props} data={this.state.editProject}/>
             </Modal.Body>
             <Modal.Footer />
-        
+
           </Modal>
-        
+
           <Panel>
             <h2>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</h2>
             <div>
@@ -149,7 +149,7 @@ const Dashboard = React.createClass({
                 this.props.organization.user.perm === 0 ?
                 (<Link to="/mastersheet">
                   <Button bsStyle="primary" bsSize="large">Click for Master Sheet</Button>
-                </Link>) : 
+                </Link>) :
                 <div></div>
               }
             </div>
@@ -157,7 +157,7 @@ const Dashboard = React.createClass({
             <h3>Data Visualization!!!</h3>
             <Button bsStyle="primary" onClick={this.switchChart}>Click for Visuals</Button>
             {this.state.open ? <DashCharts {...this.props}/> : null}
-            
+
             <h3>Most Recent Three Projects</h3>
             <Table striped bordered>
               <thead>
@@ -177,7 +177,7 @@ const Dashboard = React.createClass({
               }
               </tbody>
             </Table>
-            
+
             {
               this.props.organization.user.perm === 0 ?
               <div>

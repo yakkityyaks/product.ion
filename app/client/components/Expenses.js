@@ -29,7 +29,7 @@ const Expenses = React.createClass({
   },
 
   removeExpenseNode(idx) {
-    var last = this.state.addedExpenses.length-1
+    var last = this.state.addedExpenses.length-1;
     var newExpensesCount = this.state.addedExpenses.slice(0,last);
     this.setState({addedExpenses : newExpensesCount});
   },
@@ -37,7 +37,7 @@ const Expenses = React.createClass({
   handleNewExpense: function(singleExpense){
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
-    this.setState({newExpenses: newExpenses})
+    this.setState({newExpenses: newExpenses});
     console.log('new state', 'Project ID is ', this.state.projId, 'THe expense object is',this.state.newExpenses);
     this.props.postNewExpense(this.state.projId, singleExpense);
   },
@@ -46,7 +46,7 @@ const Expenses = React.createClass({
     this.props.removeExpense(expenseToDelete.id);
   },
   handleExpenseUpdate: function(id, expenseToUpdate){
-    console.log('back at expense ', id, 'the full expense is ', expenseToUpdate)
+    console.log('back at expense ', id, 'the full expense is ', expenseToUpdate);
     expenseToUpdate.id = id;
     this.props.updateExpense(expenseToUpdate);
   },
@@ -76,7 +76,7 @@ const Expenses = React.createClass({
             <CSVDrop {...this.props}/>
           </Modal.Body>
           <Modal.Footer />
-      
+
         </Modal>
 
         <Panel>
@@ -138,7 +138,7 @@ const Expenses = React.createClass({
             <Button>Submit New Expenses</Button>
             <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add with a csv</Button>
           </div>
-        </Panel>  
+        </Panel>
       </div>
     );
   }
