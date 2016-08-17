@@ -121,7 +121,6 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/budget', function(req, res) {
-    console.log("making it to server ", req.body.data);
     Budget.makeBudget(req.body.data, function(budg) {
       budg ? res.status(201).json(budg) : res.sendStatus(404);
     });
@@ -161,7 +160,6 @@ module.exports = function routes(app){
     // input: req.body.username
     // output: user w/ attached org and projects || 404
     User.getUser(req.body.username, function(user) {
-      console.log("user serverside", user);
       if(!user) {
         res.sendStatus(404);
       } else {
@@ -188,7 +186,6 @@ module.exports = function routes(app){
         } else {
           //return user using the username from w/in JWTToken
           User.getUser(user.username, function (user) {
-            console.log("GET USER ", user);
             if (!user) {
               res.sendStatus(404);
             } else {
