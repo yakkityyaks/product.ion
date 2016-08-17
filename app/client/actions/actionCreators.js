@@ -274,12 +274,10 @@ export function resetPasswordMessage() {
 
 //budgets:
 
-export function postProjectBudgets(budget, id) {
-  console.log("action created");
+export function postNewBudget(budget) {
   return {
-    type: "POST_PROJECT_BUDGETS",
-    budget,
-    id
+    type: "POST_NEW_BUDGET",
+    budget
   };
 }
 
@@ -306,6 +304,9 @@ export function hydrateBudget(projId, budgetsArray) {
   };
 }
 
+export function deleteBudgetNode(id) {
+  return {type:"DELETE_BUDGET_NODE", id};
+}
 // CSV PARSING:
 
 export function parseCSV(object, id) {

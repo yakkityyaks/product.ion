@@ -74,6 +74,8 @@ function posts(state=[], action) {
                   });
                   var joinedName = organization.orgName.split(" ").join("");
                   browserHistory.push(`/dashboard/${joinedName}`);
+                } else {
+                  console.log("Big error. Res is ", res);
                 }
               });
           }

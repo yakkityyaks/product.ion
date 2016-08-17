@@ -22,6 +22,9 @@ const Pitch = React.createClass({
     let judge = {},
         counter = 0;
 
+    //set default approval data if none present.
+    data = data.approvals ? data :  {approvals:"11111111111"};
+    //sets validation object to be mapped to each field in PitchSummary
     for (var key in judy) {
       judge[key] = {vars: this.props.organization.user.perm ?
           notAdmin
@@ -32,7 +35,8 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
-      id: data.id || null,
+      newPitch: data.id ? false : true,
+      id: data.id || undefined,
       projName: data.name || "",
       projId: data.projId || "",
       vertical: data.vertical || "",
@@ -52,6 +56,7 @@ const Pitch = React.createClass({
   },
   buildPitch() {
     return {
+      orgs_id: this.props.organization.orgs_id,
       id: this.state.id,
       name: this.state.projName,
       projId: this.state.projId,
@@ -72,15 +77,35 @@ const Pitch = React.createClass({
   handlePitchSubmit(event) {
     event.preventDefault();
     var data = this.buildPitch();
-    data.status = "Production";
+
+    this.props.postNewProject(data);
+    this.closeModal();
+  },
+  handleReject(e) {
+    var data = this.buildPitch();
 
     this.props.updateProject(data, this.props.projId);
+    this.closeModal();
+  },
+  handleApprove(e) {
+    var data = this.buildPitch();
+    data.status = "Production";
+
+    console.log("Pitch approved. Pitch is ", data);
+    this.state.newPitch ? this.props.postNewProject(data)
+        : this.props.updateProject(data, this.props.projId);
+
+    this.closeModal();
+  },
+  closeModal() {
+    this.props.getOrgProjects(this.props.organization.orgName);
     this.props.changeModal("pitch");
   },
   handleSelect(key) {
+    //budget set here to accomodate asynchronous budget list hydration.
     this.setState({
-        activeTab: key,
         budget: this.props.budgets["proj" + this.state.id],
+        activeTab: key,
     });
   },
   tabToBudget() {
@@ -104,6 +129,33 @@ const Pitch = React.createClass({
 
     this.setState({budget: newBudget});
   },
+  addNewBudget(budget) {
+    let newBudget = this.state.budget;
+
+    this.props.postNewBudget(budget);
+    newBudget.push(budget);
+    this.setState({
+      reqBudget: this.state.reqBudget + budget.total,
+      budget: newBudget
+    });
+    console.log("New State is ", this.state);
+  },
+  deleteBudgetNode(budgetId) {
+    let { budget } = this.state;
+
+    this.props.deleteBudgetNode(budgetId);
+    for (var x = 0; x < this.state.budget.length; x++) {
+      if (budget.id === budgetId) {
+        let newBudget = budget.slice(0, x).concat(budget.slice(x+1));
+        console.log("newBudget is ", newBudget);
+        this.setState({
+            reqBudget: this.state.reqBudget - budget.total,
+            budget: newBudget
+          });
+        break;
+      }
+    }
+  },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
 
@@ -125,12 +177,6 @@ const Pitch = React.createClass({
     this.updateApproval(newJudge[name].index);
     this.setState({judge: newJudge});
   },
-  handleReject(e) {
-    var data = this.buildPitch();
-
-    this.props.updateProject(data, this.props.projId);
-    this.props.changeModal("pitch");
-  },
   render() {
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
@@ -142,10 +188,10 @@ const Pitch = React.createClass({
           }
         </Tab>
         <Tab eventKey={2} title="Budget">{<Budget budget={this.state.budget}
-            total={this.state.reqBudget}
+            total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
-            updateBudget={this.updateBudget}/>}</Tab>
+            deleteBudgetNode = {this.deleteBudgetNode}/>}</Tab>
       </Tabs>
     );
   }
