@@ -9,9 +9,9 @@ function expenses(state = [], action) {
       console.log(action);
       ApiCall.getExpensesByProjectId(action.projectId)
         .then((res) => {
-          console.log(res);
+          console.log('did not get the 201 ',res);
           if (res.status === 201) {
-            console.log(res.data.projId);
+            console.log('got the 201 ', res.data.projId);
             var projectId = res.data.projId,
                 expenses = res.data.expenses,
                 id = res.data.id;
@@ -34,20 +34,20 @@ function expenses(state = [], action) {
       state.current = action.expenses;
       return state;
     case "NEW_EXPENSE":
-      console.log('in new expense ACTION IS ', action);
       ApiCall.registerExpense(action)
       .then(function(res) {
-        console.log('new expense', res.data);
-        store.dispatch({type:'GET_EXPENSES', projectId: action.projs_Id, singleExpense: action.singleExpense});
+        console.log('new expense', res.data.projs_Id);
+        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
       })
       .catch(function(err) {
         console.error(err);
       })
       break;
     case "REMOVE_EXPENSE":
-      console.log(state);
-      ApiCall.removeExpense(action).then(function(res) {
-        store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
+      ApiCall.removeExpense(action)
+      .then(function(res) {
+        console.log('back at dispatch ', res)
+        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
       })
       .catch(function(err) {
         console.err(err);
@@ -60,9 +60,9 @@ function expenses(state = [], action) {
       // }
       // return {id: state.id, projId: state.projId, expenses: temp}
     case "UPDATE_EXPENSE":
-      console.log('updating');
-      ApiCall.updateExpense(action).then(function(res) {
-        store.dispatch({type: 'GET_EXPENSES', projectId: action.projId, id: action.projs_id});
+      ApiCall.updateExpense(action)
+      .then(function(res) {
+        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
       })
       .catch(function(err) {
         console.err(err);

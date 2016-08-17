@@ -15,8 +15,19 @@ const Expenses = React.createClass({
       count: 0,
       addedExpenses: [0],
       newExpenses: [],
-      modal: false
+      modal: false,
+      newView: false
     };
+  },
+
+  componentWillReceiveProps: function(newProps){
+    console.log('in the expense recieve props', newProps.expenses)
+    this.setState({newView: true})
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    console.log('in the should update ', nextProps, nextState)
+    return nextState.newView;
   },
 
   addExpenseNode: function(e) {
@@ -35,20 +46,23 @@ const Expenses = React.createClass({
   },
 
   handleNewExpense: function(singleExpense){
+    singleExpense.projs_id = this.state.projId;
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
     this.setState({newExpenses: newExpenses})
-    console.log('new state', 'Project ID is ', this.state.projId, 'THe expense object is',this.state.newExpenses);
-    this.props.postNewExpense(this.state.projId, singleExpense);
+    console.log('Handle NEW Expense ', singleExpense);
+    this.props.postNewExpense(singleExpense);
   },
 
-  handleExpenseToDelete: function(expenseToDelete){
-    this.props.removeExpense(expenseToDelete.id);
+  handleExpenseToDelete: function(singleExpense){
+    singleExpense.projs_id = this.state.projId;
+    console.log('Handle DELETE ', singleExpense);
+    this.props.removeExpense(singleExpense);
   },
-  handleExpenseUpdate: function(id, expenseToUpdate){
-    console.log('back at expense ', id, 'the full expense is ', expenseToUpdate)
-    expenseToUpdate.id = id;
-    this.props.updateExpense(expenseToUpdate);
+  handleExpenseUpdate: function(singleExpense){
+    singleExpense.projs_id = this.state.projId;
+    console.log('Handle UPDATE ', singleExpense);
+    this.props.updateExpense(singleExpense);
   },
 
   switchModal () {
@@ -76,7 +90,7 @@ const Expenses = React.createClass({
             <CSVDrop {...this.props}/>
           </Modal.Body>
           <Modal.Footer />
-      
+
         </Modal>
 
         <Panel>
@@ -109,7 +123,7 @@ const Expenses = React.createClass({
               </tr>
             </thead>
               <tbody>
-                {this.state.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete}
+                {this.props.expenses.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete}
                  handleExpenseUpdate={this.handleExpenseUpdate} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
               </tbody>
           </Table>
@@ -138,7 +152,7 @@ const Expenses = React.createClass({
             <Button>Submit New Expenses</Button>
             <Button bsStyle="primary" onClick={this.switchModal} id="csvModalButton">Add with a csv</Button>
           </div>
-        </Panel>  
+        </Panel>
       </div>
     );
   }
