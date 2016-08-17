@@ -35,6 +35,7 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
+      budget: [],
       newPitch: data.id ? false : true,
       id: data.id || undefined,
       projName: data.name || "",
@@ -130,15 +131,10 @@ const Pitch = React.createClass({
     this.setState({budget: newBudget});
   },
   addNewBudget(budget) {
-    let newBudget = this.state.budget;
-
     this.props.postNewBudget(budget);
-    newBudget.push(budget);
     this.setState({
-      reqBudget: this.state.reqBudget + budget.total,
-      budget: newBudget
+      reqBudget: this.state.reqBudget + budget.total
     });
-    console.log("New State is ", this.state);
   },
   deleteBudgetNode(budgetId) {
     let { budget } = this.state;
@@ -178,8 +174,9 @@ const Pitch = React.createClass({
     this.setState({judge: newJudge});
   },
   render() {
+    this.setState({budget: this.props.budgets["proj" + this.state.id]});
     return (
-      <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="test-tabs">
+      <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="pitchTabs">
         <Tab eventKey={1} title="Pitch">
           {<PitchSummary {...this.props.organization} {...this.state}
             handleChange={this.handleChange} handleJudgement={this.handleJudgement}
@@ -187,11 +184,18 @@ const Pitch = React.createClass({
             handleReject={this.handleReject} handlePitchSubmit={this.handlePitchSubmit}/>
           }
         </Tab>
-        <Tab eventKey={2} title="Budget">{<Budget budget={this.state.budget}
+        <Tab eventKey={2} title="Budget">
+          <Budget
+            budget={this.state.budget}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
-            deleteBudgetNode = {this.deleteBudgetNode}/>}</Tab>
+            deleteBudgetNode = {this.deleteBudgetNode}
+            otherBudget={this.props.budgets["proj" + this.state.id]}
+            />
+
+
+        </Tab>
       </Tabs>
     );
   }
