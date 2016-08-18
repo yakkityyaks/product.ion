@@ -113,7 +113,7 @@ const DashCharts = React.createClass({
 			<div>
 				<Form inline>
 					<FormGroup controlId="formControlsSelect">
-			      <ControlLabel>Sort by</ControlLabel>&nbsp;
+			      <ControlLabel bsClass="chartSortSelector">Sort by</ControlLabel>&nbsp;&nbsp;
 			      <FormControl componentClass="select" placeholder="Type" value={this.state.sortBy} onChange={this.handleSortChange}>
 			        <option value="vendor">Vendor</option>
 			        <option value="method">Method</option>
@@ -122,7 +122,7 @@ const DashCharts = React.createClass({
 			      </FormControl>
 			    </FormGroup>
 				</Form>
-				<div id="dashChartContainer"></div>
+				<div style={{"margin-top":"10px"}} id="dashChartContainer"></div>
 			</div>
 		)
 	}

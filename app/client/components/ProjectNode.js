@@ -21,7 +21,7 @@ const ProjectNode = React.createClass({
     const { name, projId, status, costToDate, estimateToComplete } = this.props.project;
 
     return (
-      <tr onClick={this.triggerProjectClick}>
+      <tr onClick={this.triggerProjectClick} id="readOnlyBody">
         <td>{name}</td>
         <td>{projId}</td>
         <td>{status}</td>

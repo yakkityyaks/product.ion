@@ -17,6 +17,9 @@
 	text-align: center;
 }
 
+#title > h1 {
+	font-size: 60px;
+}
 #settingsWindow {
 	display:inline-block;
 	padding-right: 30px;
@@ -36,6 +39,17 @@
 	float: right;
 }
 
+#readOnlyHeader > th {
+	font-size: 14px;
+}
+
+#readOnlyBody > td {
+	font-size: 14px;
+}
+
+.chartSortSelector{
+	font-size: 14px;
+}
 .settings {
 	text-align: center;
 }
@@ -64,3 +78,16 @@
 .testing2 {
 	width: 200px;
 }
+
+.usersSettings {
+	float: right;
+}
+
+/*.navbar-default {
+	background-color: blue;
+}*/
+
+
+
+
+

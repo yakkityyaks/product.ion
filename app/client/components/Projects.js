@@ -27,9 +27,7 @@ const Projects = React.createClass({
         {
           this.props.short ? <div></div> :
           <div>  
-            <Panel>
-              <NavBar {...this.props}/>
-            </Panel>
+            <NavBar {...this.props}/>
           </div>  
         }
 
@@ -51,7 +49,7 @@ const Projects = React.createClass({
 
         	<Table striped bordered>
         		<thead>
-        			<tr>
+        			<tr id="readOnlyHeader">
         				<th>Name</th>
         				<th>Project ID</th>
         				<th>Project Status</th>

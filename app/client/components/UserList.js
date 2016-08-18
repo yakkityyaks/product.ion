@@ -105,15 +105,15 @@ const UserList = React.createClass({
 
     return (
       <div className="settingsMemberNode">
-        <Form onSubmit={this.onSubmit}>
+        <Form bsClass="usersSettings" onSubmit={this.onSubmit}>
           {state.changed &&
             <Button bsStyle={this.state.saveButtonStyle} ref="changeButton"
                     type="submit">{this.state.button}</Button>
           }
           <p>{this.state.noAdminWarning}</p>
           {state.users.map((user, key) =>
-            <FormGroup key={key} validationState={state.validate[key]}>
-              <ControlLabel>{user.username}</ControlLabel>
+            <FormGroup style={{"float":"right"}} key={key} validationState={state.validate[key]}>
+              <ControlLabel bsClass="chartSortSelector">{user.username}</ControlLabel>&nbsp;&nbsp;
               <FormControl componentClass="select" className="settingsMemberNode-perm"
                 onChange={this.onChange} name = {key} value={permName[user.perm]}>
                 <option value="Admin">Admin</option>

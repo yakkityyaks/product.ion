@@ -19,6 +19,7 @@ const cata = [
   {id: 14, name: "audioMix", cat: "post", code:11235, label: "Audio Mixing"}
 ];
 
+
 export var judy = {
   projName: undefined,
   projId: undefined,
@@ -32,57 +33,6 @@ export var judy = {
   editDate: undefined,
   releaseDate: undefined
 };
-
-// export const codeCategories = {
-//   580200 : "Consultant",
-//   560100: "Writer",
-//   560270 : "Director",
-//   560260 : "Producer",
-//   560260 : "Associate Producer",
-//   560230 : "Production Assistant",
-//   545010 : "Research Materials",
-//   560250 : "On-Camera Talent",
-//   560350 : "Make-Up Artist",
-//   560350 : "Hair Stylist",
-//   560350 : "Wardrobe Stylist",
-//   560350 : "Wardrobe Allowance",
-//   560220 : "Director of Photography",
-//   560220 : "Camera Operator",
-//   560230 : "Assistant Camera",
-//   560210 : "Audio Operator",
-//   560220 : "Gaffer/Grip/Best Boy",
-//   560450 : "Photographer",
-//   560230 : "Set PA",
-//   500120 : "Intern",
-//   570100 : "Camera Rental",
-//   570100 : "Lighting Rental",
-//   570100 : "Misc Equipment Rental",
-//   570150 : "Location Fees & Permits",
-//   570150 : "Location Manager",
-//   570150 : "Set Design",
-//   545100 : "Props",
-//   590200 : "Meals & Craft Service",
-//   590500 : "Taxis & Local Transpo",
-//   590400 : "Airfare",
-//   590300 : "Hotel",
-//   590400 : "Car Rental",
-//   590600 : "Gas/Tolls/Parking",
-//   560240 : "Editor",
-//   560240 : "Assistant Editor",
-//   560240 : "Edit Suite",
-//   660400 : "Design & Motion GFX",
-//   515250 : "Transcription",
-//   515250 : "Color Correction",
-//   515250 : "Audio Mix",
-//   515250 : "Misc Post",
-//   564000 : "Photo Licensing",
-//   570200 : "Footage Licensing",
-//   570200 : "Music Licensing",
-//   "NONE" : "Insurance",
-//   500950 : "Hosting Service",
-//   560275 : "Third Party Production",
-//   560280 : "Third Party Production - Licensing"
-// };
 
 export default cata;
 

@@ -123,9 +123,7 @@ const Dashboard = React.createClass({
     return (
       <div className="dashboard">
 
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
+        <NavBar {...this.props}/>
 
         <div>
 
@@ -140,7 +138,8 @@ const Dashboard = React.createClass({
           <Panel>
             <div>
               <b style={{"font-size":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
-              <Button onClick={this.exportCSV} style={{"float":"right"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
+              <Button onClick={this.exportCSV} style={{"float":"right","margin-right":"5px"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
+              <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
               {
                 this.props.organization.user.perm === 0 ?
                 (<Link to="/mastersheet">
@@ -148,14 +147,13 @@ const Dashboard = React.createClass({
                 </Link>) :
                 <div></div>
               }
-              <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Click for Visuals</Button>
               {this.state.open ? <DashCharts {...this.props}/> : null}
             </div>
 
             <h3>Most Recent Three Projects</h3>
             <Table striped bordered>
               <thead>
-                <tr>
+                <tr id="readOnlyHeader">
                   <th>Name</th>
                   <th>Project ID</th>
                   <th>Project Status</th>
@@ -178,7 +176,7 @@ const Dashboard = React.createClass({
                 <h3>Pitches to be Approved</h3>
                 <Table striped bordered>
                   <thead>
-                    <tr>
+                    <tr id="readOnlyHeader">
                       <th>Name</th>
                       <th>Project ID</th>
                       <th>Project Status</th>
