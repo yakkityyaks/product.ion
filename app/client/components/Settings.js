@@ -52,14 +52,16 @@ const Settings = React.createClass({
           <NavBar {...this.props}/>
         </Panel>
         <Panel>
-          <h2>Welcome to your settings page, {user.name }!</h2>
-          <h2>You are {permName[user.perm]} of { orgName }</h2>
-           <br></br>
-           <div>
-             <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
-               Add a User to Organization
-             </Button>
-           </div>
+        <div>
+        <b style={{"font-size":"30","float":"left"}}>Welcome to your settings, {user.name} [{permName[user.perm]} of { orgName }]</b>
+        {/* <b style={{"font-size":"30"}}>You are {permName[user.perm]} of { orgName }</b> */}
+          <Button style={{"float":"right","margin-right":"5px"}} bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
+            Add a User to Organization
+          </Button>
+        </div>
+
+
+         <br></br>
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
              <Modal.Header closeButton>
