@@ -48,9 +48,7 @@ const Settings = React.createClass({
     const permName = { 0: "an Admin", 1: "a Producer", 2: "a User"};
     return (
       <div className="settings">
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
+        <NavBar {...this.props}/>
         <Panel>
           <h2>Welcome to your settings page, {user.name }!</h2>
           <h2>You are {permName[user.perm]} of { orgName }</h2>
