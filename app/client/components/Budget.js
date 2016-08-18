@@ -90,15 +90,16 @@ const Budget = React.createClass({
           <br>
           </br>
             <br></br>
-          <Form inline onSubmit={this.handleSubmit}><FormGroup>
+          <Form inline onSubmit={this.handleSubmit}>
             <InputGroup>
                 <InputGroup.Addon>Description</InputGroup.Addon>
                <FormControl type="text" value={this.state.newBudgetDescription}
                             name="newBudgetDescription" required
                            placeholder="Description" onChange={this.handleChange}/>
              </InputGroup>
-            <DropdownButton bsStyle={"default"} title={"Category"} id="catSelect">
-              <CustomSearch id={"5"} name={"testing"}
+            <DropdownButton bsStyle={"default"} id="catSelect"
+                    title={this.state.newBudgetLabel || "Category"} >
+              <CustomSearch id={"5"} name={"cataDropdown"}
                       data={{value: this.state.filter, onChange: this.setFilter}}/>
              {cata
                .filter((node) =>
@@ -109,31 +110,30 @@ const Budget = React.createClass({
             <FormGroup>
               <FormControl readOnly type="text"
                            value={this.state.newBudgetCode} placeholder="GL Code"/>
-              <FormControl readOnly type="text" className="budgetFormCata1"
-                           value={this.state.newBudgetLabel} placeholder="Category"/>
             </FormGroup>
-            <InputGroup className="testing2">
-              <InputGroup.Addon>Cost:</InputGroup.Addon>
-              <FormControl type="number" placeholder="Cost"
-                           onChange={this.handleChange} name="newBudgetCost"
-                           value={this.state.newBudgetCost} />
-            </InputGroup>
-            <InputGroup className="testing2">
-              <InputGroup.Addon>Quant:</InputGroup.Addon>
-              <FormControl type="number" placeholder="Units"
-                           onChange={this.handleChange} name="newBudgetQuant"
-                           value={this.state.newBudgetQuant} />
-            </InputGroup>
-            <InputGroup className="testing2">
-              <InputGroup.Addon>Total:</InputGroup.Addon>
-              <FormControl type="text" readOnly value={this.state.newBudgetTotal =
-                              "$" + this.state.newBudgetCost *
-                                  this.state.newBudgetQuant} />
-            </InputGroup>
-          <Button onClick={this.handleSubmit} type="submit">
-            Add
-          </Button>
-          </FormGroup>
+            <FormGroup>
+              <InputGroup className="testing2">
+                <InputGroup.Addon>Cost:</InputGroup.Addon>
+                <FormControl type="number" placeholder="Cost"
+                             onChange={this.handleChange} name="newBudgetCost"
+                             value={this.state.newBudgetCost} />
+              </InputGroup>
+              <InputGroup className="testing2">
+                <InputGroup.Addon>Quant:</InputGroup.Addon>
+                <FormControl type="number" placeholder="Units"
+                             onChange={this.handleChange} name="newBudgetQuant"
+                             value={this.state.newBudgetQuant} />
+              </InputGroup>
+              <InputGroup className="testing2">
+                <InputGroup.Addon>Total:</InputGroup.Addon>
+                <FormControl type="text" readOnly value={this.state.newBudgetTotal =
+                                "$" + this.state.newBudgetCost *
+                                    this.state.newBudgetQuant} />
+              </InputGroup>
+              <Button onClick={this.handleSubmit} type="submit">
+              Add
+              </Button>
+            </FormGroup>
           <FormControl readOnly value={"$" + this.props.total} />
         </Form>
       </div>
