@@ -63,7 +63,7 @@ const Settings = React.createClass({
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
              <Modal.Header closeButton>
-               <Modal.Title>Add a User to Organization</Modal.Title>
+               <Modal.Title>Add a User to {this.props.organization.orgName}</Modal.Title>
              </Modal.Header>
             <Modal.Body>
                  <AddUser {...this.props} />
