@@ -146,7 +146,7 @@ const Pitch = React.createClass({
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
     this.setState({
-      reqBudget: this.state.reqBudget + budget.total
+      reqBudget: this.state.reqBudget + Number(budget.total)
     });
   },
   deleteBudgetNode(node) {

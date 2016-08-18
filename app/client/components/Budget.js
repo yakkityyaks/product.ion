@@ -43,7 +43,7 @@ const Budget = React.createClass({
         glCode: this.state.newBudgetCode,
         cost: this.state.newBudgetCost,
         quantity: this.state.newBudgetQuant,
-        total: this.state.newBudgetTotal * this.state.newBudgetQuant,
+        total: this.state.newBudgetCost * this.state.newBudgetQuant,
         projs_id: 2
       };
       console.log("Budget object is ", budget);
