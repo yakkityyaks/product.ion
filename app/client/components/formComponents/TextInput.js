@@ -12,10 +12,8 @@ const TextInput = React.createClass({
       <FormControl
         componentClass="input"
         name={this.props.name}
-        readOnly={this.props.readOnlyStatus}
-        value = {this.props.value}
         onChange = {this.handleInputChange}
-        placeholder={this.props.title}>
+        placeholder={this.props.name}>
       </FormControl>
     );
   }
