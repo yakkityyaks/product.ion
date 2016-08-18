@@ -9,38 +9,73 @@ const UserList = React.createClass({
   getInitialState() {
     const users = this.props.organization.users,
           changed = false,
-          validate = [];
+          validate = [],
+          noAdminWarning = "",
+          button = "Save Changes",
+          saveButtonStyle = "primary";
     users.forEach((user) => validate.push(undefined));
-    return {users, validate, changed};
+
+    return {
+      users,
+      validate,
+      changed,
+      button,
+      noAdminWarning,
+      saveButtonStyle
+    };
   },
-  // Status - "error" is a feature of react-bootstrap.
+
+  componentWillMount() {
+    const users = this.props.organization.users,
+          validate = [];
+    this.setState({
+      changed: false,
+      validate: [],
+      noAdminWarning: "",
+      successMsg: "",
+      saveButtonStyle: "primary"
+    });
+      users.forEach((user) => validate.push(undefined));
+  },
+  // Status of "error" is a feature of react-bootstrap.
   // Send the entire user object to server.
   onSubmit(e) {
     e.preventDefault();
-    //make sure there's at least one admin in every organization.
     let usersList = this.state.users;
+
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
         console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
+        // Make sure there's at least one admin in every organization.
         for(let i = 0; i < usersList.length; i++) {
           console.log("userList Perm #: ", usersList[i].perm);
           if(usersList[i].perm === 0) {
             console.log("There's an admin at ", usersList[i]);
+            this.setState({saveButtonStyle: "success", button: "Success!"});
             this.props.updateUser(this.state.users[idx]);
-          } else if(i === usersList.length-1 && usersList[i] !== 0) {
+            return;
+          } else if(i === usersList.length-1 && usersList[i].perm !== 0) {
+            this.setState({
+              saveButtonStyle: "danger",
+              button: " Sorry! ",
+              noAdminWarning: "Invalid Input: At least one Administrator required.",
+            });
             return;
           }
         }
       }
     });
-    // this.setState({changed: false});
   },
-  // Set permission level in state.
+  // Set permission levels in users state.
   onChange(event) {
+    this.setState({
+      saveButtonStyle: "primary",
+      noAdminWarning: "",
+      button: "Save Changes"
+    });
     console.log("EVENT.TARGET ", event.target);
     let {validate, users} = this.state;
     const values = {"Admin": 0, "Producer": 1, "User": 2};
-
     validate[event.target.name] = "error";
     // assign perm number to users in state.
     users[event.target.name].perm = values[event.target.value];
@@ -55,8 +90,11 @@ const UserList = React.createClass({
       <div className="settingsMemberNode">
         <Form onSubmit={this.onSubmit}>
           {state.changed &&
-            <Button bsStyle="success" ref="changeButton"
-                    type="submit">Save Changes</Button>}
+            <Button bsStyle={this.state.saveButtonStyle} ref="changeButton"
+                    type="submit">{this.state.button}</Button>
+          }
+          <p>{this.state.successMsg}</p>
+          <p>{this.state.noAdminWarning}</p>
           {state.users.map((user, key) =>
             <FormGroup key={key} validationState={state.validate[key]}>
               <ControlLabel>{user.username}</ControlLabel>

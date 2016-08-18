@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { findDOMNode } from 'react-dom';
-import { Button, ControlLabel, Form, FormControl, FormGroup, PageHeader, Panel, Radio } from 'react-bootstrap';
+import { Button, ControlLabel, Form, FormControl, FormGroup, Panel, Radio } from 'react-bootstrap';
 
 const AddUser = React.createClass({
 
@@ -50,7 +50,6 @@ const AddUser = React.createClass({
     const setRadio = ref => {this.input = ref;};
     return (
       <div>
-        <PageHeader id="loginHeader"><small>add a new user</small></PageHeader>
         <FormGroup>
           <Radio inline id="userRadio" name="user-class" value={0}
                 onClick={this.setPerm}>
