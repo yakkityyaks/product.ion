@@ -78,9 +78,9 @@ function posts(state=[], action) {
                   console.log("Big error. Res is ", res);
                 }
               });
-          }
-        });
-      break;
+            }
+          });
+        break;
 
     case "HYDRATE_ORG":
       console.log("state is, ", state, "\naction is ", action);
@@ -143,8 +143,7 @@ function posts(state=[], action) {
               id: res.data.user.id,
               orgs_id: res.data.user.orgs_id,
               orgName: res.data.user.org.name,
-              perm: res.data.user.perm,
-              jwt: res.data.token
+              perm: res.data.user.perm
             });
             var joinedName = res.data.user.org.name.split(" ").join("");
             sessionStorage.setItem('jwtToken', res.data.token);
@@ -166,7 +165,6 @@ function posts(state=[], action) {
         user: {name: action.username, password: action.password, perm: action.perm, id: action.id},
         orgName: action.orgName,
         orgs_id: action.orgs_id,
-        jwt: action.jwt
       });
 
       case "REFRESHED_LOGIN":
