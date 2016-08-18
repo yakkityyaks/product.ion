@@ -26,10 +26,6 @@ const ExpenseNode = React.createClass({
     };
   },
 
-  componentDidMount: function(){
-    console.log('At mount ', (this.state.readOnlyStatus === true), 'typeof is ' ,typeof((this.state.readOnlyStatus === true)))
-  },
-
   handleAdd: function(){
     var singleExpense = {
       category: this.state.category,
