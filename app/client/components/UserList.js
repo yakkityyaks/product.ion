@@ -14,7 +14,6 @@ const UserList = React.createClass({
           button = "Save Changes",
           saveButtonStyle = "primary";
     users.forEach((user) => validate.push(undefined));
-
     return {
       users,
       validate,
@@ -25,6 +24,7 @@ const UserList = React.createClass({
     };
   },
 
+  // Make the save button and input field higlighting invisible before mounting component.
   componentWillMount() {
     const users = this.props.organization.users,
           validate = [];
@@ -45,23 +45,20 @@ const UserList = React.createClass({
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
         console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
-        // Make sure there's at least one admin in every organization.
+        // Ensure that there's at least one admin in the organization.
         for(let i = 0; i < usersList.length; i++) {
           if(usersList[i].perm === 0) {
-            this.setState({saveButtonStyle: "success"});
             this.props.updateUser(this.state.users[idx]);
             return;
           } else if(i === usersList.length-1 && usersList[i].perm !== 0) {
             this.setState({
-              saveButtonStyle: "warning",
-              button: " Sorry! ",
-              noAdminWarning: "Invalid Input: At least one Administrator required.",
+              noAdminWarning: "Invalid Input: At least one Administrator required."
             });
-            // return;
           }
         }
       }
     });
+    // As in componentWillMount, make the save button and input field higlighting invisible on successful submission.
       const users = this.props.organization.users,
             validate = [];
       this.setState({
@@ -79,12 +76,11 @@ const UserList = React.createClass({
     let {validate, users} = this.state;
     const values = {"Admin": 0, "Producer": 1, "User": 2};
     validate[e.target.name] = "error";
-    // assign perm number to users in state.
+    // Assign perm numbers to users in state.
     users[e.target.name].perm = values[e.target.value];
-
+    // Ensure that there's at least one admin in the organization.
     for(let i = 0; i < usersList.length; i++) {
       if(usersList[i].perm === 0) {
-        console.log("on change user perm ", usersList[i].perm);
         this.setState({
           saveButtonStyle: "primary",
           button: "Save Changes",
@@ -94,11 +90,10 @@ const UserList = React.createClass({
         return;
       } else if(i === usersList.length-1 && usersList[i].perm !== 0) {
         this.setState({
-          saveButtonStyle: "warning",
-          button: " Sorry! ",
           noAdminWarning: "Invalid Input: At least one Administrator required.",
+          button: "Sorry!",
+          saveButtonStyle: "warning"
         });
-        return;
       }
     }
     this.setState({changed: true, validate, users});
