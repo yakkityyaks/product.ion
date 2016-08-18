@@ -1,5 +1,4 @@
 import React from 'react';
-import Dropdown from 'react-dropdown';
 import { Button, InputGroup, Form, Grid, Row,
   DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
 
