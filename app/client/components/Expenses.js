@@ -126,13 +126,7 @@ const Expenses = React.createClass({
           {this.state.open ? <ExpenseChart {...this.props}/> : null}
         </Panel>
         <Panel>
-<<<<<<< HEAD
           <span style={{"font-size":"30"}}>{"Expenses for " + proj.name }</span>
-=======
-          <span>
-            <h3>{"Project ID: "+ this.state.projId}</h3>
-          </span>
->>>>>>> 88f339142eb92c3155545dfe6716e9f1119da352
           <Table>
             <thead>
               <tr id="readOnlyHeader">
