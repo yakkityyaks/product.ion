@@ -25,10 +25,10 @@ const Expenses = React.createClass({
     this.setState({newView: true})
   },
 
-  // shouldComponentUpdate: function(nextProps, nextState) {
-  //   console.log('in the should update ', nextProps, nextState)
-  //   return nextState.newView;
-  // },
+  shouldComponentUpdate: function(nextProps, nextState) {
+    console.log('in the should update ', nextProps, nextState)
+    return nextState.newView;
+  },
 
   handleNewExpense: function(singleExpense){
     singleExpense.projs_id = this.state.projId;
@@ -52,20 +52,20 @@ const Expenses = React.createClass({
   },
 
   switchModal () {
-    this.setState({modal: !this.state.modal});
+    this.setState({newView: true, modal: !this.state.modal});
   },
 
   switchChart() {
     console.log('switching chart', !this.state.open)
-    this.setState({open: !this.state.open});
+    this.setState({newView: true, open: !this.state.open});
   },
 
   render() {
-    let projName="THIS AINT RIGHT";
+    var proj = null;
 
     this.props.projects.forEach((project) => {
       if (project.projId === this.props.expenses.projId) {
-        projName = project.name;
+        proj = project;
         return;
       }
     });
@@ -81,18 +81,55 @@ const Expenses = React.createClass({
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-        <h3>{"Expenses for " + projName }</h3>
         <Panel>
-          <Button bsStyle="primary" bsSize="large" onClick={this.switchChart}>Click for Visuals</Button>
+          <span style={{"font-size":"30"}}>{"Project Details for " + proj.name }</span>
+          <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
+          <Button onClick={this.switchModal} style={{"float":"right","margin-right":"5px"}} bsStyle="primary">Add Expenses with a CSV</Button>
+          <div style={{"margin-top":"20px"}}>
+            <Table striped bordered>
+              <thead>
+                <tr id="readOnlyHeader">
+                  <th>Project ID</th>
+                  <th>Vertical</th>
+                  <th>Tier</th>
+                  <th>Type</th>
+                  <th>Number of Assets</th>
+                  <th>Status</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Edit Date</th>
+                  <th>Release Date</th>
+                  <th>Cost to Date</th>
+                  <th>Estimate to Complete</th>
+                  <th>Requested Budget</th>
+                </tr>  
+              </thead>
+              <tbody>
+                <tr id="readOnlyBody">
+                  <td>{proj.projId}</td>
+                  <td>{proj.vertical}</td>
+                  <td>{proj.tier}</td>
+                  <td>{proj.type}</td>
+                  <td>{proj.numAssets}</td>
+                  <td>{proj.status}</td>
+                  <td>{proj.startDate.slice(0,10)}</td>
+                  <td>{proj.endDate.slice(0,10)}</td>
+                  <td>{proj.editDate.slice(0,10)}</td>
+                  <td>{proj.releaseDate.slice(0,10)}</td>
+                  <td>{proj.costToDate}</td>
+                  <td>{proj.estimateToComplete}</td>
+                  <td>{proj.reqBudget}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
           {this.state.open ? <ExpenseChart {...this.props}/> : null}
         </Panel>
         <Panel>
-          <span>
-            <h3>{"Project ID: "+ this.state.projId}</h3>
-          </span>
-          <Table style={{width: "90%"}}>
+          <span style={{"font-size":"30"}}>{"Expenses for " + proj.name }</span>
+          <Table>
             <thead>
-              <tr>
+              <tr id="readOnlyHeader">
                 <th>Vendor</th>
                 <th>Description</th>
                 <th>Cost</th>
@@ -113,7 +150,7 @@ const Expenses = React.createClass({
                 }
               </tbody>
           </Table>
-          <Table style={{width: "90%"}}>
+          <Table>
             <thead>
               <tr>
                 <th>Vendor</th>

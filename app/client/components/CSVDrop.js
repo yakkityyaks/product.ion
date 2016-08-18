@@ -24,12 +24,12 @@ const CSVDrop = React.createClass({
       complete: function(res) {
         if(res.length !== 0) {
           console.log(res);
-          if (JSON.stringify(res.meta.fields) !== JSON.stringify(["type","vertical","glCode","dateSpent","dateTracked","vendor","method","description","cost"])) {
-            alert("Your CSV has an invalid column structure. The first line of your CSV should be 'type,vertical,glCode,dateSpent,dateTracked,vendor,method,description,cost'");
+          if (JSON.stringify(res.meta.fields) !== JSON.stringify(["category","glCode","dateSpent","dateTracked","vendor","method","description","cost"])) {
+            alert("Your CSV has an invalid column structure. The first line of your CSV should be 'category,glCode,dateSpent,dateTracked,vendor,method,description,cost'");
           } else {
             var valid = true;
             res.data.forEach(function(row) {
-              if (Object.keys(row).length !== 9) valid = false;
+              if (Object.keys(row).length !== 8) valid = false;
             })
             if (valid) {
               that.props.parseCSV(res.data, id)
@@ -58,9 +58,11 @@ const CSVDrop = React.createClass({
     return (
       <div>
         <h3>{"Add Expenses to " + projName + " with a CSV"}</h3>
-        <Dropzone type="file" ref="file" onDrop={this.onDrop}>
-          <div>Try dropping some CSV files here, or click to select files to upload.</div>
-        </Dropzone>
+        <div style={{"margin":"auto","display":"block"}}>
+          <Dropzone type="file" ref="file" onDrop={this.onDrop}>
+            <div>Try dropping some CSV files here, or click to select files to upload.</div>
+          </Dropzone>
+        </div>  
         <h4>The first line of your CSV should be 'type,vertical,glCode,</h4>
         <h4>dateSpent,dateTracked,vendor,method,description,cost'</h4>
       </div>

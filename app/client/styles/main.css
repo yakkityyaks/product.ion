@@ -36,6 +36,17 @@
 	float: right;
 }
 
+#readOnlyHeader > th {
+	font-size: 14px;
+}
+
+#readOnlyBody > td {
+	font-size: 13px;
+}
+
+.chartSortSelector{
+	font-size: 14px;
+}
 .settings {
 	text-align: center;
 }
@@ -48,6 +59,8 @@
 	display: inline-block;;
 	float: left;
 }
+
+
 
 .settingsMemberNode-perm {
 	display: inline-block;

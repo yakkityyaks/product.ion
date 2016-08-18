@@ -72,10 +72,10 @@ const ExpenseChart = React.createClass({
 
 	render() {
 		return (
-			<div style={{"padding-top":"10px"}}>
+			<div>
 				<Form inline>
 					<FormGroup controlId="formControlsSelect">
-			      <ControlLabel>Sort by</ControlLabel>&nbsp;
+			      <ControlLabel bsClass="chartSortSelector">Sort by</ControlLabel>&nbsp;
 			      <FormControl componentClass="select" placeholder="Vendor" value={this.state.sortBy} onChange={this.handleSortChange}>
 			        <option value="vendor">Vendor</option>
 			        <option value="method">Method</option>
@@ -83,7 +83,7 @@ const ExpenseChart = React.createClass({
 			      </FormControl>
 			    </FormGroup>
 				</Form>
-				<div id="expChartContainer"></div>
+				<div style={{"margin-top":"10px"}} id="expChartContainer"></div>
 			</div>
 		);
 	}

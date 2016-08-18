@@ -51,7 +51,7 @@ const Projects = React.createClass({
 
         	<Table striped bordered>
         		<thead>
-        			<tr>
+        			<tr id="readOnlyHeader">
         				<th>Name</th>
         				<th>Project ID</th>
         				<th>Project Status</th>

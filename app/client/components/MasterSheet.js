@@ -110,7 +110,7 @@ const MasterSheet = React.createClass({
         <Panel>
 					<Form inline>
 						<FormGroup controlId="formControlsSelect">
-				      <ControlLabel>Choose Project</ControlLabel>&nbsp;
+				      <ControlLabel bsClass="chartSortSelector">Choose Project</ControlLabel>&nbsp;
 				      <FormControl componentClass="select" value={this.state.sortBy} onChange={this.handleSortChange}>
 				        {this.state.projNames.map(function(name, idx) {
 				        	return <option key={idx} value={name}>{name}</option>
@@ -120,7 +120,7 @@ const MasterSheet = React.createClass({
 				    </FormGroup>
 					</Form>
 
-          <div id="chartContainer"></div>
+          <div style={{"margin-top":"10px"}} id="chartContainer"></div>
 
           <Table striped bordered>
         		<thead>
