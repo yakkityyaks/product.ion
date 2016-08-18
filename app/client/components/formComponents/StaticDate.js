@@ -11,7 +11,7 @@ const StaticDate = React.createClass({
   },
 
   componentDidMount: function(){
-    if(this.state.date === undefined){
+    if(this.state.date === undefined || this.state.date === null){
       var newDate = new Date();
       var today = newDate.format("mm/dd/yyyy")
       this.setState({date: today})
