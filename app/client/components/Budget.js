@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, DropdownButton, Form, FormGroup, InputGroup, MenuItem, FormControl } from 'react-bootstrap';
+import { Button, DropdownButton, Form, FormGroup,
+  InputGroup, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
 import CustomSearch from './CustomSearch';
 
@@ -66,11 +67,12 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-
+      const projBudget = "proj" + this.props.id;
       return (
         <div>
           {
-            this.props.budget.map((row, key) =>
+            this.props.budgets[projBudget] &&
+            this.props.budgets[projBudget].map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
