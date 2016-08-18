@@ -77,7 +77,7 @@ const Budget = React.createClass({
       );
       // const projBudget = "proj" + this.props.id;
       return (
-        <div>
+        <div style={{"margin-top":"20px"}}>
           {
             this.state.budgets &&
             this.state.budgets.map((row, key) =>
