@@ -46,7 +46,7 @@ function expenses(state = [], action) {
     case "REMOVE_EXPENSE":
       ApiCall.removeExpense(action)
       .then(function(res) {
-        console.log('back at dispatch ', res)
+
         store.dispatch({type:'GET_EXPENSES', projectId: res.data});
       })
       .catch(function(err) {
@@ -62,6 +62,7 @@ function expenses(state = [], action) {
     case "UPDATE_EXPENSE":
       ApiCall.updateExpense(action)
       .then(function(res) {
+        console.log('back at dispatch for update ', res)
         store.dispatch({type:'GET_EXPENSES', projectId: res.data});
       })
       .catch(function(err) {

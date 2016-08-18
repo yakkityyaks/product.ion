@@ -21,12 +21,11 @@ const Expenses = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps){
-    console.log('in the expense recieve props', newProps.expenses)
     this.setState({newView: true})
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('in the should update ', nextProps, nextState)
+    console.log('the next props are ', nextProps)
     return nextState.newView;
   },
 
@@ -147,7 +146,7 @@ const Expenses = React.createClass({
                     handleExpenseUpdate={this.handleExpenseUpdate}
                     projs_id={this.state.projs_id}
                     key={index}
-                    readOnlyStatus={true}/>)
+                    readOnlyStatus={true} />)
                 }
               </tbody>
           </Table>

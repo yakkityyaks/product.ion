@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
 import codes from "../data/expenseCodes.js";
+import categories from "../data/expenseCategories.js";
 import DatePicker from './formComponents/DatePicker.js';
+import ReadOnlyText from './formComponents/ReadOnlyText.js';
 import StaticDate from './formComponents/StaticDate.js';
 import SelectInput from './formComponents/SelectInput.js';
 import TextInput from './formComponents/TextInput.js';
@@ -25,7 +27,7 @@ const ExpenseNode = React.createClass({
   },
 
   componentDidMount: function(){
-    console.log('At mount ', this.state.readonlyStatus)
+    console.log('At mount ', (this.state.readOnlyStatus === true), 'typeof is ' ,typeof((this.state.readOnlyStatus === true)))
   },
 
   handleAdd: function(){
@@ -103,87 +105,85 @@ const ExpenseNode = React.createClass({
     return (
       <tr>
         <td>
-          <TextInput
-            name="vendor"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            value={this.state.importedExpenses.vendor} />
+          {this.state.readOnlyStatus === true ?
+            <ReadOnlyText
+              name="vendor"
+              value={this.state.importedExpenses.vendor} /> :
+            <TextInput
+              name="vendor"
+              onChange={this.handleChange} />
+          }
         </td>
         <td>
-          <TextInput
-            name="description"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            value={this.state.importedExpenses.description} />
+          {this.state.readOnlyStatus === true ?
+            <ReadOnlyText
+              name="description"
+              value={this.state.importedExpenses.description} /> :
+            <TextInput
+              name="description"
+              onChange={this.handleChange} />
+          }
         </td>
         <td  width="115">
-          <InputGroup>
-            <InputGroup.Addon>$</InputGroup.Addon>
-               <TextInput
-                 name="cost"
-                 onChange={this.handleChange}
-                 readOnlyStatus={this.state.readOnlyStatus}
-                 value={this.state.importedExpenses.cost} />
-          </InputGroup>
+          {this.state.readOnlyStatus === true ?
+            <InputGroup>
+              <InputGroup.Addon>$</InputGroup.Addon>
+                <ReadOnlyText
+                  name="cost"
+                  value={this.state.importedExpenses.cost} />
+            </InputGroup> :
+            <InputGroup>
+              <InputGroup.Addon>$</InputGroup.Addon>
+                <TextInput
+                  name="cost"
+                  onChange={this.handleChange} />
+            </InputGroup>
+          }
         </td>
         <td width="135">
-          {(this.state.importedExpenses.method && this.state.readOnlyStatus === true) ?
-            <TextInput
+          {this.state.readOnlyStatus === true ?
+            <ReadOnlyText
               name="method"
-              onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
               value={this.state.importedExpenses.method} /> :
             <SelectInput
               name="method"
               onChange={this.handleChange}
-              options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']}
-              readOnlyStatus={this.state.readOnlyStatus}
-              value={this.state.importedExpenses.method} />
+              options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']} />
           }
         </td>
         <td>
-          {(this.state.importedExpenses.category && this.state.readOnlyStatus === true) ?
-            <TextInput
+          {this.state.readOnlyStatus === true ?
+            <ReadOnlyText
+              name="category"
+              value={this.state.importedExpenses.category} /> :
+            <SelectInput
               name="category"
               onChange={this.handleChange}
-              readOnlyStatus={this.state.readOnlyStatus}
-              value={this.state.importedExpenses.category} /> :
-              <SelectInput
-                name="category"
-                onChange={this.handleChange}
-                options={[
-                'Producer', 'Associate Producer', 'Production Assistant', 'Set Production Assistant', 'Intern',
-                'Director', 'Writer', 'Director of Photography', 'Camera Operator', 'Assistant Camera','Audio Operator',
-                'Gaffer/Grip/Best Boy', 'Set Design', 'Location Manager','Make-Up Artist','Hair Stylist', 'Wardrobe Stylist',
-                'Wardrobe Allowance','Photographer', 'On-Camera Talent', 'Equipment', 'Camera Rental', 'Camera Rental',
-                'Lighting Rental', 'Misc Equipment Rental', 'Misc Equipment Rental', 'Props', 'Insurance', 'Meals & Craft Service',
-                'Hosting Service', 'Taxis & Local Transpo', 'Airfare', 'Hotel', 'Car Rental', 'Gas, Tolls, Parking', 'Research Materials',
-                'Location Fees & Permits', 'Editor', 'Assistant Editor', 'Edit Suite', 'Color Correction', 'Audio Mix',
-                'Design & Motion GFX', 'Transcription', 'Misc Post', 'Photo Licensing', 'Footage Licensing', 'Music Licensing'
-                ]}
-                readOnlyStatus={this.state.readOnlyStatus}
-                value={this.state.importedExpenses.category} />
+              options={categories} />
             }
           </td>
           <td width="93">
-            <TextInput
-              value={this.state.glCode}
-              readOnlyStatus={true} />
-          </td>
-          <td width="115">
-            {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?
-              <StaticDate
-                name="dateSpent"
-                value={this.state.importedExpenses.dateSpent} readOnlyStatus={this.state.readOnlyStatus} /> :
-              <DatePicker
-                name="dateSpent"
-                onChange={this.handleChange}
-                readOnlyStatus={this.state.readOnlyStatus}
-                value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />
+            {this.state.readOnlyStatus === true ?
+              <ReadOnlyText
+                name="glCode"
+                value={this.state.importedExpenses.glCode} /> :
+              <ReadOnlyText
+                name="glCode"
+                value={this.state.glCode} />
             }
           </td>
-          <td width="115">
+          <td width="125">
+            {this.state.readOnlyStatus === true ?
               <StaticDate
+                name="dateSpent"
+                value={this.state.importedExpenses.dateSpent} /> :
+              <DatePicker
+                name="dateSpent"
+                onChange={this.handleChange} />
+            }
+          </td>
+          <td width="125">
+            <StaticDate
               name="dateTracked"
               value={this.state.importedExpenses.dateTracked} />
           </td>
