@@ -4,10 +4,6 @@ import { FormControl } from 'react-bootstrap';
 
 const DatePicker = React.createClass({
 
-  componentDidMount: function(){
-    console.log('in the date picker ', this.props.value)
-  },
-
   handleInputChange: function(e) {
     e.preventDefault();
     var date = e.target.value.split('-');

@@ -89,7 +89,7 @@ const Expenses = React.createClass({
           <span>
             <h3>{"Project ID: "+ this.state.projId}</h3>
           </span>
-          <Table style={{width: "90%"}}>
+          <Table>
             <thead>
               <tr>
                 <th>Vendor</th>
@@ -108,11 +108,12 @@ const Expenses = React.createClass({
                     handleExpenseToDelete={this.handleExpenseToDelete}
                     handleExpenseUpdate={this.handleExpenseUpdate}
                     projs_id={this.state.projs_id}
-                    key={index} readOnlyStatus={true}/>)
+                    key={index}
+                    readOnlyStatus={true}/>)
                 }
               </tbody>
           </Table>
-          <Table style={{width: "90%"}}>
+          <Table>
             <thead>
               <tr>
                 <th>Vendor</th>
