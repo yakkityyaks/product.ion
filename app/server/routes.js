@@ -258,8 +258,10 @@ module.exports = function routes(app){
   });
 
   app.post('/api/update/user', function(req, res) {
-    User.getUser(req.body.username, function(user) {
-      user ? user.save(req.body.data).then(function (user) {
+    console.log("UPDATE REQ ", req.body);
+    var data = req.body.data;
+    User.getUser(data.username, function(user) {
+      user ? user.save(data).then(function (user) {
         res.status(201).json(user);
       }) : res.sendStatus(404);
       // user.set(req.body.data);

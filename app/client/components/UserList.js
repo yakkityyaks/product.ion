@@ -1,8 +1,10 @@
 import React from 'react';
 import NavBar from './NavBar';
 import { Form, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
-import {findDOMNode } from 'react-dom';
 
+// takes all the users as initial state.
+// changed is the flag used to make the save button appear or disappear.
+// validate array receives undefined since react-bootstrap highlights to a specific color unless set to undefined.
 const UserList = React.createClass({
   getInitialState() {
     const users = this.props.organization.users,
@@ -11,44 +13,44 @@ const UserList = React.createClass({
     users.forEach((user) => validate.push(undefined));
     return {users, validate, changed};
   },
-  componentDidMount() {
-    const permName = {0: "Admin", 1: "Producer", 2: "User"};
-
-    this.props.organization.users.forEach((user, idx) => {
-      var $userNode = findDOMNode(this.refs["user" + idx]);
-      $userNode.value = permName[user.perm];
-    });
-  },
   onSubmit(e) {
     e.preventDefault();
+    //make sure there's at least one admin in every organization.
+
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
         console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
         this.props.updateUser(this.state.users[idx]);
       }
     });
+    // this.setState({changed: false});
   },
   onChange(event) {
-    console.log(event.target);
-    let {validate} = this.state;
+    console.log("EVENT.TARGET ", event.target);
+    let {validate, users} = this.state;
+    const values = {"Admin": 0, "Producer": 1, "User": 2};
+
     validate[event.target.name] = "error";
-    this.setState({changed: true, validate});
+    // assign perm number to users in state.
+    users[event.target.name].perm = values[event.target.value];
+    this.setState({changed: true, validate, users});
+    console.log('state of perm ', users[event.target.name].perm);
   },
   render() {
     const {state} = this;
-    // const permName = {0: "Admin", 1: "Producer", 2: "User"};
-    // const namePerm = {"Admin": 0, "Producer": 1, "User": 2};
+    const permName = {0: "Admin", 1: "Producer", 2: "User"};
+
     return (
       <div className="settingsMemberNode">
         <Form onSubmit={this.onSubmit}>
-          {this.state.changed &&
+          {state.changed &&
             <Button bsStyle="success" ref="changeButton"
                     type="submit">Save Changes</Button>}
           {state.users.map((user, key) =>
             <FormGroup key={key} validationState={state.validate[key]}>
               <ControlLabel>{user.username}</ControlLabel>
               <FormControl componentClass="select" className="settingsMemberNode-perm"
-                ref={"user" + key} onChange={this.onChange} name = {key}>
+                onChange={this.onChange} name = {key} value={permName[user.perm]}>
                 <option value="Admin">Admin</option>
                 <option value="Producer">Producer</option>
                 <option value="User">User</option>
