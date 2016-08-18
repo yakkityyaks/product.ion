@@ -30,21 +30,6 @@ const Expenses = React.createClass({
     return nextState.newView;
   },
 
-  addExpenseNode: function(e) {
-    e.preventDefault();
-    var count = this.state.count;
-    var newCount = ++count;
-    var addedExpenses = this.state.addedExpenses;
-    addedExpenses.push(newCount);
-    this.setState({count : newCount});
-  },
-
-  removeExpenseNode(idx) {
-    var last = this.state.addedExpenses.length-1;
-    var newExpensesCount = this.state.addedExpenses.slice(0,last);
-    this.setState({addedExpenses : newExpensesCount});
-  },
-
   handleNewExpense: function(singleExpense){
     singleExpense.projs_id = this.state.projId;
     var newExpenses = this.state.newExpenses;
@@ -91,13 +76,10 @@ const Expenses = React.createClass({
             <CSVDrop {...this.props}/>
           </Modal.Body>
           <Modal.Footer />
-
         </Modal>
-
         <Panel>
           <NavBar {...this.props}/>
         </Panel>
-
         <h3>{"Expenses for " + projName }</h3>
         <Panel>
           <Button bsStyle="primary" bsSize="large" onClick={this.switchChart}>Click for Visuals</Button>
@@ -107,11 +89,9 @@ const Expenses = React.createClass({
           <span>
             <h3>{"Project ID: "+ this.state.projId}</h3>
           </span>
-          <Table striped bordered condensed hover style={{width: "90%"}}>
+          <Table style={{width: "90%"}}>
             <thead>
               <tr>
-                <th>Type</th>
-                <th>Vertical</th>
                 <th>Vendor</th>
                 <th>Description</th>
                 <th>Cost</th>
@@ -123,17 +103,18 @@ const Expenses = React.createClass({
               </tr>
             </thead>
               <tbody>
-                {this.props.expenses.expenses.map((item, index) => <ExpenseNode expense={item} handleExpenseToDelete={this.handleExpenseToDelete}
-                 handleExpenseUpdate={this.handleExpenseUpdate} projs_id={this.state.projs_id} key={index} readOnlyStatus={true}/>)}
+                {this.props.expenses.expenses.map((item, index) =>
+                  <ExpenseNode expense={item}
+                    handleExpenseToDelete={this.handleExpenseToDelete}
+                    handleExpenseUpdate={this.handleExpenseUpdate}
+                    projs_id={this.state.projs_id}
+                    key={index} readOnlyStatus={true}/>)
+                }
               </tbody>
           </Table>
-          <h3>New Expenses</h3>
-
-          <Table striped bordered condensed hover style={{width: "90%"}}>
+          <Table style={{width: "90%"}}>
             <thead>
               <tr>
-                <th>Type</th>
-                <th>Vertical</th>
                 <th>Vendor</th>
                 <th>Description</th>
                 <th>Cost</th>
@@ -144,14 +125,17 @@ const Expenses = React.createClass({
                 <th>Date Tracked</th>
               </tr>
             </thead>
-            <tbody>{this.state.addedExpenses.map((item, index) => <ExpenseNode expense={item} handleNewExpense={this.handleNewExpense} projs_id={this.state.projs_id} key={index} readOnlyStatus={false}/>)}</tbody>
+            <tbody>
+              {this.state.addedExpenses.map((item, index) =>
+                <ExpenseNode
+                  expense={item}
+                  handleNewExpense={this.handleNewExpense}
+                  key={index}
+                  projs_id={this.state.projs_id}
+                  readOnlyStatus={false}/>)
+              }
+            </tbody>
           </Table>
-          <Button onClick={this.addExpenseNode}>Add Expense</Button>
-          <Button onClick={this.removeExpenseNode}>Remove Expense</Button>
-          <div>
-            <Button>Submit New Expenses</Button>
-            <Button bsStyle="primary" bsSize="large" onClick={this.switchModal} id="csvModalButton">Add expenses with a CSV</Button>
-          </div>
         </Panel>
       </div>
     );

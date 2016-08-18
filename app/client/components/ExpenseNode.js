@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
-import ApiCall from "../utils/serverCalls";
+import CurrentDate from './formComponents/CurrentDate.js';
+import DatePicker from './formComponents/DatePicker.js';
+import StaticDate from './formComponents/StaticDate.js';
 import SelectInput from './formComponents/SelectInput.js';
 import TextInput from './formComponents/TextInput.js';
-import CurrentDate from './formComponents/CurrentDate.js';
-import StaticDate from './formComponents/StaticDate.js';
-import DatePicker from './formComponents/DatePicker.js';
 
 const ExpenseNode = React.createClass({
   getInitialState: function() {
@@ -21,9 +20,7 @@ const ExpenseNode = React.createClass({
       glCode: 560260,
       id: 0,
       method: "",
-      type: "",
-      vendor: "",
-      vertical: ""
+      vendor: ""
     };
   },
 
@@ -36,7 +33,10 @@ const ExpenseNode = React.createClass({
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-    this.setState({dateTracked: mm+'/'+ dd + '/' + yyyy});
+    var dates = {};
+    dates.rawDate = today;
+    dates.formattedDate = mm+'/'+ dd + '/' + yyyy
+    this.setState({dateTracked: dates});
   },
 
   handleAdd: function(){
@@ -48,9 +48,7 @@ const ExpenseNode = React.createClass({
       description: this.state.description,
       glCode: this.state.glCode,
       method: this.state.method,
-      type: this.state.type,
-      vendor: this.state.vendor,
-      vertical: this.state.vertical
+      vendor: this.state.vendor
     }
     console.log('addExpense built ', singleExpense);
     this.props.handleNewExpense(singleExpense);
@@ -100,9 +98,7 @@ const ExpenseNode = React.createClass({
     this.setState({glCode:this.props.expense.glCode})
     this.setState({id:this.props.expense.id})
     this.setState({method:this.props.expense.method})
-    this.setState({type:this.props.expense.type})
     this.setState({vendor:this.props.expense.vendor})
-    this.setState({vertical:this.props.expense.vertical})
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
   },
 
@@ -118,9 +114,7 @@ const ExpenseNode = React.createClass({
       glCode:this.state.glCode,
       id:this.state.id,
       method:this.state.method,
-      type:this.state.type,
-      vendor:this.state.vendor,
-      vertical:this.state.vertical
+      vendor:this.state.vendor
     }
     this.props.handleExpenseUpdate(expenseToUpdate);
   },
@@ -128,41 +122,7 @@ const ExpenseNode = React.createClass({
   render() {
     return (
       <tr>
-        <td width="auto">
-          {(this.state.importedExpenses.type && this.state.readOnlyStatus === true) ?
-          <TextInput
-            name="type"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title={this.state.importedExpenses.type}
-            value={this.state.importedExpenses.type} /> :
-          <SelectInput
-            name="type"
-            onChange={this.handleChange}
-            options={['Video Originals', 'Branded', 'Editorial', 'Debt Expenses']}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title ="Type"
-            value={this.state.importedExpenses.type} />
-          }
-        </td>
-        <td width="auto">
-          {(this.state.importedExpenses.vertical && this.state.readOnlyStatus === true) ?
-          <TextInput
-            name="vertical"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title={this.state.importedExpenses.vertical}
-            value={this.state.importedExpenses.vertical} /> :
-          <SelectInput
-            name="vertical"
-            onChange={this.handleChange}
-            options={['Food', 'Beauty', 'Fashion & Style', 'News & Politics', 'News & Celeb', 'Wellness', 'Entertainment']}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title ="Vertical"
-            value={this.state.importedExpenses.vertical} />
-          }
-        </td>
-        <td width="auto">
+        <td>
           <TextInput
             name="vendor"
             onChange={this.handleChange}
@@ -170,7 +130,7 @@ const ExpenseNode = React.createClass({
             title={this.state.importedExpenses.vendor}
             value={this.state.importedExpenses.vendor} />
         </td>
-        <td width="auto">
+        <td>
           <TextInput
             name="description"
             onChange={this.handleChange}
@@ -178,7 +138,7 @@ const ExpenseNode = React.createClass({
             title={this.state.importedExpenses.description}
             value={this.state.importedExpenses.description} />
         </td>
-        <td width="auto">
+        <td>
           <InputGroup>
             <InputGroup.Addon>$</InputGroup.Addon>
                <TextInput
@@ -189,7 +149,7 @@ const ExpenseNode = React.createClass({
                  value={this.state.importedExpenses.cost} />
             <InputGroup.Addon>.00</InputGroup.Addon>
           </InputGroup></td>
-        <td width="auto">
+        <td>
           {(this.state.importedExpenses.method && this.state.readOnlyStatus === true) ?
           <TextInput
             name="method"
@@ -206,7 +166,7 @@ const ExpenseNode = React.createClass({
             value={this.state.importedExpenses.method} />
           }
         </td>
-        <td width="auto">
+        <td>
           {(this.state.importedExpenses.category && this.state.readOnlyStatus === true) ?
             <TextInput
               name="category"
@@ -232,12 +192,12 @@ const ExpenseNode = React.createClass({
             value={this.state.importedExpenses.category} />
           }
         </td>
-        <td width="83">
+        <td width="87">
           {this.state.importedExpenses.glCode ? <TextInput value={this.state.importedExpenses.glCode} readOnlyStatus={true} /> :
           <TextInput value={this.state.glCode} readOnlyStatus={true} />
           }
         </td>
-        <td width="107">
+        <td width="115">
           {(this.state.importedExpenses.dateSpent && this.state.readOnlyStatus === true) ?
             <StaticDate name="dateSpent" value={this.state.importedExpenses.dateSpent} readOnlyStatus={this.state.readOnlyStatus} /> :
           <DatePicker
@@ -247,15 +207,10 @@ const ExpenseNode = React.createClass({
             title={this.state.dateSpent}
             value={this.state.importedExpenses.dateSpent ? this.state.importedExpenses.dateSpent: this.state.dateSpent} />}
         </td>
-        <td width="107">
-          {(this.state.importedExpenses.dateTracked && this.state.readOnlyStatus === true) ?
-            <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
-            <DatePicker
-            name="dateTracked"
-            onChange={this.handleChange}
-            readOnlyStatus={this.state.readOnlyStatus}
-            title={this.state.dateTracked}
-            value={this.state.importedExpenses.dateTracked ? this.state.importedExpenses.dateTracked: this.state.dateTracked} />
+        <td width="115">
+          {this.state.importedExpenses.dateTracked ?
+          <StaticDate name="dateTracked" value={this.state.importedExpenses.dateTracked} readOnlyStatus={this.state.readOnlyStatus} /> :
+          <TextInput name="dateTracked" value={this.state.dateTracked.formattedDate} readOnlyStatus={true} />
           }
         </td>
         {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
