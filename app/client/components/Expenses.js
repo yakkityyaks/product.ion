@@ -25,10 +25,10 @@ const Expenses = React.createClass({
     this.setState({newView: true})
   },
 
-  shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('in the should update ', nextProps, nextState)
-    return nextState.newView;
-  },
+  // shouldComponentUpdate: function(nextProps, nextState) {
+  //   console.log('in the should update ', nextProps, nextState)
+  //   return nextState.newView;
+  // },
 
   handleNewExpense: function(singleExpense){
     singleExpense.projs_id = this.state.projId;
@@ -56,6 +56,7 @@ const Expenses = React.createClass({
   },
 
   switchChart() {
+    console.log('switching chart', !this.state.open)
     this.setState({open: !this.state.open});
   },
 

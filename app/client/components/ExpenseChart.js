@@ -11,6 +11,7 @@ const ExpenseChart = React.createClass({
 	},
 
 	componentDidMount() {
+		console.log('expense chart is mounting')
 		this.sortBy();
 	},
 
