@@ -10,7 +10,7 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: "", budget: this.props.budget
+        filter: "", budgets: this.props.budgets
       };
     },
     componentWillReceiveProps: function(newProps){
@@ -21,7 +21,7 @@ const Budget = React.createClass({
 
     shouldComponentUpdate: function(nextProps, nextState) {
       console.log('in the should update ', nextProps, nextState);
-      this.setState({budget: nextProps.budget});
+      this.setState({budgets: nextProps.budgets});
       return this.state.trigger || false;
     },
     resetNewBudgetField() {
@@ -49,9 +49,6 @@ const Budget = React.createClass({
 
       this.props.addNewBudget(budget);
       this.resetNewBudgetField();
-    },
-    handleClick(e) {
-      e.preventDefault();
     },
     handleNewTotalChange(e) {
       this.setState({
@@ -81,8 +78,8 @@ const Budget = React.createClass({
       return (
         <div>
           {
-            this.state.budget &&
-            this.state.budget.map((row, key) =>
+            this.state.budgets &&
+            this.state.budgets.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
