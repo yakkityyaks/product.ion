@@ -102,7 +102,7 @@ const Expenses = React.createClass({
                   <th>Cost to Date</th>
                   <th>Estimate to Complete</th>
                   <th>Requested Budget</th>
-                </tr>  
+                </tr>
               </thead>
               <tbody>
                 <tr id="readOnlyBody">
@@ -146,7 +146,8 @@ const Expenses = React.createClass({
                     handleExpenseToDelete={this.handleExpenseToDelete}
                     handleExpenseUpdate={this.handleExpenseUpdate}
                     projs_id={this.state.projs_id}
-                    key={index} readOnlyStatus={true}/>)
+                    key={index}
+                    readOnlyStatus={true}/>)
                 }
               </tbody>
           </Table>
