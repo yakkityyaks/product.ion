@@ -76,7 +76,7 @@ module.exports = function routes(app){
 
   //Creates a new project with the provided data and returns it
   //req.body should hold
-  // {  
+  // {
   //    data: {
   //      name: string,
   //      projId: string,
@@ -230,7 +230,7 @@ module.exports = function routes(app){
     });
   });
 
-  //given a Project Id in req.body.projId, this route returns the project with related expenses, budgets, users and 
+  //given a Project Id in req.body.projId, this route returns the project with related expenses, budgets, users and
   //the organization that owns the project. Sends a 404 if no project is found
   app.post('/api/get/proj', function(req, res) {
     Project.getProj(req.body.projId, function(proj) {
@@ -267,8 +267,8 @@ module.exports = function routes(app){
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/expense', function(req, res) {
     console.log('In /api/update/expense ', req.body.data)
-    Expense.getExpense(req.body.id, function(exp) {
-      exp ? exp.save(req.body.data).then(function(exp) {
+    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
+      exp ? exp.save(req.body.data.singleExpense).then(function(exp) {
         res.status(201).json(exp);
       }) : res.sendStatus(404);
     });
@@ -305,10 +305,10 @@ module.exports = function routes(app){
       }) : res.sendStatus(404);
     });
   });
-  
 
 
-  // is this ever used? 
+
+  // is this ever used?
 
   // //given the description of a budget by req.body.description, and any key-value pairs to be changed in req.body.data,
   // //this route updates the referenced budget. If it is not found, this sends back a 404.
