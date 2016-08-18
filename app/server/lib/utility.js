@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-// Generate Token using secret from process.env.JWT_SECRET
+// Generate Token using secret
 exports.generateToken = function(user) {
   var u = {
    username: user.attributes.username,
