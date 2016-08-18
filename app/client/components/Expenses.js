@@ -73,14 +73,15 @@ const Expenses = React.createClass({
     return (
       <div>
         <Modal show={this.state.modal} onHide={this.switchModal} >
+          <Modal.Header>
+            <Modal.Title>{"Add Expenses to '" + proj.name + "' with a CSV"}</Modal.Title>
+          </Modal.Header>
           <Modal.Body>
             <CSVDrop {...this.props}/>
           </Modal.Body>
           <Modal.Footer />
         </Modal>
-        <Panel>
-          <NavBar {...this.props}/>
-        </Panel>
+        <NavBar {...this.props}/>
         <Panel>
           <span style={{"font-size":"30"}}>{"Project Details for " + proj.name }</span>
           <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>

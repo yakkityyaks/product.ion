@@ -17,6 +17,9 @@
 	text-align: center;
 }
 
+#title > h1 {
+	font-size: 60px;
+}
 #settingsWindow {
 	display:inline-block;
 	padding-right: 30px;
@@ -41,7 +44,7 @@
 }
 
 #readOnlyBody > td {
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .chartSortSelector{
@@ -79,3 +82,12 @@
 .usersSettings {
 	float: right;
 }
+
+/*.navbar-default {
+	background-color: blue;
+}*/
+
+
+
+
+

@@ -113,7 +113,7 @@ const UserList = React.createClass({
           <p>{this.state.noAdminWarning}</p>
           {state.users.map((user, key) =>
             <FormGroup style={{"float":"right"}} key={key} validationState={state.validate[key]}>
-              <ControlLabel bsClass="chartSortSelector">{user.username}</ControlLabel>&nbsp;
+              <ControlLabel bsClass="chartSortSelector">{user.username}</ControlLabel>&nbsp;&nbsp;
               <FormControl componentClass="select" className="settingsMemberNode-perm"
                 onChange={this.onChange} name = {key} value={permName[user.perm]}>
                 <option value="Admin">Admin</option>

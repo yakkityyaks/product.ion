@@ -11,7 +11,7 @@ const Main = React.createClass({
     return (
       <div>
         <Link to="/">
-          <PageHeader id="title" style={{"font-size":"50px"}}>product.ion</PageHeader>
+          <PageHeader id="title">product.ion</PageHeader>
         </Link>
         { React.cloneElement(this.props.children, this.props) }
       </div>

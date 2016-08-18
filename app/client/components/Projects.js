@@ -27,9 +27,7 @@ const Projects = React.createClass({
         {
           this.props.short ? <div></div> :
           <div>  
-            <Panel>
-              <NavBar {...this.props}/>
-            </Panel>
+            <NavBar {...this.props}/>
           </div>  
         }
 
