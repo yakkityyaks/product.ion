@@ -14,16 +14,15 @@ const Budget = React.createClass({
       };
     },
     componentWillReceiveProps: function(newProps){
-      console.log('in the expense recieve props', newProps.expenses);
+      console.log("ding ding ding");
+      console.log('in the budget recieve props', newProps.budgets);
       this.setState({trigger: true});
     },
 
     shouldComponentUpdate: function(nextProps, nextState) {
       console.log('in the should update ', nextProps, nextState);
-      if (this.state.trigger && nextProps.budget) {
-        this.setState({budget: nextProps.budget});
-      }
-      return this.state.trigger;
+      this.setState({budget: nextProps.budget});
+      return this.state.trigger || false;
     },
     resetNewBudgetField() {
       this.setState({
@@ -78,11 +77,12 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-      let { budget } = this.state;
+      // const projBudget = "proj" + this.props.id;
       return (
         <div>
           {
-            budget && budget.map((row, key) =>
+            this.state.budget &&
+            this.state.budget.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
@@ -137,7 +137,6 @@ const Budget = React.createClass({
           </Button>
           </FormGroup>
           <FormControl readOnly value={"$" + this.props.total} />
-          <Button type="submit">Submit your Budget!</Button>
         </Form>
       </div>
     );

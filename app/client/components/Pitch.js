@@ -35,7 +35,6 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
-      budget: [],
       newPitch: data.id ? false : true,
       id: data.id || undefined,
       projName: data.name || "",
@@ -75,6 +74,18 @@ const Pitch = React.createClass({
       adminNotes: this.state.adminNotes
     };
   },
+  componentWillReceiveProps: function(newProps){
+    console.log("PITCH DING");
+    console.log('in the PITCH recieve props', newProps.budgets);
+    this.setState({trigger: true});
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    console.log('in the PITCH should update ', nextProps, nextState);
+    this.setState({budgets: nextProps.budgets});
+    console.log("Pitch should update changed budget to ", this.state.budgets);
+    return this.state.trigger || false;
+  },
   handlePitchSubmit(event) {
     event.preventDefault();
     var data = this.buildPitch();
@@ -105,7 +116,8 @@ const Pitch = React.createClass({
   handleSelect(key) {
     //budget set here to accomodate asynchronous budget list hydration.
     this.setState({
-        budget: this.props.budgets["proj" + this.state.id],
+        budgets: this.props.budgets["proj" + this.state.id],
+        // budgets: this.props.budgets,
         activeTab: key,
     });
   },
@@ -128,7 +140,7 @@ const Pitch = React.createClass({
     let newBudget = this.state.budget;
     newBudget[idx].codeID = e;
 
-    this.setState({budget: newBudget});
+    this.setState({budgets: newBudget});
   },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
@@ -146,7 +158,7 @@ const Pitch = React.createClass({
         console.log("newBudget is ", newBudget);
         this.setState({
             reqBudget: this.state.reqBudget - budget.total,
-            budget: newBudget
+            budgets: newBudget
           });
         break;
       }
@@ -174,7 +186,6 @@ const Pitch = React.createClass({
     this.setState({judge: newJudge});
   },
   render() {
-    let budget = this.props.budgets["proj" + this.state.id];
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id="pitchTabs">
         <Tab eventKey={1} title="Pitch">
@@ -186,8 +197,9 @@ const Pitch = React.createClass({
         </Tab>
         <Tab eventKey={2} title="Budget">
           <Budget
-            {...this.props}
-            budget={budget}
+            // {...this.props}
+            budgets={this.state.budgets}
+            id = {this.state.id}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
