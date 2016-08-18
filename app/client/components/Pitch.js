@@ -76,15 +76,14 @@ const Pitch = React.createClass({
     };
   },
   componentWillReceiveProps: function(newProps){
-    console.log("PITCH DING");
-    console.log('in the PITCH recieve props', newProps.budgets);
+    // console.log('in the PITCH recieve props', newProps.budgets);
     this.setState({trigger: true});
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('in the PITCH should update ', nextProps.budgets, nextState);
+    // console.log('in the PITCH should update ', nextProps.budgets, nextState);
     this.setState({budgets: nextProps.budgets["proj" + this.state.id]});
-    console.log("Pitch should update changed budget to ", this.state.budgets);
+    // console.log("Pitch should update changed budget to ", this.state.budgets);
     return this.state.trigger || true;
   },
   handlePitchSubmit(event) {
@@ -138,10 +137,12 @@ const Pitch = React.createClass({
     this.setState({budget: newBudget});
   },
   handleBudgetSelect(e, idx) {
-    let newBudget = this.state.budget;
-    newBudget[idx].codeID = e;
-
-    this.setState({budgets: newBudget});
+    // let newBudget = this.state.budgets;
+    // console.log("Handle Select newBudget is ", newBudgets);
+    // console.log("Handle Select: e:", e, " idx: ", idx);
+    // newBudget[idx].glCode = e;
+    //
+    // this.setState({budgets: newBudget});
   },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);

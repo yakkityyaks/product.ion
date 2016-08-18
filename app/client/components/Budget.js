@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, DropdownButton, Form, FormGroup,
+import { Button, DropdownButton, Form, FormGroup, ControlLabel,
   InputGroup, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
 import CustomSearch from './CustomSearch';
@@ -15,13 +15,12 @@ const Budget = React.createClass({
       };
     },
     componentWillReceiveProps: function(newProps){
-      console.log("ding ding ding");
-      console.log('in the budget recieve props', newProps.budgets);
+      // console.log('in the budget recieve props', newProps.budgets);
       this.setState({trigger: true});
     },
 
     shouldComponentUpdate: function(nextProps, nextState) {
-      console.log('in the should update ', nextProps, nextState);
+      // console.log('in the should update ', nextProps, nextState);
       this.setState({budgets: nextProps.budgets});
       return this.state.trigger || false;
     },
@@ -64,8 +63,7 @@ const Budget = React.createClass({
     },
     selectCata(e) {
       this.setState({
-        newBudgetCode: cata[e].code,
-        newBudgetLabel: cata[e].label,
+        newBudgetCode: e,
         filter: ""
       });
     },
@@ -75,21 +73,25 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-      // const projBudget = "proj" + this.props.id;
+      let code = this.state.newBudgetCode;
       return (
         <div style={{"margin-top":"20px"}}>
           {
             this.state.budgets &&
             this.state.budgets.map((row, key) =>
-              <BudgetNode key={key} idx={key} budget = {row} lock={true}
-                          deleteBudgetNode={this.props.deleteBudgetNode}
-                          handleBudgetChange = {this.props.handleBudgetChange}
-                          handleBudgetSelect = {this.props.handleBudgetSelect}/>
+              <div>
+                <BudgetNode key={key} idx={key} budget = {row} lock={true}
+                            deleteBudgetNode={this.props.deleteBudgetNode}
+                            handleBudgetChange = {this.props.handleBudgetChange}
+                            handleBudgetSelect = {this.props.handleBudgetSelect}/>
+               <br />
+              </div>
           )
           }
           <br>
           </br>
             <br></br>
+          <ControlLabel>Add New Budget Item:</ControlLabel>
           <Form inline onSubmit={this.handleSubmit}>
             <InputGroup>
                 <InputGroup.Addon>Description</InputGroup.Addon>
@@ -98,7 +100,7 @@ const Budget = React.createClass({
                            placeholder="Description" onChange={this.handleChange}/>
              </InputGroup>
             <DropdownButton bsStyle={"default"} id="catSelect"
-                    title={this.state.newBudgetLabel || "Category"} >
+                    title={cata[code] && cata[code].label+": "+cata[code].code || "Category"} >
               <CustomSearch id={"5"} name={"cataDropdown"}
                       data={{value: this.state.filter, onChange: this.setFilter}}/>
              {cata
@@ -107,10 +109,6 @@ const Budget = React.createClass({
                .map(budgetDropdownItem)
              }
             </DropdownButton>
-            <FormGroup>
-              <FormControl readOnly type="text"
-                           value={this.state.newBudgetCode} placeholder="GL Code"/>
-            </FormGroup>
             <FormGroup>
               <InputGroup className="testing2">
                 <InputGroup.Addon>Cost:</InputGroup.Addon>

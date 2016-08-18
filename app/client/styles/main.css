@@ -79,6 +79,10 @@
 	width: 200px;
 }
 
+.budgetNodeForms {
+	width: 170px;
+}
+
 .usersSettings {
 	float: right;
 }
@@ -86,8 +90,3 @@
 /*.navbar-default {
 	background-color: blue;
 }*/
-
-
-
-
-
