@@ -152,17 +152,17 @@ const Pitch = React.createClass({
     let { budgets } = this.state;
 
     this.props.deleteBudgetNode(node);
-    for (var x = 0; x < this.state.budgets.length; x++) {
-      if (budgets[x] === node) {
-        let newBudgets = budgets.slice(0, x).concat(budgets.slice(x+1));
-        console.log("newBudget is ", newBudgets);
-        this.setState({
-            reqBudget: this.state.reqBudget - budgets.total,
-            budgets: newBudgets
-          });
-        break;
-      }
-    }
+    // for (var x = 0; x < this.state.budgets.length; x++) {
+    //   if (budgets[x] === node) {
+    //     let newBudgets = budgets.slice(0, x).concat(budgets.slice(x+1));
+    //     console.log("newBudget is ", newBudgets);
+    //     this.setState({
+    //         reqBudget: this.state.reqBudget - budgets.total,
+    //         budgets: newBudgets
+    //       });
+    //     break;
+    //   }
+    // }
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
