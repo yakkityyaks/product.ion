@@ -9,43 +9,100 @@ const UserList = React.createClass({
   getInitialState() {
     const users = this.props.organization.users,
           changed = false,
-          validate = [];
+          validate = [],
+          noAdminWarning = "",
+          button = "Save Changes",
+          saveButtonStyle = "primary";
     users.forEach((user) => validate.push(undefined));
-    return {users, validate, changed};
+
+    return {
+      users,
+      validate,
+      changed,
+      button,
+      noAdminWarning,
+      saveButtonStyle
+    };
   },
-  // Status - "error" is a feature of react-bootstrap.
+
+  componentWillMount() {
+    const users = this.props.organization.users,
+          validate = [];
+    this.setState({
+      changed: false,
+      validate,
+      noAdminWarning: "",
+      saveButtonStyle: "primary"
+    });
+      users.forEach((user) => validate.push(undefined));
+  },
+  // Status of "error" is a feature of react-bootstrap.
   // Send the entire user object to server.
   onSubmit(e) {
     e.preventDefault();
-    //make sure there's at least one admin in every organization.
     let usersList = this.state.users;
+
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
         console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
+        // Make sure there's at least one admin in every organization.
         for(let i = 0; i < usersList.length; i++) {
-          console.log("userList Perm #: ", usersList[i].perm);
           if(usersList[i].perm === 0) {
-            console.log("There's an admin at ", usersList[i]);
+            this.setState({saveButtonStyle: "success"});
             this.props.updateUser(this.state.users[idx]);
-          } else if(i === usersList.length-1 && usersList[i] !== 0) {
             return;
+          } else if(i === usersList.length-1 && usersList[i].perm !== 0) {
+            this.setState({
+              saveButtonStyle: "warning",
+              button: " Sorry! ",
+              noAdminWarning: "Invalid Input: At least one Administrator required.",
+            });
+            // return;
           }
         }
       }
     });
-    // this.setState({changed: false});
+      const users = this.props.organization.users,
+            validate = [];
+      this.setState({
+        validate,
+        changed: false
+      });
+        users.forEach((user) => validate.push(undefined));
   },
-  // Set permission level in state.
-  onChange(event) {
-    console.log("EVENT.TARGET ", event.target);
+  // Set permission levels in users state.
+  onChange(e) {
+    e.preventDefault();
+    let usersList = this.state.users;
+
+    console.log("EVENT.TARGET ", e.target);
     let {validate, users} = this.state;
     const values = {"Admin": 0, "Producer": 1, "User": 2};
-
-    validate[event.target.name] = "error";
+    validate[e.target.name] = "error";
     // assign perm number to users in state.
-    users[event.target.name].perm = values[event.target.value];
+    users[e.target.name].perm = values[e.target.value];
+
+    for(let i = 0; i < usersList.length; i++) {
+      if(usersList[i].perm === 0) {
+        console.log("on change user perm ", usersList[i].perm);
+        this.setState({
+          saveButtonStyle: "primary",
+          button: "Save Changes",
+          noAdminWarning: "",
+          changed: true
+        });
+        return;
+      } else if(i === usersList.length-1 && usersList[i].perm !== 0) {
+        this.setState({
+          saveButtonStyle: "warning",
+          button: " Sorry! ",
+          noAdminWarning: "Invalid Input: At least one Administrator required.",
+        });
+        return;
+      }
+    }
     this.setState({changed: true, validate, users});
-    console.log('state of perm ', users[event.target.name].perm);
+    console.log('state of perm ', users[e.target.name].perm);
   },
   render() {
     const {state} = this;
@@ -55,8 +112,10 @@ const UserList = React.createClass({
       <div className="settingsMemberNode">
         <Form onSubmit={this.onSubmit}>
           {state.changed &&
-            <Button bsStyle="success" ref="changeButton"
-                    type="submit">Save Changes</Button>}
+            <Button bsStyle={this.state.saveButtonStyle} ref="changeButton"
+                    type="submit">{this.state.button}</Button>
+          }
+          <p>{this.state.noAdminWarning}</p>
           {state.users.map((user, key) =>
             <FormGroup key={key} validationState={state.validate[key]}>
               <ControlLabel>{user.username}</ControlLabel>
