@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, DropdownButton, Form, FormGroup, InputGroup, MenuItem, FormControl } from 'react-bootstrap';
+import { Button, DropdownButton, Form, FormGroup,
+  InputGroup, MenuItem, FormControl } from 'react-bootstrap';
 import BudgetNode from './BudgetNode';
 import CustomSearch from './CustomSearch';
 
@@ -10,8 +11,19 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: ""
+        filter: "", budgets: this.props.budgets
       };
+    },
+    componentWillReceiveProps: function(newProps){
+      console.log("ding ding ding");
+      console.log('in the budget recieve props', newProps.budgets);
+      this.setState({trigger: true});
+    },
+
+    shouldComponentUpdate: function(nextProps, nextState) {
+      console.log('in the should update ', nextProps, nextState);
+      this.setState({budgets: nextProps.budgets});
+      return this.state.trigger || false;
     },
     resetNewBudgetField() {
       this.setState({
@@ -39,9 +51,6 @@ const Budget = React.createClass({
       this.props.addNewBudget(budget);
       this.resetNewBudgetField();
     },
-    handleClick(e) {
-      e.preventDefault();
-    },
     handleNewTotalChange(e) {
       this.setState({
         newBudgetTotal: e.target.value
@@ -66,11 +75,12 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-
+      // const projBudget = "proj" + this.props.id;
       return (
         <div>
           {
-            this.props.budget && this.props.budget.map((row, key) =>
+            this.state.budgets &&
+            this.state.budgets.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
@@ -125,7 +135,6 @@ const Budget = React.createClass({
           </Button>
           </FormGroup>
           <FormControl readOnly value={"$" + this.props.total} />
-          <Button type="submit">Submit your Budget!</Button>
         </Form>
       </div>
     );
