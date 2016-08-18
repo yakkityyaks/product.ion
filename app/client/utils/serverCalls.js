@@ -13,7 +13,7 @@ let registerUser = (username, password, orgs_id, perm) => {
 };
 
 let updateUser = (user) => {
-  return axios.post('/api/update/user', {});
+  return axios.post('/api/update/user', {data: user});
 };
 
 let registerProject = (projectObj) =>
@@ -51,9 +51,9 @@ let removeExpense = (singleExpense) => {
 };
 
 let updateExpense = (singleExpense) => {
-  console.log('in servercalls updateExpense ', singleExpense)
+  console.log('in servercalls updateExpense ', singleExpense);
   return axios.post('/api/update/expense', {data: singleExpense});
-}
+};
 
 let parseCSV = (data, id) =>
   axios.post('/api/register/csv', {data: data, id: id});

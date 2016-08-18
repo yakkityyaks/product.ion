@@ -113,12 +113,12 @@ function posts(state=[], action) {
     case "UPDATE_USER":
       console.log("ding ding ding", action.user);
       ApiCall.updateUser(action.user)
-              .then(res => {
-                console.log(res);
-              })
-              .catch(err => {
-                console.error(err);
-              });
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.error(err);
+        });
       break;
 
     case "POST_LOGIN":

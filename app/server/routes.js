@@ -287,8 +287,10 @@ module.exports = function routes(app){
   //given the username of a user by req.body.username, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/user', function(req, res) {
-    User.getUser(req.body.username, function(user) {
-      user ? user.save(req.body.data).then(function (user) {
+    console.log("UPDATE REQ ", req.body);
+    var data = req.body.data;
+    User.getUser(data.username, function(user) {
+      user ? user.save(data).then(function (user) {
         res.status(201).json(user);
       }) : res.sendStatus(404);
     });
