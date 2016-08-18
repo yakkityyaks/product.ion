@@ -2,9 +2,9 @@ import React from 'react';
 import NavBar from './NavBar';
 import { Form, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 
-// takes all the users as initial state.
-// changed is the flag used to make the save button appear or disappear.
-// validate array receives undefined since react-bootstrap highlights to a specific color unless set to undefined.
+// This takes all the users as initial state.
+// "Changed" is the flag for making the save button dis/appear.
+// Validate array receives "undefined" since react-bootstrap defaults to specific colors unless set to undefined.
 const UserList = React.createClass({
   getInitialState() {
     const users = this.props.organization.users,
@@ -13,18 +13,29 @@ const UserList = React.createClass({
     users.forEach((user) => validate.push(undefined));
     return {users, validate, changed};
   },
+  // Status - "error" is a feature of react-bootstrap.
+  // Send the entire user object to server.
   onSubmit(e) {
     e.preventDefault();
     //make sure there's at least one admin in every organization.
-
+    let usersList = this.state.users;
     this.state.validate.forEach((status, idx) => {
       if (status === "error") {
         console.log("UserList: this.state.users[idx] ", this.state.users[idx]);
-        this.props.updateUser(this.state.users[idx]);
+        for(let i = 0; i < usersList.length; i++) {
+          console.log("userList Perm #: ", usersList[i].perm);
+          if(usersList[i].perm === 0) {
+            console.log("There's an admin at ", usersList[i]);
+            this.props.updateUser(this.state.users[idx]);
+          } else if(i === usersList.length-1 && usersList[i] !== 0) {
+            return;
+          }
+        }
       }
     });
     // this.setState({changed: false});
   },
+  // Set permission level in state.
   onChange(event) {
     console.log("EVENT.TARGET ", event.target);
     let {validate, users} = this.state;
