@@ -10,8 +10,20 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: ""
+        filter: "", budget: this.props.budget
       };
+    },
+    componentWillReceiveProps: function(newProps){
+      console.log('in the expense recieve props', newProps.expenses);
+      this.setState({trigger: true});
+    },
+
+    shouldComponentUpdate: function(nextProps, nextState) {
+      console.log('in the should update ', nextProps, nextState);
+      if (this.state.trigger && nextProps.budget) {
+        this.setState({budget: nextProps.budget});
+      }
+      return this.state.trigger;
     },
     resetNewBudgetField() {
       this.setState({
@@ -66,11 +78,11 @@ const Budget = React.createClass({
         node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
-      let budgets = this.props.budgets;
+      let { budget } = this.state;
       return (
         <div>
           {
-            budgets["proj" + this.props.id] && budgets["proj" + this.props.id].map((row, key) =>
+            budget && budget.map((row, key) =>
               <BudgetNode key={key} idx={key} budget = {row} lock={true}
                           deleteBudgetNode={this.props.deleteBudgetNode}
                           handleBudgetChange = {this.props.handleBudgetChange}
