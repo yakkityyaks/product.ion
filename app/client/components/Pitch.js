@@ -75,6 +75,18 @@ const Pitch = React.createClass({
       adminNotes: this.state.adminNotes
     };
   },
+  componentWillReceiveProps: function(newProps){
+    console.log("PITCH DING");
+    console.log('in the PITCH recieve props', newProps.budgets);
+    this.setState({trigger: true});
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    console.log('in the PITCH should update ', nextProps.budgets, nextState);
+    this.setState({budgets: nextProps.budgets["proj" + this.state.id]});
+    console.log("Pitch should update changed budget to ", this.state.budgets);
+    return this.state.trigger || true;
+  },
   handlePitchSubmit(event) {
     event.preventDefault();
     var data = this.buildPitch();
@@ -105,7 +117,8 @@ const Pitch = React.createClass({
   handleSelect(key) {
     //budget set here to accomodate asynchronous budget list hydration.
     this.setState({
-        budget: this.props.budgets["proj" + this.state.id],
+        budgets: this.props.budgets["proj" + this.state.id],
+        // budgets: this.props.budgets,
         activeTab: key,
     });
   },
@@ -128,7 +141,7 @@ const Pitch = React.createClass({
     let newBudget = this.state.budget;
     newBudget[idx].codeID = e;
 
-    this.setState({budget: newBudget});
+    this.setState({budgets: newBudget});
   },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
@@ -136,21 +149,21 @@ const Pitch = React.createClass({
       reqBudget: this.state.reqBudget + budget.total
     });
   },
-  deleteBudgetNode(budgetId) {
-    let { budget } = this.state;
+  deleteBudgetNode(node) {
+    let { budgets } = this.state;
 
-    this.props.deleteBudgetNode(budgetId);
-    for (var x = 0; x < this.state.budget.length; x++) {
-      if (budget.id === budgetId) {
-        let newBudget = budget.slice(0, x).concat(budget.slice(x+1));
-        console.log("newBudget is ", newBudget);
-        this.setState({
-            reqBudget: this.state.reqBudget - budget.total,
-            budget: newBudget
-          });
-        break;
-      }
-    }
+    this.props.deleteBudgetNode(node);
+    // for (var x = 0; x < this.state.budgets.length; x++) {
+    //   if (budgets[x] === node) {
+    //     let newBudgets = budgets.slice(0, x).concat(budgets.slice(x+1));
+    //     console.log("newBudget is ", newBudgets);
+    //     this.setState({
+    //         reqBudget: this.state.reqBudget - budgets.total,
+    //         budgets: newBudgets
+    //       });
+    //     break;
+    //   }
+    // }
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
@@ -186,16 +199,12 @@ const Pitch = React.createClass({
         </Tab>
         <Tab eventKey={2} title="Budget">
           <Budget
-            budgets={this.props.budgets}
-            id = {this.state.id}
+            budgets={this.state.budgets}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
             deleteBudgetNode = {this.deleteBudgetNode}
-            otherBudget={this.props.budgets["proj" + this.state.id]}
             />
-
-
         </Tab>
       </Tabs>
     );

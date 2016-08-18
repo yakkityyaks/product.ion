@@ -25,22 +25,33 @@ function budgets(state = {}, action) {
       console.log("newstate is ", newState);
       return newState;
     case "ADD_BUDGET_NODE":
-      console.log("At add budget node. Action is ", action.node);
-      console.log("State is ", state);
-      state["proj" + action.node.projs_id].push(action.node);
-      console.log("New state is ", state);
-      return state;
+      const project = "proj" + action.node.projs_id;
+      let projArr = state[project];
+      projArr.push(action.node);
+
+      return Object.assign({}, state, {[project]: projArr});
     case "DELETE_BUDGET_NODE":
-      console.log("Ready to delete a node. Node is ", action.id);
-      ApiCall.deleteBudget(action.id)
+      console.log("Ready to delete a node. Node is ", action.node.id);
+      ApiCall.deleteBudget(action.node.id)
         .then(res => {
           console.log("Successfully talked with server. Res is ", res);
+          store.dispatch({type: "REMOVE_BUDGET_FROM_STORE", node: action.node});
         })
         .catch(err => {
           console.error(err);
         });
       break;
+    case "REMOVE_BUDGET_FROM_STORE"://INCOMPLETE, FINISH LATER
+      console.log("Removing budget node from store. Action is ", action);
+      // state[action.project] = [...state[action.project].slice(0, action.index)];
+      const proj = "proj" + action.node.projs_id;
+      let arr = state[proj];
+      let idx = arr.indexOf(action.node);
 
+      arr = arr.slice(0, idx).concat(arr.slice(idx + 1));
+
+      console.log("Setting new state to ", arr);
+      return Object.assign({}, state, {[proj]: arr});
     default:
       return state;
   }
