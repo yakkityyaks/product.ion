@@ -30,7 +30,11 @@ const ExpenseNode = React.createClass({
   componentDidMount: function(){
     if(this.state.dateTracked === ''){
       var newDate = new Date();
-      var today = newDate.format("mm/dd/yyyy")
+      var today = {}
+      var formattedDate = newDate.format("mm/dd/yyyy");
+      var rawDate = newDate;
+      today.formattedDate = formattedDate;
+      today.rawDate = rawDate;
       console.log('in the node ',today)
       this.setState({dateTracked: today})
     }
@@ -41,7 +45,7 @@ const ExpenseNode = React.createClass({
       category: this.state.category,
       cost: this.state.cost,
       dateSpent: this.state.dateSpent.rawDate,
-      dateTracked: this.state.dateTracked,
+      dateTracked: this.state.dateTracked.rawDate,
       description: this.state.description,
       glCode: this.state.glCode,
       method: this.state.method,
@@ -88,9 +92,8 @@ const ExpenseNode = React.createClass({
   },
 
   handleUpdate: function(){
-    var on = true;
-    this.setState({readOnlyStatus: on})
-    console.log('readOnly status is ', this.state.readonlyStatus)
+    var off = true;
+    this.setState({readOnlyStatus: off}, function(){
     var expenseToUpdate = {
       category:this.state.category,
       cost:this.state.cost,
@@ -104,7 +107,10 @@ const ExpenseNode = React.createClass({
     }
     console.log('handleUpdate built this expense object ', expenseToUpdate);
     this.props.handleExpenseUpdate(expenseToUpdate);
+    })
 
+
+    console.log('READONLY status is ', this.state.readOnlyStatus)
   },
 
   render() {
