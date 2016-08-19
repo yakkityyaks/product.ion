@@ -4,9 +4,7 @@ import { ControlLabel, FormControl, FormGroup, Panel } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import NavBar from './NavBar.js';
 
-
 const CSVDrop = React.createClass({
-
   getInitialState() {
     return {
       projs_id: undefined
@@ -30,9 +28,9 @@ const CSVDrop = React.createClass({
             var valid = true;
             res.data.forEach(function(row) {
               if (Object.keys(row).length !== 8) valid = false;
-            })
+            });
             if (valid) {
-              that.props.parseCSV(res.data, id)
+              that.props.parseCSV(res.data, id);
             } else {
               alert("Invalid row(s)");
             }
@@ -47,7 +45,6 @@ const CSVDrop = React.createClass({
   // we match the project id to the id we have in order to obtain the project name.
   render () {
     let projName="";
-
     this.props.projects.forEach((project) => {
       if (project.projId === this.props.expenses.projId) {
         projName = project.name;
@@ -61,7 +58,7 @@ const CSVDrop = React.createClass({
           <Dropzone type="file" ref="file" onDrop={this.onDrop}>
             <div>Try dropping some CSV files here, or click to select files to upload.</div>
           </Dropzone>
-        </div>  
+        </div>
         <h4>The first line of your CSV should be 'type,vertical,glCode,</h4>
         <h4>dateSpent,dateTracked,vendor,method,description,cost'</h4>
       </div>
