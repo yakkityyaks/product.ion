@@ -19,11 +19,17 @@ const ProjectNode = React.createClass({
 
   render() {
     const { name, projId, status, costToDate, estimateToComplete } = this.props.project;
+    var username = '';
+    var that = this;
+    this.props.organization.users.forEach(function(user) {
+      if (user.id === that.props.project.createdBy) username = user.username;
+    })
 
     return (
       <tr onClick={this.triggerProjectClick} id="readOnlyBody">
         <td>{name}</td>
         <td>{projId}</td>
+        <td>{username}</td>
         <td>{status}</td>
         <td>{this.toDollar(estimateToComplete)}</td>
         <td>{this.toDollar(costToDate)}</td>
