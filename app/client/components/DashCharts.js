@@ -7,11 +7,11 @@ const DashCharts = React.createClass({
 		return {
 			expenses: undefined,
 			data: [],
-			sortBy: "type"
+			sortBy: "vendor"
 		};
 	},
 
-	componentDidMount() {
+	componentWillMount() {
 		this.getExpenses();
 	},
 
@@ -72,7 +72,7 @@ const DashCharts = React.createClass({
         renderTo: "dashChartContainer"
       },
       title: {
-        text: ''
+        text: 'Breakdown of Expenses for All Projects'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

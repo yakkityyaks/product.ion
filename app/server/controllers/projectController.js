@@ -17,6 +17,10 @@ exports.getProj = function(projId, cb) {
 	new Project({projId: projId}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
 };
 
+exports.getProjById = function(id, cb) {
+	new Project({id:id}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
+}
+
 exports.getProjs = function(cb) {
 	new Project().fetchAll().then(cb);
 };

@@ -117,27 +117,43 @@ module.exports = function routes(app){
     console.log('In /api/register/expenses ', req.body.data)
     // req body should hold the following
     // {
-    //  data: {
-    //    type: string,
-    //    vertical: string,
-    //    category: string,
-    //    glCode: string,
-    //    dateSpent: string,
-    //    dateTracked: string,
-    //    vendor: string,
-    //    method: string,
-    //    description: string,
-    //    cost: float,
-    //    projs_id: int
-    //  }
+    //  "data": { "singleExpense" : {
+    //    "type": string,
+    //    "vertical": string,
+    //    "category": string,
+    //    "glCode": string,
+    //    "dateSpent": string,
+    //    "dateTracked": string,
+    //    "vendor": string,
+    //    "method": string,
+    //    "description": string,
+    //    "cost": float,
+    //    "projs_id": int
+    //  }}
     // }
 
     // makes an expense w/ the provided data linked to the provided project
-    // returns it on completion
-    Expense.makeExpense(req.body.data.singleExpense, function(exp) {
-      exp ? res.status(201).json(exp) : res.sendStatus(404);
+    // returns it on completion, updates cost to date of related project
+    Expense.makeExpense(req.body.data, function(exp) {
+      Project.getProjById(req.body.data.projs_id, function(proj) {
+        Expense.getExpensesByProj(proj.id, function(exps) {
+          var cost = 0;
+          exps.forEach(function(ex) {
+            cost = cost + ex.get("cost");
+          });
+          proj.save({costToDate: cost}).then(function(proj) {
+            exp ? res.status(201).json(exp) : res.sendStatus(404);
+          })
+        })
+      })
     });
   });
+
+  // app.post('/test', function(req, res) {
+  //   Project.getProjById(req.body.id, function(proj) {
+  //     Expense.getExpensesByProj()
+  //   })
+  // })
 
   app.post('/api/register/budget', function(req, res) {
     Budget.makeBudget(req.body.data, function(budg) {
@@ -266,11 +282,20 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/expense', function(req, res) {
-    console.log('In /api/update/expense ', req.body.data)
-    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
-      exp ? exp.save(req.body.data.singleExpense).then(function(exp) {
-        res.status(201).json(exp);
-      }) : res.sendStatus(404);
+    Expense.getExpense(req.body.id, function(exp) {
+      exp.save(req.body.data).then(function(exp) {
+        Project.getProjById(req.body.proj_id, function(proj) {
+          Expense.getExpensesByProj(proj.id, function(exps) {
+            var cost = 0;
+            exps.forEach(function(ex) {
+              cost = cost + ex.get("cost");
+            });
+            proj.save({costToDate: cost}).then(function(proj) {
+              res.status(201).json(exp);
+            });
+          });
+        });
+      });
     });
   });
 
@@ -363,11 +388,20 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, this destroys that row in the table if found and sends it back. If not found,
   //this route throws a 404
   app.post('/api/remove/expense', function(req, res) {
-    console.log("In /api/remove/expense ", req.body.data.singleExpense);
-    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
-      exp ? exp.destroy().then(function(exp) {
-        res.status(201).json(exp);
-      }) : res.sendStatus(404);
+    Expense.getExpense(req.body.id, function(exp) {
+      exp.destroy().then(function(exp) {
+        Project.getProjById(req.body.proj_id, function(proj) {
+          Expense.getExpensesByProj(proj.id, function(exps) {
+            var cost = 0;
+            exps.forEach(function(ex) {
+              cost = cost + ex.get("cost");
+            });
+            proj.save({costToDate: cost}).then(function(proj) {
+              res.status(201).json(exp);
+            });
+          });
+        });
+      });    
     });
   });
 

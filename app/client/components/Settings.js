@@ -77,9 +77,9 @@ const Settings = React.createClass({
            <div id="settingsWindow">
              <Grid>
               <Row>
-                <Col md={3}>
+                <Col md={4}>
                 </Col>
-                <Col md={3}>
+                <Col md={2}>
                   <div id="settingsMain">
                     <Form onSubmit={this.handleSubmit}>
                       <FormGroup>

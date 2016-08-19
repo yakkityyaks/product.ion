@@ -41,7 +41,7 @@ const ExpenseChart = React.createClass({
         renderTo: "expChartContainer"
       },
       title: {
-        text: ''
+        text: 'Breakdown of Expenses for ' + this.props.projName
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
