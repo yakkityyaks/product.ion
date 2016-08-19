@@ -39,25 +39,25 @@ const NavBar = React.createClass({
         <Navbar bsStyle="default">
           <Nav>
             <NavItem>
-              <Link style={{"font-size":"20px","font-weight":"bold","color":"white"}} to="/">
-                Dashboard
-              </Link>
-            </NavItem>  
+                <Link style={{"font-size":"20px","font-weight":"bold","color":"white"}} to="/">
+                  Dashboard
+                </Link>
+            </NavItem>
             <NavItem eventKey={1} onClick={this.selectDashboard}>
-              <Link style={{"font-size":"15px","color":"white"}} to={'/projects'}>
-                Projects
-              </Link>
+                <Link style={{"font-size":"15px","color":"white"}} to={'/projects'}>
+                  Projects
+                </Link>
             </NavItem>
           </Nav>
-          
+
           <Nav pullRight>
             <NavItem eventKey={2} onClick={this.selectSettings}>
-              <Link style={{"font-size":"15px","color":"white"}} to={'/settings'}>
-                <Glyphicon glyph="cog"/>
-              </Link>
+                <Link style={{"font-size":"15px","color":"white"}} to={'/settings'}>
+                  <Glyphicon glyph="cog"/>
+                </Link>
             </NavItem>
             <NavItem onClick={this.logout}>
-              <Link style={{"font-size":"15px","color":"white"}} to="/">Logout</Link>
+                <Link style={{"font-size":"15px","color":"white"}} to="/">Logout</Link>
             </NavItem>
           </Nav>
         </Navbar>

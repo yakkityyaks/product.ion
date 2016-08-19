@@ -11,22 +11,14 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: "", budgets: this.props.budgets, changed: false
+        filter: "", changed: false,
       };
     },
     componentWillReceiveProps: function(newProps){
       if (newProps.budgets) {
         this.setState({budgets: newProps.budgets});
       }
-      this.setState({trigger: true});
     },
-
-    //Not needed, use ComponentWillReceiveProps
-    // shouldComponentUpdate: function(nextProps, nextState) {
-    //   console.log('in the should update ', nextProps, nextState);
-    //   this.setState({budgets: nextProps.budgets});
-    //   return this.state.trigger || false;
-    // },
     resetNewBudgetField() {
       this.setState({
               newBudgetCode: "",
@@ -58,6 +50,9 @@ const Budget = React.createClass({
         newBudgetTotal: e.target.value
       });
     },
+    setChangedStatus(val) {
+      this.setState({changed: val ? true : false});
+    },
     setFilter(e) {
       this.setState({filter: e.target.value.toLowerCase()});
     },
@@ -78,12 +73,16 @@ const Budget = React.createClass({
       );
       let code = this.state.newBudgetCode;
       return (
-        <div style={{"margin-top":"20px"}}>
+        <div style={{"marginTop":"20px"}}>
+          {
+            this.state.changed && <p>Budget Changed</p>
+          }
           {
             this.state.budgets &&
             this.state.budgets.map((row, key) =>
-              <div>
-                <BudgetNode key={key} idx={key} budget = {row} lock={true}
+              <div key={key}>
+                <BudgetNode  idx={key} budget = {row} lock={true}
+                            setChangedStatus = {this.setChangedStatus}
                             deleteBudgetNode={this.props.deleteBudgetNode}
                             handleBudgetChange = {this.props.handleBudgetChange}
                             handleBudgetSelect = {this.props.handleBudgetSelect}/>
@@ -112,7 +111,6 @@ const Budget = React.createClass({
                .map(budgetDropdownItem)
              }
             </DropdownButton>
-            <Form inline>
               <InputGroup className="budgetNodeForm">
                 <InputGroup.Addon>Cost:</InputGroup.Addon>
                 <FormControl type="number" placeholder="Cost"
@@ -133,7 +131,6 @@ const Budget = React.createClass({
               <Button onClick={this.handleSubmit} type="submit">
               Add
               </Button>
-            </Form>
           <FormControl readOnly value={"$" + this.props.total} />
         </Form>
       </div>
