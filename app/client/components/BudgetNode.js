@@ -66,7 +66,7 @@ const BudgetNode = React.createClass({
                          value={this.props.budget.quantity} required
                          onChange={this.handleChange}/>
           </InputGroup>
-          <InputGroup className="budgetNodeForm">
+          <InputGroup className="budgetNodeTotal">
             <InputGroup.Addon>Total</InputGroup.Addon>
             <FormControl type="text" placeholder="Total Item Cost" readOnly
                          value={"$" + this.props.budget.cost * this.props.budget.quantity} required/>
