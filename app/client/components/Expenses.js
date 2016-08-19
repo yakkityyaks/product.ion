@@ -21,8 +21,6 @@ const Expenses = React.createClass({
     });
     return {
       open: false,
-      expenses: this.props.expenses.expenses,
-      projId: this.props.expenses.projId,
       count: 0,
       addedExpenses: [0],
       newExpenses: [],
@@ -32,17 +30,8 @@ const Expenses = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(newProps){
-    this.setState({newView: true})
-  },
-
-  shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('the next props are ', nextProps)
-    return nextState.newView;
-  },
-
   handleNewExpense: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
     this.setState({newExpenses: newExpenses})
@@ -51,13 +40,13 @@ const Expenses = React.createClass({
   },
 
   handleExpenseToDelete: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     console.log('Handle DELETE ', singleExpense);
     this.props.removeExpense(singleExpense);
   },
 
   handleExpenseUpdate: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     console.log('Handle UPDATE ', singleExpense);
     this.props.updateExpense(singleExpense);
   },
