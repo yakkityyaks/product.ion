@@ -64,6 +64,9 @@ let addBudget = (data, id) =>
 let deleteBudget = (id) =>
   axios.post('/api/remove/budget', {id: id});
 
+let updateProjBudgets = (list) =>
+  axios.post('/api/update/budgets', {list: list});
+
 let getExpenses = (projIds) =>
   axios.post('/api/get/expenses', { projIds: projIds});
 
@@ -91,6 +94,7 @@ const ApiCall = {
   getExpenses,
   checkToken,
   deleteBudget,
+  updateProjBudgets,
 };
 
 export default ApiCall;

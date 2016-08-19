@@ -50,8 +50,20 @@ function budgets(state = {}, action) {
 
       arr = arr.slice(0, idx).concat(arr.slice(idx + 1));
 
-      console.log("Setting new state to ", arr);
+      console.log("Setting new budget state to ", arr);
       return Object.assign({}, state, {[proj]: arr});
+    case "UPDATE_MULTIPLE_BUDGETS":
+      console.log("Update multiple budgets. List is ", action.list);
+      ApiCall.updateProjBudgets(action.list)
+        .then(res => {
+          if (res.status===201) {
+            console.log("Successfully updated lists of budgets. Res is ", res);
+          } else {
+            console.error("Update user failed. Resopnse was not 201");
+          }
+        })
+        .catch(err => console.error(err));
+      break;
     default:
       return state;
   }
