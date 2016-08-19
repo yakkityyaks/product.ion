@@ -105,7 +105,7 @@ const AddUser = React.createClass({
                <ControlLabel bsClass="addUserLabel">Username</ControlLabel>
                <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
                         name="username" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-                        validationState="error" value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
+                       value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
                <FormControl.Feedback/>
              </FormGroup>
 
