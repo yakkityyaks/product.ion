@@ -53,17 +53,13 @@ const Settings = React.createClass({
         <div>
         {/* <b style={{"font-size":"30","float":"left"}}>Welcome to your settings, {user.name} [{permName[user.perm]} of { orgName }]</b> */}
         <Panel><b style={{"font-size":"30"}}>Welcome to your settings, {user.name}! You are {permName[user.perm]} of { orgName }</b></Panel>
-          <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
-            Add a User to Organization
-          </Button>
         </div>
-
 
          <br></br>
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
              <Modal.Header closeButton>
-               <Modal.Title style={{"textAlign":"center"}}>Add a User to {this.props.organization.orgName}</Modal.Title>
+               <Modal.Title bsClass="addUserTitle">Add a User to {this.props.organization.orgName}</Modal.Title>
              </Modal.Header>
             <Modal.Body>
                  <AddUser {...this.props} />
@@ -82,6 +78,7 @@ const Settings = React.createClass({
                 <Col md={3}>
                   <div id="settingsMain">
                     <Form onSubmit={this.handleSubmit}>
+                    <h3>Change {user.name}'s Password</h3>
                       <FormGroup>
                         <ControlLabel bsClass="chartSortSelector">Current Password</ControlLabel>&nbsp;
                         <FormControl type="password" placeholder="••••••••••" required
@@ -119,7 +116,7 @@ const Settings = React.createClass({
                 <Col md={3}>
                   <div id="settingsOptional">
                   {
-                   !user.perm && <UserList {...this.props }/>
+                   !user.perm && <UserList {...this.props } switchModal={this.switchModal}/>
                   }
                   </div>
                 </Col>

@@ -105,10 +105,13 @@ const UserList = React.createClass({
 
     return (
       <div className="settingsMemberNode">
+        <Button bsStyle="primary" style={{"float":"right","margin-bottom":"15px"}} id="modalButton" onClick={this.props.switchModal}>
+          Add a User to Organization
+        </Button>
         <Form bsClass="usersSettings" onSubmit={this.onSubmit}>
           {state.changed &&
-            <Button bsStyle={this.state.saveButtonStyle} ref="changeButton"
-                    type="submit">{this.state.button}</Button>
+            <Button bsStyle={this.state.saveButtonStyle} style={{"float":"right","margin-bottom":"15px"}}
+                    ref="changeButton" type="submit">{this.state.button}</Button>
           }
           <p>{this.state.noAdminWarning}</p>
           {state.users.map((user, key) =>
