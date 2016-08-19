@@ -16,14 +16,14 @@ const Register = React.createClass({
     if (this.validatePass() === "warning") {
       this.props.registrationError(4, "Password must be longer than 6 characters");
     } else {
-      console.log("ding ding ding");
       this.props.resetRegistrationMessages();
     }
     this.setState({pass:e.target.value});
   },
   validatePass() {
     const pass = this.state.pass;
-    return pass.length < 6 ? "warning" : "success";
+
+    return this.state.pass.length < 6 ? "warning" : "success";
   },
   handleSubmit: function(event) {
     event.preventDefault();

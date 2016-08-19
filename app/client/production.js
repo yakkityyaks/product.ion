@@ -7,11 +7,8 @@ import App from './components/App';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
-import AddUser from './components/AddUser';
 import Settings from './components/Settings';
 import Expenses from './components/Expenses';
-import CSVDrop from './components/CSVDrop';
-import Budget from './components/Budget';
 import MasterSheet from './components/MasterSheet';
 import Projects from './components/Projects';
 
@@ -35,9 +32,6 @@ const router = (
         <Route path="/dashboard/:orgName" component={ Dashboard }></Route>
         <Route path='/expenses' component={ Expenses }></Route>
         <Route path='/settings' component = { Settings }></Route>
-        <Route path='/adduser' component = { AddUser }></Route>
-        <Route path='/csvdrop' component={ CSVDrop }></Route>
-        <Route path='/budget' component={  Budget }></Route>
         <Route path='/mastersheet' component={ MasterSheet }></Route>
         <Route path='/projects' component={ Projects }></Route>
       </Route>

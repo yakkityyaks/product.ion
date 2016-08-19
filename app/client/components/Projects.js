@@ -26,9 +26,9 @@ const Projects = React.createClass({
       <div style={{fontSize : "14px"}}>
         {
           this.props.short ? <div></div> :
-          <div>  
+          <div>
             <NavBar {...this.props}/>
-          </div>  
+          </div>
         }
 
         <Panel>
@@ -53,13 +53,13 @@ const Projects = React.createClass({
         				<th>Name</th>
         				<th>Project ID</th>
         				<th>Project Status</th>
+                <th>Estimate to Complete</th>
         				<th>Cost to Date</th>
-        				<th>Estimate to Complete</th>
         			</tr>
         		</thead>
         		<tbody>
         			{this.props.short ? this.props.projects.slice(-3).map((project, idx) =>
-            			<ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>) 
+            			<ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>)
                 : this.props.projects.map((project, idx) =>
                   <ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>
               )}

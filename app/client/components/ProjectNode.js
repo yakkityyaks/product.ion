@@ -25,8 +25,8 @@ const ProjectNode = React.createClass({
         <td>{name}</td>
         <td>{projId}</td>
         <td>{status}</td>
-        <td>{this.toDollar(costToDate)}</td>
         <td>{this.toDollar(estimateToComplete)}</td>
+        <td>{this.toDollar(costToDate)}</td>
       </tr>
     );
   }

@@ -114,12 +114,14 @@ const Dashboard = React.createClass({
 
   getProj(id) {
     for (var i = 0; i < this.props.projects.length; i++) {
-      if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i];};
+      if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i];}
     }
     return 'proj not found';
   },
 
   render() {
+    const { user } = this.props.organization;
+
     return (
       <div className="dashboard">
 
@@ -164,14 +166,14 @@ const Dashboard = React.createClass({
               <tbody>
               {
                 this.props.projects.length > 0 ? this.props.projects.slice(-3).map(function(proj, idx) {
-                  return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>
+                  return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                 }, this) : null
               }
               </tbody>
             </Table>
 
             {
-              this.props.organization.user.perm === 0 ?
+              !this.props.organization.user.perm ?
               <div>
                 <h3>Pitches to be Approved</h3>
                 <Table striped bordered>
@@ -189,13 +191,38 @@ const Dashboard = React.createClass({
                       this.props.projects.length > 0 ? this.props.projects.filter(function(proj) {
                         return proj.status === "Pitch";
                       }).map(function(proj, idx) {
-                        return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>
+                        return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                       }, this) : null
                     }
                   </tbody>
                 </Table>
               </div> :
-              this.props.organization.user.perm === 1 ? <div><h3>Pitches awaiting Approval</h3></div> : <div></div>
+              this.props.organization.user.perm ?
+              <div>
+                <h3>Your pitches awaiting approval:</h3>
+                <Table striped bordered>
+                  <thead>
+                    <tr id="readOnlyHeader">
+                      <th>Name</th>
+                      <th>Project ID</th>
+                      <th>Project Status</th>
+                      <th>Cost to Date</th>
+                      <th>Estimate to Complete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+                    this.props.projects && this.props.projects.filter(function(proj) {
+                      return proj.createdBy === user.id;
+                    }).map(function(proj, idx) {
+                      return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
+                    }, this)
+                  }
+                  </tbody>
+                </Table>
+              </div>
+
+              : <div />
             }
           </Panel>
         </div>
