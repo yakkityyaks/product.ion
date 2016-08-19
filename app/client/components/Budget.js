@@ -14,10 +14,9 @@ const Budget = React.createClass({
         filter: "", changed: false,
       };
     },
-    componentWillReceiveProps: function(newProps){
-      if (newProps.budgets) {
+    componentWillReceiveProps: function(newProps) {
+      if (newProps.budgets)
         this.setState({budgets: newProps.budgets});
-      }
     },
     resetNewBudgetField() {
       this.setState({

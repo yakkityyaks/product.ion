@@ -62,6 +62,9 @@ const cata = [
   {id: 53, name: "3rdPartLic", cat: "misc", code: 560280, label: "Third Party Licensing"},
 ];
 
+export var codesToIndex = {
+
+};
 
 export var judy = {
   projName: undefined,

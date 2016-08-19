@@ -182,7 +182,8 @@ const Pitch = React.createClass({
           {<PitchSummary {...this.props.organization} {...this.state}
             handleChange={this.handleChange} handleJudgement={this.handleJudgement}
             tabToBudget={this.tabToBudget} updatePitch={this.updatePitch}
-            handleReject={this.handleReject} handlePitchSubmit={this.handlePitchSubmit}/>
+            handleReject={this.handleReject} handlePitchSubmit={this.handlePitchSubmit}
+            handleApprove={this.handleApprove}/>
           }
         </Tab>
         <Tab eventKey={2} title="Budget">
