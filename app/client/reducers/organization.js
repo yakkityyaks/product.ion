@@ -28,14 +28,14 @@ function posts(state=[], action) {
         store.dispatch({type: "REGISTRATION_ERROR", target:target, message: message});
       })
       .then(function(res){
-        if (res && res.status===200) {//put this back when ready
+        if (res && res.status === 200) { //put this back when ready
           console.log("Both fields clear. Registering org and user");
           store.dispatch({
             type: "ADD_NEW_ORG",
             orgName: action.orgName,
             username: action.username,
             password: action.password
-          });//register new org.
+          }); //register new org.
         } else {
           console.log("Something is wrong. Res is ", res);
         }
@@ -53,7 +53,7 @@ function posts(state=[], action) {
             console.log("Step 2 complete. Organization is registered. res is ", res);
             var orgData = res.data;
 
-            //create a new user with Amdmin powers (the 0)
+            //create a new user with Admin powers (the 0)
             ApiCall.registerUser(action.username, action.password, res.data.id, 0)
               .catch(function (err) {
                 console.error(err);

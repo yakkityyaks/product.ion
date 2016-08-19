@@ -51,7 +51,6 @@ const Settings = React.createClass({
         <NavBar {...this.props}/>
         <Panel>
         <div>
-        {/* <b style={{"font-size":"30","float":"left"}}>Welcome to your settings, {user.name} [{permName[user.perm]} of { orgName }]</b> */}
         <Panel><b style={{"font-size":"30"}}>Welcome to your settings, {user.name}! You are {permName[user.perm]} of { orgName }</b></Panel>
         </div>
 
