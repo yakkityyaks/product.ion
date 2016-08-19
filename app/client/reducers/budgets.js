@@ -50,7 +50,7 @@ function budgets(state = {}, action) {
 
       arr = arr.slice(0, idx).concat(arr.slice(idx + 1));
 
-      console.log("Setting new state to ", arr);
+      console.log("Setting new budget state to ", arr);
       return Object.assign({}, state, {[proj]: arr});
     default:
       return state;

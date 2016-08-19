@@ -35,7 +35,7 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
-      budget: [],
+      budgets: [],
       newPitch: data.id ? false : true,
       id: data.id || undefined,
       projName: data.name || "",
@@ -82,9 +82,10 @@ const Pitch = React.createClass({
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    // console.log('in the PITCH should update ', nextProps.budgets, nextState);
+    console.log('in the PITCH should update ', nextProps.budgets, nextState);
+    console.log('still in the PITCH should update: object is ', nextProps.budgets["proj" + this.state.id]);
     this.setState({budgets: nextProps.budgets["proj" + this.state.id]});
-    // console.log("Pitch should update changed budget to ", this.state.budgets);
+    console.log("Pitch should update changed budget to ", this.state.budgets);
     return this.state.trigger || true;
   },
   handlePitchSubmit(event) {
@@ -135,7 +136,7 @@ const Pitch = React.createClass({
     let newBudget = this.state.budget;
     newBudget[idx][e.name] = e.value;
 
-    this.setState({budget: newBudget});
+    this.setState({budgets: newBudget});
   },
   handleBudgetSelect(e, idx) {
     // let newBudget = this.state.budgets;
@@ -201,7 +202,7 @@ const Pitch = React.createClass({
         </Tab>
         <Tab eventKey={2} title="Budget">
           <Budget
-            budgets={this.state.budgets}
+            budgets={this.props.budgets["proj" + this.state.id]}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}

@@ -11,19 +11,22 @@ const Budget = React.createClass({
       return {
         newBudgetCode: "", newBudgetLabel: "", newBudgetTotal: "",
         newBudgetCost: "", newBudgetQuant: "", newBudgetDescription: "",
-        filter: "", budgets: this.props.budgets
+        filter: "", budgets: this.props.budgets, changed: false
       };
     },
     componentWillReceiveProps: function(newProps){
-      // console.log('in the budget recieve props', newProps.budgets);
+      if (newProps.budgets) {
+        this.setState({budgets: newProps.budgets});
+      }
       this.setState({trigger: true});
     },
 
-    shouldComponentUpdate: function(nextProps, nextState) {
-      // console.log('in the should update ', nextProps, nextState);
-      this.setState({budgets: nextProps.budgets});
-      return this.state.trigger || false;
-    },
+    //Not needed, use ComponentWillReceiveProps
+    // shouldComponentUpdate: function(nextProps, nextState) {
+    //   console.log('in the should update ', nextProps, nextState);
+    //   this.setState({budgets: nextProps.budgets});
+    //   return this.state.trigger || false;
+    // },
     resetNewBudgetField() {
       this.setState({
               newBudgetCode: "",
