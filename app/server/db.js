@@ -36,8 +36,8 @@ Promise.all([
     table.string('vertical', 20);
     table.string('tier', 20);
     table.string('type');
-    table.integer('numAssets');
-    table.float('reqBudget');
+    table.integer('numAssets').defaultTo(1);
+    table.float('reqBudget').defaultTo(0);
     table.date('startDate');
     table.date('endDate');
     table.date('editDate');

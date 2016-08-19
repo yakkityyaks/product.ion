@@ -35,7 +35,7 @@ const Pitch = React.createClass({
 
     return {
       activeTab: 1,
-      budget: [],
+      budgets: [],
       newPitch: data.id ? false : true,
       id: data.id || undefined,
       projName: data.name || "",
@@ -77,15 +77,8 @@ const Pitch = React.createClass({
     };
   },
   componentWillReceiveProps: function(newProps){
-    // console.log('in the PITCH recieve props', newProps.budgets);
-    this.setState({trigger: true});
-  },
-
-  shouldComponentUpdate: function(nextProps, nextState) {
-    // console.log('in the PITCH should update ', nextProps.budgets, nextState);
-    this.setState({budgets: nextProps.budgets["proj" + this.state.id]});
-    // console.log("Pitch should update changed budget to ", this.state.budgets);
-    return this.state.trigger || true;
+    if (newProps.budgets)
+      this.setState({budgets: newProps.budgets["proj" + this.state.id]});
   },
   handlePitchSubmit(event) {
     event.preventDefault();
@@ -93,6 +86,9 @@ const Pitch = React.createClass({
 
     this.props.postNewProject(data);
     this.closeModal();
+  },
+  postAllBudgets() {
+    this.props.updateMultipleBudgets(this.state.budgets);
   },
   handleReject(e) {
     var data = this.buildPitch();
@@ -132,18 +128,18 @@ const Pitch = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
   handleBudgetChange(e, idx) {
-    let newBudget = this.state.budget;
+    let newBudget = this.state.budgets;
     newBudget[idx][e.name] = e.value;
 
-    this.setState({budget: newBudget});
+    this.setState({budgets: newBudget});
   },
   handleBudgetSelect(e, idx) {
-    // let newBudget = this.state.budgets;
-    // console.log("Handle Select newBudget is ", newBudgets);
-    // console.log("Handle Select: e:", e, " idx: ", idx);
-    // newBudget[idx].glCode = e;
-    //
-    // this.setState({budgets: newBudget});
+    let newBudgets = this.state.budgets;
+    console.log("Handle Select newBudget is ", newBudgets);
+    console.log("Handle Select: e:", e, " idx: ", idx);
+    newBudgets[idx].glCode = e;
+
+    this.setState({budgets: newBudgets});
   },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
@@ -152,20 +148,10 @@ const Pitch = React.createClass({
     });
   },
   deleteBudgetNode(node) {
-    let { budgets } = this.state;
-
     this.props.deleteBudgetNode(node);
-    // for (var x = 0; x < this.state.budgets.length; x++) {
-    //   if (budgets[x] === node) {
-    //     let newBudgets = budgets.slice(0, x).concat(budgets.slice(x+1));
-    //     console.log("newBudget is ", newBudgets);
-    //     this.setState({
-    //         reqBudget: this.state.reqBudget - budgets.total,
-    //         budgets: newBudgets
-    //       });
-    //     break;
-    //   }
-    // }
+    this.setState({
+      reqBudget: this.state.reqBudget - Number(node.total)
+    });
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
@@ -201,10 +187,11 @@ const Pitch = React.createClass({
         </Tab>
         <Tab eventKey={2} title="Budget">
           <Budget
-            budgets={this.state.budgets}
+            budgets={this.props.budgets["proj" + this.state.id]}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
+            postAllBudgets={this.postAllBudgets}
             deleteBudgetNode = {this.deleteBudgetNode}
             />
         </Tab>

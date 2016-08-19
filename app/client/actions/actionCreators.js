@@ -291,11 +291,10 @@ export function hydrateProjectBudgets(id, list) {
   };
 }
 
-export function hydrateBudget(projId, budgetsArray) {
+export function updateMultipleBudgets(list) {
   return {
-    type: "GET_PROJECT_BUDGETS",
-    projId,
-    budgetsArray
+    type: "UPDATE_MULTIPLE_BUDGETS",
+    list
   };
 }
 
