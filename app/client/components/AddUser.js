@@ -4,7 +4,6 @@ import { findDOMNode } from 'react-dom';
 import { Button, ControlLabel, Form, FormControl, FormGroup, Panel, Radio } from 'react-bootstrap';
 
 const AddUser = React.createClass({
-
   getInitialState () {
     return {
       username: "",
@@ -14,6 +13,7 @@ const AddUser = React.createClass({
       validateMessage: ""
     };
   },
+  // Using regex and some logic, we ensure the user input aligns with our rules.
   validateUsername (name) {
     let regex = /\w/,i,
     spaces = /\s/;
@@ -24,6 +24,7 @@ const AddUser = React.createClass({
       return true;
     }
   },
+  // Concatenates a randomized string to the end of the username.
   randomPassword (length, username) {
     let chars = "abcdefghijklmnopqrstuvwxyz!@#$%^*_ABCDEFGHIJKLMNOP1234567890",
     pass = "";
@@ -42,9 +43,11 @@ const AddUser = React.createClass({
     let username = e.target.value;
     findDOMNode(this.refs.passwordInput).value = this.randomPassword(3, username);
   },
+  // Sets password state.
   setPass (e) {
     this.setState({password: e.target.value});
   },
+  // Sets permission state.
   setPerm (e) {
     this.setState({perm: e.target.value});
   },
@@ -59,7 +62,7 @@ const AddUser = React.createClass({
       orgs_id = this.props.organization.orgs_id,
       perm = this.state.perm;
       this.props.addNewUser(username, password, orgs_id, perm);
-      this.setState({validateMessage: "You did it!"})
+      this.setState({validateMessage: "You did it!"});
     }
   },
   changeOn (e) {
@@ -102,7 +105,7 @@ const AddUser = React.createClass({
                <ControlLabel bsClass="addUserLabel">Username</ControlLabel>
                <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
                         name="username" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-                        validationState="error" value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
+                       value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
                <FormControl.Feedback/>
              </FormGroup>
 
@@ -111,7 +114,7 @@ const AddUser = React.createClass({
                <FormControl id="password" type="text" name="password"
                         ref="passwordInput" placeholder="Generated Password" onChange={this.setPass}/>
              </FormGroup>
-               <p style={{"font-size":"12px"}}>Don't forget to copy the password before submitting</p>
+               <p bsClass="reminder">Don't forget to copy the password before submitting</p>
              <div>
                <Button type="submit"> CREATE USER</Button>
              </div>
