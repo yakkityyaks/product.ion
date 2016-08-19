@@ -74,7 +74,7 @@ const Settings = React.createClass({
               <Row>
                 <Col md={4}>
                 </Col>
-                <Col md={2}>
+                <Col md={3}>
                   <div id="settingsMain">
                     <Form onSubmit={this.handleSubmit}>
                     <h3>Change {user.name}'s Password</h3>
