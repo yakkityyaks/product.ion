@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl } from 'react-bootstrap';
-import DateFormat from './DateFormat';
+import DateFormat from './DateFormat.js';
 
 
 const StaticDate = React.createClass({

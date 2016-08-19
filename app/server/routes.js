@@ -134,8 +134,8 @@ module.exports = function routes(app){
 
     // makes an expense w/ the provided data linked to the provided project
     // returns it on completion, updates cost to date of related project
-    Expense.makeExpense(req.body.data, function(exp) {
-      Project.getProjById(req.body.data.projs_id, function(proj) {
+    Expense.makeExpense(req.body.data.singleExpense, function(exp) {
+      Project.getProjById(req.body.data.singleExpense.projs_id, function(proj) {
         Expense.getExpensesByProj(proj.id, function(exps) {
           var cost = 0;
           exps.forEach(function(ex) {
@@ -282,9 +282,9 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/expense', function(req, res) {
-    Expense.getExpense(req.body.id, function(exp) {
-      exp.save(req.body.data).then(function(exp) {
-        Project.getProjById(req.body.proj_id, function(proj) {
+    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
+      exp.save(req.body.data.singleExpense).then(function(exp) {
+        Project.getProjById(req.body.data.singleExpense.proj_id, function(proj) {
           Expense.getExpensesByProj(proj.id, function(exps) {
             var cost = 0;
             exps.forEach(function(ex) {
@@ -388,10 +388,10 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, this destroys that row in the table if found and sends it back. If not found,
   //this route throws a 404
   app.post('/api/remove/expense', function(req, res) {
-    Expense.getExpense(req.body.id, function(exp) {
+    Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp.destroy().then(function(exp) {
-        Project.getProjById(req.body.proj_id, function(proj) {
-          Expense.getExpensesByProj(proj.id, function(exps) {
+        Project.getProjById(req.body.data.singleExpense.proj_id, function(proj) {
+          Expense.getExpensesByProj(req.body.data.singleExpense.id, function(exps) {
             var cost = 0;
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
@@ -401,7 +401,7 @@ module.exports = function routes(app){
             });
           });
         });
-      });    
+      });
     });
   });
 
