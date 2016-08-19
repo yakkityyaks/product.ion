@@ -1,3 +1,23 @@
+.addUserField {
+	width: 300px;
+	margin: auto;
+	padding-bottom: 12px;
+}
+
+.addUserLabel {
+	font-size: 17px;
+}
+
+.addUserTitle {
+	text-align: center;
+	font-weight: bold;
+}
+
+h3 {
+	padding-bottom: 12px;
+	padding-top: 0px;
+}
+
 #loginPanel {
 	width: 500px;
 	display: block;

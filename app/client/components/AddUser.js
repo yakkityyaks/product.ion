@@ -5,7 +5,7 @@ import { Button, ControlLabel, Form, FormControl, FormGroup, Panel, Radio } from
 
 const AddUser = React.createClass({
 
-  getInitialState() {
+  getInitialState () {
     return {
       username: "",
       password: "",
@@ -42,7 +42,7 @@ const AddUser = React.createClass({
     let username = e.target.value;
     findDOMNode(this.refs.passwordInput).value = this.randomPassword(3, username);
   },
-  setPass(e) {
+  setPass (e) {
     this.setState({password: e.target.value});
   },
   setPerm (e) {
@@ -52,20 +52,21 @@ const AddUser = React.createClass({
     e.preventDefault();
     let name = this.state.username;
     if (!this.validateUsername(name)) {
-      this.setState({validate: "warning", validateMessage:"Username should be at least 6 characters and not contain spaces"});
+      this.setState({validate: "warning", validateMessage:"Username must be at least 6 characters and not contain spaces"});
     } else {
       let username = this.state.username,
       password = this.state.password,
       orgs_id = this.props.organization.orgs_id,
       perm = this.state.perm;
       this.props.addNewUser(username, password, orgs_id, perm);
+      this.setState({validateMessage: "You did it!"})
     }
   },
   changeOn (e) {
     e.preventDefault();
     let name = e.target.value;
     if (!this.validateUsername(name)) {
-      this.setState({validate: "warning", validateMessage: "Username should be at least 6 characters and not contain spaces"});
+      this.setState({validate: "warning", validateMessage: "Username must be at least 6 characters and not contain spaces"});
     } if(name === "" || name.length >= 6) {
         this.setState({validate: "success", validateMessage: ""});
       }
@@ -76,6 +77,7 @@ const AddUser = React.createClass({
     const setRadio = ref => {this.input = ref;};
     return (
       <div style={{"text-align":"center"}}>
+        <ControlLabel style={{"font-size":"17px"}}>Select a permission level</ControlLabel>
         <FormGroup>
           <Radio inline id="userRadio" name="user-class" value={0}
                 onClick={this.setPerm}>
@@ -95,21 +97,21 @@ const AddUser = React.createClass({
         </FormGroup>
         <div>
           <Form className="testFormCenter" onSubmit={this.handleSubmit}>
-             <FormGroup validationState={this.state.validate}>
-             <p>{this.state.validateMessage}</p>
-               <ControlLabel>Username</ControlLabel>
+          <p>{this.state.validateMessage}</p>
+             <FormGroup validationState={this.state.validate} bsClass="addUserField">
+               <ControlLabel bsClass="addUserLabel">Username</ControlLabel>
                <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
                         name="username" autoCorrect="off" autoCapitalize="off" spellCheck="false"
                         validationState="error" value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
                <FormControl.Feedback/>
              </FormGroup>
 
-             <FormGroup>
-               <ControlLabel>Password Generator</ControlLabel>
+             <FormGroup bsClass="addUserField">
+               <ControlLabel bsClass="addUserLabel">Password Generator</ControlLabel>
                <FormControl id="password" type="text" name="password"
                         ref="passwordInput" placeholder="Generated Password" onChange={this.setPass}/>
              </FormGroup>
-
+               <p style={{"font-size":"12px"}}>Don't forget to copy the password before submitting</p>
              <div>
                <Button type="submit"> CREATE USER</Button>
              </div>
