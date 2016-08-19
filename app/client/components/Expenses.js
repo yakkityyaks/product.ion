@@ -7,7 +7,16 @@ import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
 
 const Expenses = React.createClass({
+
   getInitialState: function() {
+    var proj = null;
+
+    this.props.projects.forEach((project) => {
+      if (project.projId === this.props.expenses.projId) {
+        proj = project;
+        return;
+      }
+    });
     return {
       open: false,
       expenses: this.props.expenses.expenses,
@@ -16,7 +25,8 @@ const Expenses = React.createClass({
       addedExpenses: [0],
       newExpenses: [],
       modal: false,
-      newView: false
+      newView: false,
+      proj: proj
     };
   },
 
@@ -105,27 +115,27 @@ const Expenses = React.createClass({
               </thead>
               <tbody>
                 <tr id="readOnlyBody">
-                  <td>{proj.projId}</td>
-                  <td>{proj.vertical}</td>
-                  <td>{proj.tier}</td>
-                  <td>{proj.type}</td>
-                  <td>{proj.numAssets}</td>
-                  <td>{proj.status}</td>
-                  <td>{proj.startDate.slice(0,10)}</td>
-                  <td>{proj.endDate.slice(0,10)}</td>
-                  <td>{proj.editDate.slice(0,10)}</td>
-                  <td>{proj.releaseDate.slice(0,10)}</td>
-                  <td>{proj.costToDate}</td>
-                  <td>{proj.estimateToComplete}</td>
-                  <td>{proj.reqBudget}</td>
+                  <td>{this.state.proj.this.state.projId}</td>
+                  <td>{this.state.proj.vertical}</td>
+                  <td>{this.state.proj.tier}</td>
+                  <td>{this.state.proj.type}</td>
+                  <td>{this.state.proj.numAssets}</td>
+                  <td>{this.state.proj.status}</td>
+                  <td>{this.state.proj.startDate.slice(0,10)}</td>
+                  <td>{this.state.proj.endDate.slice(0,10)}</td>
+                  <td>{this.state.proj.editDate.slice(0,10)}</td>
+                  <td>{this.state.proj.releaseDate.slice(0,10)}</td>
+                  <td>{this.state.proj.costToDate}</td>
+                  <td>{this.state.proj.estimateToComplete}</td>
+                  <td>{this.state.proj.reqBudget}</td>
                 </tr>
               </tbody>
             </Table>
           </div>
-          {this.state.open ? <ExpenseChart {...this.props} projName={proj.name}/> : null}
+          {this.state.open ? <ExpenseChart {...this.props} projName={this.state.proj.name}/> : null}
         </Panel>
         <Panel>
-          <span style={{"font-size":"30"}}>{"Expenses for " + proj.name }</span>
+          <span style={{"font-size":"30"}}>{"Expenses for " + this.state.proj.name }</span>
           <Button onClick={this.switchModal} style={{"float":"right"}} bsStyle="primary">Add Expenses with a CSV</Button>
           <Table>
             <thead>

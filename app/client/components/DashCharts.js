@@ -7,11 +7,11 @@ const DashCharts = React.createClass({
 		return {
 			expenses: undefined,
 			data: [],
-			sortBy: "type"
+			sortBy: "vendor"
 		};
 	},
 
-	componentDidMount() {
+	componentWillMount() {
 		this.getExpenses();
 	},
 
