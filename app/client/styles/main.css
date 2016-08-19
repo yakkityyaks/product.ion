@@ -1,0 +1,116 @@
+.addUserField {
+	width: 300px;
+	margin: auto;
+	padding-bottom: 12px;
+}
+
+.addUserLabel {
+	font-size: 17px;
+}
+
+.addUserTitle {
+	text-align: center;
+	font-weight: bold;
+}
+
+h3 {
+	padding-bottom: 12px;
+	padding-top: 0px;
+}
+
+#loginPanel {
+	width: 500px;
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#modalButton {
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#title {
+	text-align: center;
+}
+
+#title > h1 {
+	font-size: 60px;
+}
+#settingsWindow {
+	display:inline-block;
+	padding-right: 30px;
+}
+
+#settingsMain {
+	display: inline-block;
+	float: left;
+}
+
+#settingsOptional {
+	padding-left: 10px;
+	display:inline-block;
+}
+
+#csvModalButton {
+	float: right;
+}
+
+#readOnlyHeader > th {
+	font-size: 14px;
+}
+
+#readOnlyBody > td {
+	font-size: 14px;
+}
+
+.reminder {
+	font-size: 12px;
+}
+
+.chartSortSelector{
+	font-size: 14px;
+}
+.settings {
+	text-align: center;
+}
+
+.settingsMemberNode {
+	display: inline-block;
+	width: 200;
+}
+.settingsMemberNode-username {
+	display: inline-block;;
+	float: left;
+}
+
+.settingsMemberNode-perm {
+	display: inline-block;
+	width: auto;
+}
+
+.budgetFormCata1 {
+		width: 50%;
+}
+.testing1{
+	width: 60px;
+}
+
+.budgetNodeForm {
+	width: 170px;
+}
+
+.budgetNodeTotal {
+	width: 130px;
+}
+
+.usersSettings {
+	float: right;
+}
+
+/*.navbar-default {
+	background-color: blue;
+}*/
