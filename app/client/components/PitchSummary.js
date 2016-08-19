@@ -59,7 +59,7 @@ const PitchSummary = React.createClass({
           <FormGroup controlId="formTier" validationState = {judge.tier.vars.val}>
             <ControlLabel>Tier</ControlLabel>
             <InputGroup>
-              <InputGroup.Addon>Tier</InputGroup.Addon>
+              <InputGroup.Addon bsStyle="">Tier</InputGroup.Addon>
               <FormControl componentClass="select" placeholder="Tier"
                           name="tier" onChange={handleChange}>
                 <option value="br">BR</option>

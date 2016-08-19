@@ -141,7 +141,8 @@ module.exports = function routes(app){
           exps.forEach(function(ex) {
             cost = cost + ex.get("cost");
           });
-          proj.save({costToDate: cost}).then(function(proj) {
+          var date = Date.now();
+          proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
             exp ? res.status(201).json(exp) : res.sendStatus(404);
           })
         })
@@ -290,7 +291,8 @@ module.exports = function routes(app){
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
             });
-            proj.save({costToDate: cost}).then(function(proj) {
+            var date = Date.now();
+            proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
               res.status(201).json(exp);
             });
           });

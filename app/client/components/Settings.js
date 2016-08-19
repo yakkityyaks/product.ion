@@ -72,7 +72,7 @@ const Settings = React.createClass({
            <div id="settingsWindow">
              <Grid>
               <Row>
-                <Col md={4}>
+                <Col md={3}>
                 </Col>
                 <Col md={3}>
                   <div id="settingsMain">

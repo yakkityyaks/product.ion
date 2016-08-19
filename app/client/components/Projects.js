@@ -52,6 +52,7 @@ const Projects = React.createClass({
         			<tr id="readOnlyHeader">
         				<th>Name</th>
         				<th>Project ID</th>
+                <th>Created By</th>
         				<th>Project Status</th>
                 <th>Estimate to Complete</th>
         				<th>Cost to Date</th>
