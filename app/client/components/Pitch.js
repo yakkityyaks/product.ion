@@ -87,6 +87,9 @@ const Pitch = React.createClass({
     this.props.postNewProject(data);
     this.closeModal();
   },
+  postAllBudgets() {
+    this.props.updateMultipleBudgets(this.state.budgets);
+  },
   handleReject(e) {
     var data = this.buildPitch();
 
@@ -188,6 +191,7 @@ const Pitch = React.createClass({
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
+            postAllBudgets={this.postAllBudgets}
             deleteBudgetNode = {this.deleteBudgetNode}
             />
         </Tab>

@@ -75,7 +75,10 @@ const Budget = React.createClass({
       return (
         <div style={{"marginTop":"20px"}}>
           {
-            this.state.changed && <p>Budget Changed</p>
+            this.state.changed &&
+              <Button bsStyle="warning" onClick={this.props.postAllBudgets}>
+                Save Changes
+              </Button>
           }
           {
             this.state.budgets &&

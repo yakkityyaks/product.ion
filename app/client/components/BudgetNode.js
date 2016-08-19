@@ -12,6 +12,11 @@ const BudgetNode = React.createClass({
       lock: this.props.lock, filter: "", changed: false
     };
   },
+  componentWillReceiveProps: function(newProps){
+    if (newProps.changeBack) {
+      this.setState({changed: false});
+    }
+  },
   handleChange(e) {
     this.props.setChangedStatus(1);
     this.props.handleBudgetChange(e.target, this.props.idx);
@@ -36,7 +41,7 @@ const BudgetNode = React.createClass({
     );
 
     const code = this.props.budget.glCode;
-    console.log("budgetNode ", code, cata[code]);
+
     return (
       <Form inline>
         <FormGroup validationState={this.state.changed ?
@@ -60,7 +65,6 @@ const BudgetNode = React.createClass({
              }
             </DropdownButton>
           </InputGroup>
-          {/* <Grid><Row> */}
             <InputGroup className="budgetNodeForm">
               <InputGroup.Addon>Cost</InputGroup.Addon>
               <FormControl type="number" placeholder="Cost" name="cost"

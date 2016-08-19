@@ -306,19 +306,30 @@ module.exports = function routes(app){
     });
   });
 
+//Takes a list of budget nodes and, one by one, updates the server accordingly
+// If every update succeeds, sends a 201 response with the new array of nodes.
+// data format is {list: [node1, node2, node3...]}
+  app.post('/api/update/budgets', function(req, res) {
+    var list  = req.body.list;
+    var length = list.length;
+    var count = 0;
+    var responseList = [];
 
-
-  // is this ever used?
-
-  // //given the description of a budget by req.body.description, and any key-value pairs to be changed in req.body.data,
-  // //this route updates the referenced budget. If it is not found, this sends back a 404.
-  // app.post('/api/update/budget', function(req, res) {
-  //   Budget.getBudget(req.body.projId, function(budg) {
-  //     budg ? budg.save(req.body.data).then(function(budg) {
-  //       res.status(201).json(budg);
-  //     }) : res.sendStatus(404);
-  //   });
-  // });
+    list.forEach(function(node) {
+      Budget.getSingleBudget(node.id, budget => {
+        if (!budget) {
+          res.sendStatus(403);
+        } else {
+          budget.save(node).then(newBudgetNode => {
+            count++;
+            responseList.push(newBudgetNode);
+            if (count === length)
+              res.status(201).json(responseList);
+          });
+        }
+      });
+    });
+  });
 
   //given the primary id of a budget by req.body.id, this destroys that row in the table if found and sends it back. If not found,
   //this route throws a 404
