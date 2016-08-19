@@ -152,7 +152,7 @@ const Dashboard = React.createClass({
               {this.state.open ? <DashCharts {...this.props}/> : null}
             </div>
 
-            <h3>Most Recent Three Projects</h3>
+            <h3>Most Recently Edited Three Projects</h3>
             <Table striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
