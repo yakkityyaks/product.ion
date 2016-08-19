@@ -166,10 +166,10 @@ const Dashboard = React.createClass({
               </thead>
               <tbody>
               {
-                this.props.projects.length > 0 ? this.props.projects.sort(function(a, b) {
+                this.props.projects.length > 0 ? this.props.projects.sort(function(b, a) {
                 console.log('sorting');
                 return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
-              }).slice(-3).map(function(proj, idx) {
+              }).slice(0,3).map(function(proj, idx) {
                   return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                 }, this) : null
               }
