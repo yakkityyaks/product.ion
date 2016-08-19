@@ -27,6 +27,10 @@ const ExpenseNode = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function() {
+    this.setState({importedExpenses: this.props.expense});
+  },
+
   componentDidMount: function(){
     if(this.state.dateTracked === ''){
       var newDate = new Date();

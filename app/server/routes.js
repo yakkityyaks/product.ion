@@ -11,7 +11,7 @@ var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 var utils = require('./lib/utility.js');
 var jwt = require('jsonwebtoken');
-
+var DateFormat = require('./lib/DateFormat.js');
 //makes organization w/ name req.body.orgName and returns the organization model
 //if an org with that name already exists returns a 403
 module.exports = function routes(app){
@@ -141,7 +141,8 @@ module.exports = function routes(app){
           exps.forEach(function(ex) {
             cost = cost + ex.get("cost");
           });
-          var date = Date.now();
+          var date = new Date();
+          var date = date.format('yyyy/mm/dd');
           proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
             exp ? res.status(201).json(exp) : res.sendStatus(404);
           })
@@ -292,7 +293,8 @@ module.exports = function routes(app){
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
             });
-            var date = Date.now();
+            var date = new Date();
+            var date = date.format('yyyy/mm/dd');
             proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
               res.status(201).json(exp);
             });
@@ -411,7 +413,9 @@ module.exports = function routes(app){
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
             });
-            proj.save({costToDate: cost}).then(function(proj) {
+            var date = new Date();
+            var date = date.format('yyyy/mm/dd');
+            proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
               res.status(201).json(exp);
             });
           });
