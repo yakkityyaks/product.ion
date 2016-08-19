@@ -112,8 +112,6 @@ const ExpenseNode = React.createClass({
     console.log('handleUpdate built this expense object ', expenseToUpdate);
     this.props.handleExpenseUpdate(expenseToUpdate);
     })
-
-
     console.log('READONLY status is ', this.state.readOnlyStatus)
   },
 
