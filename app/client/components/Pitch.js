@@ -59,6 +59,7 @@ const Pitch = React.createClass({
     return {
       orgs_id: this.props.organization.orgs_id,
       id: this.state.id,
+      createdBy: this.props.organization.user.id,
       name: this.state.projName,
       projId: this.state.projId,
       vertical: this.state.vertical,
