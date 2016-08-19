@@ -5,6 +5,7 @@ import CSVDrop from './CSVDrop';
 import ExpenseChart from './ExpenseChart';
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
+import StaticDate from './formComponents/StaticDate.js';
 
 const Expenses = React.createClass({
   getInitialState: function() {
@@ -112,10 +113,26 @@ const Expenses = React.createClass({
                   <td>{proj.type}</td>
                   <td>{proj.numAssets}</td>
                   <td>{proj.status}</td>
-                  <td>{proj.startDate.slice(0,10)}</td>
-                  <td>{proj.endDate.slice(0,10)}</td>
-                  <td>{proj.editDate.slice(0,10)}</td>
-                  <td>{proj.releaseDate.slice(0,10)}</td>
+                  <td width="125">
+                    <StaticDate
+                      name="startDate"
+                      value={proj.startDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="endDate"
+                      value={proj.endDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="editDate"
+                      value={proj.editDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="releaseDate"
+                      value={proj.releaseDate} />
+                  </td>
                   <td>{proj.costToDate}</td>
                   <td>{proj.estimateToComplete}</td>
                   <td>{proj.reqBudget}</td>
