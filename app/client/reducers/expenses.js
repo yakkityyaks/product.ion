@@ -9,14 +9,15 @@ function expenses(state = [], action) {
       console.log(action);
       ApiCall.getExpensesByProjectId(action.projectId)
         .then((res) => {
-          console.log('did not get the 201 ',res);
+
           if (res.status === 201) {
-            console.log('got the 201 ', res.data.projId);
+            console.log('the the expense reducer ', res.data.org.name)
             var projectId = res.data.projId,
                 expenses = res.data.expenses,
-                id = res.data.id;
-            console.log("i'm here?");
+                id = res.data.id,
+                orgName = res.data.org.name;
             store.dispatch({type:'HYDRATE_EXPENSES', projectId, id, expenses});
+            store.dispatch({type: 'GET_ORG_PROJECTS', orgName})
             browserHistory.push('/expenses');
           }
         })

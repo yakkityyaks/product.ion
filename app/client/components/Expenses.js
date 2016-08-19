@@ -5,6 +5,7 @@ import CSVDrop from './CSVDrop';
 import ExpenseChart from './ExpenseChart';
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
+import StaticDate from './formComponents/StaticDate.js';
 
 const Expenses = React.createClass({
 
@@ -115,19 +116,35 @@ const Expenses = React.createClass({
               </thead>
               <tbody>
                 <tr id="readOnlyBody">
-                  <td>{this.state.proj.this.state.projId}</td>
-                  <td>{this.state.proj.vertical}</td>
-                  <td>{this.state.proj.tier}</td>
-                  <td>{this.state.proj.type}</td>
-                  <td>{this.state.proj.numAssets}</td>
-                  <td>{this.state.proj.status}</td>
-                  <td>{this.state.proj.startDate.slice(0,10)}</td>
-                  <td>{this.state.proj.endDate.slice(0,10)}</td>
-                  <td>{this.state.proj.editDate.slice(0,10)}</td>
-                  <td>{this.state.proj.releaseDate.slice(0,10)}</td>
-                  <td>{this.state.proj.costToDate}</td>
-                  <td>{this.state.proj.estimateToComplete}</td>
-                  <td>{this.state.proj.reqBudget}</td>
+                  <td>{proj.projId}</td>
+                  <td>{proj.vertical}</td>
+                  <td>{proj.tier}</td>
+                  <td>{proj.type}</td>
+                  <td>{proj.numAssets}</td>
+                  <td>{proj.status}</td>
+                  <td width="125">
+                    <StaticDate
+                      name="startDate"
+                      value={proj.startDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="endDate"
+                      value={proj.endDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="editDate"
+                      value={proj.editDate} />
+                  </td>
+                  <td width="125">
+                    <StaticDate
+                      name="releaseDate"
+                      value={proj.releaseDate} />
+                  </td>
+                  <td>{proj.costToDate}</td>
+                  <td>{proj.estimateToComplete}</td>
+                  <td>{proj.reqBudget}</td>
                 </tr>
               </tbody>
             </Table>
