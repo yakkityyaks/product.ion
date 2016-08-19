@@ -109,29 +109,28 @@ const Budget = React.createClass({
                .map(budgetDropdownItem)
              }
             </DropdownButton>
-            <FormGroup>
-              <InputGroup className="testing2">
+            <Form inline>
+              <InputGroup className="budgetNodeForm">
                 <InputGroup.Addon>Cost:</InputGroup.Addon>
                 <FormControl type="number" placeholder="Cost"
                              onChange={this.handleChange} name="newBudgetCost"
                              value={this.state.newBudgetCost} />
               </InputGroup>
-              <InputGroup className="testing2">
+              <InputGroup className="budgetNodeForm">
                 <InputGroup.Addon>Quant:</InputGroup.Addon>
                 <FormControl type="number" placeholder="Units"
                              onChange={this.handleChange} name="newBudgetQuant"
                              value={this.state.newBudgetQuant} />
               </InputGroup>
-              <InputGroup className="testing2">
-                <InputGroup.Addon>Total:</InputGroup.Addon>
+              <InputGroup className="budgetNodeTotal">
                 <FormControl type="text" readOnly value={this.state.newBudgetTotal =
-                                "$" + this.state.newBudgetCost *
+                                "Total: $" + this.state.newBudgetCost *
                                     this.state.newBudgetQuant} />
               </InputGroup>
               <Button onClick={this.handleSubmit} type="submit">
               Add
               </Button>
-            </FormGroup>
+            </Form>
           <FormControl readOnly value={"$" + this.props.total} />
         </Form>
       </div>
