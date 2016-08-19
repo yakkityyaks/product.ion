@@ -81,6 +81,12 @@ const Expenses = React.createClass({
       }
     });
 
+    var username = '';
+    var that = this;
+    this.props.organization.users.forEach(function(user) {
+      if (user.id === proj.createdBy) username = user.username;
+    })
+
     return (
       <div>
         <Modal show={this.state.modal} onHide={this.switchModal} >
@@ -101,6 +107,7 @@ const Expenses = React.createClass({
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Project ID</th>
+                  <th>Created By</th>
                   <th>Vertical</th>
                   <th>Tier</th>
                   <th>Type</th>
