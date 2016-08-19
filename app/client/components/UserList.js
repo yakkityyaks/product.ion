@@ -105,7 +105,7 @@ const UserList = React.createClass({
 
     return (
       <div className="settingsMemberNode">
-        <Button bsStyle="primary" bsSize="small" style={{"float":"right","margin":"20px 0 15px 0"}} id="modalButton" onClick={this.props.switchModal}>
+        <Button bsStyle="primary" style={{"float":"right","margin":"20px 0 15px 0"}} id="modalButton" onClick={this.props.switchModal}>
           Add a User to Organization
         </Button>
         <Form bsClass="usersSettings" onSubmit={this.onSubmit}>
