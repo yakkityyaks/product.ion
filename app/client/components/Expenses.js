@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, ControlId, Form, FormControl, FormGroup, Modal, Panel, Table } from 'react-bootstrap';
+import { Button, ControlId, Form, FormControl, FormGroup, InputGroup, Modal, Panel, Table } from 'react-bootstrap';
 import CSVDrop from './CSVDrop';
 import ExpenseChart from './ExpenseChart';
 import ExpenseNode from './ExpenseNode';
 import NavBar from './NavBar';
 import StaticDate from './formComponents/StaticDate.js';
+import ReadOnlyText from './formComponents/ReadOnlyText.js';
 
 const Expenses = React.createClass({
 
@@ -116,12 +117,36 @@ const Expenses = React.createClass({
               </thead>
               <tbody>
                 <tr id="readOnlyBody">
-                  <td>{proj.projId}</td>
-                  <td>{proj.vertical}</td>
-                  <td>{proj.tier}</td>
-                  <td>{proj.type}</td>
-                  <td>{proj.numAssets}</td>
-                  <td>{proj.status}</td>
+                  <td width="50">
+                    <ReadOnlyText
+                      name="projId"
+                      value={proj.projId} />
+                  </td>
+                  <td width="145">
+                    <ReadOnlyText
+                      name="vertical"
+                      value={proj.vertical} />
+                  </td>
+                  <td width="70">
+                    <ReadOnlyText
+                      name="tier"
+                      value={proj.tier} />
+                  </td>
+                  <td>
+                    <ReadOnlyText
+                      name="type"
+                      value={proj.type} />
+                  </td>
+                  <td width="15">
+                    <ReadOnlyText
+                      name="numAssets"
+                      value={proj.numAssets} />
+                  </td>
+                  <td width="125">
+                    <ReadOnlyText
+                      name="status"
+                      value={proj.status} />
+                  </td>
                   <td width="125">
                     <StaticDate
                       name="startDate"
@@ -142,9 +167,30 @@ const Expenses = React.createClass({
                       name="releaseDate"
                       value={proj.releaseDate} />
                   </td>
-                  <td>{proj.costToDate}</td>
-                  <td>{proj.estimateToComplete}</td>
-                  <td>{proj.reqBudget}</td>
+                  <td width="125">
+                    <InputGroup>
+                      <InputGroup.Addon>$</InputGroup.Addon>
+                        <ReadOnlyText
+                          name="costToDate"
+                          value={proj.costToDate} />
+                    </InputGroup>
+                  </td>
+                  <td width="125">
+                    <InputGroup>
+                      <InputGroup.Addon>$</InputGroup.Addon>
+                        <ReadOnlyText
+                          name="estimateToComplete"
+                          value={proj.estimateToComplete} />
+                    </InputGroup>
+                  </td>
+                  <td width="125">
+                    <InputGroup>
+                      <InputGroup.Addon>$</InputGroup.Addon>
+                        <ReadOnlyText
+                          name="reqBudget"
+                          value={proj.reqBudget} />
+                    </InputGroup>
+                  </td>
                 </tr>
               </tbody>
             </Table>

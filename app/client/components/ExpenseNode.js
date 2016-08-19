@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
 import codes from "../data/expenseCodes.js";
 import categories from "../data/expenseCategories.js";
+import DateFormat from './formComponents/DateFormat.js';
 import DatePicker from './formComponents/DatePicker.js';
 import ReadOnlyText from './formComponents/ReadOnlyText.js';
 import StaticDate from './formComponents/StaticDate.js';
@@ -26,12 +27,21 @@ const ExpenseNode = React.createClass({
     };
   },
 
+  componentDidMount: function(){
+    if(this.state.dateTracked === ''){
+      var newDate = new Date();
+      var today = newDate.format("mm/dd/yyyy")
+      console.log('in the node ',today)
+      this.setState({dateTracked: today})
+    }
+  },
+
   handleAdd: function(){
     var singleExpense = {
       category: this.state.category,
       cost: this.state.cost,
       dateSpent: this.state.dateSpent.rawDate,
-      dateTracked: this.state.dateTracked.rawDate,
+      dateTracked: this.state.dateTracked,
       description: this.state.description,
       glCode: this.state.glCode,
       method: this.state.method,
