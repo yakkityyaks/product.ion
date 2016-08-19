@@ -50,18 +50,20 @@ const Settings = React.createClass({
       <div className="settings">
         <NavBar {...this.props}/>
         <Panel>
-          <h2>Welcome to your settings page, {user.name }!</h2>
-          <h2>You are {permName[user.perm]} of { orgName }</h2>
-           <br></br>
-           <div>
-             <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
-               Add a User to Organization
-             </Button>
-           </div>
+        <div>
+        {/* <b style={{"font-size":"30","float":"left"}}>Welcome to your settings, {user.name} [{permName[user.perm]} of { orgName }]</b> */}
+        <Panel><b style={{"font-size":"30"}}>Welcome to your settings, {user.name}! You are {permName[user.perm]} of { orgName }</b></Panel>
+          <Button bsStyle="primary" bsSize="large" id="modalButton" onClick={this.switchModal}>
+            Add a User to Organization
+          </Button>
+        </div>
+
+
+         <br></br>
 
            <Modal show={this.props.modals.addUser} onHide={this.switchModal} >
              <Modal.Header closeButton>
-               <Modal.Title>Add a User to {this.props.organization.orgName}</Modal.Title>
+               <Modal.Title style={{"textAlign":"center"}}>Add a User to {this.props.organization.orgName}</Modal.Title>
              </Modal.Header>
             <Modal.Body>
                  <AddUser {...this.props} />
@@ -108,7 +110,7 @@ const Settings = React.createClass({
                       </FormGroup>
                       <div>
                         <Button type="submit">
-                          Submit Change
+                          Change Password
                         </Button>
                       </div>
                     </Form>

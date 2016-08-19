@@ -87,7 +87,7 @@ function posts(state=[], action) {
       return action.organization;
 
     case "ADD_NEW_USER":
-      console.log("So you want to make a new user");
+      console.log("So you want to make a new user using ", action);
       console.log("ORGS ID ", state.orgs_id);
       var orgs_id = state.orgs_id;
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
