@@ -139,13 +139,13 @@ const Dashboard = React.createClass({
 
           <Panel>
             <div>
-              <b style={{"font-size":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
-              <Button onClick={this.exportCSV} style={{"float":"right","margin-right":"5px"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
-              <Button bsStyle="primary" style={{"float":"right","margin-right":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
+              <b style={{"fontSize":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
+              <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
+              <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
               {
                 this.props.organization.user.perm === 0 ?
                 (<Link to="/mastersheet">
-                  <Button style={{"float":"right","margin-right":"5px"}} bsStyle="primary">Click for Master Sheet</Button>
+                  <Button style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Click for Master Sheet</Button>
                 </Link>) :
                 <div></div>
               }
