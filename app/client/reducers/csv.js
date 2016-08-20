@@ -9,7 +9,6 @@ function parseCSV(state=[], action) {
     .then(function(res) {
       // if(res.status === 201) {
         console.log("API CALL FOR PARSE WORKS ", res);
-
         store.dispatch({
           type: "HYDRATE_TABLES",
           res
@@ -22,7 +21,7 @@ function parseCSV(state=[], action) {
       store.dispatch({
         type: "BAD_CSV",
         message: 'This is an invalid CSV. A valid CSV must have columns "type,vertical,glCode,dateSpent,dateTracked,vendor,method,description,cost"'
-      })
+      });
     });
     break;
       case "HYDRATE_TABLES":
