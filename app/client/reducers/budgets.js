@@ -25,6 +25,7 @@ function budgets(state = {}, action) {
       console.log("newstate is ", newState);
       return newState;
     case "ADD_BUDGET_NODE":
+      console.log("at the budget node. Action is ", action);
       const project = "proj" + action.node.projs_id;
       let projArr = state[project];
       projArr.push(action.node);

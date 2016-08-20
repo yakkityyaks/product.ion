@@ -1,3 +1,13 @@
+body {
+	background-color: #7E8A99;;
+}
+
+.panel-body {
+	background:#7E8A99;
+	/*color: #120F14;*/
+}
+
+
 .addUserField {
 	width: 300px;
 	margin: auto;
