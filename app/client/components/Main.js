@@ -11,7 +11,7 @@ const Main = React.createClass({
     return (
       <div className="titleHeader">
         <Link to="/">
-          <div id="title">product.ion</div>
+          <div id="title"><a>product.ion</a></div>
         </Link>
         { React.cloneElement(this.props.children, this.props) }
       </div>
