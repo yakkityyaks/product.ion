@@ -148,7 +148,7 @@ const ExpenseNode = React.createClass({
               onChange={this.handleChange} />
           }
         </td>
-        <td  width="115">
+        <td width="110">
           {this.state.readOnlyStatus === true ?
             <InputGroup>
               <InputGroup.Addon>$</InputGroup.Addon>
@@ -172,7 +172,7 @@ const ExpenseNode = React.createClass({
             </InputGroup>
           }
         </td>
-        <td width="135">
+        <td>
           {this.state.readOnlyStatus === true ?
             <ReadOnlyText
               name="method"
@@ -183,7 +183,7 @@ const ExpenseNode = React.createClass({
               options={['Credit Card', 'Invoice', 'Payroll', 'Petty Cash', 'Misc']} />
           }
         </td>
-        <td>
+        <td width="135">
           {this.state.readOnlyStatus === true ?
             <ReadOnlyText
               name="category"
@@ -204,7 +204,7 @@ const ExpenseNode = React.createClass({
                 value={this.state.glCode} />
             }
           </td>
-          <td width="125">
+          <td>
             {this.state.readOnlyStatus === true ?
               <StaticDate
                 name="dateSpent"
@@ -214,10 +214,13 @@ const ExpenseNode = React.createClass({
                 onChange={this.handleChange} />
             }
           </td>
-          <td width="125">
-            <StaticDate
-              name="dateTracked"
-              value={this.state.importedExpenses.dateTracked} />
+          <td>
+            {this.state.importedExpenses.dateTracked ?
+              <StaticDate
+                name="dateTracked"
+                value={this.state.importedExpenses.dateTracked} /> :
+             null
+            }
           </td>
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
