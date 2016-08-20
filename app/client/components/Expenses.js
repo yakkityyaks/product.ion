@@ -34,7 +34,7 @@ const Expenses = React.createClass({
     singleExpense.projs_id = this.props.expenses.projId;
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
-    this.setState({newExpenses: newExpenses})
+    this.setState({newExpenses: newExpenses});
     console.log('Handle NEW Expense ', singleExpense);
     this.props.postNewExpense(singleExpense);
   },
@@ -56,7 +56,7 @@ const Expenses = React.createClass({
   },
 
   switchChart() {
-    console.log('switching chart', !this.state.open)
+    console.log('switching chart', !this.state.open);
     this.setState({newView: true, open: !this.state.open});
   },
 
@@ -74,7 +74,7 @@ const Expenses = React.createClass({
     var that = this;
     this.props.organization.users.forEach(function(user) {
       if (user.id === proj.createdBy) username = user.username;
-    })
+    });
 
     return (
       <div>
