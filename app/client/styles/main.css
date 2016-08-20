@@ -4,8 +4,14 @@
 	padding-bottom: 12px;
 }
 
-.addUserLabel {
+.userLabel {
 	font-size: 17px;
+	text-align: center;
+}
+
+#userLabel {
+	font-size: 17px;
+	text-align: center;
 }
 
 .addUserTitle {
@@ -13,17 +19,42 @@
 	font-weight: bold;
 }
 
+.createOrgButton {
+	margin-bottom: 20px;
+}
+
 h3 {
 	padding-bottom: 12px;
 	padding-top: 0px;
+	/*text-align: center;*/
+}
+
+#loginForm {
+	padding: 20px;
+}
+
+#loginButton {
+	text-align: center;
+}
+
+.loginTitle {
+	font-weight: bold;
+	font-size: 20px;
+	color: #fefdfb;
+	text-align: center;
+	margin: auto;
+	background: #457fca; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 #loginPanel {
 	width: 500px;
 	display: block;
 	float: none;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
+	padding-top: 50px;
 }
 
 #modalButton {
@@ -35,11 +66,13 @@ h3 {
 
 #title {
 	text-align: center;
+	color: white;
 }
 
 #title > h1 {
 	font-size: 60px;
 }
+
 #settingsWindow {
 	display:inline-block;
 	padding-right: 30px;
@@ -93,10 +126,23 @@ h3 {
 }
 
 .budgetFormCata1 {
-		width: 50%;
+	width: 50%;
 }
+
 .testing1{
 	width: 60px;
+}
+
+#title {
+	height: 100px;
+	font-size: 50px;
+	text-align: center;
+	padding: 10px;
+
+
+background: #83a4d4; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .budgetNodeForm {
@@ -109,6 +155,10 @@ h3 {
 
 .usersSettings {
 	float: right;
+}
+
+.welcome {
+	text-align: center;
 }
 
 /*.navbar-default {
