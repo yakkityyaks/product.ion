@@ -60,7 +60,7 @@ const Settings = React.createClass({
              <Modal.Header closeButton>
                <Modal.Title bsClass="addUserTitle">Add a User to {this.props.organization.orgName}</Modal.Title>
              </Modal.Header>
-            <Modal.Body>
+              <Modal.Body>
                  <AddUser {...this.props} />
                </Modal.Body>
              <Modal.Footer>

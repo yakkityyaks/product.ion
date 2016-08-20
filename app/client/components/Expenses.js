@@ -8,6 +8,8 @@ import NavBar from './NavBar';
 import StaticDate from './formComponents/StaticDate.js';
 import ReadOnlyText from './formComponents/ReadOnlyText.js';
 
+import ExpensesSidebar from './ExpensesSidebar';
+
 const Expenses = React.createClass({
 
   getInitialState: function() {
@@ -93,9 +95,9 @@ const Expenses = React.createClass({
         </Modal>
         <NavBar {...this.props}/>
         <Panel>
-          <span style={{"font-size":"30"}}>{"Project Details for " + proj.name }</span>
+          <span style={{"fontSize":"30"}}>{"Project Details for " + proj.name }</span>
           <Button bsStyle="primary" style={{"float":"right"}} onClick={this.switchChart}>Toggle Visuals</Button>
-          <div style={{"margin-top":"20px"}}>
+          <div style={{"marginTop":"20px"}}>
             <Table striped>
               <thead>
                 <tr id="readOnlyHeader">
