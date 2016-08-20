@@ -229,9 +229,15 @@ const ExpenseNode = React.createClass({
              null
             }
           </td>
-          {/* {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null} */}
-          {this.state.importedExpenses &&
-            this.state.editMode && <td width="auto"><Button type="submit" onClick={this.handleUpdate}>Update</Button></td>}
+          {this.state.importedExpenses ?
+            this.state.editMode &&
+            <td width="auto">
+              <Button type="submit" onClick={this.handleUpdate}>
+                Update
+              </Button>
+            </td>
+            : null
+          }
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
           {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
         </tr>
