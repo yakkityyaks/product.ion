@@ -34,11 +34,11 @@ const Login = React.createClass({
         {this.state.renderStuff && <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
 
          <Form className="" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
-           <Link to={`/register`}>
-             <Button bsSize="small" bsClass="createOrgButton">
+           <Button bsStyle="default" bsSize="small" bsClass="createOrgButton">
+             <Link to={`/register`}>
                Create Organization
-             </Button>
-           </Link>
+             </Link>
+           </Button>
            <FormGroup controlId="userInput">
              <ControlLabel id="loginLabel" htmlFor="username">Username</ControlLabel>
              <FormControl type="text" value={this.state.username} placeholder="Enter text"
