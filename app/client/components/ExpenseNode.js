@@ -211,7 +211,7 @@ const ExpenseNode = React.createClass({
                 value={this.state.glCode} />
             }
           </td>
-          <td width="125">
+          <td>
             {this.state.readOnlyStatus === true ?
               <StaticDate
                 name="dateSpent"
@@ -230,9 +230,8 @@ const ExpenseNode = React.createClass({
             }
           </td>
           {/* {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null} */}
-          no zero
-          {(this.state.importedExpenses &&
-            this.state.editMode) && <td width="auto"><Button type="submit" onClick={this.handleUpdate}>Update</Button></td>}
+          {this.state.importedExpenses &&
+            this.state.editMode && <td width="auto"><Button type="submit" onClick={this.handleUpdate}>Update</Button></td>}
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
           {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
         </tr>
