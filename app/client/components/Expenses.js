@@ -99,7 +99,8 @@ const Expenses = React.createClass({
           <span style={{"fontSize":"30"}}>{"Project Details for " + proj.name }</span>
           <Button bsStyle="primary" style={{"float":"right"}} onClick={this.switchChart}>Toggle Visuals</Button>
           <div style={{"marginTop":"20px"}}>
-            <Table striped>
+
+            <Table componentClass="table">
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Project ID</th>
@@ -109,13 +110,6 @@ const Expenses = React.createClass({
                   <th>Type</th>
                   <th>Number of Assets</th>
                   <th>Status</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Edit Date</th>
-                  <th>Release Date</th>
-                  <th>Cost to Date</th>
-                  <th>Estimate to Complete</th>
-                  <th>Requested Budget</th>
                 </tr>
               </thead>
               <tbody>
@@ -155,6 +149,23 @@ const Expenses = React.createClass({
                       name="status"
                       value={proj.status} />
                   </td>
+                </tr>
+              </tbody>
+            </Table>
+            <Table componentClass="table">
+              <thead>
+                <tr id="readOnlyHeader">
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Edit Date</th>
+                  <th>Release Date</th>
+                  <th>Cost to Date</th>
+                  <th>Estimate to Complete</th>
+                  <th>Requested Budget</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="readOnlyBody">
                   <td width="125">
                     <StaticDate
                       name="startDate"
@@ -243,7 +254,6 @@ const Expenses = React.createClass({
                   <th>Expense Category</th>
                   <th>GL Code</th>
                   <th>Date Spent</th>
-                  <th>Date Tracked</th>
                 </tr>
               </thead>
               <tbody>
