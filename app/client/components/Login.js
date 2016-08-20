@@ -40,12 +40,12 @@ const Login = React.createClass({
              </Link>
            </Button>
            <FormGroup controlId="userInput">
-             <ControlLabel id="loginLabel" htmlFor="username">Username</ControlLabel>
+             <ControlLabel bsClass="userLabel" htmlFor="username">Username</ControlLabel>
              <FormControl type="text" value={this.state.username} placeholder="Enter text"
                           onChange={this.handleUserChange} required/>
            </FormGroup>
            <FormGroup controlId="userInput">
-             <ControlLabel id="loginLabel" htmlFor="password">Password</ControlLabel>
+             <ControlLabel bsClass="userLabel" htmlFor="password">Password</ControlLabel>
              <FormControl type="password" value={this.state.password} placeholder="•••••••••••"
                           onChange={this.handlePassChange} required/>
            </FormGroup>
