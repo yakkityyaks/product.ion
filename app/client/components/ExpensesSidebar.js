@@ -22,7 +22,7 @@ const ExpensesSidebar = React.createClass({
               <InputGroup.Addon>Created By</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
                           name="createdBy"
-                          value={"002"} required />
+                          value={"timtim"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formVertical">
@@ -30,7 +30,7 @@ const ExpensesSidebar = React.createClass({
               <InputGroup.Addon>Vertical</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
                           name="vertical"
-                          value={"003"} required />
+                          value={"entertainment"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formTier">
@@ -38,7 +38,7 @@ const ExpensesSidebar = React.createClass({
               <InputGroup.Addon>Tier</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
                           name="tier"
-                          value={"004"} required />
+                          value={"BR"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formType">
@@ -46,15 +46,15 @@ const ExpensesSidebar = React.createClass({
               <InputGroup.Addon>Type</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
                           name="type"
-                          value={"005"} required />
+                          value={"Editorial"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formAssets">
             <InputGroup>
               <InputGroup.Addon>Assets</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="number" placeholder="Get this from accounting"
                           name="assets"
-                          value={"006"} required />
+                          value={"3"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formStatus">
@@ -62,63 +62,63 @@ const ExpensesSidebar = React.createClass({
               <InputGroup.Addon>Status</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
                           name="status"
-                          value={"007"} required />
+                          value={"IN PRODUCTION"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formStartDate">
             <InputGroup>
               <InputGroup.Addon>Start Date</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="date" placeholder="Get this from accounting"
                           name="startDate"
-                          value={"008"} required />
+                          value={"08/19/2016"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formEndDate">
             <InputGroup>
               <InputGroup.Addon>End Date</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="date" placeholder="Get this from accounting"
                           name="endDate"
-                          value={"009"} required />
+                          value={"08/21/2017"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formEditDate">
             <InputGroup>
               <InputGroup.Addon>Edit Date</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="date" placeholder="Get this from accounting"
                           name="editDate"
-                          value={"010"} required />
+                          value={"08/22/16"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formReleaseDate">
             <InputGroup>
               <InputGroup.Addon>Release Date</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="date" placeholder="Get this from accounting"
                           name="releaseDate"
-                          value={"011"} required />
+                          value={"09/01/2016"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formCostToDate">
             <InputGroup>
               <InputGroup.Addon>Cost To Date</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="number" placeholder="Get this from accounting"
                           name="costToDate"
-                          value={"012"} required />
+                          value={"323"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="formEstimateToComplete">
             <InputGroup>
               <InputGroup.Addon>Estimate to Complete</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="number" placeholder="Get this from accounting"
                           name="estimateToComplete"
-                          value={"013"} required />
+                          value={"133190"} required />
             </InputGroup>
           </FormGroup>
           <FormGroup controlId="fromRequestedBudget">
             <InputGroup>
               <InputGroup.Addon>Requested Budget</InputGroup.Addon>
-              <FormControl type="text" placeholder="Get this from accounting"
+              <FormControl type="number" placeholder="Get this from accounting"
                           name="requestedBudget"
-                          value={"014"} required />
+                          value={"200000"} required />
             </InputGroup>
           </FormGroup>
         </Form>
