@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import ApiCall from '../utils/serverCalls';
 
-import { Button, Panel, FormGroup, FormControl, Form, ControlLabel, ButtonToolbar } from 'react-bootstrap';
+import { Button, Panel, FormGroup, FormControl, Form, ControlLabel, ButtonToolbar, Col } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState() {
@@ -31,29 +31,29 @@ const Login = React.createClass({
   render() {
     return (
        <div id="loginPanel">
-        {this.state.renderStuff && <Panel bsStyle="primary" header={<h3>Happy Budgeting!</h3>}>
+        {this.state.renderStuff && <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
 
-         <Form id="loginForm" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
+         <Form className="" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Link to={`/register`}>
-             <Button className="createOrgButton">
+             <Button bsSize="small" bsClass="createOrgButton">
                Create Organization
              </Button>
            </Link>
-           <div className="">
-             <ControlLabel id="userLabel" htmlFor="username">Username</ControlLabel>
+           <FormGroup controlId="userInput">
+             <ControlLabel id="loginLabel" htmlFor="username">Username</ControlLabel>
              <FormControl type="text" value={this.state.username} placeholder="Enter text"
                           onChange={this.handleUserChange} required/>
-           </div>
-           <div className="">
-             <ControlLabel id="userLabel" htmlFor="password">Password</ControlLabel>
-             <FormControl type="password" value={this.state.password} placeholder="••••••••••"
+           </FormGroup>
+           <FormGroup controlId="userInput">
+             <ControlLabel id="loginLabel" htmlFor="password">Password</ControlLabel>
+             <FormControl type="password" value={this.state.password} placeholder="•••••••••••"
                           onChange={this.handlePassChange} required/>
-           </div>
+           </FormGroup>
            <div className="loginButton">
              <p id="loginMessage">{this.props.messages.login}</p>
            </div>
-           <ButtonToolbar id="loginButton">
-            <Button type="submit" bsStyle="primary" bsSize="large">Login</Button>
+           <ButtonToolbar bsClass="loginButton">
+            <Button type="submit" bsStyle="primary" bsSize="large" block>Login</Button>
           </ButtonToolbar>
          </Form>
         </Panel>}
