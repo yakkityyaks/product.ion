@@ -13,7 +13,7 @@ const TextInput = React.createClass({
         componentClass="input"
         name={this.props.name}
         onChange = {this.handleInputChange}
-        placeholder={this.props.name}>
+        placeholder={this.props.value || this.props.name}>
       </FormControl>
     );
   }
