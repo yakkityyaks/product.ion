@@ -9,9 +9,8 @@ function expenses(state = [], action) {
       console.log(action);
       ApiCall.getExpensesByProjectId(action.projectId)
         .then((res) => {
-
           if (res.status === 201) {
-            console.log('the the expense reducer ', res.data.org.name)
+            console.log('the the expense reducer ', res.data)
             var projectId = res.data.projId,
                 expenses = res.data.expenses,
                 id = res.data.id,
@@ -26,6 +25,7 @@ function expenses(state = [], action) {
         });
       break;
     case "HYDRATE_EXPENSES":
+      console.log('hydrating expenses w/ projId', action.projectId)
       state.projId = action.projectId;
       state.expenses = action.expenses;
       state.id = action.id;
@@ -35,10 +35,11 @@ function expenses(state = [], action) {
       state.current = action.expenses;
       return state;
     case "NEW_EXPENSE":
+      console.log('in new expense', action)
       ApiCall.registerExpense(action)
       .then(function(res) {
-        console.log('new expense', res.data.projs_Id);
-        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
+        console.log('new expense', res.data);
+        store.dispatch({type:'GET_EXPENSES', projectId: action.projId});
       })
       .catch(function(err) {
         console.error(err);
@@ -47,8 +48,8 @@ function expenses(state = [], action) {
     case "REMOVE_EXPENSE":
       ApiCall.removeExpense(action)
       .then(function(res) {
-
-        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
+        console.log('removing expense, projId:', action.projId)
+        store.dispatch({type:'GET_EXPENSES', projectId: action.projId});
       })
       .catch(function(err) {
         console.err(err);
@@ -64,10 +65,10 @@ function expenses(state = [], action) {
       ApiCall.updateExpense(action)
       .then(function(res) {
         console.log('back at dispatch for update ', res)
-        store.dispatch({type:'GET_EXPENSES', projectId: res.data});
+        store.dispatch({type:'GET_EXPENSES', projectId: action.projId});
       })
       .catch(function(err) {
-        console.err(err);
+        console.error(err);
       });
     case "CLEAR_EXP":
       return {};
