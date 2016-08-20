@@ -116,7 +116,7 @@ const AddUser = React.createClass({
              </FormGroup>
                <p bsClass="reminder">Don't forget to copy the password before submitting</p>
              <div>
-               <Button type="submit"> CREATE USER</Button>
+               <Button type="submit" bsStyle="primary"> CREATE USER</Button>
              </div>
            </Form>
          </div>

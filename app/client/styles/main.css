@@ -7,6 +7,7 @@
 .addUserTitle {
 	text-align: center;
 	font-weight: bold;
+	font-size: 25px;
 }
 
 .createOrgButton {
@@ -143,7 +144,7 @@ h3 {
 
 #title a:hover {
 	text-decoration: underline;
-	color: #136a8a;
+	color: #4CA1AF;
 }
 
 #title > h1 {
@@ -167,6 +168,10 @@ h3 {
 	text-align: center;
 	margin: auto;
 	width: 400px;
+}
+
+.userLabel {
+	font-size: 17px;
 }
 
 .usersSettings {
