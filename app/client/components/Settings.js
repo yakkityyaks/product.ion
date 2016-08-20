@@ -77,7 +77,7 @@ const Settings = React.createClass({
                 <Col md={3}>
                   <div id="settingsMain">
                     <Form onSubmit={this.handleSubmit}>
-                    <h3>Change Password</h3>
+                    <h3><strong>Change Password</strong></h3>
                       <FormGroup>
                         <ControlLabel bsClass="chartSortSelector">Current Password</ControlLabel>&nbsp;
                         <FormControl type="password" placeholder="••••••••••" required
@@ -105,7 +105,7 @@ const Settings = React.createClass({
                         <p id="passwordMessage">{this.state.validateMessage}</p>
                       </FormGroup>
                       <div>
-                        <Button type="submit">
+                        <Button type="submit" bsStyle="primary">
                           Change Password
                         </Button>
                       </div>
