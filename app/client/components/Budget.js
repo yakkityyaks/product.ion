@@ -30,7 +30,7 @@ const Budget = React.createClass({
     },
     postAllBudgets() {
       this.props.postAllBudgets();
-      
+
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -96,9 +96,7 @@ const Budget = React.createClass({
               </div>
           )
           }
-          <br>
-          </br>
-            <br></br>
+          <br />
           <ControlLabel>Add New Budget Item:</ControlLabel>
           <Form inline onSubmit={this.handleSubmit}>
             <InputGroup>
