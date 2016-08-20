@@ -21,8 +21,6 @@ const Expenses = React.createClass({
     });
     return {
       open: false,
-      expenses: this.props.expenses.expenses,
-      projId: this.props.expenses.projId,
       count: 0,
       addedExpenses: [0],
       newExpenses: [],
@@ -32,32 +30,23 @@ const Expenses = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(newProps){
-    this.setState({newView: true})
-  },
-
-  shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('the next props are ', nextProps)
-    return nextState.newView;
-  },
-
   handleNewExpense: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
-    this.setState({newExpenses: newExpenses})
+    this.setState({newExpenses: newExpenses});
     console.log('Handle NEW Expense ', singleExpense);
     this.props.postNewExpense(singleExpense);
   },
 
   handleExpenseToDelete: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     console.log('Handle DELETE ', singleExpense);
     this.props.removeExpense(singleExpense);
   },
 
   handleExpenseUpdate: function(singleExpense){
-    singleExpense.projs_id = this.state.projId;
+    singleExpense.projs_id = this.props.expenses.projId;
     console.log('Handle UPDATE ', singleExpense);
     this.props.updateExpense(singleExpense);
   },
@@ -67,7 +56,7 @@ const Expenses = React.createClass({
   },
 
   switchChart() {
-    console.log('switching chart', !this.state.open)
+    console.log('switching chart', !this.state.open);
     this.setState({newView: true, open: !this.state.open});
   },
 
@@ -79,6 +68,12 @@ const Expenses = React.createClass({
         proj = project;
         return;
       }
+    });
+
+    var username = '';
+    var that = this;
+    this.props.organization.users.forEach(function(user) {
+      if (user.id === proj.createdBy) username = user.username;
     });
 
     return (
@@ -101,6 +96,7 @@ const Expenses = React.createClass({
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Project ID</th>
+                  <th>Created By</th>
                   <th>Vertical</th>
                   <th>Tier</th>
                   <th>Type</th>
@@ -121,6 +117,11 @@ const Expenses = React.createClass({
                     <ReadOnlyText
                       name="projId"
                       value={proj.projId} />
+                  </td>
+                  <td width="145">
+                    <ReadOnlyText
+                      name="projId"
+                      value={username} />
                   </td>
                   <td width="145">
                     <ReadOnlyText

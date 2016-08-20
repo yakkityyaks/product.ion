@@ -42,6 +42,7 @@ Promise.all([
     table.date('endDate');
     table.date('editDate');
     table.date('releaseDate');
+    table.date('lastEdited').defaultTo(Date.now());
     table.string('status');
     table.float('costToDate').defaultTo(0);
     table.float('estimateToComplete');

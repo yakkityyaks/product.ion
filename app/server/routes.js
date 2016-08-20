@@ -11,7 +11,7 @@ var ProjUser = require('./models/projUser.js');
 var User = require('./controllers/userController.js');
 var utils = require('./lib/utility.js');
 var jwt = require('jsonwebtoken');
-
+var DateFormat = require('./lib/DateFormat.js');
 //makes organization w/ name req.body.orgName and returns the organization model
 //if an org with that name already exists returns a 403
 module.exports = function routes(app){
@@ -141,7 +141,9 @@ module.exports = function routes(app){
           exps.forEach(function(ex) {
             cost = cost + ex.get("cost");
           });
-          proj.save({costToDate: cost}).then(function(proj) {
+          var date = new Date();
+          var date = date.format('yyyy/mm/dd');
+          proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
             exp ? res.status(201).json(exp) : res.sendStatus(404);
           })
         })
@@ -282,15 +284,18 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/expense', function(req, res) {
+    console.log('In /api/update/expense ', req.body.data)
     Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp.save(req.body.data.singleExpense).then(function(exp) {
-        Project.getProjById(req.body.data.singleExpense.proj_id, function(proj) {
+        Project.getProjById(req.body.data.singleExpense.projs_id, function(proj) {
           Expense.getExpensesByProj(proj.id, function(exps) {
             var cost = 0;
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
             });
-            proj.save({costToDate: cost}).then(function(proj) {
+            var date = new Date();
+            var date = date.format('yyyy/mm/dd');
+            proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
               res.status(201).json(exp);
             });
           });
@@ -399,15 +404,18 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, this destroys that row in the table if found and sends it back. If not found,
   //this route throws a 404
   app.post('/api/remove/expense', function(req, res) {
+    console.log('In /api/remove/expense ', req.body.data)
     Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp.destroy().then(function(exp) {
-        Project.getProjById(req.body.data.singleExpense.proj_id, function(proj) {
+        Project.getProjById(req.body.data.singleExpense.projs_id, function(proj) {
           Expense.getExpensesByProj(req.body.data.singleExpense.id, function(exps) {
             var cost = 0;
             exps.forEach(function(ex) {
               cost = cost + ex.get("cost");
             });
-            proj.save({costToDate: cost}).then(function(proj) {
+            var date = new Date();
+            var date = date.format('yyyy/mm/dd');
+            proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
               res.status(201).json(exp);
             });
           });

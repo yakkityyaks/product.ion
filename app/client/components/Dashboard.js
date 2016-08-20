@@ -152,20 +152,24 @@ const Dashboard = React.createClass({
               {this.state.open ? <DashCharts {...this.props}/> : null}
             </div>
 
-            <h3>Most Recent Three Projects</h3>
+            <h3>Most Recently Edited Three Projects</h3>
             <Table striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Name</th>
                   <th>Project ID</th>
+                  <th>Created By</th>
                   <th>Project Status</th>
-                  <th>Cost to Date</th>
                   <th>Estimate to Complete</th>
+                  <th>Cost to Date</th>
                 </tr>
               </thead>
               <tbody>
               {
-                this.props.projects.length > 0 ? this.props.projects.slice(-3).map(function(proj, idx) {
+                this.props.projects.length > 0 ? this.props.projects.sort(function(b, a) {
+                console.log('sorting');
+                return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
+              }).slice(0,3).map(function(proj, idx) {
                   return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                 }, this) : null
               }
@@ -181,6 +185,7 @@ const Dashboard = React.createClass({
                     <tr id="readOnlyHeader">
                       <th>Name</th>
                       <th>Project ID</th>
+                      <th>Created By</th>
                       <th>Project Status</th>
                       <th>Cost to Date</th>
                       <th>Estimate to Complete</th>
@@ -205,6 +210,7 @@ const Dashboard = React.createClass({
                     <tr id="readOnlyHeader">
                       <th>Name</th>
                       <th>Project ID</th>
+                      <th>Created By</th>
                       <th>Project Status</th>
                       <th>Cost to Date</th>
                       <th>Estimate to Complete</th>

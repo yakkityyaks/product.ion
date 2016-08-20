@@ -28,6 +28,10 @@ const Budget = React.createClass({
               newBudgetDescription: "",
       });
     },
+    postAllBudgets() {
+      this.props.postAllBudgets();
+      
+    },
     handleSubmit(e) {
       e.preventDefault();
       //create a budget object, push it to the temp budget storage array
@@ -75,7 +79,7 @@ const Budget = React.createClass({
         <div style={{"marginTop":"20px"}}>
           {
             this.state.changed &&
-              <Button bsStyle="warning" onClick={this.props.postAllBudgets}>
+              <Button bsStyle="warning" onClick={this.postAllBudgets}>
                 Save Changes
               </Button>
           }
