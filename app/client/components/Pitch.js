@@ -16,6 +16,8 @@ const Pitch = React.createClass({
         date = [now.getFullYear(), m, d];
 
     let { data } = this.props,
+          goodProd = {val: undefined, style: undefined, action: "No Issues"},
+          badProd = {val: "error", style: "danger", action: "Rejected"},
           good = {val: "success", style: "success", action: "Reject"},
           bad = {val: "error", style: "danger", action: "Approve"},
           notAdmin = {val: null, action: undefined};
@@ -27,7 +29,7 @@ const Pitch = React.createClass({
     //sets validation object to be mapped to each field in PitchSummary
     for (var key in judy) {
       judge[key] = {vars: this.props.organization.user.perm ?
-          notAdmin
+          data.approvals[counter] == 1 ? goodProd : badProd
         : data.approvals[counter] == 1 ? good : bad};
       judge[key].index = counter;
       counter ++;
