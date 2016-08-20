@@ -17,20 +17,108 @@ const ExpensesSidebar = React.createClass({
                           value={"001"} required />
             </InputGroup>
           </FormGroup>
-          <FormGroup controlId="formProjId">
+          <FormGroup controlId="formCreatedBy">
             <InputGroup>
-              <InputGroup.Addon>Project Id</InputGroup.Addon>
+              <InputGroup.Addon>Created By</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
-                          name="projId"
-                          value={"001"} required />
+                          name="createdBy"
+                          value={"002"} required />
             </InputGroup>
           </FormGroup>
-          <FormGroup controlId="formProjId">
+          <FormGroup controlId="formVertical">
             <InputGroup>
-              <InputGroup.Addon>Project Id</InputGroup.Addon>
+              <InputGroup.Addon>Vertical</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
-                          name="projId"
-                          value={"001"} required />
+                          name="vertical"
+                          value={"003"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formTier">
+            <InputGroup>
+              <InputGroup.Addon>Tier</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="tier"
+                          value={"004"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formType">
+            <InputGroup>
+              <InputGroup.Addon>Type</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="type"
+                          value={"005"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formAssets">
+            <InputGroup>
+              <InputGroup.Addon>Assets</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="assets"
+                          value={"006"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formStatus">
+            <InputGroup>
+              <InputGroup.Addon>Status</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="status"
+                          value={"007"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formStartDate">
+            <InputGroup>
+              <InputGroup.Addon>Start Date</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="startDate"
+                          value={"008"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEndDate">
+            <InputGroup>
+              <InputGroup.Addon>End Date</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="endDate"
+                          value={"009"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEditDate">
+            <InputGroup>
+              <InputGroup.Addon>Edit Date</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="editDate"
+                          value={"010"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formReleaseDate">
+            <InputGroup>
+              <InputGroup.Addon>Release Date</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="releaseDate"
+                          value={"011"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formCostToDate">
+            <InputGroup>
+              <InputGroup.Addon>Cost To Date</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="costToDate"
+                          value={"012"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEstimateToComplete">
+            <InputGroup>
+              <InputGroup.Addon>Estimate to Complete</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="estimateToComplete"
+                          value={"013"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="fromRequestedBudget">
+            <InputGroup>
+              <InputGroup.Addon>Requested Budget</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="requestedBudget"
+                          value={"014"} required />
             </InputGroup>
           </FormGroup>
         </Form>
