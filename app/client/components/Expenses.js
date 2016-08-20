@@ -94,7 +94,6 @@ const Expenses = React.createClass({
           <Modal.Footer />
         </Modal>
         <NavBar {...this.props}/>
-        <ExpensesSidebar {...this.props}/>
         <Panel>
           <span style={{"fontSize":"30"}}>{"Project Details for " + proj.name }</span>
           <Button bsStyle="primary" style={{"float":"right"}} onClick={this.switchChart}>Toggle Visuals</Button>

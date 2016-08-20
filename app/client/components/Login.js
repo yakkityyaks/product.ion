@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import ApiCall from '../utils/serverCalls';
 
-import { Button, Panel, FormGroup, FormControl, Form, ControlLabel, ButtonToolbar } from 'react-bootstrap';
+import { Button, Panel, FormGroup, FormControl, Form, ControlLabel, ButtonToolbar, Col } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState() {
@@ -34,7 +34,7 @@ const Login = React.createClass({
         {this.state.renderStuff && <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
 
          <Form className="" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
-           <Button bsStyle="info" bsSize="small" bsClass="createOrgButton">
+           <Button bsStyle="default" bsSize="small" bsClass="createOrgButton">
              <Link to={`/register`}>
                Create Organization
              </Link>
