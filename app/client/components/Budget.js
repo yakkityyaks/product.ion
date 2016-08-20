@@ -30,7 +30,7 @@ const Budget = React.createClass({
     },
     postAllBudgets() {
       this.props.postAllBudgets();
-      
+
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -41,7 +41,7 @@ const Budget = React.createClass({
         cost: this.state.newBudgetCost,
         quantity: this.state.newBudgetQuant,
         total: this.state.newBudgetCost * this.state.newBudgetQuant,
-        projs_id: 2
+        projs_id: this.props.projs_id
       };
       console.log("Budget object is ", budget);
 
