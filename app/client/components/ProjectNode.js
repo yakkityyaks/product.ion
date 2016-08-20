@@ -23,7 +23,7 @@ const ProjectNode = React.createClass({
     var that = this;
     this.props.organization.users.forEach(function(user) {
       if (user.id === that.props.project.createdBy) username = user.username;
-    });
+    })
 
     return (
       <tr onClick={this.triggerProjectClick} id="readOnlyBody">
