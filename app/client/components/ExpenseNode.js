@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
+import { Button, InputGroup, Modal, OverlayTrigger, FormControl} from 'react-bootstrap';
 import codes from "../data/expenseCodes.js";
 import categories from "../data/expenseCategories.js";
 import DateFormat from './formComponents/DateFormat.js';
@@ -81,7 +81,8 @@ const ExpenseNode = React.createClass({
 
   handleEdit: function(){
     var off = false;
-    if (this.state.expenses && !this.state.editMode) {
+    console.log("Handle edit. ", this.state);
+    if (this.state.importedExpenses && !this.state.editMode) {
       this.setState({
         editMode: true,
         tableContext: "warning",
@@ -211,6 +212,10 @@ const ExpenseNode = React.createClass({
             }
           </td>
           <td width="125">
+            {/* <FormControl type="date" readOnly={this.state.readOnlyStatus}
+                      name="dateSpent" onChange={this.handleChange}
+                      value={this.state.importedExpenses.dateSpent}
+                      className="expenseDate"/> */}
             {this.state.readOnlyStatus === true ?
               <StaticDate
                 name="dateSpent"
