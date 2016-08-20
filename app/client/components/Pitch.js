@@ -78,7 +78,7 @@ const Pitch = React.createClass({
       adminNotes: this.state.adminNotes
     };
   },
-  componentWillReceiveProps: function(newProps) {
+  componentWillReceiveProps: function(newProps){
     if (newProps.budgets)
       this.setState({budgets: newProps.budgets["proj" + this.state.id]});
   },
@@ -143,11 +143,6 @@ const Pitch = React.createClass({
 
     this.setState({budgets: newBudgets});
   },
-  calculateTotal() {
-    let total = 0;
-    this.state.budgets.forEach(budget => total+=budget.total);
-
-  },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
     this.setState({
@@ -196,7 +191,6 @@ const Pitch = React.createClass({
         <Tab eventKey={2} title="Budget">
           <Budget
             budgets={this.props.budgets["proj" + this.state.id]}
-            projs_id = {this.state.id}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
