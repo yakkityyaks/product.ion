@@ -4,23 +4,14 @@
 	padding-bottom: 12px;
 }
 
-.userLabel {
-	font-size: 17px;
-	text-align: center;
-}
-
-#userLabel {
-	font-size: 17px;
-	text-align: center;
-}
-
 .addUserTitle {
 	text-align: center;
 	font-weight: bold;
 }
 
 .createOrgButton {
-	margin-bottom: 20px;
+	margin-bottom: 12px;
+	padding: 10px;
 }
 
 h3 {
@@ -29,12 +20,28 @@ h3 {
 	/*text-align: center;*/
 }
 
+.loginButton {
+	text-align: center;
+	margin: auto;
+	width: 400px;
+	padding-bottom: 3px;
+}
+
 #loginForm {
 	padding: 20px;
 }
 
-#loginButton {
+#loginLabel {
+	font-size: 17px;
+}
+
+#loginPanel {
+	width: 450px;
+	display: block;
 	text-align: center;
+	float: none;
+	margin: auto;
+	padding-top: 50px;
 }
 
 .loginTitle {
@@ -46,15 +53,6 @@ h3 {
 	background: #457fca; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-#loginPanel {
-	width: 500px;
-	display: block;
-	float: none;
-	margin: auto;
-	padding-top: 50px;
 }
 
 #modalButton {
@@ -64,13 +62,9 @@ h3 {
 	margin-right: auto;
 }
 
-#title {
-	text-align: center;
-	color: white;
-}
-
-#title > h1 {
-	font-size: 60px;
+#passwordControl {
+	width: 400px;
+	margin:auto;
 }
 
 #settingsWindow {
@@ -138,11 +132,26 @@ h3 {
 	font-size: 50px;
 	text-align: center;
 	padding: 10px;
+	background: #83a4d4; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
+#title a {
+	color: white;
+}
 
-background: #83a4d4; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+#title a:hover {
+	text-decoration: underline;
+	color: #136a8a;
+}
+
+#title > h1 {
+	font-size: 60px;
+}
+
+.titleHeader a {
+	text-decoration: none;
 }
 
 .budgetNodeForm {
@@ -151,6 +160,13 @@ background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, F
 
 .budgetNodeTotal {
 	width: 130px;
+}
+
+#userInput {
+	font-size: 17px;
+	text-align: center;
+	margin: auto;
+	width: 400px;
 }
 
 .usersSettings {
