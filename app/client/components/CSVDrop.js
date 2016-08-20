@@ -1,6 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
-import { ControlLabel, FormControl, FormGroup, Panel } from 'react-bootstrap';
+import { ControlLabel, FormControl, FormGroup, Panel, Table} from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import NavBar from './NavBar.js';
 
@@ -53,14 +53,27 @@ const CSVDrop = React.createClass({
     });
 
     return (
-      <div>
+      <div style={{"text-align":"center"}}>
         <div style={{"margin":"auto","display":"block"}}>
           <Dropzone type="file" ref="file" onDrop={this.onDrop}>
             <div>Try dropping some CSV files here, or click to select files to upload.</div>
           </Dropzone>
         </div>
-        <h4>The first line of your CSV should be 'type,vertical,glCode,</h4>
-        <h4>dateSpent,dateTracked,vendor,method,description,cost'</h4>
+        <h4>To import a csv first configure the top line of your spreadsheet as follows:</h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>type</th>
+              <th>vertical</th>
+              <th>glCode</th>
+              <th>dateSpend</th>
+              <th>dateTracked</th>
+              <th>vendor</th>
+              <th>description</th>
+              <th>cost</th>
+            </tr>
+          </thead>
+        </Table>
       </div>
     );
   }

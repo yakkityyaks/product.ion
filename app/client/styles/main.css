@@ -177,6 +177,9 @@ h3 {
 	text-align: center;
 }
 
+.expenseDate {
+	width: 125px;
+}
 /*.navbar-default {
 	background-color: blue;
 }*/

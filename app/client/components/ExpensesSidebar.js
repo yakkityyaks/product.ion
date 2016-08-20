@@ -17,20 +17,20 @@ const ExpensesSidebar = React.createClass({
                           value={"001"} required />
             </InputGroup>
           </FormGroup>
-          <FormGroup controlId="formProjId">
+          <FormGroup controlId="formCreatedBy">
             <InputGroup>
-              <InputGroup.Addon>Project Id</InputGroup.Addon>
+              <InputGroup.Addon>Created By</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
-                          name="projId"
-                          value={"001"} required />
+                          name="createdBy"
+                          value={"timtim"} required />
             </InputGroup>
           </FormGroup>
-          <FormGroup controlId="formProjId">
+          <FormGroup controlId="formVertical">
             <InputGroup>
-              <InputGroup.Addon>Project Id</InputGroup.Addon>
+              <InputGroup.Addon>Vertical</InputGroup.Addon>
               <FormControl type="text" placeholder="Get this from accounting"
-                          name="projId"
-                          value={"001"} required />
+                          name="vertical"
+                          value={"entertainment"} required />
             </InputGroup>
           </FormGroup>
         </Form>
