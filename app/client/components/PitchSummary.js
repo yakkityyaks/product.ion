@@ -12,7 +12,13 @@ const PitchSummary = React.createClass({
           handleReject, handleApprove, handlePitchSubmit} = this.props;
 
     const adminControls = (name) => (
-      !user.perm &&
+      user.perm ?
+      <InputGroup.Addon>
+        {/* <Button bsStyle={judge[name].vars.style} name={name} onClick={handleJudgement}> */}
+          {judge[name].vars.action}
+        {/* </Button> */}
+      </InputGroup.Addon>
+      :
       <InputGroup.Button>
         <Button bsStyle={judge[name].vars.style} name={name} onClick={handleJudgement}>
           {judge[name].vars.action}
@@ -59,7 +65,7 @@ const PitchSummary = React.createClass({
           <FormGroup controlId="formTier" validationState = {judge.tier.vars.val}>
             <ControlLabel>Tier</ControlLabel>
             <InputGroup>
-              <InputGroup.Addon bsStyle="">Tier</InputGroup.Addon>
+              {/* <InputGroup.Addon>Tier</InputGroup.Addon> */}
               <FormControl componentClass="select" placeholder="Tier"
                           name="tier" onChange={handleChange}>
                 <option value="br">BR</option>
@@ -145,7 +151,15 @@ const PitchSummary = React.createClass({
               {adminControls("releaseDate")}
             </InputGroup>
           </FormGroup>
-          {!user.perm &&
+          {user.perm ?
+            this.props.adminNotes &&
+            <FormGroup>
+              <ControlLabel>Admin Notes</ControlLabel>
+              <FormControl componentClass="textarea" name="adminNotes"
+                placeholder={user.name+", if you're rejecting please explain why here."}
+                defaultValue = {this.props.adminNotes} readOnly />
+            </FormGroup>
+            :
             <FormGroup>
               <ControlLabel>Admin Notes</ControlLabel>
               <FormControl componentClass="textarea" name="adminNotes"
