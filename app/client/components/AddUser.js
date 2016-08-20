@@ -101,7 +101,7 @@ const AddUser = React.createClass({
         <div>
           <Form className="testFormCenter" onSubmit={this.handleSubmit}>
           <p>{this.state.validateMessage}</p>
-             <FormGroup validationState={this.state.validate} bsClass="addUserField">
+             <FormGroup  validationState={this.state.validate} bsClass="addUserField">
                <ControlLabel bsClass="userLabel">Username</ControlLabel>
                <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
                         name="username" autoCorrect="off" autoCapitalize="off" spellCheck="false"
@@ -116,7 +116,7 @@ const AddUser = React.createClass({
              </FormGroup>
                <p bsClass="reminder">Don't forget to copy the password before submitting</p>
              <div>
-               <Button type="submit"> CREATE USER</Button>
+               <Button type="submit" bsStyle="primary"> CREATE USER</Button>
              </div>
            </Form>
          </div>
