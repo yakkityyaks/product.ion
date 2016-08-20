@@ -63,6 +63,40 @@ const ExpenseChart = React.createClass({
         data: this.state.data
       }]
     });
+
+    var pie1 = new Highcharts.Chart({
+			chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        },
+        renderTo: "budgChartContainer"
+      },
+      title: {
+        text: 'Breakdown of Expenses for ' + this.props.projName
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Expenses share',
+        data: this.state.data
+      }]
+    });
 	},
 
 	handleSortChange(e) {
@@ -72,18 +106,33 @@ const ExpenseChart = React.createClass({
 
 	render() {
 		return (
-			<div>
-				<Form inline>
-					<FormGroup controlId="formControlsSelect">
-			      <ControlLabel bsClass="chartSortSelector">Sort by</ControlLabel>&nbsp;&nbsp;
-			      <FormControl componentClass="select" placeholder="Vendor" value={this.state.sortBy} onChange={this.handleSortChange}>
-			        <option value="vendor">Vendor</option>
-			        <option value="method">Method</option>
-			        <option value="category">Category</option>
-			      </FormControl>
-			    </FormGroup>
-				</Form>
-				<div style={{"margin-top":"10px"}} id="expChartContainer"></div>
+			<div style={{"dipslay":"inline-block"}}>
+				<div style={{"dipslay":"inline-block","float":"left","width":"50%"}}>
+					<Form inline>
+						<FormGroup controlId="formControlsSelect">
+				      <ControlLabel bsClass="chartSortSelector">Sort by</ControlLabel>&nbsp;&nbsp;
+				      <FormControl componentClass="select" placeholder="Vendor" value={this.state.sortBy} onChange={this.handleSortChange}>
+				        <option value="vendor">Vendor</option>
+				        <option value="method">Method</option>
+				        <option value="category">Category</option>
+				      </FormControl>
+				    </FormGroup>
+					</Form>
+					<div style={{"margin-top":"10px"}} id="expChartContainer"></div>
+				</div>
+				<div style={{"dipslay":"inline-block","float":"right","width":"50%"}}>
+					<Form inline>
+				    <FormGroup controlId="formControlsSelect">
+				      <ControlLabel bsClass="chartSortSelector">Sort by</ControlLabel>&nbsp;&nbsp;
+				      <FormControl componentClass="select" placeholder="Vendor" value={this.state.sortBy} onChange={this.handleSortChange}>
+				        <option value="vendor">Vendor</option>
+				        <option value="method">Method</option>
+				        <option value="category">Category</option>
+				      </FormControl>
+				    </FormGroup>
+					</Form>
+					<div style={{"margin-top":"10px"}} id="budgChartContainer"></div>
+				</div>
 			</div>
 		);
 	}
