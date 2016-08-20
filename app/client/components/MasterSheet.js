@@ -67,8 +67,13 @@ const MasterSheet = React.createClass({
       xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },
+      yAxis: {
+        title: {
+          text: "Dolla Dolla Bills Y'all"
+        }
+      },
       title: {
-        text: ''
+        text: 'Cream Get the Money'
       },
       plotOptions: {
         line: {
