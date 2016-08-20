@@ -77,7 +77,7 @@ const Settings = React.createClass({
                 <Col md={3}>
                   <div id="settingsMain">
                     <Form onSubmit={this.handleSubmit}>
-                    <h3>Change {user.name}'s Password</h3>
+                    <h3>Change Password</h3>
                       <FormGroup>
                         <ControlLabel bsClass="chartSortSelector">Current Password</ControlLabel>&nbsp;
                         <FormControl type="password" placeholder="••••••••••" required

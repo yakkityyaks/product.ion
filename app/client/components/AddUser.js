@@ -102,7 +102,7 @@ const AddUser = React.createClass({
           <Form className="testFormCenter" onSubmit={this.handleSubmit}>
           <p>{this.state.validateMessage}</p>
              <FormGroup validationState={this.state.validate} bsClass="addUserField">
-               <ControlLabel bsClass="addUserLabel">Username</ControlLabel>
+               <ControlLabel bsClass="userLabel">Username</ControlLabel>
                <FormControl type="text" id="username" placeholder="Enter Username" ref="usernameInput"
                         name="username" autoCorrect="off" autoCapitalize="off" spellCheck="false"
                        value={this.state.username} onChange={this.changeOn} onBlur={this.generate} required/>
@@ -110,7 +110,7 @@ const AddUser = React.createClass({
              </FormGroup>
 
              <FormGroup bsClass="addUserField">
-               <ControlLabel bsClass="addUserLabel">Password Generator</ControlLabel>
+               <ControlLabel bsClass="userLabel">Password Generator</ControlLabel>
                <FormControl id="password" type="text" name="password"
                         ref="passwordInput" placeholder="Generated Password" onChange={this.setPass}/>
              </FormGroup>

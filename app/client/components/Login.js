@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import ApiCall from '../utils/serverCalls';
 
-import { Button, Panel, FormGroup, FormControl, Form } from 'react-bootstrap';
+import { Button, Panel, FormGroup, FormControl, Form, ControlLabel, ButtonToolbar } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState() {
@@ -31,30 +31,30 @@ const Login = React.createClass({
   render() {
     return (
        <div id="loginPanel">
-        {this.state.renderStuff && <Panel bsStyle="primary" header={<h3>Login</h3>}>
-         <Form onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
+        {this.state.renderStuff && <Panel bsStyle="primary" header={<h3>Happy Budgeting!</h3>}>
+
+         <Form id="loginForm" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Link to={`/register`}>
-             <Button>
+             <Button className="createOrgButton">
                Create Organization
              </Button>
            </Link>
-           <br />
            <div className="">
-             <label className="" htmlFor="username">Username</label>
-             <br></br>
+             <ControlLabel id="userLabel" htmlFor="username">Username</ControlLabel>
              <FormControl type="text" value={this.state.username} placeholder="Enter text"
                           onChange={this.handleUserChange} required/>
            </div>
            <div className="">
-             <label className="" htmlFor="password">Password</label>
-             <br/>
+             <ControlLabel id="userLabel" htmlFor="password">Password</ControlLabel>
              <FormControl type="password" value={this.state.password} placeholder="••••••••••"
                           onChange={this.handlePassChange} required/>
            </div>
-           <div className="">
-               <p id="loginMessage">{this.props.messages.login}</p>
-               <Button type="submit">Login</Button>
+           <div className="loginButton">
+             <p id="loginMessage">{this.props.messages.login}</p>
            </div>
+           <ButtonToolbar id="loginButton">
+            <Button type="submit" bsStyle="primary" bsSize="large">Login</Button>
+          </ButtonToolbar>
          </Form>
         </Panel>}
       </div>
