@@ -30,7 +30,6 @@ const Budget = React.createClass({
     },
     postAllBudgets() {
       this.props.postAllBudgets();
-      
     },
     handleSubmit(e) {
       e.preventDefault();
