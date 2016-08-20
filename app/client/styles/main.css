@@ -3,10 +3,14 @@ body {
 }
 
 .panel-body {
-	background:#7E8A99;
+	/*background:#7E8A99;*/
 	/*color: #120F14;*/
 }
 
+/*input.form-control {
+       background-color:transparent !important;
+}*/
+/*Times style is above here*/
 
 .addUserField {
 	width: 300px;

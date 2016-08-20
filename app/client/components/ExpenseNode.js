@@ -35,13 +35,13 @@ const ExpenseNode = React.createClass({
   componentDidMount: function(){
     if(this.state.dateTracked === ''){
       var newDate = new Date();
-      var today = {}
+      var today = {};
       var formattedDate = newDate.format("mm/dd/yyyy");
       var rawDate = newDate;
       today.formattedDate = formattedDate;
       today.rawDate = rawDate;
-      console.log('in the node ',today)
-      this.setState({dateTracked: today})
+      console.log('in the node ',today);
+      this.setState({dateTracked: today});
     }
   },
 
@@ -55,7 +55,7 @@ const ExpenseNode = React.createClass({
       glCode: this.state.glCode,
       method: this.state.method,
       vendor: this.state.vendor
-    }
+    };
     console.log('handleAdd built this expense object ', singleExpense);
     this.props.handleNewExpense(singleExpense);
   },
@@ -84,16 +84,17 @@ const ExpenseNode = React.createClass({
     var off = false;
     this.setState({
       editMode: true,
+      tableContext: "warning",
       readOnlyStatus: off,
-      category:this.props.expense.category,
-      cost:this.props.expense.cost,
-      dateSpent:this.props.expense.dateSpent,
-      dateTracked:this.props.expense.dateTracked,
-      description:this.props.expense.description,
-      glCode:this.props.expense.glCode,
-      id:this.props.expense.id,
-      method:this.props.expense.method,
-      vendor:this.props.expense.vendor
+      // category:this.props.expense.category,
+      // cost:this.props.expense.cost,
+      // dateSpent:this.props.expense.dateSpent,
+      // dateTracked:this.props.expense.dateTracked,
+      // description:this.props.expense.description,
+      // glCode:this.props.expense.glCode,
+      // id:this.props.expense.id,
+      // method:this.props.expense.method,
+      // vendor:this.props.expense.vendor
     });
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
     console.log('handleEdit is tracking the current expense id: ', this.props.expense.id);
@@ -101,7 +102,8 @@ const ExpenseNode = React.createClass({
 
   handleUpdate: function(){
     var off = true;
-    this.setState({readOnlyStatus: off, editMode: false}, function() {
+    this.setState({readOnlyStatus: off, editMode: false, tableContext: undefined},
+      function() {
     var expenseToUpdate = {
       category:this.state.category,
       cost:this.state.cost,
@@ -121,7 +123,7 @@ const ExpenseNode = React.createClass({
 
   render() {
     return (
-      <tr onClick={this.handleEdit}>
+      <tr onClick={this.handleEdit} className={this.state.tableContext}>
         <td>
           {this.state.readOnlyStatus === true ?
             <ReadOnlyText
