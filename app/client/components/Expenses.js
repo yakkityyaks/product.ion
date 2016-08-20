@@ -31,32 +31,36 @@ const Expenses = React.createClass({
   },
 
   handleNewExpense: function(singleExpense){
-    singleExpense.projs_id = this.props.expenses.projId;
+    singleExpense.projs_id = this.props.expenses.id;
     var newExpenses = this.state.newExpenses;
     newExpenses.push(singleExpense);
-    this.setState({newExpenses: newExpenses})
+    this.setState({newExpenses: newExpenses});
     console.log('Handle NEW Expense ', singleExpense);
-    this.props.postNewExpense(singleExpense);
+    this.props.postNewExpense(singleExpense, this.props.expenses.projId);
   },
 
   handleExpenseToDelete: function(singleExpense){
-    singleExpense.projs_id = this.props.expenses.projId;
+    singleExpense.projs_id = this.props.expenses.id;
     console.log('Handle DELETE ', singleExpense);
-    this.props.removeExpense(singleExpense);
+    this.props.removeExpense(singleExpense, this.props.expenses.projId);
   },
 
   handleExpenseUpdate: function(singleExpense){
-    singleExpense.projs_id = this.props.expenses.projId;
+    singleExpense.projs_id = this.props.expenses.id;
     console.log('Handle UPDATE ', singleExpense);
-    this.props.updateExpense(singleExpense);
+    this.props.updateExpense(singleExpense, this.props.expenses.projId);
   },
+
+  // shouldComponentUpdate() {
+  //   return Object.keys(this.props.expenses).length > 0;
+  // },
 
   switchModal () {
     this.setState({newView: true, modal: !this.state.modal});
   },
 
   switchChart() {
-    console.log('switching chart', !this.state.open)
+    console.log('switching chart', !this.state.open);
     this.setState({newView: true, open: !this.state.open});
   },
 
@@ -74,7 +78,7 @@ const Expenses = React.createClass({
     var that = this;
     this.props.organization.users.forEach(function(user) {
       if (user.id === proj.createdBy) username = user.username;
-    })
+    });
 
     return (
       <div>
@@ -133,7 +137,7 @@ const Expenses = React.createClass({
                       name="tier"
                       value={proj.tier} />
                   </td>
-                  <td>
+                  <td width="145">
                     <ReadOnlyText
                       name="type"
                       value={proj.type} />

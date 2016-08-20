@@ -22,7 +22,7 @@ const ExpenseNode = React.createClass({
       description: "",
       glCode: 560260,
       id: 0,
-      method: "",
+      method: "Credit Card",
       vendor: ""
     };
   },
@@ -112,8 +112,6 @@ const ExpenseNode = React.createClass({
     console.log('handleUpdate built this expense object ', expenseToUpdate);
     this.props.handleExpenseUpdate(expenseToUpdate);
     })
-
-
     console.log('READONLY status is ', this.state.readOnlyStatus)
   },
 
@@ -125,6 +123,11 @@ const ExpenseNode = React.createClass({
             <ReadOnlyText
               name="vendor"
               value={this.state.importedExpenses.vendor} /> :
+            this.state.importedExpenses.vendor ?
+            <TextInput
+              name="vendor"
+              value={this.state.importedExpenses.vendor}
+              onChange={this.handleChange} /> :
             <TextInput
               name="vendor"
               onChange={this.handleChange} />
@@ -135,6 +138,11 @@ const ExpenseNode = React.createClass({
             <ReadOnlyText
               name="description"
               value={this.state.importedExpenses.description} /> :
+            this.state.importedExpenses.description ?
+            <TextInput
+              name="description"
+              value={this.state.importedExpenses.description}
+              onChange={this.handleChange} /> :
             <TextInput
               name="description"
               onChange={this.handleChange} />
@@ -147,6 +155,14 @@ const ExpenseNode = React.createClass({
                 <ReadOnlyText
                   name="cost"
                   value={this.state.importedExpenses.cost} />
+            </InputGroup> :
+            this.state.importedExpenses.cost ?
+            <InputGroup>
+              <InputGroup.Addon>$</InputGroup.Addon>
+                <TextInput
+                  name="cost"
+                  value={this.state.importedExpenses.description}
+                  onChange={this.handleChange} />
             </InputGroup> :
             <InputGroup>
               <InputGroup.Addon>$</InputGroup.Addon>
@@ -206,7 +222,7 @@ const ExpenseNode = React.createClass({
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
-          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>addExpense</Button></td>}
+          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
         </tr>
     );
   }
