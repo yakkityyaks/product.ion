@@ -80,9 +80,7 @@ const Pitch = React.createClass({
   },
   componentWillReceiveProps: function(newProps){
     if (newProps.budgets)
-      this.setState({budgets: newProps.budgets["proj" + this.state.id]},
-      this.calculateTotalBudget
-    );
+      this.setState({budgets: newProps.budgets["proj" + this.state.id]});
   },
   handlePitchSubmit(event) {
     event.preventDefault();
@@ -145,17 +143,17 @@ const Pitch = React.createClass({
 
     this.setState({budgets: newBudgets});
   },
-  calculateTotalBudget() {
-    let budgetTotal = 0;
-    this.state.budgets.forEach(budget => budgetTotal+=budget.total);
-
-    this.setState({reqBudget: budgetTotal});
-  },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
+    this.setState({
+      reqBudget: this.state.reqBudget + Number(budget.total)
+    });
   },
   deleteBudgetNode(node) {
     this.props.deleteBudgetNode(node);
+    this.setState({
+      reqBudget: this.state.reqBudget - Number(node.total)
+    });
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");
