@@ -33,6 +33,94 @@ const ExpensesSidebar = React.createClass({
                           value={"entertainment"} required />
             </InputGroup>
           </FormGroup>
+          <FormGroup controlId="formTier">
+            <InputGroup>
+              <InputGroup.Addon>Tier</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="tier"
+                          value={"BR"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formType">
+            <InputGroup>
+              <InputGroup.Addon>Type</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="type"
+                          value={"Editorial"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formAssets">
+            <InputGroup>
+              <InputGroup.Addon>Assets</InputGroup.Addon>
+              <FormControl type="number" placeholder="Get this from accounting"
+                          name="assets"
+                          value={"3"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formStatus">
+            <InputGroup>
+              <InputGroup.Addon>Status</InputGroup.Addon>
+              <FormControl type="text" placeholder="Get this from accounting"
+                          name="status"
+                          value={"IN PRODUCTION"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formStartDate">
+            <InputGroup>
+              <InputGroup.Addon>Start Date</InputGroup.Addon>
+              <FormControl type="date" placeholder="Get this from accounting"
+                          name="startDate"
+                          value={"08/19/2016"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEndDate">
+            <InputGroup>
+              <InputGroup.Addon>End Date</InputGroup.Addon>
+              <FormControl type="date" placeholder="Get this from accounting"
+                          name="endDate"
+                          value={"08/21/2017"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEditDate">
+            <InputGroup>
+              <InputGroup.Addon>Edit Date</InputGroup.Addon>
+              <FormControl type="date" placeholder="Get this from accounting"
+                          name="editDate"
+                          value={"08/22/16"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formReleaseDate">
+            <InputGroup>
+              <InputGroup.Addon>Release Date</InputGroup.Addon>
+              <FormControl type="date" placeholder="Get this from accounting"
+                          name="releaseDate"
+                          value={"09/01/2016"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formCostToDate">
+            <InputGroup>
+              <InputGroup.Addon>Cost To Date</InputGroup.Addon>
+              <FormControl type="number" placeholder="Get this from accounting"
+                          name="costToDate"
+                          value={"323"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formEstimateToComplete">
+            <InputGroup>
+              <InputGroup.Addon>Estimate to Complete</InputGroup.Addon>
+              <FormControl type="number" placeholder="Get this from accounting"
+                          name="estimateToComplete"
+                          value={"133190"} required />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup controlId="formRequestedBudget">
+            <InputGroup>
+              <InputGroup.Addon>Requested Budget</InputGroup.Addon>
+              <FormControl type="number" placeholder="Get this from accounting"
+                          name="requestedBudget"
+                          value={"200000"} required />
+            </InputGroup>
+          </FormGroup>
         </Form>
       </div>
   //     <Panel>
