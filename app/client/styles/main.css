@@ -132,13 +132,13 @@ h3 {
 	font-size: 50px;
 	text-align: center;
 	padding: 10px;
-	background: #83a4d4; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #525252; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #525252 , #3d72b4); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #525252 , #3d72b4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #title a {
-	color: white;
+	color: #fefdfb;
 }
 
 #title a:hover {
