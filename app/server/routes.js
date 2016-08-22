@@ -192,7 +192,7 @@ module.exports = function routes(app){
 
     Project.getProj(res.body.id)
       .then(project => {
-        let cost = project.costToDate;
+        var cost = project.costToDate;
 
         rows.forEach(function(row) {
           Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {

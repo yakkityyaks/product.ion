@@ -78,12 +78,15 @@ const Pitch = React.createClass({
       adminNotes: this.state.adminNotes
     };
   },
-  componentWillReceiveProps: function(newProps){
-    if (newProps.budgets)
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.budgets) {
+      const proj = "proj" + this.state.id;
+      
       this.setState(
-        {budgets: newProps.budgets["proj" + this.state.id]},
+        {budgets: newProps.budgets[proj]},
         this.calculateTotalBudget
       );
+    }
   },
   handlePitchSubmit(event) {
     event.preventDefault();
