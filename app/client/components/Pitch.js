@@ -81,7 +81,7 @@ const Pitch = React.createClass({
   componentWillReceiveProps: function(newProps) {
     if (newProps.budgets) {
       const proj = "proj" + this.state.id;
-      
+
       this.setState(
         {budgets: newProps.budgets[proj]},
         this.calculateTotalBudget
@@ -194,6 +194,7 @@ const Pitch = React.createClass({
         <Tab eventKey={2} title="Budget">
           <Budget
             budgets={this.props.budgets["proj" + this.state.id]}
+            id={this.state.id}
             total={this.state.reqBudget} addNewBudget={this.addNewBudget}
             handleBudgetChange={this.handleBudgetChange}
             handleBudgetSelect={this.handleBudgetSelect}
