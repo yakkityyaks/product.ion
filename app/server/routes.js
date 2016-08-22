@@ -190,25 +190,25 @@ module.exports = function routes(app){
     var length = rows.length;
     var count = 0;
 
-    Project.getProj(res.body.id)
-      .then(project => {
-        var cost = project.costToDate;
+    // Project.getProj(res.body.id)
+    //   .then(project => {
+    //     var cost = project.costToDate;
 
-        rows.forEach(function(row) {
-          Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {
-            if (!exp) {
-              res.sendStatus(403);
-            } else {
-              count++;
-              cost+=exp.cost;
-              if (count === length) {
-                project.save({costToDate: cost});
-                res.sendStatus(201);
-              }
-            }
-          });
-        });
+    rows.forEach(function(row) {
+      Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {
+        if (!exp) {
+          res.sendStatus(403);
+        } else {
+          count++;
+          // cost+=exp.cost;
+          if (count === length) {
+            // project.save({costToDate: cost});
+            res.sendStatus(201);
+          }
+        }
       });
+    });
+      // });
 
   });
 
