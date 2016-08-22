@@ -29,8 +29,8 @@ const Budget = React.createClass({
       });
     },
     postAllBudgets() {
+      this.setState({changed: false});
       this.props.postAllBudgets();
-      
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -75,19 +75,23 @@ const Budget = React.createClass({
           : <MenuItem eventKey={node.id} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
       );
       let code = this.state.newBudgetCode;
+      const { total } = this.props;
+
       return (
         <div style={{"marginTop":"20px"}}>
           {
-            this.state.changed &&
+            this.state.changed ?
               <Button bsStyle="warning" onClick={this.postAllBudgets}>
                 Save Changes
               </Button>
+              : <br />
           }
           {
             this.state.budgets &&
             this.state.budgets.map((row, key) =>
               <div key={key}>
                 <BudgetNode  idx={key} budget = {row} lock={true}
+                            changed = {this.state.changed}
                             setChangedStatus = {this.setChangedStatus}
                             deleteBudgetNode={this.props.deleteBudgetNode}
                             handleBudgetChange = {this.props.handleBudgetChange}
@@ -96,18 +100,26 @@ const Budget = React.createClass({
               </div>
           )
           }
-          <br>
-          </br>
-            <br></br>
-          <ControlLabel>Add New Budget Item:</ControlLabel>
-          <Form inline onSubmit={this.handleSubmit}>
+          <Form inline onSubmit={this.handleSubmit} className="budgetFormReqBudget">
+            <FormGroup validationState="success">
+              <InputGroup>
+                <InputGroup.Addon>Requested budget: </InputGroup.Addon>
+                <FormControl readOnly value={"$"+total} />
+              </InputGroup>
+            </FormGroup>
+            <br />
+            <FormGroup validationState="success">
+              <ControlLabel>Add New Budget Item:</ControlLabel>
+            </FormGroup>
+            <br />
             <InputGroup>
                 <InputGroup.Addon>Description</InputGroup.Addon>
                <FormControl type="text" value={this.state.newBudgetDescription}
                             name="newBudgetDescription" required
                            placeholder="Description" onChange={this.handleChange}/>
              </InputGroup>
-            <DropdownButton bsStyle={"default"} id="catSelect"
+
+            <DropdownButton bsStyle={"default"} id="budgetCatSelect"
                     title={cata[code] && cata[code].label+": "+cata[code].code || "Category"} >
               <CustomSearch id={"5"} name={"cataDropdown"}
                       data={{value: this.state.filter, onChange: this.setFilter}}/>
@@ -117,27 +129,28 @@ const Budget = React.createClass({
                .map(budgetDropdownItem)
              }
             </DropdownButton>
-              <InputGroup className="budgetNodeForm">
-                <InputGroup.Addon>Cost:</InputGroup.Addon>
-                <FormControl type="number" placeholder="Cost"
-                             onChange={this.handleChange} name="newBudgetCost"
-                             value={this.state.newBudgetCost} />
-              </InputGroup>
-              <InputGroup className="budgetNodeForm">
-                <InputGroup.Addon>Quant:</InputGroup.Addon>
-                <FormControl type="number" placeholder="Units"
-                             onChange={this.handleChange} name="newBudgetQuant"
-                             value={this.state.newBudgetQuant} />
-              </InputGroup>
-              <InputGroup className="budgetNodeTotal">
-                <FormControl type="text" readOnly value={this.state.newBudgetTotal =
-                                "Total: $" + this.state.newBudgetCost *
-                                    this.state.newBudgetQuant} />
-              </InputGroup>
-              <Button onClick={this.handleSubmit} type="submit">
-              Add
-              </Button>
-          <FormControl readOnly value={"$" + this.props.total} />
+
+            <InputGroup id="newBudgetForm">
+              <InputGroup.Addon>Cost:</InputGroup.Addon>
+              <FormControl type="number" placeholder="Cost"
+                           onChange={this.handleChange} name="newBudgetCost"
+                           value={this.state.newBudgetCost} />
+            </InputGroup>
+            <InputGroup id="newBudgetForm">
+              <InputGroup.Addon>Quant:</InputGroup.Addon>
+              <FormControl type="number" placeholder="Units"
+                           onChange={this.handleChange} name="newBudgetQuant"
+                           value={this.state.newBudgetQuant} />
+            </InputGroup>
+            <InputGroup id="newBudgetTotal">
+              <FormControl type="text" readOnly value={this.state.newBudgetTotal =
+                              "Total: $" + this.state.newBudgetCost *
+                                  this.state.newBudgetQuant} />
+            </InputGroup>
+            <Button onClick={this.handleSubmit} type="submit">
+            Add
+            </Button>
+
         </Form>
       </div>
     );

@@ -13,7 +13,7 @@ const BudgetNode = React.createClass({
     };
   },
   componentWillReceiveProps: function(newProps){
-    if (newProps.changeBack) {
+    if (!newProps.changed) {
       this.setState({changed: false});
     }
   },
@@ -36,7 +36,7 @@ const BudgetNode = React.createClass({
   render() {
     const budgetDropdownItem = (node, idx) =>
     (
-      node.cat === "header" ? <MenuItem header key={idx}>{node.label}</MenuItem>
+      node.cat === "header" ? <MenuItem header eventKey={idx} key={idx}>{node.label}</MenuItem>
         : <MenuItem eventKey={idx} key={idx} onSelect={this.selectCata}>{node.label}</MenuItem>
     );
 
@@ -44,7 +44,7 @@ const BudgetNode = React.createClass({
 
     return (
       <Form inline>
-        <FormGroup validationState={this.state.changed ?
+        <FormGroup validationState={this.props.changed && this.state.changed ?
                     "warning" : undefined}>
           <InputGroup>
             <InputGroup.Addon>Description</InputGroup.Addon>
@@ -52,39 +52,44 @@ const BudgetNode = React.createClass({
                           name="description" required
                          placeholder="Description" onChange={this.handleChange}/>
           </InputGroup>
-          <InputGroup>
-            <DropdownButton bsStyle={"default"} id={`catSelect`}
-                            title={cata[code] && cata[code].label+": "+cata[code].code || "Category"}>
+          <DropdownButton bsStyle={this.props.changed &&
+                                    this.state.changed ? "warning" : undefined}
+                          className="budgetCategorySelect"
+                          title={cata[code] && cata[code].label+": "+cata[code].code || "Category"}>
 
-              <CustomSearch id={"5"} name={"customSearch"}
-                      data={{value: this.state.filter, onChange: this.setFilter}}/>
-             {cata
-               .filter((node) =>
-                  node.label.toLowerCase().includes(this.state.filter))
-               .map(budgetDropdownItem)
-             }
-            </DropdownButton>
+            <CustomSearch id={"5"} name={"customSearch"}
+                    data={{value: this.state.filter, onChange: this.setFilter}}/>
+           {cata
+             .filter((node) =>
+                node.label.toLowerCase().includes(this.state.filter))
+             .map(budgetDropdownItem)
+           }
+          </DropdownButton>
+
+          <InputGroup className="budgetNodeForm">
+            <InputGroup.Addon>Cost</InputGroup.Addon>
+            <FormControl type="number" placeholder="Cost" name="cost"
+                         value={this.props.budget.cost} required
+                         onChange={this.handleChange} />
           </InputGroup>
-            <InputGroup className="budgetNodeForm">
-              <InputGroup.Addon>Cost</InputGroup.Addon>
-              <FormControl type="number" placeholder="Cost" name="cost"
-                           value={this.props.budget.cost} required
-                           onChange={this.handleChange} />
-            </InputGroup>
-            <InputGroup className="budgetNodeForm">
-              <InputGroup.Addon>Quant</InputGroup.Addon>
-              <FormControl type="number" placeholder="Quant" name="quant"
-                           value={this.props.budget.quantity} required
-                           onChange={this.handleChange}/>
-            </InputGroup>
-            <InputGroup className="budgetNodeTotal">
-              <InputGroup.Addon>Total</InputGroup.Addon>
-              <FormControl type="text" placeholder="Total Item Cost" readOnly
-                           value={"$" + this.props.budget.cost * this.props.budget.quantity} required/>
-            </InputGroup>
-            <Button onClick={this.remove}>X</Button>
-          </FormGroup>
-      </Form>
+          <InputGroup className="budgetNodeForm">
+            <InputGroup.Addon>Quant</InputGroup.Addon>
+            <FormControl type="number" placeholder="Quant" name="quant"
+                         value={this.props.budget.quantity} required
+                         onChange={this.handleChange}/>
+          </InputGroup>
+          <InputGroup className="budgetNodeTotal">
+            <InputGroup.Addon>Total</InputGroup.Addon>
+            <FormControl type="text" placeholder="Total Item Cost" readOnly
+                         value={"$" + this.props.budget.cost * this.props.budget.quantity} required/>
+          </InputGroup>
+            <Button onClick={this.remove}
+                    bsStyle={this.props.changed &&
+                              this.state.changed ? "warning" : undefined}>
+                    X
+            </Button>
+        </FormGroup>
+    </Form>
     );
   }
 });

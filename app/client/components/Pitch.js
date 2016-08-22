@@ -78,9 +78,15 @@ const Pitch = React.createClass({
       adminNotes: this.state.adminNotes
     };
   },
-  componentWillReceiveProps: function(newProps){
-    if (newProps.budgets)
-      this.setState({budgets: newProps.budgets["proj" + this.state.id]});
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.budgets) {
+      const proj = "proj" + this.state.id;
+      
+      this.setState(
+        {budgets: newProps.budgets[proj]},
+        this.calculateTotalBudget
+      );
+    }
   },
   handlePitchSubmit(event) {
     event.preventDefault();
@@ -116,7 +122,6 @@ const Pitch = React.createClass({
     //budget set here to accomodate asynchronous budget list hydration.
     this.setState({
         budgets: this.props.budgets["proj" + this.state.id],
-        // budgets: this.props.budgets,
         activeTab: key,
     });
   },
@@ -137,23 +142,21 @@ const Pitch = React.createClass({
   },
   handleBudgetSelect(e, idx) {
     let newBudgets = this.state.budgets;
-    console.log("Handle Select newBudget is ", newBudgets);
-    console.log("Handle Select: e:", e, " idx: ", idx);
     newBudgets[idx].glCode = e;
 
     this.setState({budgets: newBudgets});
   },
+  calculateTotalBudget() {
+    let budgetTotal = 0;
+    this.state.budgets.forEach(budget => budgetTotal+=budget.total);
+
+    this.setState({reqBudget: budgetTotal});
+  },
   addNewBudget(budget) {
     this.props.postNewBudget(budget);
-    this.setState({
-      reqBudget: this.state.reqBudget + Number(budget.total)
-    });
   },
   deleteBudgetNode(node) {
     this.props.deleteBudgetNode(node);
-    this.setState({
-      reqBudget: this.state.reqBudget - Number(node.total)
-    });
   },
   updateApproval(index) {
     var approvals = this.state.approvals.split("");

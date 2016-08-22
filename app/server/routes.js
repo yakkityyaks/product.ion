@@ -189,18 +189,27 @@ module.exports = function routes(app){
     var rows = req.body.data;
     var length = rows.length;
     var count = 0;
-    rows.forEach(function(row) {
-      Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {
-        if (!exp) {
-          res.sendStatus(403);
-        } else {
-          count++;
-          if (count === length) {
-            res.sendStatus(201);
-          }
-        }
+
+    Project.getProj(res.body.id)
+      .then(project => {
+        var cost = project.costToDate;
+
+        rows.forEach(function(row) {
+          Expense.makeExpense(Object.assign({}, row, {projs_id: req.body.id}), function(exp) {
+            if (!exp) {
+              res.sendStatus(403);
+            } else {
+              count++;
+              cost+=exp.cost;
+              if (count === length) {
+                project.save({costToDate: cost});
+                res.sendStatus(201);
+              }
+            }
+          });
+        });
       });
-    });
+
   });
 
   app.post('/api/get/budget', function(req, res) {
