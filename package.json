@@ -1,5 +1,5 @@
 {
-  "name": "learn-redux",
+  "name": "product.ion",
   "version": "1.0.0",
   "description": "Film budgeting software",
   "main": "app/server/server.js",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, Form, FormControl, InputGroup, Modal, OverlayTrigger} from 'react-bootstrap';
+import { Button, InputGroup, Modal, OverlayTrigger, FormControl} from 'react-bootstrap';
 import codes from "../data/expenseCodes.js";
 import categories from "../data/expenseCategories.js";
 import DateFormat from './formComponents/DateFormat.js';
@@ -34,13 +34,13 @@ const ExpenseNode = React.createClass({
   componentDidMount: function(){
     if(this.state.dateTracked === ''){
       var newDate = new Date();
-      var today = {}
+      var today = {};
       var formattedDate = newDate.format("mm/dd/yyyy");
       var rawDate = newDate;
       today.formattedDate = formattedDate;
       today.rawDate = rawDate;
-      console.log('in the node ',today)
-      this.setState({dateTracked: today})
+      console.log('in the node ',today);
+      this.setState({dateTracked: today});
     }
   },
 
@@ -54,7 +54,7 @@ const ExpenseNode = React.createClass({
       glCode: this.state.glCode,
       method: this.state.method,
       vendor: this.state.vendor
-    }
+    };
     console.log('handleAdd built this expense object ', singleExpense);
     this.props.handleNewExpense(singleExpense);
   },
@@ -81,43 +81,50 @@ const ExpenseNode = React.createClass({
 
   handleEdit: function(){
     var off = false;
-    this.setState({readOnlyStatus: off})
-    this.setState({category:this.props.expense.category})
-    this.setState({cost:this.props.expense.cost})
-    this.setState({dateSpent:this.props.expense.dateSpent})
-    this.setState({dateTracked:this.props.expense.dateTracked})
-    this.setState({description:this.props.expense.description})
-    this.setState({glCode:this.props.expense.glCode})
-    this.setState({id:this.props.expense.id})
-    this.setState({method:this.props.expense.method})
-    this.setState({vendor:this.props.expense.vendor})
+    console.log("Handle edit. ", this.state);
+    if (this.state.importedExpenses && !this.state.editMode) {
+      this.setState({
+        editMode: true,
+        tableContext: "warning",
+        readOnlyStatus: off,
+        category:this.props.expense.category,
+        cost:this.props.expense.cost,
+        dateSpent:this.props.expense.dateSpent,
+        dateTracked:this.props.expense.dateTracked,
+        description:this.props.expense.description,
+        glCode:this.props.expense.glCode,
+        id:this.props.expense.id,
+        method:this.props.expense.method,
+        vendor:this.props.expense.vendor
+      });
+    }
     console.log('readonlyStatus in the Expense node is ', this.state.readOnlyStatus);
     console.log('handleEdit is tracking the current expense id: ', this.props.expense.id);
   },
 
   handleUpdate: function(){
-    var off = true;
-    this.setState({readOnlyStatus: off}, function(){
-    var expenseToUpdate = {
-      category:this.state.category,
-      cost:this.state.cost,
-      dateSpent:this.state.dateSpent.rawDate || this.state.dateSpent,
-      dateTracked:this.state.dateTracked.rawDate || this.state.dateTracked,
-      description:this.state.description,
-      glCode:this.state.glCode,
-      id:this.state.id,
-      method:this.state.method,
-      vendor:this.state.vendor
-    }
-    console.log('handleUpdate built this expense object ', expenseToUpdate);
-    this.props.handleExpenseUpdate(expenseToUpdate);
-    })
-    console.log('READONLY status is ', this.state.readOnlyStatus)
+    var on = true;
+    this.setState({readOnlyStatus: on, editMode: false, tableContext: undefined}, function() {
+      var expenseToUpdate = {
+        category:this.state.category,
+        cost:this.state.cost,
+        dateSpent:this.state.dateSpent.rawDate || this.state.dateSpent,
+        dateTracked:this.state.dateTracked.rawDate || this.state.dateTracked,
+        description:this.state.description,
+        glCode:this.state.glCode,
+        id:this.state.id,
+        method:this.state.method,
+        vendor:this.state.vendor
+      };
+      console.log('handleUpdate built this expense object ', expenseToUpdate);
+      this.props.handleExpenseUpdate(expenseToUpdate);
+    });
+    console.log('READONLY status is ', this.state.readOnlyStatus);
   },
 
   render() {
     return (
-      <tr>
+      <tr onClick={this.handleEdit} className={this.state.tableContext}>
         <td>
           {this.state.readOnlyStatus === true ?
             <ReadOnlyText
@@ -222,8 +229,15 @@ const ExpenseNode = React.createClass({
              null
             }
           </td>
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleEdit}>Edit</Button></td> : null}
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleUpdate}>Update</Button></td> : null}
+          {this.state.importedExpenses ?
+            this.state.editMode &&
+            <td width="auto">
+              <Button type="submit" onClick={this.handleUpdate}>
+                Update
+              </Button>
+            </td>
+            : null
+          }
           {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
           {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
         </tr>

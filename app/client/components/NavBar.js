@@ -36,9 +36,9 @@ const NavBar = React.createClass({
 
     return (
       <div>
-        <Navbar bsStyle="default">
+        <Navbar bsStyle="inverse">
           <Nav>
-            <NavItem>
+            <NavItem className="navItem">
                 <Link style={{"fontSize":"20px","fontWeight":"bold","color":"white"}} to="/">
                   Dashboard
                 </Link>
