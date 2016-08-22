@@ -168,7 +168,7 @@ const ExpenseNode = React.createClass({
               <InputGroup.Addon>$</InputGroup.Addon>
                 <TextInput
                   name="cost"
-                  value={this.state.importedExpenses.description}
+                  value={this.state.importedExpenses.cost}
                   onChange={this.handleChange} />
             </InputGroup> :
             <InputGroup>
