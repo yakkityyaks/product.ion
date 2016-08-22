@@ -160,7 +160,7 @@ const Expenses = React.createClass({
                   <th>Edit Date</th>
                   <th>Release Date</th>
                   <th>Cost to Date</th>
-                  <th>Estimate to Complete</th>
+                  {/* <th>Estimate to Complete</th> */}
                   <th>Requested Budget</th>
                 </tr>
               </thead>
@@ -194,14 +194,14 @@ const Expenses = React.createClass({
                           value={proj.costToDate} />
                     </InputGroup>
                   </td>
-                  <td width="125">
+                  {/* <td width="125">
                     <InputGroup>
                       <InputGroup.Addon>$</InputGroup.Addon>
                         <ReadOnlyText
                           name="estimateToComplete"
                           value={proj.estimateToComplete} />
                     </InputGroup>
-                  </td>
+                  </td> */}
                   <td width="125">
                     <InputGroup>
                       <InputGroup.Addon>$</InputGroup.Addon>
