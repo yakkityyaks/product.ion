@@ -63,8 +63,6 @@ const CSVDrop = React.createClass({
         <Table>
           <thead>
             <tr>
-              <th>type</th>
-              <th>vertical</th>
               <th>glCode</th>
               <th>dateSpend</th>
               <th>dateTracked</th>

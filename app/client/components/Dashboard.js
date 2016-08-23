@@ -153,7 +153,7 @@ const Dashboard = React.createClass({
             </div>
 
             <h3>Most Recently Edited Three Projects</h3>
-            <Table striped bordered>
+            <Table striped bordered hover>
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Name</th>
@@ -205,7 +205,7 @@ const Dashboard = React.createClass({
               this.props.organization.user.perm ?
               <div>
                 <h3>Your pitches awaiting approval:</h3>
-                <Table striped bordered>
+                <Table striped bordered hover>
                   <thead>
                     <tr id="readOnlyHeader">
                       <th>Name</th>

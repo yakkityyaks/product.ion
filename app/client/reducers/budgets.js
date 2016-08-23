@@ -25,8 +25,10 @@ function budgets(state = {}, action) {
       console.log("newstate is ", newState);
       return newState;
     case "ADD_BUDGET_NODE":
+      console.log("add budget node. Action is", action);
       const project = "proj" + action.node.projs_id;
       let projArr = state[project];
+      console.log("add budget node. Trying to push ", project, projArr);
       projArr.push(action.node);
 
       return Object.assign({}, state, {[project]: projArr});
