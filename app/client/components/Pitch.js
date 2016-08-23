@@ -18,8 +18,8 @@ const Pitch = React.createClass({
     let { data } = this.props,
           goodProd = {val: undefined, style: undefined, action: "No Issues"},
           badProd = {val: "error", style: "danger", action: "Rejected"},
-          good = {val: "success", style: "success", action: "Reject"},
-          bad = {val: "error", style: "danger", action: "Approve"},
+          good = {val: "success", style: "success", action: "Approved"},
+          bad = {val: "error", style: "danger", action: "Rejected"},
           notAdmin = {val: null, action: undefined};
     let judge = {},
         counter = 0;
@@ -167,8 +167,8 @@ const Pitch = React.createClass({
   },
   handleJudgement(e) {
     const name = e.target.name,
-          good = {val: "success", style: "success", action: "Reject"},
-          bad = {val: "error", style: "danger", action: "Approve"},
+          good = {val: "success", style: "success", action: "Approved"},
+          bad = {val: "error", style: "danger", action: "Rejected"},
           newJudge = this.state.judge;
 
     //set the judgement props of each field to the inverse
