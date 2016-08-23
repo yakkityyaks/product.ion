@@ -26,7 +26,7 @@ const ProjectNode = React.createClass({
     });
 
     return (
-      <tr onClick={this.triggerProjectClick} id="readOnlyBody">
+      <tr onClick={this.triggerProjectClick} id="readOnlyBody" style={{cursor: "pointer"}}>
         <td>{name}</td>
         <td>{projId}</td>
         <td>{username}</td>

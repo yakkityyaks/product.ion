@@ -151,7 +151,8 @@ const Dashboard = React.createClass({
             <div>
               <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
             </div>
-            <Table responsive hover>
+            <h3>Last three projects</h3>
+            <Table responsive hover striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
                   <th>NAME</th>
@@ -202,7 +203,8 @@ const Dashboard = React.createClass({
               this.props.organization.user.perm ?
               <div>
                 <h3>Your pitches awaiting approval:</h3>
-                <Table responsive hover>
+
+                <Table responsive hover striped bordered>
                   <thead>
                     <tr id="readOnlyHeader">
                       <th>NAME</th>
