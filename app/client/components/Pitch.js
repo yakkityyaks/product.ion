@@ -173,7 +173,7 @@ const Pitch = React.createClass({
 
     //set the judgement props of each field to the inverse
     newJudge[name].vars =
-      this.state.judge[name].vars.action === "Reject" ? bad
+      this.state.judge[name].vars.action === "Approved" ? bad
       : good;
 
     this.updateApproval(newJudge[name].index);
