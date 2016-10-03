@@ -1,13 +1,43 @@
 # product.ion
-Thesis project for MKS42 group YakkityYaks
----
-We, the united YakkityYak Corporations, hereby declare the following:
-* Our premiere product for Q3 shall be a multi-faceted financing platform aimed at optimizing data presentations for Television and Web based finance reports.
-* Our product shall, specifically, be a budgeting program designed for producers and executive producers of TV and web production companies to organize and view their expenses.
-* We fully expect and intend to "make waves" on the worldwide tech scene.
+**Platform:**
 
-The YakkityYaks will accomplish these declarations using a style equivalant to that of fellow corporate leader AirBnB, who's goals align with ours.
-Please direct any and all questions to the YakkityYak Slack
+A free and public budgeting application commissioned by producers at Refinery29
+to replace their google-sheets-based workflow. Production is a permission-based
+platform where producers pitch show ideas to be reviewed and approved by admins.
+Once a pitch is approved it becomes an expense report to be tracked and added to
+by producers attached to the show.  All data is quantified and graphed for later
+analysis and admins can also view month-by-month graphs of their companies expenses.
+
+---
+**Stack:**
+Libraries and technologies used by Product.ion:
+* React-Redux running off ExpressJS with a MySQL database managed by Bookshelf/Knex
+* Axios for server calls
+* HighCharts.JS for graphs
+* jsonwebtoken for authentication
+* papaparse for csv parsing
+* react-bootstrap for styling
+
+
+**File Structure**
+* app - main logic
+  * client - front end react components
+    1. actions - Redux action creators
+    2. components - Redux smart/dump components
+    3. data - Reusable objects and labels
+    4. reducers - Redux logic for changing store
+    5. styles
+    6. utils - Server calls
+    7. production.js - Main loading logic
+    8. store.js - Redux store creator
+  * server - back end server and database
+    1. controllers - database object functions
+    2. lib - authentication logic
+    3. models - database object formatting
+    4. db.js - database creation
+    5. routes.js - server routes for API calls
+    6. server.js - Express.js server declarations
+
 *Signed:*
 Tim Clark (product owner);
 Nicholas Zeiss (scrum master);

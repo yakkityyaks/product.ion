@@ -23,16 +23,16 @@ const Login = React.createClass({
   handlePassChange(e) {
     this.setState({password:e.target.value});
   },
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.postLogin(this.state.username, this.state.password);
   },
 
   render() {
     return (
        <div id="loginPanel">
-        {this.state.renderStuff && <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
-
+        {this.state.renderStuff &&//visual trick to improve user refresh experience
+        <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
          <Form className="" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Button bsStyle="default" bsSize="small" bsClass="createOrgButton">
              <Link to={`/register`}>

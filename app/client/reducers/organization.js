@@ -2,7 +2,7 @@ import ApiCall from "../utils/serverCalls";
 import store from "../store";
 import { browserHistory } from 'react-router';
 
-function posts(state=[], action) {
+function org(state=[], action) {
   switch (action.type) {
     case "REGISTRATION_CHECK":
       ApiCall.registrationCheck(action.orgName, action.username)
@@ -216,4 +216,4 @@ function posts(state=[], action) {
   return state;
 }
 
-export default posts;
+export default org;
