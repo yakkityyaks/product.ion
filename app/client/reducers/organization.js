@@ -7,7 +7,6 @@ function org(state=[], action) {
     case "REGISTRATION_CHECK":
       ApiCall.registrationCheck(action.orgName, action.username)
       .catch(function (err) {
-        console.log("Should be here");
         var message="", target=0;
         switch (err.response.status) {
           case 400:
@@ -29,7 +28,7 @@ function org(state=[], action) {
       })
       .then(function(res){
         if (res && res.status === 200) { //put this back when ready
-          console.log("Both fields clear. Registering org and user");
+          // console.log("Both fields clear. Registering org and user");
           store.dispatch({
             type: "ADD_NEW_ORG",
             orgName: action.orgName,
@@ -50,7 +49,7 @@ function org(state=[], action) {
         })
         .then(function (res) {
            if (res.status === 201) {
-            console.log("Step 2 complete. Organization is registered. res is ", res);
+            // console.log("Step 2 complete. Organization is registered. res is ", res);
             var orgData = res.data;
 
             //create a new user with Admin powers (the 0)
@@ -60,7 +59,7 @@ function org(state=[], action) {
               })
               .then(function (res) {
                 if (res.status === 201) {
-                  console.log("Building an object with ", orgData);
+                  // console.log("Building an object with ", orgData);
                   var organization = {
                     id: orgData.id,
                     orgName: orgData.name,
@@ -93,7 +92,7 @@ function org(state=[], action) {
       console.log("registering user with data: ", action.username, action.password, orgs_id, action.perm);
       ApiCall.registerUser(action.username, action.password, orgs_id, action.perm)
         .then(function(res) {
-          console.log("USER RES ", res);
+          // console.log("USER RES ", res);
           let userData = res.data;
           if(res.status === 201) {
             let user = {
@@ -111,7 +110,6 @@ function org(state=[], action) {
       break;
 
     case "UPDATE_USER":
-      console.log("ding ding ding", action.user);
       ApiCall.updateUser(action.user)
         .then(res => {
           console.log(res);
@@ -132,8 +130,8 @@ function org(state=[], action) {
           console.error(err);
         })
         .then(function(res) {
-          console.log("the res i wanna see ", res);
-          console.log("ACTION PW ", action.password);
+          // console.log("the res i wanna see ", res);
+          // console.log("ACTION PW ", action.password);
           if (res.data.user.password === action.password) {
             console.log("reducers/organization/SUBMIT_LOGIN: res is ", res);
             store.dispatch({
@@ -149,7 +147,6 @@ function org(state=[], action) {
             sessionStorage.setItem('jwtToken', res.data.token);
             browserHistory.push(`/dashboard/${joinedName}`);
           } else {
-            console.log("You done fucked up");
             store.dispatch({
               type:"SET_LOGIN_MESSAGE",
               message: "What happened? Wrong password. That's what happened.",
@@ -160,7 +157,7 @@ function org(state=[], action) {
       return state;
 
     case "LOGIN":
-      console.log("You're logging in with data ", action);
+      // console.log("You're logging in with data ", action);
       return Object.assign({}, state, {
         user: {name: action.username, password: action.password, perm: action.perm, id: action.id},
         orgName: action.orgName,
@@ -171,7 +168,7 @@ function org(state=[], action) {
         ApiCall.checkToken(action.token)
         .then(res => {
           if (res.status === 201) {
-            console.log("REFRESH res.data ", res.data);
+            // console.log("REFRESH res.data ", res.data);
             const user = res.data;
             store.dispatch({type:"POST_LOGIN", username:user.username, password: user.password});
           }
@@ -184,8 +181,8 @@ function org(state=[], action) {
       case "CHANGE_PASSWORD":
         ApiCall.login(action.username, action.password)
         .then(function(res) {
-          console.log("resword is ", res.data.user.password);
-          console.log("actionword is ", action.password);
+          // console.log("resword is ", res.data.user.password);
+          // console.log("actionword is ", action.password);
           if (res.data.user.password === action.password) {
             ApiCall.changePassword(action.username, action.newPassword)
               .then(function(res) {
@@ -201,12 +198,12 @@ function org(state=[], action) {
           }
         })
         .catch((err) => {
-          console.log("Reducers-CHANGE_PASSWORD: res is", err);
+          console.error("Reducers-CHANGE_PASSWORD: res is", err);
         });
         break;
 
     case "SET_USERS":
-      console.log('setting users', action.users);
+      // console.log('setting users', action.users);
       return Object.assign({}, state, {users: action.users});
 
     case "LOGOUT":

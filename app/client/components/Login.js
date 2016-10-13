@@ -11,7 +11,7 @@ const Login = React.createClass({
   componentWillMount() {
     this.props.resetLoginMessage();
     let token = sessionStorage.getItem('jwtToken');
-    console.log("TOKEN ", token);
+    // console.log("TOKEN ", token);
     if(token && token !== '') {
       this.setState({renderStuff: false});
       this.props.refreshLogin(token);
@@ -32,7 +32,7 @@ const Login = React.createClass({
     return (
        <div id="loginPanel">
         {this.state.renderStuff &&//visual trick to improve user refresh experience
-        <Panel bsStyle="primary" header={<h2 bsClass="happy">Happy Budgeting!</h2>}>
+        <Panel bsStyle="primary" header={<h2>Happy Budgeting!</h2>}>
          <Form className="" onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
            <Button bsStyle="default" bsSize="small" bsClass="createOrgButton">
              <Link to={`/register`}>

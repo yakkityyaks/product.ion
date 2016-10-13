@@ -244,6 +244,7 @@ const Expenses = React.createClass({
               </tbody>
           </Table>
           <Panel>
+            <span style={{"font-size":"20"}}>{"New Expense:"}</span>
             <Table>
               <thead>
                 <tr>
