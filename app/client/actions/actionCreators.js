@@ -307,7 +307,6 @@ export function deleteBudgetNode(node) {
 // CSV PARSING:
 
 export function parseCSV(object, id) {
-  console.log("object ", object);
   return {
     type: "PARSE_CSV",
     object,

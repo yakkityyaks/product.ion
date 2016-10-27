@@ -17,7 +17,6 @@ function budgets(state = {}, action) {
       break;
 
     case "HYDRATE_PROJECT_BUDGETS":
-      console.log("Here here here!, action is", action);
       console.log("State is, ", state);
       var newState = state;
       newState["proj" + action.id] = action.list;
@@ -31,10 +30,8 @@ function budgets(state = {}, action) {
 
       return Object.assign({}, state, {[project]: projArr});
     case "DELETE_BUDGET_NODE":
-      console.log("Ready to delete a node. Node is ", action.node.id);
       ApiCall.deleteBudget(action.node.id)
         .then(res => {
-          console.log("Successfully talked with server. Res is ", res);
           store.dispatch({type: "REMOVE_BUDGET_FROM_STORE", node: action.node});
         })
         .catch(err => {
@@ -42,7 +39,6 @@ function budgets(state = {}, action) {
         });
       break;
     case "REMOVE_BUDGET_FROM_STORE"://INCOMPLETE, FINISH LATER
-      console.log("Removing budget node from store. Action is ", action);
       // state[action.project] = [...state[action.project].slice(0, action.index)];
       const proj = "proj" + action.node.projs_id;
       let arr = state[proj];
@@ -50,10 +46,8 @@ function budgets(state = {}, action) {
 
       arr = arr.slice(0, idx).concat(arr.slice(idx + 1));
 
-      console.log("Setting new budget state to ", arr);
       return Object.assign({}, state, {[proj]: arr});
     case "UPDATE_MULTIPLE_BUDGETS":
-      console.log("Update multiple budgets. List is ", action.list);
       ApiCall.updateProjBudgets(action.list)
         .then(res => {
           if (res.status===201) {

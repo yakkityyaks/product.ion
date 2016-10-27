@@ -68,7 +68,6 @@ const Dashboard = React.createClass({
       ids.push(proj.projId);
     });
     ApiCall.getExpenses(ids).then(function(res) {
-      console.log(res);
       var exps = res.data.reduce(function(a,b) {
           return a.concat(b);
         }, []);
@@ -114,7 +113,7 @@ const Dashboard = React.createClass({
 
   getProj(id) {
     for (var i = 0; i < this.props.projects.length; i++) {
-      if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i];}
+      if (this.props.projects[i].id === id) { return this.props.projects[i];}
     }
     return 'proj not found';
   },
@@ -167,8 +166,7 @@ const Dashboard = React.createClass({
               <tbody>
               {
                 this.props.projects.length > 0 ? this.props.projects.sort(function(b, a) {
-                console.log('sorting');
-                return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
+                  return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
               }).slice(0,3).map(function(proj, idx) {
                   return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                 }, this) : null
