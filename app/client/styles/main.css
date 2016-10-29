@@ -1,3 +1,95 @@
+
+/*Login/Registration Styles*/
+
+#app {
+	background-color: #154b66;
+	box-shadow: 0 1px 0 0 #ebeff3;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.estymate-login {
+	width: 234px;
+	height: 55px;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	font-size: 46px;
+	margin: auto;
+	color: #1c98c9;
+	margin-bottom: 15px;
+}
+
+.estymate-register {
+	width: 234px;
+	height: 55px;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	font-size: 46px;
+	margin:auto;
+	color: #1c98c9;
+	margin-bottom: 15px;
+}
+
+.formInput {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 18px;
+	background-color: #ecfaf7;
+	margin: 10px;
+}
+
+.loginTitle {
+	font-weight: bold;
+	font-size: 20px;
+	color: #fefdfb;
+	text-align: center;
+	margin: auto;
+	background: #457fca; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.registerForm {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 540px;
+	height: 620px;
+	background-color: #ffffff;
+	box-shadow: 0 3px 10px 0 #8fc1d4;
+	text-align: center;
+	padding: 100px;
+	margin: 20%;
+}
+
+.loginForm {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 540px;
+	height: 500px;
+	background-color: #ffffff;
+	box-shadow: 0 3px 10px 0 #8fc1d4;
+	text-align: center;
+	padding: 100px;
+	margin: 20%;
+}
+
 .addUserField {
 	width: 300px;
 	margin: auto;
@@ -10,9 +102,8 @@
 	font-size: 25px;
 }
 
-.createOrgButton {
-	margin-bottom: 12px;
-	padding: 10px;
+.switchViewLink {
+	margin-top: 15px;
 }
 
 h3 {
@@ -21,39 +112,13 @@ h3 {
 	/*text-align: center;*/
 }
 
-.loginButton {
-	text-align: center;
-	margin: auto;
-	width: 400px;
-	padding-bottom: 3px;
-}
-
-#loginForm {
-	padding: 20px;
-}
-
-#loginLabel {
-	font-size: 17px;
-}
-
-#loginPanel {
-	width: 450px;
-	display: block;
-	text-align: center;
-	float: none;
-	margin: auto;
-	padding-top: 50px;
-}
-
-.loginTitle {
-	font-weight: bold;
-	font-size: 20px;
-	color: #fefdfb;
-	text-align: center;
-	margin: auto;
-	background: #457fca; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.button {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
+	font-size: 18px;
+	color: white;
+	background-color: #84e0b8;
 }
 
 #modalButton {
@@ -186,7 +251,9 @@ h3 {
 }
 
 .userLabel {
+	font-family: Superclarendon, Helvetica, sans-serif;
 	font-size: 17px;
+	padding: none;
 }
 
 .usersSettings {
@@ -205,6 +272,39 @@ h3 {
 	background: #2c3e50; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #2c3e50 , #3498db); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #2c3e50 , #3498db); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	/*width: 1280px;*/
+	/*height: 75px;*/
+	box-shadow: 0 0 1px 0 #000000;
+}
+
+.nav-glyph {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	color: #ffffff;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	font-family: Open Sans;
+	font-size: 16px;
+	color: #ffffff;
+}
+
+.nav-title {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	width: 123px;
+	height: 29px;
+	font-family: Superclarendon, Open Sans;
+	font-size: 25px;
+	margin: 11px 20px 11px 0;
 }
 
 .testing {
@@ -213,4 +313,13 @@ h3 {
 
 .testing1{
 	width: 60px;
+}
+
+.userLabel {
+	height: 15px;
+	font-family: Helvetica, Lato, SourceSansPro;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px;
+	color: #177599;
 }
