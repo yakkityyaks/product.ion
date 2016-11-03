@@ -96,7 +96,8 @@
 	box-shadow: 0 3px 10px 0 #8fc1d4;
 	text-align: center;
 	padding: 100px;
-	margin: 30%;
+	margin-top: 20%;
+	margin-bottom: 30%;
 }
 
 
@@ -104,6 +105,7 @@
 
 .dashboard-welcome {
 	font-size: 30px;
+	color: #175d77;
 	text-align: center;
 	font-family: Superclarendon, Helvetica, sans-serif;
 	padding-bottom: 20px;

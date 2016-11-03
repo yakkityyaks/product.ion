@@ -153,8 +153,8 @@ const Dashboard = React.createClass({
                 </Link>) :
                 <div></div>
               }
-              {this.state.open ? <DashCharts {...this.props}/> : null}
               </div>
+              {this.state.open ? <DashCharts {...this.props}/> : null}
             </div>
             <div>
               <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
