@@ -57,7 +57,7 @@ const Register = React.createClass({
       <div id="app">
         <div className="registerForm">
            <form onSubmit={this.handleSubmit} onBlur={this.resetErrorMessages}>
-           <h1 className="estymate-register">e$tymate</h1>
+           <h1 className="estimate-register">e$timate</h1>
              <FormGroup>
                <ControlLabel className="userLabel">Organization</ControlLabel>
                <FormControl className="formInput" type="text" value={this.state.org} placeholder="name it something catchy"
@@ -73,12 +73,12 @@ const Register = React.createClass({
              <FormGroup>
                <ControlLabel className="userLabel">Password</ControlLabel>
                <FormGroup validationState = {this.validatePass()}>
-                 <FormControl className="formInput" type="password" value={this.state.pass} placeholder="••••••••••"
+                 <FormControl className="passInput" type="password" value={this.state.pass} placeholder="••••••••••"
                               onChange={this.handlePassChange} required
                               name="pass"/>
                  <FormControl.Feedback />
                  <p id="registerPasswordMessage">{this.props.messages.registerPassword}</p>
-                 <FormControl className="formInput" type="password" value={this.state.pass2} placeholder="Re-enter Password"
+                 <FormControl className="passInput" type="password" value={this.state.pass2} placeholder="Re-enter Password"
                               onChange={this.handlePassChange} name="pass2"/>
                  <FormControl.Feedback />
                </FormGroup>

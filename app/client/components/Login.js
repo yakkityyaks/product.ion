@@ -46,7 +46,7 @@ const Login = React.createClass({
       <div className="loginForm">
       {this.state.renderStuff &&
        <form onSubmit={this.handleSubmit} onBlur={this.props.resetLoginMessage}>
-       <h1 className="estymate-login">e$tymate</h1>
+       <h1 className="estimate-login">e$timate</h1>
          <div>
            <label className="userLabel">Username</label>
            <input className="formInput" type="text" value={this.state.username} placeholder="Enter text"

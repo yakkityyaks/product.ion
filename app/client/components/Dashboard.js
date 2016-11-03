@@ -138,21 +138,28 @@ const Dashboard = React.createClass({
 
           <Panel>
             <div>
-              <b style={{"fontSize":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
-              <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
-              <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
+              <div className="dashboard-welcome">
+                <b>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
+              </div>
+              <div className="dashboard-buttons">
+                <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Export Projects/Expenses to a CSV</Button>
+
+                <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
+
               {
                 this.props.organization.user.perm === 0 ?
                 (<Link to="/mastersheet">
-                  <Button style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Click for Master Sheet</Button>
+                  <Button style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Master Sheet</Button>
                 </Link>) :
                 <div></div>
               }
               {this.state.open ? <DashCharts {...this.props}/> : null}
+              </div>
             </div>
-
-            <h3>Most Recently Edited Three Projects</h3>
-            <Table striped bordered>
+            <div>
+              <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
+            </div>
+            <Table responsive hover>
               <thead>
                 <tr id="readOnlyHeader">
                   <th>Name</th>
@@ -177,8 +184,8 @@ const Dashboard = React.createClass({
             {
               !this.props.organization.user.perm ?
               <div>
-                <h3>Pitches to be Approved</h3>
-                <Table striped bordered>
+                <h3 className="dashboard-titles">Pitches to be Approved</h3>
+                <Table responsive hover>
                   <thead>
                     <tr id="readOnlyHeader">
                       <th>Name</th>
@@ -203,7 +210,7 @@ const Dashboard = React.createClass({
               this.props.organization.user.perm ?
               <div>
                 <h3>Your pitches awaiting approval:</h3>
-                <Table striped bordered>
+                <Table responsive hover>
                   <thead>
                     <tr id="readOnlyHeader">
                       <th>Name</th>

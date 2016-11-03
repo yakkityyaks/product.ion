@@ -15,7 +15,7 @@
 	margin: 0;
 }
 
-.estymate-login {
+.estimate-login {
 	width: 234px;
 	height: 55px;
 	font-family: Superclarendon, Helvetica, sans-serif;
@@ -25,12 +25,12 @@
 	margin-bottom: 15px;
 }
 
-.estymate-register {
+.estimate-register {
 	width: 234px;
 	height: 55px;
 	font-family: Superclarendon, Helvetica, sans-serif;
 	font-size: 46px;
-	margin:auto;
+	margin: auto;
 	color: #1c98c9;
 	margin-bottom: 15px;
 }
@@ -40,6 +40,15 @@
 	height: 44px;
 	border-radius: 30px;
 	text-align: center;
+	font-size: 18px;
+	background-color: #ecfaf7;
+	margin: 10px;
+}
+
+.passInput {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
 	font-size: 18px;
 	background-color: #ecfaf7;
 	margin: 10px;
@@ -87,8 +96,80 @@
 	box-shadow: 0 3px 10px 0 #8fc1d4;
 	text-align: center;
 	padding: 100px;
-	margin: 20%;
+	margin: 30%;
 }
+
+
+/* Dashboard Styles */
+
+.dashboard-welcome {
+	font-size: 30px;
+	text-align: center;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	padding-bottom: 20px;
+}
+
+.dashboard-titles {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	width: 500px;
+	height: 36px;
+	font-family: SourceSansPro, Open Sans;
+	font-size: 28px;
+	color: #175d77;
+}
+
+.dashboard-buttons {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.table-name {
+	text-align: center;
+	font-family: SourceSansPro, Open Sans;
+	font-size: 12px;
+	font-weight: bold;
+	color: #175d77;
+}
+
+#readOnlyHeader {
+	text-align: center;
+	margin: auto;
+	font-size: 14px;
+	color: #175d77;
+	font-family: SourceSansPro, Open Sans;
+	box-shadow: 0 0 2px 0 #8fc1d4;
+	width: 1160px;
+	padding: 10px;
+	background-color: #d7eff8;
+}
+
+#readOnlyBody > td {
+	font-size: 14px;
+	color: #175d77;
+	cursor: pointer;
+}
+
+tr:hover > td {
+	background-color: #ecfaf7;
+	border-top: 1px solid #79e011;
+	border-bottom: 1px solid #79e011;
+	border-right: #ecfaf7;
+	border-left: #ecfaf7;
+}
+
+
+
+
 
 .addUserField {
 	width: 300px;
@@ -150,14 +231,6 @@ h3 {
 
 #csvModalButton {
 	float: right;
-}
-
-#readOnlyHeader > th {
-	font-size: 14px;
-}
-
-#readOnlyBody > td {
-	font-size: 14px;
 }
 
 .reminder {
