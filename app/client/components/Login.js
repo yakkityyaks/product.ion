@@ -67,7 +67,7 @@ const Login = React.createClass({
          </div>
          <div className="switchViewLink">
            <Link to={`/register`}>
-             Don't have an account? <strong>Create Organization</strong>
+             <p>Don't have an account?<strong> Sign Up</strong></p>
            </Link>
          </div>
        </form>}

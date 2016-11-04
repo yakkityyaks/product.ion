@@ -107,7 +107,7 @@ const MasterSheet = React.createClass({
 	render() {
 		return (
 			<div>
-	        
+
         <NavBar {...this.props}/>
 
         <Panel>
@@ -125,29 +125,29 @@ const MasterSheet = React.createClass({
 
           <div style={{"margin-top":"10px"}} id="chartContainer"></div>
 
-          <Table striped bordered>
+          <Table hover responsive>
         		<thead>
-        			<tr>
-        				<th>Project</th>
-        				<th>Jan</th>
-        				<th>Feb</th>
-        				<th>Mar</th>
-        				<th>Apr</th>
-        				<th>May</th>
-        				<th>Jun</th>
-        				<th>Jul</th>
-        				<th>Aug</th>
-        				<th>Sep</th>
-        				<th>Oct</th>
-        				<th>Nov</th>
-        				<th>Dec</th>
-        				<th>Total</th>
+        			<tr id="readOnlyHeader">
+        				<th>PROJECT</th>
+        				<th>JAN</th>
+        				<th>FEB</th>
+        				<th>MAR</th>
+        				<th>APR</th>
+        				<th>MAY</th>
+        				<th>JUN</th>
+        				<th>JUL</th>
+        				<th>AUG</th>
+        				<th>SEP</th>
+        				<th>OCT</th>
+        				<th>NOV</th>
+        				<th>DEC</th>
+        				<th>TOTAL</th>
         			</tr>
         		</thead>
         		<tbody>
         			{this.state.table.map(function(row) {
         				return (
-        					<tr>
+        					<tr id="readOnlyBody">
         						<td>{row[13]}</td>
         						<td>{row[0]}</td>
         						<td>{row[1]}</td>

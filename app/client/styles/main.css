@@ -120,7 +120,7 @@
 	align-items: center;
 	width: 500px;
 	height: 36px;
-	font-family: SourceSansPro, Open Sans;
+	font-family: Source Sans Pro, Open Sans;
 	font-size: 28px;
 	color: #175d77;
 }
@@ -137,7 +137,7 @@
 
 .table-name {
 	text-align: center;
-	font-family: SourceSansPro, Open Sans;
+	font-family: Source Sans Pro, Open Sans;
 	font-size: 12px;
 	font-weight: bold;
 	color: #175d77;
@@ -146,9 +146,9 @@
 #readOnlyHeader {
 	text-align: center;
 	margin: auto;
-	font-size: 14px;
+	font-size: 12px;
 	color: #175d77;
-	font-family: SourceSansPro, Open Sans;
+	font-family: Source Sans Pro, Open Sans;
 	box-shadow: 0 0 2px 0 #8fc1d4;
 	width: 1160px;
 	padding: 10px;
@@ -367,6 +367,16 @@ h3 {
 	font-size: 16px;
 	color: #ffffff;
 }
+
+a:hover {
+	text-decoration: none;
+	color: #79e011;
+}
+
+a:active {
+	color: #79e011;
+}
+
 
 .nav-title {
 	display: -webkit-box;

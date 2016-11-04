@@ -47,15 +47,15 @@ const Projects = React.createClass({
             </div>
           }
 
-        	<Table striped bordered>
+        	<Table responsive hover>
         		<thead>
         			<tr id="readOnlyHeader">
-        				<th>Name</th>
-        				<th>Project ID</th>
-                <th>Created By</th>
-        				<th>Project Status</th>
-                <th>Estimate to Complete</th>
-        				<th>Cost to Date</th>
+                <th>NAME</th>
+                <th>PROJECT ID</th>
+                <th>CREATED BY</th>
+                <th>PROJECT STATUS</th>
+                <th>COST TO DATE</th>
+                <th>ESTIMATE TO COMPLETE</th>
         			</tr>
         		</thead>
         		<tbody>

@@ -27,8 +27,12 @@ const NavBar = React.createClass({
   selectSettings() {
     this.props.changeNavKey(2);
   },
+  //
+  // selectCSV() {
+  //   this.props.changeNavKey(3);
+  // },
 
-  selectCSV() {
+  selectMaster() {
     this.props.changeNavKey(3);
   },
 
@@ -57,22 +61,36 @@ const NavBar = React.createClass({
                   Dashboard
                 </Link>
               </NavItem>
+
               <NavItem eventKey={1} onClick={this.selectDashboard}>
                 <Link to={`/projects`} className="nav-item">
                   Projects
                 </Link>
               </NavItem>
+              
+              <NavItem eventKey={3} onClick={this.selectMaster}>
+              {
+                this.props.organization.user.perm === 0 ?
+                (<Link to={`/mastersheet`} className="nav-item">
+                  Master
+                </Link>) :
+                <div></div>
+              }
+              </NavItem>
+
             </Nav>
 
             <Nav pullRight>
               <NavItem>
                 <div className="nav-item">Hello, {user.name}!</div>
               </NavItem>
+
               <NavItem eventKey={2} onClick={this.selectSettings}>
                 <Link to={`/settings`} className="nav-glyph">
                   <Glyphicon glyph="cog"/>
                 </Link>
               </NavItem>
+
               <NavItem onClick={this.logout}>
                 <Link to={`/`} className="nav-item">
                   Logout

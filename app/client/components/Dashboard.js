@@ -143,18 +143,10 @@ const Dashboard = React.createClass({
               </div>
               <div className="dashboard-buttons">
                 <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Export Projects/Expenses to a CSV</Button>
-
                 <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
-
-              {
-                this.props.organization.user.perm === 0 ?
-                (<Link to="/mastersheet">
-                  <Button style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Master Sheet</Button>
-                </Link>) :
-                <div></div>
-              }
               </div>
-              {this.state.open ? <DashCharts {...this.props}/> : null}
+
+              {this.state.open ?  <DashCharts {...this.props}/> : null}
             </div>
             <div>
               <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
@@ -162,12 +154,12 @@ const Dashboard = React.createClass({
             <Table responsive hover>
               <thead>
                 <tr id="readOnlyHeader">
-                  <th>Name</th>
-                  <th>Project ID</th>
-                  <th>Created By</th>
-                  <th>Project Status</th>
-                  <th>Estimate to Complete</th>
-                  <th>Cost to Date</th>
+                  <th>NAME</th>
+                  <th>PROJECT ID</th>
+                  <th>CREATED BY</th>
+                  <th>PROJECT STATUS</th>
+                  <th>COST TO DATE</th>
+                  <th>ESTIMATE TO COMPLETE</th>
                 </tr>
               </thead>
               <tbody>
@@ -188,12 +180,12 @@ const Dashboard = React.createClass({
                 <Table responsive hover>
                   <thead>
                     <tr id="readOnlyHeader">
-                      <th>Name</th>
-                      <th>Project ID</th>
-                      <th>Created By</th>
-                      <th>Project Status</th>
-                      <th>Cost to Date</th>
-                      <th>Estimate to Complete</th>
+                      <th>NAME</th>
+                      <th>PROJECT ID</th>
+                      <th>CREATED BY</th>
+                      <th>PROJECT STATUS</th>
+                      <th>COST TO DATE</th>
+                      <th>ESTIMATE TO COMPLETE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -213,12 +205,12 @@ const Dashboard = React.createClass({
                 <Table responsive hover>
                   <thead>
                     <tr id="readOnlyHeader">
-                      <th>Name</th>
-                      <th>Project ID</th>
-                      <th>Created By</th>
-                      <th>Project Status</th>
-                      <th>Cost to Date</th>
-                      <th>Estimate to Complete</th>
+                      <th>NAME</th>
+                      <th>PROJECT ID</th>
+                      <th>CREATED BY</th>
+                      <th>PROJECT STATUS</th>
+                      <th>COST TO DATE</th>
+                      <th>ESTIMATE TO COMPLETE</th>
                     </tr>
                   </thead>
                   <tbody>
