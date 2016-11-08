@@ -149,7 +149,6 @@ function posts(state=[], action) {
             sessionStorage.setItem('jwtToken', res.data.token);
             browserHistory.push(`/dashboard/${joinedName}`);
           } else {
-            console.log("You done fucked up");
             store.dispatch({
               type:"SET_LOGIN_MESSAGE",
               message: "What happened? Wrong password. That's what happened.",

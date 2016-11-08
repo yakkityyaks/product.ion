@@ -46,7 +46,6 @@ function projects(state = [], action) {
         });
       break;
     case "GET_PROJECT":
-      console.log("You want to get a single project with id", action.projId);
       ApiCall.getProjectByProjId(action.projId)
         .then(res => {
           console.log("Res is ", res);

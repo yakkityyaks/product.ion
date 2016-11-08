@@ -7,13 +7,11 @@ import { PageHeader } from 'react-bootstrap';
 // React.cloneElement passes down props from Main to first child.
 const Main = React.createClass({
   render() {
-
     return (
-      <div className="titleHeader">
-        <Link to="/">
-          <div id="title"><a>product.ion</a></div>
-        </Link>
+      <div>
+
         { React.cloneElement(this.props.children, this.props) }
+
       </div>
     );
   }
