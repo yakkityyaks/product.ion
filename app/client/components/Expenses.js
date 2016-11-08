@@ -121,7 +121,7 @@ const Expenses = React.createClass({
                   </td>
                   <td width="145">
                     <ReadOnlyText
-                      name="projId"
+                      name="createdBy"
                       value={username} />
                   </td>
                   <td width="145">

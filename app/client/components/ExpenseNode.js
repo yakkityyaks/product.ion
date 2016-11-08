@@ -60,7 +60,6 @@ const ExpenseNode = React.createClass({
   },
 
   handleChange: function(inputName, inputValue) {
-    console.log("handleChange set the state of ", inputName, "to ", inputValue);
     var nextState = {};
     nextState[inputName] = inputValue;
     this.setState(nextState);
