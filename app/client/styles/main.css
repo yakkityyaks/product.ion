@@ -169,9 +169,16 @@ tr:hover > td {
 	border-left: #ecfaf7;
 }
 
+.userList {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: space-around;
+	flex-flow: row;
+	padding: 5px;
+	margin: 2px;
 
-
-
+}
 
 .addUserField {
 	width: 300px;
@@ -216,19 +223,20 @@ h3 {
 	margin:auto;
 }
 
-#settingsWindow {
-	display:inline-block;
-	padding-right: 30px;
-}
-
 #settingsMain {
-	display: inline-block;
-	float: left;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
 }
 
 #settingsOptional {
-	padding-left: 10px;
-	display:inline-block;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	flex-flow: row;
+	flex-flow: wrap;
 }
 
 #csvModalButton {
