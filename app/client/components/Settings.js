@@ -65,48 +65,48 @@ const Settings = React.createClass({
              </Modal.Footer>
            </Modal>
            <div id="settingsWindow">
-                  <div id="settingsMain">
-                    <Form onSubmit={this.handleSubmit}>
-                    <h3><strong>Change Password</strong></h3>
-                      <FormGroup>
-                        <ControlLabel bsClass="chartSortSelector">Current Password</ControlLabel>&nbsp;
-                        <FormControl type="password" placeholder="••••••••••" required
-                                    name="currentPass" autoCorrect="off" autoCapitalize="off"
-                                    spellCheck="false" value={this.state.currentPass}
-                                    onChange={this.changeOn}  />
-                        <p id="passwordMessage">{this.props.messages.password}</p>
-                      </FormGroup>
-                      <br></br>
-                      <FormGroup validationState={this.state.validate}>
-                        <ControlLabel bsClass="chartSortSelector">New Password</ControlLabel>
-                        <FormControl type="password" placeholder="••••••••••" required
-                                    autoCorrect="off" autoCapitalize="off"
-                                    spellCheck="false" onChange={this.changeOn}
-                                    name = "newPass1" value={this.state.newPass1}/>
-                        <FormControl.Feedback />
-                        <br></br>
-                        <ControlLabel bsClass="chartSortSelector" htmlFor="newPassword">Confirm New Password</ControlLabel>
-                        <FormControl type="password" placeholder="••••••••••"
-                                    name="newPass2" autoCorrect="off"
-                                    autoCapitalize="off" spellCheck="false"
-                                    value={this.state.newPass2}
-                                    onChange={this.changeOn} required />
-                        <FormControl.Feedback />
-                        <p id="passwordMessage">{this.state.validateMessage}</p>
-                      </FormGroup>
-                      <div>
-                        <Button type="submit" bsStyle="primary">
-                          Change Password
-                        </Button>
-                      </div>
-                    </Form>
+              <div id="settingsMain">
+                <Form onSubmit={this.handleSubmit}>
+                <h3><strong>Change Password</strong></h3>
+                  <FormGroup>
+                    <ControlLabel bsClass="chartSortSelector">Current Password</ControlLabel>&nbsp;
+                    <FormControl type="password" placeholder="••••••••••" required
+                                name="currentPass" autoCorrect="off" autoCapitalize="off"
+                                spellCheck="false" value={this.state.currentPass}
+                                onChange={this.changeOn}  />
+                    <p id="passwordMessage">{this.props.messages.password}</p>
+                  </FormGroup>
+                  <br></br>
+                  <FormGroup validationState={this.state.validate}>
+                    <ControlLabel bsClass="chartSortSelector">New Password</ControlLabel>
+                    <FormControl type="password" placeholder="••••••••••" required
+                                autoCorrect="off" autoCapitalize="off"
+                                spellCheck="false" onChange={this.changeOn}
+                                name = "newPass1" value={this.state.newPass1}/>
+                    <FormControl.Feedback />
+                    <br></br>
+                    <ControlLabel bsClass="chartSortSelector" htmlFor="newPassword">Confirm New Password</ControlLabel>
+                    <FormControl type="password" placeholder="••••••••••"
+                                name="newPass2" autoCorrect="off"
+                                autoCapitalize="off" spellCheck="false"
+                                value={this.state.newPass2}
+                                onChange={this.changeOn} required />
+                    <FormControl.Feedback />
+                    <p id="passwordMessage">{this.state.validateMessage}</p>
+                  </FormGroup>
+                  <div>
+                    <Button type="submit" bsStyle="primary">
+                      Change Password
+                    </Button>
                   </div>
-                  <hr></hr>
-                  <div id="settingsOptional">
-                  {
-                   !user.perm && <UserList {...this.props } switchModal={this.switchModal}/>
-                  }
-                  </div>
+                </Form>
+              </div>
+              <hr></hr>
+              <div id="settingsOptional">
+              {
+               !user.perm && <UserList {...this.props } switchModal={this.switchModal}/>
+              }
+              </div>
           </div>
         </Panel>
       </div>
