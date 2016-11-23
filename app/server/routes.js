@@ -145,9 +145,9 @@ module.exports = function routes(app){
           var date = date.format('yyyy/mm/dd');
           proj.save({costToDate: cost, lastEdited: date}).then(function(proj) {
             exp ? res.status(201).json(exp) : res.sendStatus(404);
-          })
-        })
-      })
+          });
+        });
+      });
     });
   });
 
