@@ -16,11 +16,10 @@ const Login = React.createClass({
   componentWillMount() {
     this.props.resetLoginMessage();
     let token = sessionStorage.getItem('jwtToken');
-    console.log("TOKEN ", token);
+
+    // console.log("TOKEN ", token);
     if (token && token !== '') {
-      this.setState({
-        renderStuff: false
-      });
+      this.setState({renderStuff: false});
       this.props.refreshLogin(token);
     }
   },
@@ -34,8 +33,8 @@ const Login = React.createClass({
       password: e.target.value
     });
   },
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.postLogin(this.state.username, this.state.password);
   },
 

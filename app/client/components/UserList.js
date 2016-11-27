@@ -116,7 +116,7 @@ const UserList = React.createClass({
                     ref="changeButton" type="submit">{this.state.button}</Button>
           }
           <p>{this.state.noAdminWarning}</p>
-          <div>
+          <div className="userListContainer">
           {state.users.map((user, key) =>
               <FormGroup bsClass="userList" key={key} validationState={state.validate[key]}>
                 <ControlLabel bsClass="chartSortSelector">{user.username}</ControlLabel>&nbsp;&nbsp;

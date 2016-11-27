@@ -114,7 +114,7 @@ module.exports = function routes(app){
   //    }
   // }
   app.post('/api/register/expenses', function(req, res) {
-    console.log('In /api/register/expenses ', req.body.data)
+    //console.log('In /api/register/expenses ', req.body.data)
     // req body should hold the following
     // {
     //  "data": { "singleExpense" : {
@@ -164,8 +164,8 @@ module.exports = function routes(app){
   });
 
   app.post('/api/register/budgets', function(req, res) {
-    console.log(req.body.id);
-    console.log(req.body.data);
+    //console.log(req.body.id);
+    //console.log(req.body.data);
     var rows = req.body.data;
     var length = rows.length;
     var count = 0;
@@ -293,7 +293,7 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/expense', function(req, res) {
-    console.log('In /api/update/expense ', req.body.data);
+    //console.log('In /api/update/expense ', req.body.data);
     Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp.save(req.body.data.singleExpense).then(function(exp) {
         Project.getProjById(req.body.data.singleExpense.projs_id, function(proj) {
@@ -326,7 +326,7 @@ module.exports = function routes(app){
   //given the username of a user by req.body.username, and any key-value pairs to be changed in req.body.data,
   //this route updates the referenced expense. If it is not found, this sends back a 404.
   app.post('/api/update/user', function(req, res) {
-    console.log("UPDATE REQ ", req.body);
+    //console.log("UPDATE REQ ", req.body);
     var data = req.body.data;
     User.getUser(data.username, function(user) {
       user ? user.save(data).then(function (user) {
@@ -413,7 +413,7 @@ module.exports = function routes(app){
   //given the primary id of an expense by req.body.id, this destroys that row in the table if found and sends it back. If not found,
   //this route throws a 404
   app.post('/api/remove/expense', function(req, res) {
-    console.log('In /api/remove/expense ', req.body.data)
+    //console.log('In /api/remove/expense ', req.body.data)
     Expense.getExpense(req.body.data.singleExpense.id, function(exp) {
       exp.destroy().then(function(exp) {
         Project.getProjById(req.body.data.singleExpense.projs_id, function(proj) {

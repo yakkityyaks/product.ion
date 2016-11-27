@@ -11,7 +11,7 @@ const MasterSheet = React.createClass({
 			sortBy: '',
 			projNames: [],
 			table: []
-		}
+		};
 	},
 
 	componentDidMount() {
@@ -69,11 +69,11 @@ const MasterSheet = React.createClass({
       },
       yAxis: {
         title: {
-          text: "Dolla Dolla Bills Y'all"
+          text: "Thousands of dollars"
         }
       },
       title: {
-        text: 'Cream Get the Money'
+        text: this.state.sortBy
       },
       plotOptions: {
         line: {

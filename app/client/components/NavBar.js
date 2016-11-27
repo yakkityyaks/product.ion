@@ -16,9 +16,9 @@ const NavBar = React.createClass({
     browserHistory.push('/');
   },
 
-  handleSelect(eventKey) {
-    event.preventDefault();
-  },
+  // handleSelect(eventKey) {
+  //   event.preventDefault();
+  // },//deprecated or unneeded.
 
   selectDashboard() {
     this.props.changeNavKey(1);
@@ -67,9 +67,9 @@ const NavBar = React.createClass({
                   Projects
                 </Link>
               </NavItem>
-              
+
               <NavItem eventKey={3} onClick={this.selectMaster}>
-              {
+              {// Only loads if the user is an admin
                 this.props.organization.user.perm === 0 ?
                 (<Link to={`/mastersheet`} className="nav-item">
                   Master

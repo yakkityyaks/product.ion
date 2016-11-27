@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, ControlId, Form, FormControl, FormGroup, InputGroup, Modal, Panel, Table } from 'react-bootstrap';
+import { Button, InputGroup, Modal, Panel, Table } from 'react-bootstrap';
 import CSVDrop from './CSVDrop';
 import ExpenseChart from './ExpenseChart';
 import ExpenseNode from './ExpenseNode';
@@ -244,6 +244,7 @@ const Expenses = React.createClass({
               </tbody>
           </Table>
           <Panel>
+            <span style={{"font-size":"20"}}>{"New Expense:"}</span>
             <Table>
               <thead>
                 <tr>
