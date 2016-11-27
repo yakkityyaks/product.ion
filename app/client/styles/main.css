@@ -400,6 +400,10 @@ a:active {
 	margin: 11px 20px 11px 0;
 }
 
+.table-hover>tbody>tr:hover {
+    background-color: #9ca4d0 !important;
+}
+
 .testing {
 	margin-left: 20px;
 }

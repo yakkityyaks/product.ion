@@ -60,7 +60,6 @@ const ExpenseNode = React.createClass({
   },
 
   handleChange: function(inputName, inputValue) {
-    console.log("handleChange set the state of ", inputName, "to ", inputValue);
     var nextState = {};
     nextState[inputName] = inputValue;
     this.setState(nextState);
@@ -168,7 +167,7 @@ const ExpenseNode = React.createClass({
               <InputGroup.Addon>$</InputGroup.Addon>
                 <TextInput
                   name="cost"
-                  value={this.state.importedExpenses.description}
+                  value={this.state.importedExpenses.cost}
                   onChange={this.handleChange} />
             </InputGroup> :
             <InputGroup>

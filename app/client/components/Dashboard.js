@@ -151,15 +151,16 @@ const Dashboard = React.createClass({
             <div>
               <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
             </div>
-            <Table responsive hover>
+            <h3>Last three projects</h3>
+            <Table responsive hover striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
                   <th>NAME</th>
                   <th>PROJECT ID</th>
                   <th>CREATED BY</th>
                   <th>PROJECT STATUS</th>
-                  <th>COST TO DATE</th>
                   <th>ESTIMATE TO COMPLETE</th>
+                  <th>COST TO DATE</th>
                 </tr>
               </thead>
               <tbody>
@@ -184,8 +185,8 @@ const Dashboard = React.createClass({
                       <th>PROJECT ID</th>
                       <th>CREATED BY</th>
                       <th>PROJECT STATUS</th>
-                      <th>COST TO DATE</th>
                       <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -202,15 +203,16 @@ const Dashboard = React.createClass({
               this.props.organization.user.perm ?
               <div>
                 <h3>Your pitches awaiting approval:</h3>
-                <Table responsive hover>
+
+                <Table responsive hover striped bordered>
                   <thead>
                     <tr id="readOnlyHeader">
                       <th>NAME</th>
                       <th>PROJECT ID</th>
                       <th>CREATED BY</th>
                       <th>PROJECT STATUS</th>
-                      <th>COST TO DATE</th>
                       <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>
