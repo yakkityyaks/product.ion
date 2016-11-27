@@ -149,9 +149,8 @@ const Dashboard = React.createClass({
               {this.state.open ?  <DashCharts {...this.props}/> : null}
             </div>
             <div>
-              <h3 className="dashboard-titles">Most Recently Edited Three Projects</h3>
+              <h3 className="dashboard-titles">Recently Edited Projects</h3>
             </div>
-            <h3>Last three projects</h3>
             <Table responsive hover striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
