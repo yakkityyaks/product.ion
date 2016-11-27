@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button, Label, Modal, Panel, Table } from 'react-bootstrap';
+import { Button, Modal, Panel, Table } from 'react-bootstrap';
 import Papa from 'papaparse';
 import ApiCall from "../utils/serverCalls";
 import DashCharts from './DashCharts';
