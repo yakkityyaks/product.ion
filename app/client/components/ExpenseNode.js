@@ -31,7 +31,7 @@ const ExpenseNode = React.createClass({
     this.setState({importedExpenses: this.props.expense});
   },
 
-  componentDidMount: function(){
+  componentDidMount: function() {
     if(this.state.dateTracked === ''){
       var newDate = new Date();
       var today = {};
@@ -60,8 +60,8 @@ const ExpenseNode = React.createClass({
   },
 
   handleChange: function(inputName, inputValue) {
-    var nextState = {};
-    nextState[inputName] = inputValue;
+    var nextState = {[inputName]: inputValue};
+
     this.setState(nextState);
     if(inputName === "category"){
       for (var key in codes){
@@ -136,6 +136,7 @@ const ExpenseNode = React.createClass({
               onChange={this.handleChange} /> :
             <TextInput
               name="vendor"
+              value = {this.state.vendor}
               onChange={this.handleChange} />
           }
         </td>
@@ -151,6 +152,7 @@ const ExpenseNode = React.createClass({
               onChange={this.handleChange} /> :
             <TextInput
               name="description"
+              value={this.state.description}
               onChange={this.handleChange} />
           }
         </td>
@@ -237,8 +239,9 @@ const ExpenseNode = React.createClass({
             </td>
             : null
           }
-          {this.state.importedExpenses ? <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td> : null}
-          {this.state.importedExpenses ? null : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
+          {this.state.importedExpenses ?
+            <td width="auto"><Button onClick={this.handleDelete}>Delete</Button></td>
+            : <td width="auto"><Button onClick={this.handleAdd}>Add Expense</Button></td>}
         </tr>
     );
   }
