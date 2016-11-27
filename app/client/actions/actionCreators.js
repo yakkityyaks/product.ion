@@ -161,12 +161,6 @@ export function hydrateProjExpenses(expenses) {
     expenses
   };
 }
-export function changeModal(name) {
-  return {
-    type: "CHANGE_MODAL",
-    name
-  };
-}
 
 export function updateProject(project) {
   return {type: "UPDATE_PROJECT", project};
