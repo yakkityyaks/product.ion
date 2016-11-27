@@ -159,8 +159,8 @@ const Dashboard = React.createClass({
                   <th>PROJECT ID</th>
                   <th>CREATED BY</th>
                   <th>PROJECT STATUS</th>
-                  <th>COST TO DATE</th>
                   <th>ESTIMATE TO COMPLETE</th>
+                  <th>COST TO DATE</th>
                 </tr>
               </thead>
               <tbody>
@@ -185,8 +185,8 @@ const Dashboard = React.createClass({
                       <th>PROJECT ID</th>
                       <th>CREATED BY</th>
                       <th>PROJECT STATUS</th>
-                      <th>COST TO DATE</th>
                       <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -211,8 +211,8 @@ const Dashboard = React.createClass({
                       <th>PROJECT ID</th>
                       <th>CREATED BY</th>
                       <th>PROJECT STATUS</th>
-                      <th>COST TO DATE</th>
                       <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>

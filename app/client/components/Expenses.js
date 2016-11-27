@@ -217,7 +217,7 @@ const Expenses = React.createClass({
           {this.state.open ? <ExpenseChart {...this.props} projName={this.state.proj.name}/> : null}
         </Panel>
         <Panel>
-          <span style={{"font-size":"30"}}>{"Expenses for " + this.state.proj.name }</span>
+          <span style={{"fontSize":"30"}}>{"Expenses for " + this.state.proj.name }</span>
           <Button onClick={this.switchModal} style={{"float":"right"}} bsStyle="primary">Add Expenses with a CSV</Button>
           <Table>
             <thead>
