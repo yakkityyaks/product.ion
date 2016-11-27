@@ -68,7 +68,6 @@ const Dashboard = React.createClass({
       ids.push(proj.projId);
     });
     ApiCall.getExpenses(ids).then(function(res) {
-      console.log(res);
       var exps = res.data.reduce(function(a,b) {
           return a.concat(b);
         }, []);
@@ -114,7 +113,7 @@ const Dashboard = React.createClass({
 
   getProj(id) {
     for (var i = 0; i < this.props.projects.length; i++) {
-      if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i];}
+      if (this.props.projects[i].id === id) { return this.props.projects[i];}
     }
     return 'proj not found';
   },
@@ -139,29 +138,34 @@ const Dashboard = React.createClass({
 
           <Panel>
             <div>
-              <b style={{"fontSize":"30"}}>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
-              <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary" id="csvExport">Export Projects/Expenses to a CSV</Button>
-              <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
-              {this.state.open ? <DashCharts {...this.props}/> : null}
-            </div>
+              <div className="dashboard-welcome">
+                <b>{"Welcome to " + this.props.organization.orgName + "'s dashboard"}</b>
+              </div>
+              <div className="dashboard-buttons">
+                <Button onClick={this.exportCSV} style={{"float":"right","marginRight":"5px"}} bsStyle="primary">Export Projects/Expenses to a CSV</Button>
+                <Button bsStyle="primary" style={{"float":"right","marginRight":"5px"}} onClick={this.switchChart}>Toggle Visuals</Button>
+              </div>
 
-            <h3>Most Recently Edited Three Projects</h3>
-            <Table striped bordered hover>
+              {this.state.open ?  <DashCharts {...this.props}/> : null}
+            </div>
+            <div>
+              <h3 className="dashboard-titles">Recently Edited Projects</h3>
+            </div>
+            <Table responsive hover striped bordered>
               <thead>
                 <tr id="readOnlyHeader">
-                  <th>Name</th>
-                  <th>Project ID</th>
-                  <th>Created By</th>
-                  <th>Project Status</th>
-                  <th>Estimate to Complete</th>
-                  <th>Cost to Date</th>
+                  <th>NAME</th>
+                  <th>PROJECT ID</th>
+                  <th>CREATED BY</th>
+                  <th>PROJECT STATUS</th>
+                  <th>ESTIMATE TO COMPLETE</th>
+                  <th>COST TO DATE</th>
                 </tr>
               </thead>
               <tbody>
               {
                 this.props.projects.length > 0 ? this.props.projects.sort(function(b, a) {
-                console.log('sorting');
-                return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
+                  return a.lastEdited < b.lastEdited ? -1 : a.lastEdited > b.lastEdited ? 1 : 0;
               }).slice(0,3).map(function(proj, idx) {
                   return <ProjectNode key={idx} {...this.props} project={proj} switchModal={this.switchModal}/>;
                 }, this) : null
@@ -172,16 +176,16 @@ const Dashboard = React.createClass({
             {
               !this.props.organization.user.perm ?
               <div>
-                <h3>Pitches to be Approved</h3>
-                <Table striped bordered>
+                <h3 className="dashboard-titles">Pitches to be Approved</h3>
+                <Table responsive hover>
                   <thead>
                     <tr id="readOnlyHeader">
-                      <th>Name</th>
-                      <th>Project ID</th>
-                      <th>Created By</th>
-                      <th>Project Status</th>
-                      <th>Cost to Date</th>
-                      <th>Estimate to Complete</th>
+                      <th>NAME</th>
+                      <th>PROJECT ID</th>
+                      <th>CREATED BY</th>
+                      <th>PROJECT STATUS</th>
+                      <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -198,15 +202,16 @@ const Dashboard = React.createClass({
               this.props.organization.user.perm ?
               <div>
                 <h3>Your pitches awaiting approval:</h3>
-                <Table striped bordered hover>
+
+                <Table responsive hover striped bordered>
                   <thead>
                     <tr id="readOnlyHeader">
-                      <th>Name</th>
-                      <th>Project ID</th>
-                      <th>Created By</th>
-                      <th>Project Status</th>
-                      <th>Cost to Date</th>
-                      <th>Estimate to Complete</th>
+                      <th>NAME</th>
+                      <th>PROJECT ID</th>
+                      <th>CREATED BY</th>
+                      <th>PROJECT STATUS</th>
+                      <th>ESTIMATE TO COMPLETE</th>
+                      <th>COST TO DATE</th>
                     </tr>
                   </thead>
                   <tbody>

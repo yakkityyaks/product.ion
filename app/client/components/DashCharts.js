@@ -97,13 +97,13 @@ const DashCharts = React.createClass({
 
 	},
 	handleSortChange(e) {
-		e.preventDefault()
+		e.preventDefault();
 		this.setState({sortBy: e.target.value}, this.getExpenses);
 	},
 
 	getProjName(id) {
 		for (var i = 0; i < this.props.projects.length; i++) {
-			if (this.props.projects[i].id === id) { console.log(this.props.projects[i]); return this.props.projects[i].name;};
+			if (this.props.projects[i].id === id) { return this.props.projects[i].name;}
 		}
 		return 'proj not found';
 	},
@@ -124,7 +124,7 @@ const DashCharts = React.createClass({
 				</Form>
 				<div style={{"margin-top":"10px"}} id="dashChartContainer"></div>
 			</div>
-		)
+		);
 	}
 });
 

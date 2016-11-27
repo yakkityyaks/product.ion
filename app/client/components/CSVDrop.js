@@ -15,13 +15,11 @@ const CSVDrop = React.createClass({
   onDrop (file) {
     let that = this;
     let id = this.props.expenses.projId;
-    console.log('file', file);
     Papa.parse(file[0].preview, {
       header: true,
       download: true,
       complete: function(res) {
         if(res.length !== 0) {
-          console.log(res);
           if (JSON.stringify(res.meta.fields) !== JSON.stringify(["category","glCode","dateSpent","dateTracked","vendor","method","description","cost"])) {
             alert("Your CSV has an invalid column structure. The first line of your CSV should be 'category,glCode,dateSpent,dateTracked,vendor,method,description,cost'");
           } else {

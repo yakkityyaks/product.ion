@@ -17,7 +17,6 @@ function parseCSV(state=[], action) {
       // }
     })
     .catch(function(err) {
-      console.log('oh fuck this csv is bad');
       store.dispatch({
         type: "BAD_CSV",
         message: 'This is an invalid CSV. A valid CSV must have columns "type,vertical,glCode,dateSpent,dateTracked,vendor,method,description,cost"'

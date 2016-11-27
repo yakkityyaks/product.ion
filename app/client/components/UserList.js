@@ -105,18 +105,20 @@ const UserList = React.createClass({
 
     return (
       <div className="settingsMemberNode">
+      <div>
         <Button bsStyle="primary" style={{"float":"right","margin":"20px 0 15px 0"}} id="modalButton" onClick={this.props.switchModal}>
-          Add a User to Organization
+        Add a User to Organization
         </Button>
+      </div>
         <Form bsClass="usersSettings" onSubmit={this.onSubmit}>
           {state.changed &&
             <Button bsStyle={this.state.saveButtonStyle} style={{"float":"right","margin-bottom":"15px"}}
                     ref="changeButton" type="submit">{this.state.button}</Button>
           }
           <p>{this.state.noAdminWarning}</p>
+          <div>
           {state.users.map((user, key) =>
-            <ul>
-              <FormGroup style={{"float":"right"}} key={key} validationState={state.validate[key]}>
+              <FormGroup bsClass="userList" key={key} validationState={state.validate[key]}>
                 <ControlLabel bsClass="chartSortSelector">{user.username}</ControlLabel>&nbsp;&nbsp;
                 <FormControl componentClass="select" className="settingsMemberNode-perm"
                   onChange={this.onChange} name = {key} value={permName[user.perm]}>
@@ -125,8 +127,8 @@ const UserList = React.createClass({
                   <option value="User">User</option>
                 </FormControl>
               </FormGroup>
-            </ul>
           )}
+          </div>
       </Form>
       </div>
     );

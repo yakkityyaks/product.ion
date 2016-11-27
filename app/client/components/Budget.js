@@ -43,8 +43,6 @@ const Budget = React.createClass({
         total: this.state.newBudgetCost * this.state.newBudgetQuant,
         projs_id: this.props.id
       };
-      console.log("Budget object is ", budget);
-
       this.props.addNewBudget(budget);
       this.resetNewBudgetField();
     },

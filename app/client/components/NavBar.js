@@ -27,48 +27,78 @@ const NavBar = React.createClass({
   selectSettings() {
     this.props.changeNavKey(2);
   },
+  //
+  // selectCSV() {
+  //   this.props.changeNavKey(3);
+  // },
 
-  selectCSV() {
+  selectMaster() {
     this.props.changeNavKey(3);
   },
 
   render() {
-
+    const {
+      orgName,
+      user
+    } = this.props.organization;
     return (
       <div>
         <Navbar bsStyle="inverse">
-          <Nav>
-            <NavItem className="navItem">
-                <Link style={{"fontSize":"20px","fontWeight":"bold","color":"white"}} to="/">
+
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to={`/dashboard/${orgName}`} className="nav-title">
+                e$tymate
+              </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+          </Navbar.Header>
+
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem>
+                <Link to={`/dashboard/${orgName}`} className="nav-item">
                   Dashboard
                 </Link>
-            </NavItem>
-            <NavItem eventKey={1} onClick={this.selectDashboard}>
-                <Link style={{"fontSize":"15px","color":"white"}} to={'/projects'}>
+              </NavItem>
+
+              <NavItem eventKey={1} onClick={this.selectDashboard}>
+                <Link to={`/projects`} className="nav-item">
                   Projects
                 </Link>
-            </NavItem>
-            {//only loads if the user is an admin
-              this.props.organization.user.perm === 0 ?
-              <NavItem eventKey={2}>
-                <Link style={{"fontSize":"15px","color":"white"}} to={'/mastersheet'}>
-                  Master Sheet
-                </Link>
               </NavItem>
-            : <div />
-            }
-          </Nav>
 
-          <Nav pullRight>
-            <NavItem eventKey={2} onClick={this.selectSettings}>
-                <Link style={{"fontSize":"15px","color":"white"}} to={'/settings'}>
+              <NavItem eventKey={3} onClick={this.selectMaster}>
+              {// Only loads if the user is an admin
+                this.props.organization.user.perm === 0 ?
+                (<Link to={`/mastersheet`} className="nav-item">
+                  Master
+                </Link>) :
+                <div></div>
+              }
+              </NavItem>
+
+            </Nav>
+
+            <Nav pullRight>
+              <NavItem>
+                <div className="nav-item">Hello, {user.name}!</div>
+              </NavItem>
+
+              <NavItem eventKey={2} onClick={this.selectSettings}>
+                <Link to={`/settings`} className="nav-glyph">
                   <Glyphicon glyph="cog"/>
                 </Link>
-            </NavItem>
-            <NavItem onClick={this.logout}>
-                <Link style={{"fontSize":"15px","color":"white"}} to="/">Logout</Link>
-            </NavItem>
-          </Nav>
+              </NavItem>
+
+              <NavItem onClick={this.logout}>
+                <Link to={`/`} className="nav-item">
+                  Logout
+                </Link>
+              </NavItem>
+            </Nav>
+          </Navbar.Collapse>
+
         </Navbar>
       </div>
     );

@@ -1,3 +1,185 @@
+
+/*Login/Registration Styles*/
+
+#app {
+	background-color: #154b66;
+	box-shadow: 0 1px 0 0 #ebeff3;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.estimate-login {
+	width: 234px;
+	height: 55px;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	font-size: 46px;
+	margin: auto;
+	color: #1c98c9;
+	margin-bottom: 15px;
+}
+
+.estimate-register {
+	width: 234px;
+	height: 55px;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	font-size: 46px;
+	margin: auto;
+	color: #1c98c9;
+	margin-bottom: 15px;
+}
+
+.formInput {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 18px;
+	background-color: #ecfaf7;
+	margin: 10px;
+}
+
+.passInput {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
+	font-size: 18px;
+	background-color: #ecfaf7;
+	margin: 10px;
+}
+
+.loginTitle {
+	font-weight: bold;
+	font-size: 20px;
+	color: #fefdfb;
+	text-align: center;
+	margin: auto;
+	background: #457fca; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.registerForm {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 540px;
+	height: 620px;
+	background-color: #ffffff;
+	box-shadow: 0 3px 10px 0 #8fc1d4;
+	text-align: center;
+	padding: 100px;
+	margin: 20%;
+}
+
+.loginForm {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 540px;
+	height: 500px;
+	background-color: #ffffff;
+	box-shadow: 0 3px 10px 0 #8fc1d4;
+	text-align: center;
+	padding: 100px;
+	margin-top: 20%;
+	margin-bottom: 30%;
+}
+
+
+/* Dashboard Styles */
+
+.dashboard-welcome {
+	font-size: 30px;
+	color: #175d77;
+	text-align: center;
+	font-family: Superclarendon, Helvetica, sans-serif;
+	padding-bottom: 20px;
+}
+
+.dashboard-titles {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	width: 500px;
+	height: 36px;
+	font-family: Source Sans Pro, Open Sans;
+	font-size: 28px;
+	color: #175d77;
+}
+
+.dashboard-buttons {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.table-name {
+	text-align: center;
+	font-family: Source Sans Pro, Open Sans;
+	font-size: 12px;
+	font-weight: bold;
+	color: #175d77;
+}
+
+#readOnlyHeader {
+	text-align: center;
+	margin: auto;
+	font-size: 12px;
+	color: #175d77;
+	font-family: Source Sans Pro, Open Sans;
+	box-shadow: 0 0 2px 0 #8fc1d4;
+	width: 1160px;
+	padding: 10px;
+	background-color: #d7eff8;
+}
+
+#readOnlyBody > td {
+	font-size: 14px;
+	color: #175d77;
+	cursor: pointer;
+}
+
+tr:hover > td {
+	background-color: #ecfaf7;
+	border-top: 1px solid #79e011;
+	border-bottom: 1px solid #79e011;
+	border-right: #ecfaf7;
+	border-left: #ecfaf7;
+}
+
+.userList {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: space-around;
+	flex-flow: row;
+	padding: 5px;
+	margin: 2px;
+
+}
+
 .addUserField {
 	width: 300px;
 	margin: auto;
@@ -10,9 +192,8 @@
 	font-size: 25px;
 }
 
-.createOrgButton {
-	margin-bottom: 12px;
-	padding: 10px;
+.switchViewLink {
+	margin-top: 15px;
 }
 
 h3 {
@@ -21,39 +202,13 @@ h3 {
 	/*text-align: center;*/
 }
 
-.loginButton {
-	text-align: center;
-	margin: auto;
-	width: 400px;
-	padding-bottom: 3px;
-}
-
-#loginForm {
-	padding: 20px;
-}
-
-#loginLabel {
-	font-size: 17px;
-}
-
-#loginPanel {
-	width: 450px;
-	display: block;
-	text-align: center;
-	float: none;
-	margin: auto;
-	padding-top: 50px;
-}
-
-.loginTitle {
-	font-weight: bold;
-	font-size: 20px;
-	color: #fefdfb;
-	text-align: center;
-	margin: auto;
-	background: #457fca; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #457fca , #5691c8); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #457fca , #5691c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.button {
+	width: 300px;
+	height: 44px;
+	border-radius: 30px;
+	font-size: 18px;
+	color: white;
+	background-color: #84e0b8;
 }
 
 #modalButton {
@@ -68,31 +223,24 @@ h3 {
 	margin:auto;
 }
 
-#settingsWindow {
-	display:inline-block;
-	padding-right: 30px;
-}
-
 #settingsMain {
-	display: inline-block;
-	float: left;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
 }
 
 #settingsOptional {
-	padding-left: 10px;
-	display:inline-block;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	flex-flow: row;
+	flex-flow: wrap;
 }
 
 #csvModalButton {
 	float: right;
-}
-
-#readOnlyHeader > th {
-	font-size: 14px;
-}
-
-#readOnlyBody > td {
-	font-size: 14px;
 }
 
 .reminder {
@@ -186,7 +334,9 @@ h3 {
 }
 
 .userLabel {
+	font-family: Superclarendon, Helvetica, sans-serif;
 	font-size: 17px;
+	padding: none;
 }
 
 .usersSettings {
@@ -205,6 +355,53 @@ h3 {
 	background: #2c3e50; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #2c3e50 , #3498db); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #2c3e50 , #3498db); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	/*width: 1280px;*/
+	/*height: 75px;*/
+	box-shadow: 0 0 1px 0 #000000;
+}
+
+.nav-glyph {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	color: #ffffff;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	font-family: Open Sans;
+	font-size: 16px;
+	color: #ffffff;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #79e011;
+}
+
+a:active {
+	color: #79e011;
+}
+
+
+.nav-title {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	width: 123px;
+	height: 29px;
+	font-family: Superclarendon, Open Sans;
+	font-size: 25px;
+	margin: 11px 20px 11px 0;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #9ca4d0 !important;
 }
 
 .table-hover>tbody>tr:hover {
@@ -217,4 +414,13 @@ h3 {
 
 .testing1{
 	width: 60px;
+}
+
+.userLabel {
+	height: 15px;
+	font-family: Helvetica, Lato, SourceSansPro;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px;
+	color: #177599;
 }
